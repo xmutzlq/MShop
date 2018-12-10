@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <!--首页网格标题-->
+    <string-array name="detail_head_titles">
+        <item>商品</item>
+        <item>详情</item>
+        <item>评价</item>
+    </string-array>
+
+    <!--首页网格标题-->
+    <string-array name="detail_web_titles">
+        <item>商品介绍</item>
+        <item>规格参数</item>
+        <item>包装售后</item>
+    </string-array>
+</resources>

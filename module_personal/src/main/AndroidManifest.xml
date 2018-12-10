@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="google.architecture.personal">
+
+    <application>
+        <activity android:name=".ActivityShoppingPersonal"></activity>
+        <activity android:name=".login.ActivityLogin"
+            android:theme="@style/LoginTheme"
+            android:windowSoftInputMode="stateHidden|adjustResize"></activity>
+        <activity android:name=".login.ActivityResetLogin"
+            android:theme="@style/LoginTheme"
+            android:windowSoftInputMode="stateHidden|adjustResize"></activity>
+        <activity android:name=".login.ActivityModifyLogin"
+            android:theme="@style/LoginTheme"
+            android:windowSoftInputMode="stateHidden|adjustResize"></activity>
+        <activity android:name=".login.ActivityModifyUserAccount"
+            android:theme="@style/LoginTheme"
+            android:windowSoftInputMode="stateHidden|adjustResize"></activity>
+        <activity android:name=".ActivityMyOrder"></activity>
+        <activity android:name=".login.ActivitySetting"></activity>
+        <activity android:name=".login.ActivityAccountSafe"></activity>
+        <activity android:name=".login.ActivityPersonalInfo"></activity>
+        <activity android:name=".ActivityMyFavorites"></activity>
+        <activity android:name=".ActivityFootprint"></activity>
+        <activity android:name=".ActivityOrderDetail"></activity>
+        <activity android:name=".ActivityMyComment"></activity>
+        <activity android:name=".ActivityCommentDetail"></activity>
+        <activity android:name=".ActivityFeedBack"></activity>
+    </application>
+
+</manifest>

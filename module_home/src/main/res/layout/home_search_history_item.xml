@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android">
+    <data>
+        <import type="google.architecture.coremodel.datamodel.db.entity.SearchInfoEntity"/>
+        <variable name="searchHistoryData" type="SearchInfoEntity"/>
+    </data>
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingTop="@dimen/size_12dp"
+        android:paddingBottom="@dimen/size_12dp"
+        android:textSize="@dimen/text_size_16sp"
+        android:textColor="@color/gray_88"
+        android:text="@{searchHistoryData.keyWord}"/>
+</layout>

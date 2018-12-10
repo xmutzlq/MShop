@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:stv="http://schemas.android.com/apk/res-auto">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <com.allen.library.SuperTextView
+            android:id="@+id/detail_commodity_hot_rec_tv"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/size_10dp"
+            android:layout_marginBottom="@dimen/size_10dp"
+            stv:sRightIconRes="@drawable/ic_arrow_right"
+            stv:sUseRipple="false"/>
+
+        <google.architecture.common.widget.hmore.HorizontalRefreshLayout
+            android:id="@+id/detail_commodity_hot_rec_refresh"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <android.support.v7.widget.RecyclerView
+                android:id="@+id/detail_commodity_hot_rec"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingLeft="@dimen/size_6dp"
+                android:paddingRight="@dimen/size_6dp"
+                android:background="@color/white"/>
+        </google.architecture.common.widget.hmore.HorizontalRefreshLayout>
+
+    </LinearLayout>
+</layout>

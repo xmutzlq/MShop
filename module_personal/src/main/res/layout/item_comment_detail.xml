@@ -1,0 +1,129 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:soulwolf="http://schemas.android.com/apk/res-auto"
+    android:padding="@dimen/size_15dp"
+    android:orientation="vertical">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center_vertical">
+        <net.soulwolf.widget.ratiolayout.widget.RatioFrameLayout
+            soulwolf:datumRatio="datumWidth"
+            soulwolf:widthRatio="1"
+            soulwolf:heightRatio="1"
+            android:layout_width="@dimen/size_60dp"
+            android:layout_height="@dimen/size_60dp">
+            <ImageView
+                android:id="@+id/goods_img_iv"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:scaleType="fitXY"/>
+        </net.soulwolf.widget.ratiolayout.widget.RatioFrameLayout>
+
+        <TextView
+            android:id="@+id/goods_name_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="@dimen/text_size_15sp"
+            android:textColor="@color/text_color"/>
+    </LinearLayout>
+
+    <View style="@style/DeepUnderLine"
+        android:layout_marginBottom="@dimen/size_15dp"
+        android:layout_marginTop="@dimen/size_15dp"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center">
+        <FrameLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1">
+            <TextView
+                android:id="@+id/goods_comment_bad_btn"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:clickable="true"
+                android:layout_gravity="right"
+                android:drawableTop="@drawable/comment_level_bad_selector"
+                android:textColor="@color/text_color"
+                android:textSize="@dimen/text_size_15sp"
+                android:text="@string/str_comment_bad"/>
+        </FrameLayout>
+        <FrameLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1">
+            <TextView
+                android:id="@+id/goods_comment_good_btn"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:clickable="true"
+                android:layout_gravity="center"
+                android:drawableTop="@drawable/comment_level_good_selector"
+                android:textColor="@color/text_color"
+                android:textSize="@dimen/text_size_15sp"
+                android:text="@string/str_comment_good"/>
+        </FrameLayout>
+        <FrameLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1">
+            <TextView
+                android:id="@+id/goods_comment_great_btn"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:clickable="true"
+                android:layout_gravity="left"
+                android:drawableTop="@drawable/comment_level_great_selector"
+                android:textColor="@color/text_color"
+                android:textSize="@dimen/text_size_15sp"
+                android:text="@string/str_comment_great"/>
+        </FrameLayout>
+    </LinearLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/size_100dp"
+        android:layout_marginTop="@dimen/size_15dp"
+        android:background="@drawable/bg_round_rectangle_white" >
+
+        <EditText
+            android:id="@+id/editText1"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="top"
+            android:background="@null"
+            android:hint="@string/str_input_feed_back"
+            android:maxLength="100"
+            android:padding="10dp"
+            android:textColor="@color/color_666666"
+            android:textColorHint="@color/color_999999"
+            android:textSize="@dimen/text_size_15sp" >
+
+            <requestFocus />
+        </EditText>
+
+        <TextView
+            android:id="@+id/watch_text_count_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentRight="true"
+            android:layout_marginBottom="10dp"
+            android:layout_marginRight="20dp"
+            android:textColor="@color/color_666666"
+            android:textSize="@dimen/text_size_12sp" />
+    </RelativeLayout>
+
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/img_upload_rv"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/size_15dp"/>
+</LinearLayout>

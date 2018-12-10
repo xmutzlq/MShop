@@ -1,0 +1,31 @@
+buildscript {
+    apply from: 'versions.gradle'
+
+    addRepos(repositories)
+    dependencies {
+        classpath 'com.android.tools.build:gradle:3.0.0'
+        classpath 'me.tatarka:gradle-retrolambda:3.7.0'
+        classpath 'com.antfortune.freeline:gradle:0.8.8'
+    }
+
+    tasks.withType(JavaCompile) {
+        options.incremental = true
+    }
+}
+
+allprojects {
+    addRepos(repositories)
+    //skip Test tasks
+    gradle.taskGraph.whenReady {
+        tasks.each { task ->
+            if (task.name.contains("Test"))
+            {
+                task.enabled = false
+            }
+        }
+    }
+}
+
+task clean(type: Delete) {
+    delete rootProject.buildDir
+}

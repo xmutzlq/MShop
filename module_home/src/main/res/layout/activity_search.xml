@@ -1,0 +1,142 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:zhy="http://schemas.android.com/apk/res-auto">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+        <LinearLayout
+            android:id="@+id/search_main"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            android:orientation="horizontal"
+            android:background="@color/colorPrimary"
+            android:gravity="center_vertical">
+
+            <google.architecture.home.widget.CommSearchView
+                android:id="@+id/home_search_view"
+                android:layout_width="0dp"
+                android:layout_height="@dimen/size_35dp"
+                android:layout_weight="1"
+                android:layout_marginLeft="@dimen/size_15dp"
+                android:iconifiedByDefault="false"
+                android:queryHint="@string/home_search_input_hint"
+                android:background="@drawable/bg_round_angle_search"
+                android:searchIcon="@mipmap/icon_search_gray"/>
+
+            <TextView
+                android:id="@+id/home_search"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:paddingLeft="@dimen/size_15dp"
+                android:paddingRight="@dimen/size_15dp"
+                android:text="@string/home_search_lable"
+                android:textColor="@color/white"/>
+
+        </LinearLayout>
+
+        <google.architecture.common.widget.ScrollListenerView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:focusable="false"
+            android:scrollbars="none"
+            android:fillViewport="true"
+            android:focusableInTouchMode="true"
+            android:descendantFocusability="blocksDescendants" >
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical"
+                android:background="@color/white">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/size_20dp"
+                    android:paddingLeft="@dimen/size_15dp"
+                    android:text="@string/home_search_hot"
+                    android:textSize="@dimen/text_size_18sp" />
+
+                <google.architecture.common.widget.TagFlowLayout
+                    android:id="@+id/home_search_flow_layout"
+                    zhy:line_spacing="@dimen/size_10dp"
+                    zhy:max_select="-1"
+                    android:layout_marginTop="@dimen/size_15dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:focusable="false"
+                    android:focusableInTouchMode="false"/>
+
+                <LinearLayout
+                    android:id="@+id/hisotry_ll"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+                    <View
+                        style="@style/SpaceLine"
+                        android:layout_marginTop="@dimen/size_3dp"/>
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/size_15dp"
+                        android:layout_marginBottom="@dimen/size_15dp"
+                        android:layout_marginLeft="@dimen/size_15dp"
+                        android:text="@string/home_search_history"
+                        android:textSize="@dimen/size_18dp" />
+
+                    <View
+                        style="@style/DeepUnderLine"
+                        android:layout_marginTop="@dimen/size_3dp"/>
+
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="0dp"
+                        android:layout_weight="1"
+                        android:background="#00000000"
+                        android:visibility="gone">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="@dimen/size_20dp"
+                            android:layout_centerHorizontal="true"
+                            android:text="@string/home_search_no_history" />
+                    </RelativeLayout>
+
+                    <com.yanzhenjie.recyclerview.swipe.SwipeMenuRecyclerView
+                        android:id="@+id/home_search_history_lv"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:paddingLeft="@dimen/size_15dp"
+                        android:layout_weight="1"
+                        android:scrollbars="none"
+                        android:focusable="false"
+                        android:focusableInTouchMode="false"/>
+
+                    <View
+                        style="@style/DeepUnderLine"
+                        android:layout_marginTop="@dimen/size_3dp"/>
+
+                    <Button
+                        android:id="@+id/home_search_delete"
+                        android:layout_width="wrap_content"
+                        android:layout_height="@dimen/size_30dp"
+                        style="@style/PaddingRoundRectBtn"
+                        android:layout_alignParentBottom="true"
+                        android:layout_centerHorizontal="true"
+                        android:layout_gravity="center_horizontal"
+                        android:layout_marginTop="@dimen/size_50dp"
+                        android:layout_marginBottom="@dimen/size_50dp"
+                        android:background="@drawable/bg_round_rect_search_clear_button"
+                        android:text="@string/home_search_clear_history"
+                        android:textColor="@color/text_black_4d"
+                        android:visibility="gone"/>
+                </LinearLayout>
+
+            </LinearLayout>
+
+        </google.architecture.common.widget.ScrollListenerView>
+    </LinearLayout>
+</layout>

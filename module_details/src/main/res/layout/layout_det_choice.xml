@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:stv="http://schemas.android.com/apk/res-auto">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/size_10dp"
+        android:layout_marginRight="@dimen/size_10dp"
+        android:orientation="horizontal"
+        android:gravity="center_vertical">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="@dimen/text_size_12sp"
+            android:textColor="@color/bg_999999"
+            android:text="@string/comm_str_choice"/>
+        <com.allen.library.SuperTextView
+            android:id="@+id/detail_commodity_choice_state_tv"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:layout_marginLeft="@dimen/size_10dp"
+            android:layout_marginRight="@dimen/size_5dp"
+            android:paddingTop="@dimen/size_15dp"
+            android:paddingBottom="@dimen/size_15dp"
+            stv:sUseRipple="false"/>
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_arrow_right"/>
+    </LinearLayout>
+
+</layout>

@@ -1,0 +1,114 @@
+apply plugin: 'com.android.application'
+apply plugin: 'me.tatarka.retrolambda'
+apply plugin: 'com.antfortune.freeline'
+apply from: "../channels.gradle"
+
+def keystorePropertiesFile = rootProject.file("signing.properties")
+def keystoreProperties = new Properties()
+keystoreProperties.load(new FileInputStream(keystorePropertiesFile))
+
+android {
+    signingConfigs {
+        myConfig {
+            keyAlias keystoreProperties['KEY_ALIAS']
+            keyPassword keystoreProperties['KEY_PASSWORD']
+            storeFile file(keystoreProperties['STORE_FILE'])
+            storePassword keystoreProperties['STORE_PASSWORD']
+        }
+    }
+
+    compileSdkVersion build_versions.target_sdk
+    buildToolsVersion build_versions.build_tools
+    defaultConfig {
+        applicationId "com.bop.android.shopping"
+        minSdkVersion build_versions.min_sdk
+        targetSdkVersion build_versions.target_sdk
+        versionCode 1
+        versionName "1.0"
+
+        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+
+        ndk {
+            // 设置支持的SO库架构
+            abiFilters 'armeabi' , 'x86'//, 'armeabi-v7a', 'mips''x86_64', 'arm64-v8a'
+        }
+
+        //ARouter
+        javaCompileOptions {
+            annotationProcessorOptions {
+                arguments = [moduleName: project.getName()]
+            }
+        }
+        multiDexEnabled true
+        dexOptions {
+            //使用增量模式构建
+            incremental true
+            //是否支持大工程模式
+            jumboMode=true
+            //预编译
+            preDexLibraries = true
+            javaMaxHeapSize "8g"
+            //线程数
+            threadCount=8
+        }
+    }
+    buildTypes {
+        debug{
+            //混淆
+            minifyEnabled false
+            //Zipalign优化
+            zipAlignEnabled true
+            // 移除无用的resource文件
+            shrinkResources false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+            signingConfig signingConfigs.myConfig
+        }
+        release {
+            //混淆
+            minifyEnabled true
+            //Zipalign优化
+            zipAlignEnabled true
+            // 移除无用的resource文件
+            shrinkResources false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+            signingConfig signingConfigs.myConfig
+        }
+    }
+    dataBinding {
+        enabled = true
+    }
+    lintOptions {
+        checkReleaseBuilds false
+        abortOnError false
+    }
+
+    //打包选项
+    packagingOptions {
+        //去除的文件
+        exclude 'META-INF/LICENSE'
+        exclude 'META-INF/LICENSE.txt'
+        exclude 'META-INF/NOTICE'
+        exclude 'META-INF/NOTICE.txt'
+    }
+
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+}
+
+dependencies {
+    implementation fileTree(include: ['*.jar'], dir: 'libs')
+    if (isModule.toBoolean()) {
+        implementation project(':lib_common')
+    } else {
+        implementation project(':module_category')
+        implementation project(':module_home')
+        implementation project(':module_cart')
+        implementation project(':module_personal')
+        implementation project(':module_details')
+        implementation project(':module_order')
+    }
+    annotationProcessor deps.arouter.compiler
+    annotationProcessor deps.glide.compiler
+}

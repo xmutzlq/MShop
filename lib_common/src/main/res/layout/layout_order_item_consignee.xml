@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:id="@+id/order_consignee_edit"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:clickable="true"
+        android:background="@drawable/bg_gv"
+        android:orientation="horizontal"
+        android:gravity="center_vertical">
+        <FrameLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:paddingTop="@dimen/size_15dp"
+            android:paddingBottom="@dimen/size_15dp">
+
+            <TextView
+                android:id="@+id/order_consignee_empty_tv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/size_15dp"
+                android:layout_marginRight="@dimen/size_15dp"
+                android:paddingTop="@dimen/size_15dp"
+                android:paddingBottom="@dimen/size_15dp"
+                android:text="@string/order_str_consignee_empty"
+                android:textColor="@color/color_D83256"
+                android:textSize="@dimen/text_size_15sp"/>
+
+            <LinearLayout
+                android:id="@+id/order_consignee_info_lay"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:gravity="center_vertical"
+                android:visibility="gone">
+                <ImageView
+                    android:layout_width="@dimen/size_20dp"
+                    android:layout_height="@dimen/size_20dp"
+                    android:layout_marginLeft="@dimen/size_15dp"
+                    android:layout_marginRight="@dimen/size_15dp"
+                    android:src="@mipmap/ic_location_dark"/>
+                <RelativeLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1">
+                    <TextView
+                        android:id="@+id/order_consignee_tv"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/order_str_consignee"
+                        android:textColor="@color/color_282828"
+                        android:textSize="@dimen/text_size_18sp"/>
+                    <TextView
+                        android:id="@+id/order_consignee_phone_tv"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textColor="@color/color_282828"
+                        android:textSize="@dimen/text_size_18sp"
+                        android:layout_alignParentRight="true"/>
+                    <TextView
+                        android:id="@+id/order_consignee_address_tv"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/size_10dp"
+                        android:layout_marginBottom="@dimen/size_10dp"
+                        android:layout_below="@id/order_consignee_tv"
+                        android:text="@string/order_str_delivery_address"
+                        android:textColor="@color/color_282828"
+                        android:textSize="@dimen/text_size_14sp"/>
+                </RelativeLayout>
+            </LinearLayout>
+        </FrameLayout>
+
+        <ImageView
+            android:id="@+id/order_consignee_address_arrows_right_iv"
+            android:layout_width="@dimen/size_15dp"
+            android:layout_height="@dimen/size_15dp"
+            android:layout_marginLeft="@dimen/size_15dp"
+            android:layout_marginRight="@dimen/size_15dp"
+            android:src="@drawable/ic_arrow_right"/>
+    </LinearLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/size_5dp"
+        android:background="@mipmap/ic_order_divid_line" />
+
+</LinearLayout>

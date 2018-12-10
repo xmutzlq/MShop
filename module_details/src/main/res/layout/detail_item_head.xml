@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/detail_head_root"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
+
+    <FrameLayout
+        android:id="@+id/detail_head_bg"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"/>
+
+    <View
+        android:id="@+id/detail_head_statubar_space"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:background="@color/colorPrimary"/>
+
+    <RelativeLayout
+        android:id="@+id/detail_head_rl"
+        android:layout_width="match_parent"
+        android:layout_height="?android:attr/actionBarSize"
+        android:layout_below="@+id/detail_head_statubar_space">
+
+        <FrameLayout
+            android:id="@+id/detail_head_back_fl"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/size_10dp"
+            android:layout_centerVertical="true"
+            android:background="@color/transparent">
+            <ImageView
+                android:id="@+id/detail_head_back_iv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@mipmap/ic_arrow_back_white_h"
+                android:layout_gravity="center"
+                android:background="@color/transparent"/>
+        </FrameLayout>
+
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_centerInParent="true">
+            <TextView
+                android:id="@+id/detail_head_title_tv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:textColor="@color/white"
+                android:textSize="@dimen/text_size_16sp"
+                android:text="@string/detail_p_t_title"
+                android:visibility="invisible"/>
+            <net.lucode.hackware.magicindicator.MagicIndicator
+                android:id="@+id/detail_head_indicator"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"/>
+        </RelativeLayout>
+
+        <FrameLayout
+            android:id="@+id/detail_head_more_fl"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="@dimen/size_12dp"
+            android:layout_centerVertical="true"
+            android:layout_alignParentRight="true"
+            android:background="@color/transparent">
+        <ImageView
+            android:id="@+id/detail_head_more_iv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@mipmap/ic_more_h"
+            android:layout_gravity="center"
+            android:background="@color/transparent"/>
+        </FrameLayout>
+
+        <FrameLayout
+            android:id="@+id/detail_head_share_fl"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="@dimen/size_5dp"
+            android:layout_centerVertical="true"
+            android:layout_toLeftOf="@id/detail_head_more_fl"
+            android:background="@color/transparent">
+        <ImageView
+            android:id="@+id/detail_head_share_iv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@mipmap/ic_share_h"
+            android:layout_gravity="center"
+            android:background="@color/transparent"/>
+        </FrameLayout>
+    </RelativeLayout>
+</RelativeLayout>

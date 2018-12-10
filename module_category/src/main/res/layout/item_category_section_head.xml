@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <include
+        android:id="@+id/category_section_banner"
+        layout="@layout/item_category_section_banner" />
+
+    <LinearLayout
+        android:id="@+id/category_section_title"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center_vertical">
+        <TextView
+            android:id="@+id/category_section_tvTitle"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/size_20dp"
+            android:layout_weight="1"
+            android:gravity="center_vertical"
+            android:maxLines="1"
+            android:textColor="@color/text_color"
+            android:textSize="@dimen/text_size_12sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/category_section_tvMore"
+            android:layout_width="wrap_content"
+            android:layout_height="@dimen/size_20dp"
+            android:layout_weight="0"
+            android:drawablePadding="@dimen/size_5dp"
+            android:drawableRight="@drawable/ic_arrow_right"
+            android:gravity="center_vertical"
+            android:lines="1"
+            android:text="查看更多"
+            android:textColor="@color/color_999999"
+            android:textSize="@dimen/text_size_11sp"
+            android:visibility="gone"/>
+    </LinearLayout>
+</FrameLayout>

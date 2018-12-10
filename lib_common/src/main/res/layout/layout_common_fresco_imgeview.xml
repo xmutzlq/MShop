@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<net.soulwolf.widget.ratiolayout.widget.RatioFrameLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:soulwolf="http://schemas.android.com/apk/res-auto"
+    xmlns:fresco="http://schemas.android.com/apk/res-auto"
+    soulwolf:datumRatio="datumWidth"
+    soulwolf:widthRatio="1"
+    soulwolf:heightRatio="1"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content">
+    <com.facebook.drawee.view.SimpleDraweeView
+        android:id="@+id/common_fresco_iv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        fresco:actualImageScaleType="fitXY"
+        fresco:placeholderImage="@drawable/image_mark"
+        fresco:placeholderImageScaleType="fitXY" />
+</net.soulwolf.widget.ratiolayout.widget.RatioFrameLayout>

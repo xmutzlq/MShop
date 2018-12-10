@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:stv="http://schemas.android.com/apk/res-auto"
+    xmlns:zhy="http://schemas.android.com/apk/res-auto">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <com.allen.library.SuperTextView
+            android:id="@+id/detail_commodity_comment_tv"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/size_10dp"
+            android:layout_marginBottom="@dimen/size_15dp"
+            stv:sUseRipple="false"/>
+
+        <google.architecture.common.widget.TagFlowLayout
+            android:id="@+id/detail_commodity_comment_tag"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/size_5dp"
+            android:layout_marginRight="@dimen/size_5dp"
+            android:layout_marginBottom="@dimen/size_15dp"
+            zhy:flow_row_item_count="3"
+            zhy:line_spacing="@dimen/size_10dp"
+            zhy:max_select="-1" />
+
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/detail_commodity_comment_rec"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
+
+        <include layout="@layout/layout_common_two_btn"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/size_10dp"
+            android:layout_marginBottom="@dimen/size_20dp"/>
+    </LinearLayout>
+</layout>

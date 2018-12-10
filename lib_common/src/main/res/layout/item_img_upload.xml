@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    xmlns:soulwolf="http://schemas.android.com/apk/res-auto">
+    <net.soulwolf.widget.ratiolayout.widget.RatioFrameLayout
+        soulwolf:datumRatio="datumWidth"
+        soulwolf:widthRatio="1"
+        soulwolf:heightRatio="1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:padding="@dimen/size_10dp">
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+            <ImageView
+                android:id="@+id/iv_img_upload"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"/>
+            <ProgressBar
+                android:id="@+id/pb_img_upload"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent" />
+        </FrameLayout>
+    </net.soulwolf.widget.ratiolayout.widget.RatioFrameLayout>
+    <ImageView
+        android:id="@+id/iv_img_delete"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentRight="true"
+        android:src="@drawable/delet_zhaopian_1x"
+        android:visibility="gone"/>
+</RelativeLayout>

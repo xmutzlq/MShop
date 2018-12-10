@@ -1,0 +1,157 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:attribute="http://schemas.android.com/apk/res-auto">
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <com.scwang.smartrefresh.layout.SmartRefreshLayout
+            android:id="@+id/personal_refreshLayout"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@color/white"
+            app:srlAccentColor="@color/white"
+            app:srlEnableLoadMore="false"
+            app:srlPrimaryColor="@color/colorPrimary">
+            <android.support.design.widget.CoordinatorLayout
+                android:id="@+id/personal_coordinator_layout"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <android.support.design.widget.AppBarLayout
+                    android:id="@+id/personal_app_bar_layout"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:background="@color/common_bg"
+                    app:elevation="0dp"
+                    app:layout_behavior="google.architecture.common.widget.ScrollBackBehavior">
+
+                    <android.support.design.widget.CollapsingToolbarLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="@color/common_bg"
+                        app:collapsedTitleGravity="center"
+                        app:contentScrim="@color/common_bg"
+                        app:layout_scrollFlags="scroll|exitUntilCollapsed">
+
+
+                        <android.support.v7.widget.Toolbar
+                            android:id="@+id/personal_tool_bar"
+                            android:layout_width="match_parent"
+                            android:layout_height="?attr/actionBarSize"
+                            app:layout_collapseMode="pin"
+                            app:popupTheme="@style/ThemeOverlay.AppCompat.Light" />
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="vertical">
+                            <FrameLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content">
+                                <google.architecture.common.widget.arc.CrescentoContainer
+                                    android:layout_width="match_parent"
+                                    android:layout_height="@dimen/size_160dp"
+                                    android:elevation="0dp"
+                                    android:scaleType="centerCrop"
+                                    attribute:curvature="@dimen/size_10dp">
+                                    <ImageView
+                                        android:layout_width="match_parent"
+                                        android:layout_height="match_parent"
+                                        android:background="@mipmap/bg_personal_unlogin" />
+                                </google.architecture.common.widget.arc.CrescentoContainer>
+                                <!--用户信息-->
+                                <include layout="@layout/layout_u_head"/>
+                            </FrameLayout>
+
+                            <include layout="@layout/layout_u_order"/>
+                            <include layout="@layout/layout_u_package"/>
+                        </LinearLayout>
+
+                    </android.support.design.widget.CollapsingToolbarLayout>
+                </android.support.design.widget.AppBarLayout>
+
+                <google.architecture.common.widget.JudgeNestedScrollView
+                    android:id="@+id/personal_nested_scroll_view"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_gravity="fill_vertical"
+                    android:fillViewport="true"
+                    app:layout_behavior="google.architecture.common.widget.MyBehavior">
+                    <LinearLayout
+                        android:id="@+id/personal_behavior_layout"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:background="@color/common_bg"
+                        android:orientation="vertical">
+                        <net.lucode.hackware.magicindicator.MagicIndicator
+                            android:id="@+id/personal_head_indicator"
+                            android:layout_width="match_parent"
+                            android:layout_height="@dimen/size_40dp"
+                            android:background="@color/white"/>
+                        <android.support.v4.view.ViewPager
+                            android:id="@+id/personal_view_pager"
+                            android:layout_width="match_parent"
+                            android:layout_height="0dp"
+                            android:layout_weight="1"/>
+                    </LinearLayout>
+                </google.architecture.common.widget.JudgeNestedScrollView>
+            </android.support.design.widget.CoordinatorLayout>
+        </com.scwang.smartrefresh.layout.SmartRefreshLayout>
+
+        <!--头部-->
+        <LinearLayout
+            android:id="@+id/personal_head_rl"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+            <View
+                android:id="@+id/personal_status_bar"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"/>
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="?attr/actionBarSize">
+                <ImageView
+                    android:id="@+id/personal_msg"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="@dimen/size_15dp"
+                    android:src="@mipmap/ic_u_msg"
+                    android:layout_centerVertical="true"
+                    android:layout_alignParentRight="true" />
+
+                <ImageView
+                    android:id="@+id/personal_setting"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="@dimen/size_15dp"
+                    android:src="@mipmap/ic_u_setting"
+                    android:layout_centerVertical="true"
+                    android:layout_toLeftOf="@id/personal_msg"/>
+
+                <ImageView
+                    android:id="@+id/user_head_head_iv"
+                    android:layout_width="@dimen/size_30dp"
+                    android:layout_height="@dimen/size_30dp"
+                    android:layout_marginLeft="@dimen/size_15dp"
+                    android:src="@mipmap/ic_u_head"
+                    android:layout_alignParentLeft="true"
+                    android:layout_centerVertical="true"
+                    android:visibility="gone"/>
+
+                <TextView
+                    android:id="@+id/user_head_head_tv"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerInParent="true"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/text_size_18sp"
+                    android:text="我的"
+                    android:visibility="gone"/>
+            </RelativeLayout>
+        </LinearLayout>
+    </FrameLayout>
+</layout>

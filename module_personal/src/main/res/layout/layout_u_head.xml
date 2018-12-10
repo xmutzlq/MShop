@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_marginTop="@dimen/size_70dp"
+    android:orientation="vertical">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/size_15dp">
+
+        <ImageView
+            android:id="@+id/user_head_iv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:src="@mipmap/ic_u_head" />
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="@dimen/size_15dp"
+            android:src="@drawable/ic_arrow_right_white" />
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="@dimen/size_10dp"
+            android:layout_toRightOf="@id/user_head_iv"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/user_head_tv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/login_register"
+                android:textColor="@color/white"
+                android:textSize="@dimen/text_size_16sp" />
+        </LinearLayout>
+    </RelativeLayout>
+
+    <com.qmuiteam.qmui.layout.QMUIFrameLayout
+        android:id="@+id/shadow_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/size_30dp"
+        android:layout_marginLeft="@dimen/size_14dp"
+        android:layout_marginRight="@dimen/size_14dp"
+        android:layout_marginBottom="@dimen/size_14dp"
+        android:background="@color/qmui_config_color_white"
+        app:qmui_borderColor="?attr/qmui_config_color_separator"
+        app:qmui_outerNormalColor="?attr/qmui_config_color_background"
+        app:qmui_showBorderOnlyBeforeL="true">
+
+        <android.support.constraint.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:id="@+id/tv_my_order_label"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/size_13dp"
+                android:layout_marginTop="@dimen/size_13dp"
+                android:text="@string/personal_my_order_title"
+                android:textColor="@color/color_282828"
+                android:textSize="@dimen/text_size_16sp"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/tv_all_order_label"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="@dimen/size_15dp"
+                android:drawableRight="@drawable/ic_arrow_right"
+                android:drawablePadding="@dimen/size_10dp"
+                android:text="@string/personal_my_all_orders_title"
+                android:textColor="@color/color_999999"
+                android:textSize="@dimen/text_size_12sp"
+                app:layout_constraintBottom_toBottomOf="@+id/tv_my_order_label"
+                app:layout_constraintTop_toTopOf="@+id/tv_my_order_label"
+                app:layout_constraintRight_toRightOf="parent"/>
+
+
+            <include layout="@layout/layout_content_item_"
+                android:id="@+id/layout_waiting_for_pay"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                app:layout_constraintHorizontal_weight="1"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/tv_my_order_label"
+                app:layout_constraintRight_toLeftOf="@+id/layout_waiting_for_receipt"/>
+
+            <include layout="@layout/layout_content_item_"
+                android:id="@+id/layout_waiting_for_receipt"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                app:layout_constraintHorizontal_weight="1"
+                app:layout_constraintTop_toBottomOf="@+id/tv_my_order_label"
+                app:layout_constraintLeft_toRightOf="@+id/layout_waiting_for_pay"
+                app:layout_constraintRight_toLeftOf="@+id/layout_waiting_for_comment"/>
+
+            <include layout="@layout/layout_content_item_"
+                android:id="@+id/layout_waiting_for_comment"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                app:layout_constraintHorizontal_weight="1"
+                app:layout_constraintTop_toBottomOf="@+id/tv_my_order_label"
+                app:layout_constraintLeft_toRightOf="@+id/layout_waiting_for_receipt"
+                app:layout_constraintRight_toLeftOf="@+id/layout_service_for_other"/>
+
+            <include layout="@layout/layout_content_item_"
+                android:id="@+id/layout_service_for_other"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                app:layout_constraintHorizontal_weight="1"
+                app:layout_constraintTop_toBottomOf="@+id/tv_my_order_label"
+                app:layout_constraintLeft_toRightOf="@+id/layout_waiting_for_comment"
+                app:layout_constraintRight_toRightOf="parent"/>
+        </android.support.constraint.ConstraintLayout>
+    </com.qmuiteam.qmui.layout.QMUIFrameLayout>
+</LinearLayout>

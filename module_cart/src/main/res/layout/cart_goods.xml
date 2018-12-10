@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:amount_view="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal"
+    android:gravity="center_vertical"
+    android:background="@color/white">
+
+    <FrameLayout
+        android:id="@+id/btn_cart_goods_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:paddingTop="@dimen/size_15dp"
+        android:paddingBottom="@dimen/size_15dp"
+        android:paddingLeft="@dimen/size_15dp"
+        android:paddingRight="@dimen/size_15dp">
+        <CheckBox
+            android:id="@+id/cb_cart_goods_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:clickable="false"
+            android:focusable="false"
+            android:focusableInTouchMode="false"
+            style="@style/CartCheckbox"/>
+    </FrameLayout>
+
+    <com.qmuiteam.qmui.layout.QMUIRelativeLayout
+        android:id="@+id/shadow_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/size_10dp"
+        android:layout_marginBottom="@dimen/size_10dp"
+        android:layout_marginRight="@dimen/size_15dp"
+        android:background="@color/qmui_config_color_white"
+        app:qmui_borderColor="?attr/qmui_config_color_separator"
+        app:qmui_outerNormalColor="?attr/qmui_config_color_background"
+        app:qmui_showBorderOnlyBeforeL="true">
+        <ImageView
+            android:id="@+id/iv_cart_goods_title"
+            android:layout_width="@dimen/size_100dp"
+            android:layout_height="@dimen/size_100dp"
+            android:scaleType="centerCrop"/>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_toRightOf="@id/iv_cart_goods_title"
+            android:orientation="vertical">
+            <TextView
+                android:id="@+id/tv_cart_goods_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:padding="@dimen/size_5dp"
+                android:lines="1"
+                android:textSize="@dimen/text_size_14sp"
+                android:textColor="@color/text_color_404040" />
+            <TextView
+                android:id="@+id/tv_cart_goods_price"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:paddingLeft="@dimen/size_5dp"
+                android:lines="1"
+                android:textSize="@dimen/text_size_14sp"
+                android:textColor="@color/color_FD644B" />
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1"
+                android:paddingRight="@dimen/size_5dp"
+                android:paddingBottom="@dimen/size_5dp">
+
+                <TextView
+                    android:id="@+id/tv_cart_goods_price_value"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:paddingLeft="@dimen/size_5dp"
+                    android:layout_alignParentLeft="true"
+                    android:layout_alignParentBottom="true"
+                    android:lines="1"
+                    android:textSize="@dimen/text_size_15sp"
+                    android:textColor="@color/viewfinder_laser"/>
+
+                <google.architecture.common.widget.AmountView
+                    android:id="@+id/cart_amount_view"
+                    android:layout_width="wrap_content"
+                    android:layout_height="@dimen/size_25dp"
+                    android:layout_alignParentRight="true"
+                    android:layout_alignParentBottom="true"
+                    amount_view:cart_btnTextSize="@dimen/text_size_14sp"
+                    amount_view:cart_btnWidth="@dimen/size_25dp"
+                    amount_view:cart_tvWidth="@dimen/size_50dp"/>
+            </RelativeLayout>
+        </LinearLayout>
+    </com.qmuiteam.qmui.layout.QMUIRelativeLayout>
+
+    <ImageView
+        android:id="@+id/tv_cart_goods_delete"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/ic_delete_black_24dp"
+        android:visibility="gone"/>
+</LinearLayout>

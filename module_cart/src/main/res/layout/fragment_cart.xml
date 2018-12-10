@@ -1,0 +1,172 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <data>
+        <import type="android.view.View"/>
+        <variable
+            name="checkAll"
+            type="com.king.android.adapter.CartExpandableItemAdapter" />
+    </data>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <!-- 头部-->
+        <RelativeLayout
+            android:id="@+id/cart_manage_layout"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            android:background="@color/white"
+            android:visibility="@{checkAll.topManageShown ? View.VISIBLE : View.GONE}">
+
+            <TextView
+                android:id="@+id/cart_tv_del"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:paddingTop="@dimen/size_3dp"
+                android:paddingBottom="@dimen/size_3dp"
+                android:paddingLeft="@dimen/size_20dp"
+                android:paddingRight="@dimen/size_20dp"
+                android:layout_marginRight="@dimen/size_10dp"
+                android:layout_centerVertical="true"
+                android:layout_alignParentRight="true"
+                android:lines="1"
+                android:textSize="@dimen/text_size_14sp"
+                android:textColor="@color/themePrimary"
+                android:text="@string/cart_item_delete"
+                android:background="@drawable/cart_bg_round_btn_red"/>
+
+            <TextView
+                android:id="@+id/cart_tv_add_to_fav"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:paddingTop="@dimen/size_3dp"
+                android:paddingBottom="@dimen/size_3dp"
+                android:paddingLeft="@dimen/size_12dp"
+                android:paddingRight="@dimen/size_12dp"
+                android:layout_marginRight="@dimen/size_10dp"
+                android:layout_centerVertical="true"
+                android:layout_toLeftOf="@id/cart_tv_del"
+                android:lines="1"
+                android:textSize="@dimen/text_size_14sp"
+                android:textColor="@color/themePrimary"
+                android:text="@string/cart_add_to_favorites"
+                android:background="@drawable/cart_bg_round_btn_red"/>
+
+            <View style="@style/DeepUnderLine"
+                android:layout_alignParentBottom="true"/>
+        </RelativeLayout>
+        <!-- 中部-->
+        <com.scwang.smartrefresh.layout.SmartRefreshLayout
+            android:id="@+id/cart_refreshLayout"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:background="@color/white"
+            app:srlPrimaryColor="@color/colorPrimary"
+            app:srlAccentColor="@color/white"
+            app:srlEnableLoadMore="false">
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/common_bg">
+                <com.yanzhenjie.recyclerview.swipe.SwipeMenuRecyclerView
+                    android:id="@+id/layout_comm_recyclerview"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"/>
+                <!-- 不使用 -->
+                <com.yanzhenjie.recyclerview.swipe.widget.StickyNestedScrollView
+                    android:id="@+id/scroll_view"
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:visibility="gone" />
+                <ImageView
+                    android:id="@+id/cart_go_top"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:focusable="false"
+                    android:focusableInTouchMode="false"
+                    android:layout_marginBottom="@dimen/size_20dp"
+                    android:src="@mipmap/ic_cart_go_top"
+                    android:layout_alignParentRight="true"
+                    android:layout_alignParentBottom="true"
+                    android:visibility="gone"/>
+            </RelativeLayout>
+
+        </com.scwang.smartrefresh.layout.SmartRefreshLayout>
+        <!-- 底部-->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:background="@color/white"
+            android:visibility="@{checkAll.bottomManageShown ? View.VISIBLE : View.GONE}">
+            <View style="@style/DeepUnderLine"/>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:gravity="center_vertical">
+                <LinearLayout
+                    android:id="@+id/btn_cart_all_select"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:gravity="center_vertical"
+                    android:paddingTop="@dimen/size_10dp"
+                    android:paddingBottom="@dimen/size_10dp"
+                    android:paddingLeft="@dimen/size_15dp"
+                    android:paddingRight="@dimen/size_15dp">
+                    <CheckBox
+                        android:id="@+id/cb_cart_all_select"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:clickable="false"
+                        android:focusable="false"
+                        android:focusableInTouchMode="false"
+                        android:checked="@={checkAll.allCheckState}"
+                        style="@style/CartCheckbox"/>
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:padding="@dimen/size_5dp"
+                        android:lines="1"
+                        android:textSize="@dimen/text_size_14sp"
+                        android:textColor="@color/text_black_4d"
+                        android:text="@string/cart_edit_all"/>
+
+                </LinearLayout>
+
+                <TextView
+                    android:id="@+id/tv_cart_money"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:padding="@dimen/size_5dp"
+                    android:gravity="right"
+                    android:lines="1"
+                    android:textSize="@dimen/text_size_16sp"
+                    android:textColor="@color/text_black_4d"
+                    android:text="@={checkAll.allMoney}"/>
+
+                <TextView
+                    android:id="@+id/btn_cart_commit"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:paddingTop="@dimen/size_5dp"
+                    android:paddingBottom="@dimen/size_5dp"
+                    android:paddingLeft="@dimen/size_20dp"
+                    android:paddingRight="@dimen/size_20dp"
+                    android:layout_marginLeft="@dimen/size_10dp"
+                    android:background="@color/themePrimaryDark"
+                    android:gravity="center_vertical"
+                    android:lines="1"
+                    android:textSize="@dimen/text_size_15sp"
+                    android:textColor="@color/white"
+                    android:text="@={checkAll.allCount}"/>
+            </LinearLayout>
+        </LinearLayout>
+    </LinearLayout>
+</layout>

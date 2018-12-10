@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<TextView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/btn_my_order_operate"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:paddingLeft="@dimen/size_15dp"
+    android:paddingRight="@dimen/size_15dp"
+    android:paddingTop="@dimen/size_8dp"
+    android:paddingBottom="@dimen/size_8dp"
+    android:textSize="@dimen/text_size_14sp"
+    android:textColor="@color/color_666666"
+    android:background="@drawable/bg_rectangle_gray_stroke_btn"/>

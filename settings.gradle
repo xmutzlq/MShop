@@ -1,0 +1,13 @@
+include ':app_universal',
+        ':lib_common',
+        ':lib_coremodel',
+        ':module_category',
+        ':module_home',
+        ':module_personal',
+        ':lib_opensource',
+        ':module_cart',
+        ':module_personal',
+        ':lib_share',
+        ':lib_common_res',
+        ':module_details',
+        ':module_order'

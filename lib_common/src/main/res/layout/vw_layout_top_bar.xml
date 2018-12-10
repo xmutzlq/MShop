@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="?actionBarSize"
+    android:background="@color/vw_BgToolBar">
+
+    <RelativeLayout
+        android:id="@+id/rl_back"
+        android:layout_width="@dimen/size_50dp"
+        android:layout_height="match_parent"
+        android:onClick="onBackClick">
+
+        <ImageView
+            android:id="@+id/iv_back"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:src="@drawable/ic_arrow_back" />
+    </RelativeLayout>
+
+    <TextView
+        android:id="@+id/tv_count"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerVertical="true"
+        android:layout_toRightOf="@+id/rl_back"
+        android:textColor="@android:color/white"
+        android:textSize="@dimen/text_size_20sp"
+        tools:text="0/9" />
+
+    <LinearLayout
+        android:id="@+id/ll_folder"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:layout_centerInParent="true"
+        android:orientation="horizontal"
+        android:visibility="gone">
+
+        <TextView
+            android:id="@+id/tv_folder"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:ellipsize="end"
+            android:lines="1"
+            android:maxWidth="@dimen/size_120dp"
+            android:textColor="@android:color/white"
+            android:textSize="@dimen/size_20dp"
+            tools:text="All" />
+
+        <ImageView
+            android:id="@+id/iv_folder"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginLeft="@dimen/size_5dp"
+            android:src="@drawable/vw_ic_arrow_down" />
+
+    </LinearLayout>
+
+    <RelativeLayout
+        android:id="@+id/rl_done"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:layout_alignParentRight="true"
+        android:paddingLeft="@dimen/size_10dp"
+        android:paddingRight="@dimen/size_10dp">
+
+        <TextView
+            android:id="@+id/tv_done"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:text="@string/vw_confirm"
+            android:textColor="@android:color/white"
+            android:textSize="@dimen/text_size_16sp" />
+    </RelativeLayout>
+
+</RelativeLayout>

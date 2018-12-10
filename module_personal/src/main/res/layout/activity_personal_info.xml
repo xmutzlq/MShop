@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:stv="http://schemas.android.com/apk/res-auto">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:background="@color/white">
+
+        <include layout="@layout/toolbar" />
+
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:fillViewport="true">
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:paddingLeft="@dimen/size_15dp"
+                android:paddingRight="@dimen/size_15dp"
+                android:orientation="vertical">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="@dimen/text_size_13sp"
+                    android:textColor="@color/color_999999"
+                    android:text="@string/personal_info_base"
+                    android:paddingTop="@dimen/size_25dp"
+                    android:paddingBottom="@dimen/size_10dp"/>
+
+                <View style="@style/DeepUnderLine" />
+
+                <com.allen.library.SuperTextView
+                    android:id="@+id/personal_info_base_head_tv"
+                    android:layout_width="wrap_content"
+                    android:layout_height="@dimen/size_60dp"
+                    stv:sLeftViewMarginLeft="0dp"
+                    stv:sLeftTextSize="@dimen/text_size_16sp"
+                    stv:sLeftTextString="@string/personal_info_base_head"
+                    stv:sLeftTextColor="@color/color_282828"
+                    stv:sRightIconRes="@drawable/ic_arrow_right"/>
+
+                <com.allen.library.SuperTextView
+                    android:id="@+id/personal_info_base_account_tv"
+                    android:layout_width="wrap_content"
+                    android:layout_height="@dimen/size_60dp"
+                    stv:sLeftViewMarginLeft="0dp"
+                    stv:sLeftTextSize="@dimen/text_size_16sp"
+                    stv:sLeftTextString="@string/personal_info_base_user_name"
+                    stv:sLeftTextColor="@color/color_282828"
+                    stv:sUseRipple="false"/>
+
+                <com.allen.library.SuperTextView
+                    android:id="@+id/personal_info_base_name_tv"
+                    android:layout_width="wrap_content"
+                    android:layout_height="@dimen/size_60dp"
+                    stv:sLeftViewMarginLeft="0dp"
+                    stv:sLeftTextSize="@dimen/text_size_16sp"
+                    stv:sLeftTextString="@string/personal_info_base_nick_name"
+                    stv:sLeftTextColor="@color/color_282828"
+                    stv:sRightIconRes="@drawable/ic_arrow_right"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="@dimen/text_size_13sp"
+                    android:textColor="@color/color_999999"
+                    android:text="@string/personal_info_secret"
+                    android:paddingTop="@dimen/size_25dp"
+                    android:paddingBottom="@dimen/size_10dp"/>
+
+                <View style="@style/DeepUnderLine" />
+
+                <com.allen.library.SuperTextView
+                    android:id="@+id/personal_info_secret_set_pwd_tv"
+                    android:layout_width="wrap_content"
+                    android:layout_height="@dimen/size_60dp"
+                    stv:sLeftViewMarginLeft="0dp"
+                    stv:sLeftTextSize="@dimen/text_size_16sp"
+                    stv:sLeftTextString="@string/personal_info_secret_set_pwd"
+                    stv:sLeftTextColor="@color/color_282828"
+                    stv:sRightIconRes="@drawable/ic_arrow_right"/>
+
+                <com.allen.library.SuperTextView
+                    android:id="@+id/personal_info_secret_phone_tv"
+                    android:layout_width="wrap_content"
+                    android:layout_height="@dimen/size_60dp"
+                    stv:sLeftViewMarginLeft="0dp"
+                    stv:sLeftTextSize="@dimen/text_size_16sp"
+                    stv:sLeftTextString="@string/personal_info_secret_phone"
+                    stv:sLeftTextColor="@color/color_282828"
+                    stv:sUseRipple="false"/>
+
+            </LinearLayout>
+        </ScrollView>
+
+        <TextView
+            android:id="@+id/btn_login_out"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:layout_margin="@dimen/size_25dp"
+            android:paddingTop="@dimen/size_15dp"
+            android:paddingBottom="@dimen/size_15dp"
+            android:textSize="@dimen/text_size_14sp"
+            android:textColor="@color/color_666666"
+            android:background="@drawable/bg_rectangle_gray_stroke_btn"
+            android:text="@string/login_out"/>
+    </LinearLayout>
+</layout>

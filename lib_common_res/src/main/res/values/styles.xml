@@ -1,0 +1,303 @@
+<resources>
+
+    <!-- Base application theme. -->
+    <style name="Base.AppTheme" parent="QMUI.Compat">
+        <!-- Customize your theme here. -->
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorPrimaryDark">@color/colorPrimary</item>
+        <item name="colorAccent">@color/colorPrimary</item>
+
+    </style>
+
+    <style name="CommAppTheme" parent="Base.AppTheme">
+        <item name="android:textColorPrimary">@color/white</item>
+        <item name="android:windowBackground">@color/white</item>
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
+    </style>
+
+    <style name="Widget.App.ToolBar" parent="">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">?attr/actionBarSize</item>
+        <item name="android:background">?attr/colorPrimary</item>
+        <item name="android:theme">@style/ThemeOverlay.App.ActionBar</item>
+        <item name="popupTheme">@style/ThemeOverlay.MaterialSheetFab.ActionBar.Popup</item>
+        <item name="layout_scrollFlags">scroll|enterAlways</item>
+    </style>
+
+    <style name="Toolbar.TitleText" parent="TextAppearance.Widget.AppCompat.Toolbar.Title">
+        <item name="android:textSize">16sp</item>
+    </style>
+
+    <style name="Toolbar.TabLayout" parent="TextAppearance.Widget.AppCompat.Toolbar.Title">
+        <item name="android:textSize">12sp</item>
+    </style>
+
+    <style name="popup_theme" parent="@style/ThemeOverlay.AppCompat.Light">
+        <item name="overlapAnchor">false</item>  <!--设置不覆盖锚点-->
+    </style>
+
+    <style name="Widget.App.TabLayout" parent="">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">40dp</item>
+        <item name="android:background">?attr/colorPrimary</item>
+        <item name="android:theme">@style/ThemeOverlay.App.ActionBar</item>
+        <item name="tabMode">fixed</item>
+        <item name="tabGravity">fill</item>
+    </style>
+
+    <style name="ThemeOverlay.MaterialSheetFab.ActionBar.Popup" parent="ThemeOverlay.AppCompat.Light" />
+
+    <style name="ThemeOverlay.App.ActionBar" parent="ThemeOverlay.AppCompat.Dark.ActionBar">
+        <item name="android:textColorPrimary">@android:color/white</item>
+        <item name="colorControlNormal">@android:color/white</item>
+        <item name="colorControlHighlight">#8fff</item>
+        <item name="colorControlActivated">@color/white</item>
+    </style>
+
+    <style name="Widget.App.Sheet" parent="">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_marginTop">@dimen/sheet_spacing</item>
+        <item name="android:layout_marginBottom">@dimen/sheet_spacing</item>
+        <item name="android:layout_marginLeft">@dimen/sheet_spacing</item>
+        <item name="android:layout_marginRight">@dimen/sheet_spacing</item>
+        <item name="cardBackgroundColor">@color/f5</item>
+        <item name="contentPadding">-3dp</item>
+    </style>
+
+    <style name="TextAppearance.App.Sheet.Item" parent="">
+        <item name="android:layout_width">@dimen/sheet_width</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:padding">@dimen/sheet_item_spacing</item>
+        <item name="android:background">?attr/selectableItemBackground</item>
+        <item name="android:clickable">true</item>
+        <item name="android:textSize">@dimen/sheet_item_textsize</item>
+        <item name="android:textColor">@color/text_color</item>
+        <item name="android:drawablePadding">@dimen/sheet_item_image_spacing</item>
+    </style>
+
+    <style name="StyleNormalTextView" parent="@android:style/Widget.TextView">
+        <item name="android:textColor">@color/white</item>
+        <item name="android:textSize">@dimen/text_size_13sp</item>
+        <item name="android:ellipsize">end</item>
+        <item name="android:singleLine">true</item>
+    </style>
+
+    <style name="CommentEditText" parent="Theme.AppCompat.Light">
+        <item name="colorControlNormal">@color/grey_zan</item>
+        <item name="colorControlActivated">@color/grey_zan</item>
+    </style>
+
+    <style name="CartCheckbox" parent="@android:style/Widget.CompoundButton.CheckBox">
+        <item name="android:button">@null</item>
+        <item name="android:background">@drawable/bg_cart_check</item>
+    </style>
+
+    <!--无ActionBar的AppTheme-->
+    <style name="CommAppTheme.NoActionBar">
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
+    </style>
+
+    <style name="AppTheme.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
+
+    <style name="AppTheme.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
+
+    <style name="Toolbar" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
+
+    <!--全屏-->
+    <style name="FullscreenTheme" parent="CommAppTheme.NoActionBar">
+        <item name="android:windowActionBarOverlay">true</item>
+        <item name="android:windowFullscreen">true</item>
+        <item name="android:windowBackground">@null</item>
+    </style>
+
+    <!-- 自定义loading dialog -->
+    <style name="ProgressDialogTheme" parent="Theme.AppCompat.Light.Dialog">
+        <item name="android:windowFrame">@null</item><!--边框-->
+        <item name="android:windowNoTitle">true</item><!--无标题-->
+        <item name="android:windowBackground">@android:color/transparent</item><!--背景透明-->
+        <item name="android:windowIsTranslucent">false</item><!--半透明-->
+        <item name="android:windowIsFloating">true</item><!--是否浮现在activity之上-->
+        <item name="android:windowContentOverlay">@null</item>
+        <item name="android:backgroundDimEnabled">false</item><!--模糊-->
+    </style>
+
+    <!-- 设置没有悬浮边框的对话框风格，显示的样式完全是XML文件一样 -->
+    <style name="MyDialogStyle">
+        <item name="android:windowBackground">@android:color/transparent</item>
+        <item name="android:windowFrame">@null</item>
+        <item name="android:windowNoTitle">true</item>
+        <item name="android:windowIsFloating">true</item><!--是否浮现在activity之上-->
+        <item name="android:windowIsTranslucent">true</item>
+        <item name="android:windowContentOverlay">@null</item>
+        <item name="android:windowAnimationStyle">@android:style/Animation.Dialog</item>
+        <item name="android:backgroundDimEnabled">true</item>
+    </style>
+
+    <style name="long_line">
+        <item name="android:background">@color/more_bg</item>
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">0.8dp</item>
+    </style>
+
+    <style name="vertical_line">
+        <item name="android:background">@color/more_line</item>
+        <item name="android:layout_width">0.8dp</item>
+        <item name="android:layout_height">match_parent</item>
+    </style>
+
+    <!-- Activity主题，防止专场动画黑屏 -->
+    <style name="activityTheme" parent="CommAppTheme">
+    </style>
+
+    <declare-styleable name="ShapeImageViewStyle">
+        <attr name="riv_border_color" format="color"/>
+        <attr name="riv_border_width" format="dimension"/>
+        <attr name="riv_corner_radius" format="dimension"/>
+        <attr name="riv_is_circle" format="boolean"/>
+        <attr name="riv_pressed_border_color" format="color"/>
+        <attr name="riv_pressed_border_width" format="dimension"/>
+        <attr name="riv_pressed_mask_color" format="color"/>
+        <attr name="riv_pressed_mode_enabled" format="boolean"/>
+    </declare-styleable>
+
+    <declare-styleable name="CircleProgressView">
+        <attr name="cpv_progressNormalColor" format="color"/>
+        <attr name="cpv_progressReachColor" format="color"/>
+        <attr name="cpv_progressTextColor" format="color"/>
+        <attr name="cpv_progressTextSize" format="dimension"/>
+        <attr name="cpv_progressTextOffset" format="dimension"/>
+        <attr name="cpv_progressNormalSize" format="dimension"/>
+        <attr name="cpv_progressReachSize" format="dimension"/>
+        <attr name="cpv_radius" format="dimension"/>
+        <attr name="cpv_progressTextVisible" format="boolean"/>
+        <attr name="cpv_progressStartArc" format="integer"/>
+        <attr name="cpv_progressTextSkewX" format="dimension"/>
+        <attr name="cpv_progressTextPrefix" format="string"/>
+        <attr name="cpv_progressTextSuffix" format="string"/>
+        <attr name="cpv_innerBackgroundColor" format="color"/>
+        <attr name="cpv_progressStyle" format="enum">
+            <enum name="Normal" value="0"/>
+            <enum name="FillInner" value="1"/>
+            <enum name="FillInnerArc" value="2"/>
+        </attr>
+        <attr name="cpv_innerProgressColor" format="color"/>
+        <attr name="cpv_innerPadding" format="dimension"/>
+        <attr name="cpv_outerColor" format="color"/>
+        <attr name="cpv_outerSize" format="dimension"/>
+        <attr name="cpv_reachCapRound" format="boolean"/>
+    </declare-styleable>
+
+    <!-- 深色下划线 -->
+    <style name="DeepUnderLine">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">@dimen/size_0.5dp</item>
+        <item name="android:background">@color/grayLine</item>
+    </style>
+
+    <!-- 分割线 -->
+    <style name="DivideLine">
+        <item name="android:layout_width">@dimen/size_0.5dp</item>
+        <item name="android:layout_height">@dimen/size_20dp</item>
+        <item name="android:background">@color/grayLine</item>
+    </style>
+
+    <!-- 模块间距 -->
+    <style name="SpaceLine">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">@dimen/size_10dp</item>
+        <item name="android:background">@color/common_bg</item>
+    </style>
+
+    <!-- 筛选框标题 -->
+    <style name="TextView_Filter_Title">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textColor">@color/color_333333</item>
+        <item name="android:textSize">@dimen/text_size_14sp</item>
+        <item name="android:lines">1</item>
+        <item name="android:ellipsize">end</item>
+    </style>
+
+    <!-- 筛选框标题 -->
+    <style name="TextView_Filter_Title_right">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textColor">@color/color_999999</item>
+        <item name="android:textSize">@dimen/text_size_12sp</item>
+        <item name="android:lines">1</item>
+        <item name="android:ellipsize">end</item>
+    </style>
+
+    <!-- 商品标题1 -->
+    <style name="TextView_Goods_Title_1">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textColor">@color/color_333333</item>
+        <item name="android:textSize">@dimen/text_size_16sp</item>
+        <item name="android:maxLines">2</item>
+        <item name="android:ellipsize">end</item>
+    </style>
+
+    <!-- 商品标题2 -->
+    <style name="TextView_Goods_Title_2">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textColor">@color/color_999999</item>
+        <item name="android:textSize">@dimen/text_size_13sp</item>
+        <item name="android:lines">1</item>
+        <item name="android:ellipsize">end</item>
+    </style>
+
+    <!-- 分割 -->
+    <style name="TextView_Divide">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textColor">@color/gray_8832</item>
+        <item name="android:textSize">@dimen/text_size_14sp</item>
+        <item name="android:text">－</item>
+        <item name="android:lines">1</item>
+        <item name="android:ellipsize">end</item>
+    </style>
+
+    <style name="PaddingRoundRectBtn" parent="@style/Widget.AppCompat.Button.Borderless">
+        <item name="android:paddingTop">@dimen/size_5dp</item>
+        <item name="android:paddingBottom">@dimen/size_5dp</item>
+        <item name="android:paddingLeft">@dimen/size_10dp</item>
+        <item name="android:paddingRight">@dimen/size_10dp</item>
+        <item name="android:singleLine">true</item>
+        <item name="android:gravity">center</item>
+    </style>
+
+    <style name="tab">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:ellipsize">end</item>
+        <item name="android:maxLines">1</item>
+        <item name="android:padding">10dp</item>
+        <item name="android:text">请选择</item>
+        <item name="android:textColor">@color/selector_text_color_tab</item>
+        <item name="android:textSize">14sp</item>
+        <item name="android:visibility">gone</item>
+    </style>
+
+    <style name="RoundButton">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">@dimen/size_30dp</item>
+        <item name="android:layout_weight">1</item>
+        <item name="android:layout_gravity">center</item>
+        <item name="android:gravity">center</item>
+        <item name="android:clickable">true</item>
+        <item name="android:enabled">true</item>
+        <item name="android:textColor">@color/white</item>
+    </style>
+
+    <style name="MultiWaveHeader">
+    </style>
+    <style name="MultiWaveHeader.Wave">
+        <item name="android:layout_width">0dp</item>
+        <item name="android:layout_height">0dp</item>
+    </style>
+</resources>

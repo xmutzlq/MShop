@@ -1,0 +1,172 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context=".login.ActivityLogin">
+
+    <data>
+        <import type="android.view.View"/>
+        <variable
+            name="loginViewModel"
+            type="google.architecture.common.viewmodel.LoginViewModel"/>
+    </data>
+
+    <android.support.design.widget.CoordinatorLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:focusable="true"
+            android:focusableInTouchMode="true"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@color/cardview_light_background"
+            android:orientation="vertical">
+
+            <android.support.v7.widget.Toolbar
+                android:id="@+id/toolbar"
+                style="@style/Widget.App.ToolBar"
+                app:titleTextAppearance="@style/Toolbar.TitleText" />
+
+            <android.support.design.widget.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/space_large_1"
+                android:paddingEnd="@dimen/space_large_2"
+                android:paddingStart="@dimen/space_large_2">
+
+                <android.support.design.widget.TextInputEditText
+                    android:id="@+id/account_et"
+                    android:layout_width="match_parent"
+                    android:layout_height="48dp"
+                    android:hint="@string/account_hint"
+                    android:imeOptions="actionNext"
+                    android:inputType="text"
+                    android:paddingEnd="@dimen/space_small_1"
+                    android:paddingStart="@dimen/space_small_1"
+                    android:text="@={loginViewModel.loginAccountStr}"
+                    android:textColor="@color/text_color"
+                    android:textColorHint="#FFAAAAAA"
+                    android:textSize="@dimen/text_size_normal" />
+            </android.support.design.widget.TextInputLayout>
+
+            <android.support.design.widget.TextInputLayout
+                android:id="@+id/pwd_layout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/space_small_1"
+                android:paddingEnd="@dimen/space_large_2"
+                android:paddingStart="@dimen/space_large_2"
+                app:passwordToggleEnabled="true"
+                app:passwordToggleTint="@color/colorPrimary">
+
+                <android.support.design.widget.TextInputEditText
+                    android:id="@+id/pwd_et"
+                    android:layout_width="match_parent"
+                    android:layout_height="48dp"
+                    android:focusable="true"
+                    android:focusableInTouchMode="true"
+                    android:hint="@string/password"
+                    android:imeOptions="actionGo"
+                    android:inputType="textPassword"
+                    android:paddingEnd="@dimen/space_small_1"
+                    android:paddingStart="@dimen/space_small_1"
+                    android:text="@={loginViewModel.loginPwdStr}"
+                    android:textColor="@color/text_color"
+                    android:textColorHint="#FFAAAAAA"
+                    android:textSize="@dimen/text_size_normal" />
+            </android.support.design.widget.TextInputLayout>
+
+            <TextView
+                android:id="@+id/register_new_user"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="right"
+                android:paddingLeft="@dimen/size_8dp"
+                android:paddingRight="@dimen/size_8dp"
+                android:paddingTop="@dimen/size_10dp"
+                android:paddingBottom="@dimen/size_5dp"
+                android:layout_marginLeft="@dimen/space_large_1"
+                android:layout_marginRight="@dimen/space_large_2"
+                android:textSize="@dimen/text_size_16sp"
+                android:textColor="@color/color_666666"
+                android:text="@string/register_new_user"/>
+
+            <Button
+                android:id="@+id/login_btn"
+                android:layout_width="match_parent"
+                android:layout_height="48dp"
+                android:layout_marginLeft="@dimen/space_large_2"
+                android:layout_marginRight="@dimen/space_large_2"
+                android:layout_marginTop="@dimen/size_38dp"
+                android:background="@drawable/selector_account_bg"
+                android:enabled="false"
+                android:text="@string/login"
+                android:textColor="@android:color/white"
+                android:textSize="@dimen/text_size_normal" />
+
+            <TextView
+                android:id="@+id/rest_login_btn"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="right"
+                android:paddingLeft="@dimen/size_8dp"
+                android:paddingRight="@dimen/size_8dp"
+                android:paddingTop="@dimen/size_10dp"
+                android:paddingBottom="@dimen/size_5dp"
+                android:layout_marginLeft="@dimen/space_large_1"
+                android:layout_marginRight="@dimen/space_large_2"
+                android:textSize="@dimen/text_size_16sp"
+                android:textColor="@color/color_666666"
+                android:text="@string/forgot_login"/>
+
+            <!-- 其他登录方式 -->
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="其他登录方式"
+                android:layout_marginTop="@dimen/size_25dp"
+                android:layout_marginLeft="@dimen/size_32dp"/>
+            <LinearLayout
+                android:id="@+id/other_login_layout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/size_20dp"
+                android:orientation="horizontal">
+                <FrameLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1" >
+                    <ImageView
+                        android:id="@+id/iv_qq_login"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:src="@mipmap/share_qq_icon"
+                        android:layout_gravity="center"/>
+                </FrameLayout>
+                <FrameLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1" >
+                    <ImageView
+                        android:id="@+id/iv_wechat_login"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:src="@mipmap/share_wechat_icon"
+                        android:layout_gravity="center"/>
+                </FrameLayout>
+                <FrameLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1">
+                    <ImageView
+                        android:id="@+id/iv_sina_login"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:src="@mipmap/share_weibo_icon"
+                        android:layout_gravity="center"/>
+                </FrameLayout>
+            </LinearLayout>
+        </LinearLayout>
+    </android.support.design.widget.CoordinatorLayout>
+</layout>

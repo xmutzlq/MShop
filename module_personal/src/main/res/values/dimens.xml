@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <dimen name="space_small_1">8dp</dimen>
+    <dimen name="space_normal">16dp</dimen>
+    <dimen name="space_large_1">24dp</dimen>
+    <dimen name="space_large_2">32dp</dimen>
+    <dimen name="space_large_3">48dp</dimen>
+
+    <dimen name="text_size_small_2">12sp</dimen>
+    <dimen name="text_size_small_1">14sp</dimen>
+    <dimen name="text_size_normal">16sp</dimen>
+
+    <dimen name="account_icon">80dp</dimen>
+
+    <dimen name="card_padding">40dp</dimen>
+</resources>

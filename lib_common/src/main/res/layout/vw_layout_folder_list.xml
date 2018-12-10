@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<google.architecture.common.imgpicker.MaxHeightLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/mhl_folder"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:background="@drawable/vw_bg_folder_list"
+    android:paddingTop="@dimen/size_5dp"
+    android:paddingBottom="@dimen/size_5dp"
+    app:mhl_HeightDimen="@dimen/size_190dp">
+
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/rv_folder"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:paddingLeft="@dimen/size_5dp"
+        android:paddingRight="@dimen/size_5dp"
+        android:scrollbars="vertical"
+        android:scrollbarSize="@dimen/size_3dp"
+        android:scrollbarStyle="outsideOverlay"/>
+
+</google.architecture.common.imgpicker.MaxHeightLayout>

@@ -1,0 +1,24 @@
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="google.architecture.common"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"></uses-permission>
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE"></uses-permission>
+
+    <!--友盟统计所需权限-->
+    <uses-permission android:name="android.permission.INTERNET"></uses-permission>
+    <uses-permission android:name="android.permission.READ_PHONE_STATE"></uses-permission>
+
+    <uses-sdk tools:overrideLibrary="com.github.mmin18.realtimeblurview" />
+
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.READ_LOGS" />
+
+    <application>
+        <activity android:name=".imgpicker.activity.ImageBrowserActivity" />
+        <activity android:name=".imgpicker.activity.ImagePickActivity" />
+        <activity android:name=".ui.WebActivity"/>
+    </application>
+
+
+</manifest>

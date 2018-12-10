@@ -1,0 +1,21 @@
+<resources>
+    <string name="app_name">DetailsApplication</string>
+
+    <string name="detail_promotion_time">距离结束还剩:</string>
+
+    <string name="detail_goods_intro">商品介绍</string>
+    <string name="detail_g_param">规格参数</string>
+    <string name="detail_package_intro">包装售后</string>
+
+    <string name="detail_p_t_title">图文详情</string>
+
+    <string name="detail_pull_up_tip">上拉查看图文详情</string>
+    <string name="detail_pull_down_tip">下拉收起图文详情</string>
+
+    <string name="detail_service">客服</string>
+    <string name="detail_like">收藏</string>
+    <string name="detail_cart">购物车</string>
+
+    <string name="detail_buy_now">立即购买</string>
+    <string name="detail_add_cart">加入购物车</string>
+</resources>

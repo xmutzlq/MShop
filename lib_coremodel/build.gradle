@@ -1,0 +1,71 @@
+apply plugin: 'com.android.library'
+apply plugin: 'me.tatarka.retrolambda'
+
+def keystorePropertiesFile = rootProject.file("project.properties")
+def keystoreProperties = new Properties()
+keystoreProperties.load(new FileInputStream(keystorePropertiesFile))
+
+android {
+    compileSdkVersion build_versions.target_sdk
+    buildToolsVersion build_versions.build_tools
+
+    defaultConfig {
+        minSdkVersion build_versions.min_sdk
+        targetSdkVersion build_versions.target_sdk
+        versionCode 1
+        versionName "1.0"
+
+        javaCompileOptions {
+            annotationProcessorOptions {
+                arguments = ["room.schemaLocation":
+                                     "$projectDir/schemas".toString()]
+            }
+        }
+    }
+
+    buildTypes {
+        debug {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+            buildConfigField("String", "APP_REQUEST_URL", keystoreProperties['PROJECT_REQUEST_HOST'])
+            buildConfigField("String", "APP_NAME", keystoreProperties['PROJECT_NAME'])
+            buildConfigField("String", "APP_VERSION_CODE", keystoreProperties['PROJECT_VERSION_CODE'])
+            buildConfigField("String", "APP_KEY", keystoreProperties['PROJECT_KEY'])
+            buildConfigField("String", "APP_TOKEN_KEY", keystoreProperties['PROJECT_TOKEN_KEY'])
+            buildConfigField("String", "DES_KEY", keystoreProperties['PROJECT_DES_KEY'])
+        }
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+            buildConfigField("String", "APP_REQUEST_URL", keystoreProperties['PROJECT_REQUEST_HOST'])
+            buildConfigField("String", "APP_NAME", keystoreProperties['PROJECT_NAME'])
+            buildConfigField("String", "APP_VERSION_CODE", keystoreProperties['PROJECT_VERSION_CODE'])
+            buildConfigField("String", "APP_KEY", keystoreProperties['PROJECT_KEY'])
+            buildConfigField("String", "APP_TOKEN_KEY", keystoreProperties['PROJECT_TOKEN_KEY'])
+            buildConfigField("String", "DES_KEY", keystoreProperties['PROJECT_DES_KEY'])
+        }
+    }
+    dataBinding {
+        enabled = true
+    }
+    lintOptions {
+        abortOnError false
+    }
+
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+}
+
+dependencies {
+    implementation fileTree(include: ['*.jar'], dir: 'libs')
+    api project(':lib_opensource')
+    //BRVAH
+    api 'com.github.CymChad:BaseRecyclerViewAdapterHelper:2.9.30'
+    api 'com.crazysunj:multitypeadapter:2.3.1'
+    api 'com.crazysunj:itemdecoration:0.2.1'
+    api 'net.gotev:uploadservice:3.4.2'
+    annotationProcessor deps.room.compiler
+    annotationProcessor deps.glide.compiler
+}

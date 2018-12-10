@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <!--首页模板-->
+    <string-array name="home_model">
+        <item>homebanner</item>
+        <item>homeicon</item>
+        <item>homeimage</item>
+        <item>homeRecommentIcon</item>
+        <item>homeHotBrand</item>
+        <item>homeNewGoods</item>
+        <item>homeGoods</item>
+    </string-array>
+
+    <!--首页网格图片-->
+    <string-array name="home_gv_icon">
+        <item>@drawable/home_menu_1</item>
+        <item>@drawable/home_menu_2</item>
+        <item>@drawable/home_menu_3</item>
+        <item>@drawable/home_menu_4</item>
+        <item>@drawable/home_menu_5</item>
+        <item>@drawable/home_menu_6</item>
+        <item>@drawable/home_menu_7</item>
+        <item>@drawable/home_menu_8</item>
+    </string-array>
+
+    <!--首页网格标题-->
+    <string-array name="home_gv_title">
+        <item>item1</item>
+        <item>item2</item>
+        <item>item3</item>
+        <item>item4</item>
+        <item>item5</item>
+        <item>item6</item>
+        <item>item7</item>
+        <item>item8</item>
+    </string-array>
+
+</resources>

@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:soulwolf="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:fitsSystemWindows="true" >
+
+    <com.qmuiteam.qmui.layout.QMUILinearLayout
+        android:id="@+id/shadow_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/size_10dp"
+        android:orientation="horizontal"
+        android:background="@color/qmui_config_color_white"
+        app:qmui_outerNormalColor="?attr/qmui_config_color_background"
+        app:qmui_borderColor="?attr/qmui_config_color_separator"
+        app:qmui_showBorderOnlyBeforeL="true" >
+        <FrameLayout
+            android:id="@+id/btn_cb_goods"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:paddingTop="@dimen/size_15dp"
+            android:paddingBottom="@dimen/size_15dp"
+            android:paddingLeft="@dimen/size_12dp"
+            android:paddingRight="@dimen/size_12dp">
+            <CheckBox
+                android:id="@+id/cb_goods"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:clickable="false"
+                android:focusable="false"
+                android:focusableInTouchMode="false"
+                style="@style/CartCheckbox"/>
+        </FrameLayout>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <net.soulwolf.widget.ratiolayout.widget.RatioFrameLayout
+                android:id="@+id/personal_footprint_goods_rf"
+                soulwolf:datumRatio="datumWidth"
+                soulwolf:widthRatio="1"
+                soulwolf:heightRatio="1"
+                android:layout_width="@dimen/size_80dp"
+                android:layout_height="@dimen/size_80dp">
+                <ImageView
+                    android:id="@+id/personal_footprint_goods_iv"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:scaleType="centerCrop"
+                    android:adjustViewBounds="true"/>
+            </net.soulwolf.widget.ratiolayout.widget.RatioFrameLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/size_8dp"
+                android:layout_marginRight="@dimen/size_8dp"
+                android:layout_marginTop="@dimen/size_4dp"
+                android:layout_marginBottom="@dimen/size_4dp"
+                android:layout_alignTop="@id/personal_footprint_goods_rf"
+                android:layout_toRightOf="@id/personal_footprint_goods_rf"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/personal_footprint_goods_name"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="@dimen/text_size_16sp"
+                    android:textColor="@color/text_color"
+                    android:ellipsize="end"
+                    android:maxLines="2" />
+
+                <TextView
+                    android:id="@+id/personal_footprint_goods_price"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="@dimen/text_size_14sp"
+                    android:textColor="@color/color_f44336"
+                    android:paddingTop="@dimen/size_5dp" />
+            </LinearLayout>
+        </RelativeLayout>
+
+    </com.qmuiteam.qmui.layout.QMUILinearLayout>
+</FrameLayout>

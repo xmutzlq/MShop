@@ -1,0 +1,136 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginLeft="@dimen/size_8dp"
+    android:layout_marginRight="@dimen/size_8dp"
+    android:layout_marginTop="@dimen/size_10dp"
+    android:orientation="horizontal"
+    android:background="@drawable/bg_u_order">
+
+    <!--待付款 -->
+    <LinearLayout
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:paddingTop="@dimen/size_5dp"
+        android:gravity="center_horizontal"
+        android:orientation="vertical">
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@mipmap/ic_u_order_2"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/color_333333"
+            android:textSize="@dimen/text_size_11sp"
+            android:text="@string/personal_order_1"
+            android:lines="1"
+            android:ellipsize="end"/>
+    </LinearLayout>
+
+    <!--待收货 -->
+    <LinearLayout
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:paddingTop="@dimen/size_5dp"
+        android:gravity="center_horizontal"
+        android:orientation="vertical">
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@mipmap/ic_u_order_1"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/color_333333"
+            android:textSize="@dimen/text_size_11sp"
+            android:text="@string/personal_order_2"
+            android:lines="1"
+            android:ellipsize="end"/>
+    </LinearLayout>
+
+    <!--待评价 -->
+    <LinearLayout
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:paddingTop="@dimen/size_5dp"
+        android:gravity="center_horizontal"
+        android:orientation="vertical">
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@mipmap/ic_u_order_4"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/color_333333"
+            android:textSize="@dimen/text_size_11sp"
+            android:text="@string/personal_order_3"
+            android:lines="1"
+            android:ellipsize="end"/>
+    </LinearLayout>
+
+    <!--退换/售后 -->
+    <LinearLayout
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:paddingTop="@dimen/size_5dp"
+        android:gravity="center_horizontal"
+        android:orientation="vertical">
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@mipmap/ic_u_order_3"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/color_333333"
+            android:textSize="@dimen/text_size_11sp"
+            android:text="@string/personal_order_4"
+            android:lines="1"
+            android:ellipsize="end"/>
+    </LinearLayout>
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="@dimen/size_35dp"
+        android:layout_gravity="center"
+        android:src="@mipmap/ic_u_container"/>
+
+    <!--我的订单 -->
+    <LinearLayout
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:paddingTop="@dimen/size_5dp"
+        android:paddingBottom="@dimen/size_5dp"
+        android:orientation="vertical"
+        android:gravity="center_horizontal">
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@mipmap/ic_u_order_5"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/color_333333"
+            android:textSize="@dimen/text_size_11sp"
+            android:text="@string/personal_order_5"
+            android:lines="1"
+            android:ellipsize="end"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/text_black_4d"
+            android:textSize="@dimen/text_size_10sp"
+            android:text="@string/personal_order_6"
+            android:lines="1"
+            android:ellipsize="end"/>
+    </LinearLayout>
+
+</LinearLayout>

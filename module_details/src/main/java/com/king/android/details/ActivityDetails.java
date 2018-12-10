@@ -1,0 +1,247 @@
+package com.king.android.details;
+
+import android.os.Bundle;
+import android.os.Looper;
+import android.support.annotation.Nullable;
+import android.support.v4.view.ViewPager;
+import android.view.Gravity;
+import android.view.ViewGroup;
+import android.widget.ImageView;
+import android.widget.LinearLayout;
+import android.widget.TextView;
+
+import com.alibaba.android.arouter.facade.annotation.Route;
+import com.alibaba.android.arouter.launcher.ARouter;
+import com.apkfuns.logutils.LogUtils;
+import com.king.android.details.adapter.DetailFragmentAdapter;
+import com.king.android.details.cache.DetailInfoManager;
+import com.king.android.details.view.DetBottomSheetSpecFragment;
+import com.king.android.details.view.DetCommodityFragment;
+import com.king.android.details.view.DetailHeaderView;
+import com.king.android.res.config.ARouterPath;
+
+import java.util.ArrayList;
+import java.util.List;
+
+import google.architecture.common.base.BaseActivity;
+import google.architecture.common.base.BaseFragment;
+import google.architecture.common.base.ViewManager;
+import google.architecture.common.util.AppCompat;
+import google.architecture.common.util.CommKeyUtil;
+import google.architecture.common.util.ScreenUtils;
+import google.architecture.common.util.ToastUtils;
+import google.architecture.common.viewmodel.DetailViewModel;
+import google.architecture.common.widget.NoScrollViewPager;
+import google.architecture.coremodel.data.CartNum;
+import google.architecture.coremodel.data.FavoriteResultData;
+import google.architecture.coremodel.datamodel.http.event.CommEvent;
+import q.rorbin.badgeview.Badge;
+import q.rorbin.badgeview.QBadgeView;
+
+@Route(path = ARouterPath.DetailAty)
+public class ActivityDetails extends BaseActivity {
+
+    private DetailHeaderView detailHeaderView;
+    private NoScrollViewPager mViewPager;
+    private List<BaseFragment> mFragments = new ArrayList<>();
+    private DetailFragmentAdapter mAdapter;
+
+    private DetailViewModel detailViewModel;
+    private DetailInfoManager mDetailInfoManager;
+
+    private LinearLayout cartLay;
+    private ImageView favoriteIv;
+    private TextView favoriteTv;
+
+    private int operType = 1;
+
+    @Override
+    protected int getLayout() {
+        return R.layout.activity_details;
+    }
+
+    @Override
+    protected void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+
+        detailViewModel = new DetailViewModel();
+
+        mViewPager = findViewById(R.id.detail_view_pager);
+        mViewPager.setOffscreenPageLimit(4);
+        //Head
+        ViewGroup mHeader = findViewById(R.id.detail_header_fl);
+        detailHeaderView = new DetailHeaderView(this_);
+//        detailHeaderView.setHeadViewBgRes(false);
+        detailHeaderView.setHeadViewBgRes(true, R.mipmap.bg_detail_bar);
+        detailHeaderView.bindToViewPager(mViewPager);
+        mHeader.removeAllViews();
+        mHeader.addView(detailHeaderView);
+        detailHeaderView.setHeadClickListener(v -> ViewManager.getInstance().finishActivity());
+
+        cartLay = findViewById(R.id.detail_btn_go_cart);
+        cartLay.setOnClickListener(v -> {
+            ARouter.getInstance().build(ARouterPath.CartAty).navigation();
+        });
+
+        /**客服**/
+        findViewById(R.id.detail_btn_service).setOnClickListener(v -> {
+            if(mDetailInfoManager == null) return;
+            if(mFragments.get(0) instanceof DetCommodityFragment) {
+                ((DetCommodityFragment)mFragments.get(0)).goService();
+            }
+        });
+
+        /**收藏**/
+        favoriteIv = findViewById(R.id.detail_btn_like_iv);
+        favoriteTv = findViewById(R.id.detail_btn_like_tv);
+        findViewById(R.id.detail_btn_like).setOnClickListener(v -> {
+            if(mDetailInfoManager == null) return;
+            if(mFragments.get(0) instanceof DetCommodityFragment) {
+                String goodsId = mDetailInfoManager.getGoodsId();
+                boolean hasFavorite = mDetailInfoManager.hasFavorites();
+                detailViewModel.checkFavorites(goodsId, hasFavorite, t -> {
+                    FavoriteResultData favoriteResultData = (FavoriteResultData) t;
+                    mDetailInfoManager.setHasFavorites(hasFavorite ? 0 : 1);
+                    boolean favorite = mDetailInfoManager.hasFavorites();
+                    updateFavorite(favoriteResultData.getCollect_flag() == 1);
+                });
+            }
+        });
+
+        /**加入购物车**/
+        findViewById(R.id.detail_btn_add_cart).setOnClickListener(v -> {
+            if(mDetailInfoManager == null) return;
+            if(mFragments.get(0) instanceof DetCommodityFragment) {
+                ((DetCommodityFragment)mFragments.get(0)).showBuyDialog(DetBottomSheetSpecFragment.TYPE_ADD_CART);
+            }
+        });
+
+        /**立即购买**/
+        findViewById(R.id.detail_btn_buy).setOnClickListener(v -> {
+            if(mDetailInfoManager == null) return;
+            if(mFragments.get(0) instanceof DetCommodityFragment) {
+                ((DetCommodityFragment)mFragments.get(0)).showBuyDialog(DetBottomSheetSpecFragment.TYPE_BUY);
+            }
+        });
+
+        mAdapter = new DetailFragmentAdapter(getSupportFragmentManager(), mFragments);
+        mViewPager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
+            @Override
+            public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
+                if(position == 0) {
+                    detailHeaderView.updateHead(false, positionOffsetPixels, ScreenUtils.getScreenWidth());
+                }
+            }
+
+            @Override
+            public void onPageSelected(int position) {
+                if(position > 0) {
+                    detailHeaderView.updateHead(false, ScreenUtils.getScreenWidth(), ScreenUtils.getScreenWidth());
+                }
+            }
+
+            @Override
+            public void onPageScrollStateChanged(int state) {}
+        });
+
+        updateHeader(false, 0, ScreenUtils.getScreenWidth());
+
+        Looper.myQueue().addIdleHandler(() -> {
+            AppCompat.schedulePostponeEnterTransition(this_);
+            //Contents
+            BaseFragment fragmentCommodity = (BaseFragment) ARouter.getInstance().build(ARouterPath.DetailCommodityFgt).navigation();
+            BaseFragment fragmentDetail = (BaseFragment) ARouter.getInstance().build(ARouterPath.DetailDetailFgt).navigation();
+            BaseFragment fragmentComment = (BaseFragment) ARouter.getInstance().build(ARouterPath.DetailCommentFgt).navigation();
+//            BaseFragment fragmentRecommend = (BaseFragment) ARouter.getInstance().build(ARouterPath.DetailRecommendFgt).navigation();
+
+            mFragments.add(fragmentCommodity);
+            mFragments.add(fragmentDetail);
+            mFragments.add(fragmentComment);
+//            mFragments.add(fragmentRecommend);
+            mViewPager.setAdapter(mAdapter);
+            mViewPager.setScanScroll(true);
+
+            return false;
+        });
+    }
+
+    public void gotoTag(int index) {
+        mViewPager.postDelayed(() -> {
+            mViewPager.setCurrentItem(index);
+        }, 100);
+    }
+
+    public void updateHeader(boolean isVertical, int verticalOffset, int totalScrollRange) {
+        detailHeaderView.updateHead(isVertical, verticalOffset, totalScrollRange);
+    }
+
+    public void interceptScroll(boolean canScroll) {
+        mViewPager.setScanScroll(canScroll);
+    }
+
+    public void playHeadTitleAnimat(boolean isClose) {
+         detailHeaderView.playHeaderTitleAnimat(isClose);
+    }
+
+    @Override
+    public boolean dispatchBackPressed() {
+        if(mViewPager.getCurrentItem() != 0) {
+            gotoTag(0);
+            return true;
+        }
+        return false;
+    }
+
+    @Override
+    protected void responseEvent(CommEvent event) {
+        if(CommEvent.MSG_TYPE_UPDATE_FAVORITE_CART.equals(event.msgType)) { //更新购物车和收藏状态
+            mDetailInfoManager = ((DetCommodityFragment)mFragments.get(0)).getDetailInfoManager();
+            Bundle bundle = event.bundle;
+            String favorite = bundle.getString(CommKeyUtil.EXTRA_KEY);
+            String cartNum = bundle.getString(CommKeyUtil.EXTRA_KEY_2);
+            updateFavorite(Integer.valueOf(favorite) > 0);
+            updateCartNum(Integer.valueOf(cartNum));
+        } else if(CommEvent.MSG_TYPE_UPDATE_CART.equals(event.msgType)) { //更新购物车
+            Bundle bundle = event.bundle;
+            String[] params = bundle.getStringArray(CommKeyUtil.EXTRA_KEY);
+            if(params == null || params.length < 2) return;
+            String itemIds = params[0];
+            if(params[0].substring(params[0].length() - 1).equals(",")) {
+                itemIds = params[0].substring(0, params[0].length() - 1);
+            }
+            detailViewModel.addCart(mDetailInfoManager.getGoodsId(),
+                    itemIds, Integer.valueOf(params[1]), t -> {
+                CartNum result = (CartNum) t;
+                int cartNum = result.getCart_num();
+                updateCartNum(cartNum);
+            }, (code, msg) -> {
+                LogUtils.tag("zlq").e("msg = " + msg);
+                ToastUtils.showShortToast(msg);});
+        }
+    }
+
+    private void updateFavorite(boolean haveFavorite) {
+        favoriteIv.setImageResource(haveFavorite ? R.mipmap.favorite : R.mipmap.like);
+        favoriteTv.setText(haveFavorite ? "已收藏" : "收藏");
+    }
+
+    private void updateCartNum(int num) {
+        addBadgeAt(num);
+    }
+
+    /**
+     * 添加购物车数量
+     * @param number
+     * @return
+     */
+    private Badge addBadgeAt(int number) {
+        return new QBadgeView(this)
+                .setBadgeNumber(number)
+                .setBadgeGravity(Gravity.END | Gravity.TOP)
+                .setBadgeTextSize(10, true)
+                .setGravityOffset(0, 0, true)
+                .bindTarget(cartLay)
+                .setOnDragStateChangedListener((dragState, badge, targetView)->{if (Badge.OnDragStateChangedListener.STATE_SUCCEED == dragState){}});
+    }
+
+}

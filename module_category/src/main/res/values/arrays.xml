@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <!--分类标题-->
+    <string-array name="cates_title">
+        <item>推荐分类</item>
+        <item>沃超市</item>
+        <item>国际名牌</item>
+        <item>奢侈品</item>
+        <item>全球购</item>
+        <item>男装</item>
+        <item>女装</item>
+        <item>男鞋</item>
+        <item>女鞋</item>
+        <item>内衣配饰</item>
+        <item>箱包手袋</item>
+        <item>美妆护肤</item>
+        <item>个护清洁</item>
+        <item>钟表珠宝</item>
+        <item>手机数码</item>
+        <item>电脑办公</item>
+        <item>家用电器</item>
+        <item>食品生鲜</item>
+        <item>酒水饮料</item>
+        <item>母婴童装</item>
+        <item>玩具乐器</item>
+        <item>医药保健</item>
+        <item>计生情趣</item>
+        <item>运动户外</item>
+        <item>汽车用品</item>
+        <item>家居厨具</item>
+        <item>礼品鲜花</item>
+        <item>宠物生活</item>
+        <item>生活旅行</item>
+        <item>图书音像</item>
+        <item>艺术邮币</item>
+        <item>农资绿植</item>
+        <item>特产馆</item>
+        <item>沃金融</item>
+        <item>拍卖</item>
+        <item>房产</item>
+        <item>二手商品</item>
+        <item>沃服务</item>
+    </string-array>
+
+</resources>

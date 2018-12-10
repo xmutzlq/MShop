@@ -1,0 +1,18 @@
+<resources>
+
+    <!-- Base application theme. -->
+    <style name="Base.AppTheme" parent="QMUI.Compat">
+        <!-- Customize your theme here. -->
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorPrimaryDark">@color/colorPrimary</item>
+        <item name="colorAccent">@color/colorPrimary</item>
+
+    </style>
+
+    <style name="CommAppTheme" parent="Base.AppTheme">
+        <item name="android:textColorPrimary">@color/white</item>
+        <item name="android:windowBackground">@color/white</item>
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
+    </style>
+</resources>

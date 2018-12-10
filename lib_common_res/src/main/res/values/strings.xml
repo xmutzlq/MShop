@@ -1,0 +1,51 @@
+<resources>
+    <string name="comm_str_colligation">综合</string>
+    <string name="comm_str_sales_volume">销量</string>
+    <string name="comm_str_price">价格</string>
+    <string name="comm_str_filter">筛选</string>
+    <string name="comm_str_unfollow">关注</string>
+    <string name="comm_str_follow">已关注</string>
+    <string name="comm_str_choice">已选</string>
+    <string name="comm_str_shipping_address">送至</string>
+    <string name="comm_str_hot_rec">热门配件</string>
+    <string name="comm_str_check_all">查看全部</string>
+    <string name="comm_str_comment_count">评价(%s)</string>
+    <string name="comm_str_comment_check_all">查看全部评价</string>
+    <string name="comm_str_qa_check_all">查看全部%s条问题</string>
+    <string name="comm_str_good_comment_percent">好评度 %s</string>
+    <string name="comm_str_good_buy_consult">购买咨询</string>
+    <string name="comm_str_recommend">为你推荐</string>
+    <string name="comm_str_recommend_more">查看更多为你推荐</string>
+    <string name="comm_str_recommend_rank_more">查看完整排行榜</string>
+    <string name="comm_str_rank">排行榜</string>
+
+
+    <string name="home_scan_lable">扫一扫</string>
+    <string name="home_message_lable">消息</string>
+    <string name="home_search_input_hint">请输入关键词</string>
+
+    <!--过渡动画transitionName-->
+    <string name="transitionName_list_img_to_img">list_img_to_img</string>
+    <string name="str_friendly_reminder">温馨提示</string>
+    <string name="str_comment_empty_tip">您还没有评论，去评论吧</string>
+
+    <string name="str_img_upload">上传图片</string>
+    <string name="str_buy_now">立即购买</string>
+    <string name="str_add_cart">加入购物车</string>
+
+    <string name="str_scan_login_title">扫码登录</string>
+    <string name="str_scan_login_tip">是否登录</string>
+
+    <string name="str_pay">去支付</string>
+    <string name="str_manage">管理</string>
+    <string name="str_cancel">取消</string>
+    <string name="str_sure">确定</string>
+    <string name="str_save">保存</string>
+    <string name="str_commit">提交</string>
+    <string name="str_edit">编辑</string>
+    <string name="str_del">删除</string>
+    <string name="str_add">添加</string>
+
+    <string name="str_del_count">（%d）删除</string>
+    <string name="str_del_success">删除成功</string>
+</resources>

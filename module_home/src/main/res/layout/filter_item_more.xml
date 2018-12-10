@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:zhy="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
+    <LinearLayout
+        android:id="@+id/filter_more_title_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center_vertical"
+        android:clickable="true"
+        android:paddingBottom="@dimen/size_15dp"
+        android:paddingLeft="@dimen/size_12dp"
+        android:paddingRight="@dimen/size_12dp"
+        android:paddingTop="@dimen/size_15dp">
+
+        <TextView
+            android:id="@+id/filter_more_title_tv"
+            style="@style/TextView_Filter_Title"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="left" />
+
+        <TextView
+            android:id="@+id/filter_more_title_righ_tv"
+            style="@style/TextView_Filter_Title_right"
+            android:maxEms="8"
+            android:text="@string/filter_title_all_kinds_" />
+
+        <ImageView
+            android:id="@+id/filter_arrow_iv"
+            android:layout_width="@dimen/size_10dp"
+            android:layout_height="@dimen/size_10dp"
+            android:layout_marginLeft="@dimen/size_3dp"
+            android:src="@mipmap/ic_filter_arrow_down_normal" />
+    </LinearLayout>
+
+    <google.architecture.common.widget.TagFlowLayout
+        android:id="@+id/filter_more_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/size_12dp"
+        android:layout_marginRight="@dimen/size_12dp"
+        android:focusable="false"
+        android:focusableInTouchMode="false"
+        zhy:flow_row_item_count="3"
+        zhy:line_spacing="@dimen/size_10dp"
+        zhy:max_select="-1" />
+
+    <View
+        android:id="@+id/filter_just_a_space"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/size_50dp"
+        android:visibility="gone"/>
+</LinearLayout>

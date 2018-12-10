@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="@dimen/size_10dp"
+        android:layout_marginTop="@dimen/size_10dp"
+        android:orientation="vertical">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+            <com.allen.library.SuperTextView
+                android:id="@+id/detail_commodity_title"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:layout_marginBottom="@dimen/size_10dp"
+                app:sUseRipple="false"/>
+            <LinearLayout
+                android:id="@+id/detail_commodity_follow"
+                android:layout_width="40dp"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:gravity="left">
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_horizontal"
+                    android:orientation="vertical">
+                    <google.architecture.common.widget.FollowView
+                        android:id="@+id/detail_commodity_follow_state_iv"
+                        android:layout_width="@dimen/size_20dp"
+                        android:layout_height="@dimen/size_20dp"/>
+
+                    <TextView
+                        android:id="@+id/detail_commodity_follow_state_tv"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/size_1dp"
+                        android:textSize="@dimen/text_size_10sp"
+                        android:textColor="@color/color_666666"
+                        android:text="@string/comm_str_follow"
+                        android:drawablePadding="@dimen/size_5dp" />
+                </LinearLayout>
+            </LinearLayout>
+        </LinearLayout>
+        <TextView
+            android:id="@+id/detail_commodity_coupons"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/size_10dp"
+            android:layout_marginRight="@dimen/size_15dp"
+            android:textSize="@dimen/text_size_14sp"
+            android:textColor="@color/color_FD644B" />
+    </LinearLayout>
+</layout>

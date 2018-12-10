@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:focusable="true"
+        android:focusableInTouchMode="true"
+        android:background="@color/white"
+        android:orientation="vertical">
+
+        <include
+            android:id="@+id/app_bar"
+            layout="@layout/toolbar"/>
+
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/order_detail_rv"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"/>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+            <View style="@style/DeepUnderLine"/>
+            <google.architecture.common.widget.FlowLayout
+                android:id="@+id/order_operate_flow_layout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="@dimen/size_15dp"
+                android:paddingTop="@dimen/size_10dp"
+                android:paddingBottom="@dimen/size_10dp"
+                android:focusable="false"
+                android:focusableInTouchMode="false"
+                app:flChildSpacing="@dimen/size_15dp"
+                app:flRowSpacing="@dimen/size_8dp"
+                app:flRtl="true"/>
+        </LinearLayout>
+    </LinearLayout>
+</layout>

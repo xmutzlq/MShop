@@ -1,0 +1,8 @@
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="google.architecture.home">
+    <application>
+        <activity android:name="google.architecture.home.ActivityHome"></activity>
+        <activity android:name="google.architecture.home.ActivitySearch"></activity>
+        <activity android:name="google.architecture.home.ActivitySearchSecond"></activity>
+    </application>
+</manifest>

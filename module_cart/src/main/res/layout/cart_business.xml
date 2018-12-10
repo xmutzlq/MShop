@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/white">
+
+    <LinearLayout
+        android:id="@+id/btn_cart_business_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerVertical="true"
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
+        android:paddingTop="@dimen/size_8dp"
+        android:paddingBottom="@dimen/size_8dp"
+        android:paddingLeft="@dimen/size_15dp"
+        android:paddingRight="@dimen/size_15dp">
+        <CheckBox
+            android:id="@+id/cb_cart_business_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:clickable="false"
+            android:focusable="false"
+            android:focusableInTouchMode="false"
+            style="@style/CartCheckbox"/>
+        <TextView
+            android:id="@+id/tv_cart_business_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="@dimen/size_5dp"
+            android:lines="1"
+            android:textSize="@dimen/text_size_14sp"
+            android:textColor="@color/text_908f94" />
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/size_5dp"
+            android:src="@drawable/ic_arrow_right"/>
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/tv_cart_business_title_edit"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_centerVertical="true"
+        android:paddingTop="@dimen/size_8dp"
+        android:paddingBottom="@dimen/size_8dp"
+        android:paddingLeft="@dimen/size_15dp"
+        android:paddingRight="@dimen/size_15dp"
+        android:lines="1"
+        android:textSize="@dimen/text_size_14sp"
+        android:textColor="@color/text_908f94"
+        android:text="@string/cart_ticket"/>
+
+    <View style="@style/DeepUnderLine"
+        android:layout_marginLeft="@dimen/size_15dp"
+        android:layout_marginRight="@dimen/size_15dp"
+        android:layout_alignParentBottom="true"/>
+</RelativeLayout>
+

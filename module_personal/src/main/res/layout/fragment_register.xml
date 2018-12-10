@@ -1,0 +1,139 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+        <variable
+            name="registerViewModel"
+            type="google.architecture.common.viewmodel.RegisterViewModel" />
+    </data>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/cardview_light_background"
+        android:focusable="true"
+        android:focusableInTouchMode="true"
+        android:orientation="vertical">
+
+        <android.support.v7.widget.Toolbar
+            android:id="@+id/toolbar"
+            style="@style/Widget.App.ToolBar"
+            app:titleTextAppearance="@style/Toolbar.TitleText" />
+
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <android.support.v4.view.ViewPager
+                    android:id="@+id/register_card_viewpager"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/size_180dp"
+                    android:clipToPadding="false"
+                    android:overScrollMode="never"
+                    android:paddingBottom="@dimen/size_10dp"
+                    android:paddingEnd="@dimen/card_padding"
+                    android:paddingLeft="@dimen/card_padding"
+                    android:paddingRight="@dimen/card_padding"
+                    android:paddingStart="@dimen/card_padding" />
+
+                <android.support.design.widget.TextInputLayout
+                    android:id="@+id/only_name_layout"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:paddingEnd="@dimen/space_large_2"
+                    android:paddingStart="@dimen/space_large_2"
+                    app:passwordToggleEnabled="true"
+                    app:passwordToggleTint="@color/colorPrimary">
+
+                    <android.support.design.widget.TextInputEditText
+                        android:id="@+id/only_name_et"
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/size_48dp"
+                        android:focusable="true"
+                        android:focusableInTouchMode="true"
+                        android:hint="@string/user_name_only"
+                        android:inputType="text"
+                        android:paddingEnd="@dimen/space_small_1"
+                        android:paddingStart="@dimen/space_small_1"
+                        android:text="@={registerViewModel.userNameOnlyStr}"
+                        android:textColor="@color/text_color"
+                        android:textColorHint="#FFAAAAAA"
+                        android:textSize="@dimen/text_size_small_1" />
+                </android.support.design.widget.TextInputLayout>
+
+                <android.support.design.widget.TextInputLayout
+                    android:id="@+id/pwd_layout"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/space_small_1"
+                    android:paddingEnd="@dimen/space_large_2"
+                    android:paddingStart="@dimen/space_large_2"
+                    app:passwordToggleEnabled="true"
+                    app:passwordToggleTint="@color/colorPrimary">
+
+                    <android.support.design.widget.TextInputEditText
+                        android:id="@+id/pwd_et"
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/size_48dp"
+                        android:focusable="true"
+                        android:focusableInTouchMode="true"
+                        android:hint="@string/password"
+                        android:inputType="textPassword"
+                        android:paddingEnd="@dimen/space_small_1"
+                        android:paddingStart="@dimen/space_small_1"
+                        android:text="@={registerViewModel.pwdStr}"
+                        android:textColor="@color/text_color"
+                        android:textColorHint="#FFAAAAAA"
+                        android:textSize="@dimen/text_size_small_1" />
+                </android.support.design.widget.TextInputLayout>
+
+                <android.support.design.widget.TextInputLayout
+                    android:id="@+id/code_layout"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/space_small_1"
+                    android:paddingEnd="@dimen/space_large_2"
+                    android:paddingStart="@dimen/space_large_2"
+                    app:passwordToggleEnabled="true"
+                    app:passwordToggleTint="@color/colorPrimary">
+
+                    <android.support.design.widget.TextInputEditText
+                        android:id="@+id/code_et"
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/size_48dp"
+                        android:focusable="true"
+                        android:focusableInTouchMode="true"
+                        android:hint="@string/registcode"
+                        android:imeOptions="actionGo"
+                        android:inputType="number"
+                        android:paddingEnd="@dimen/space_small_1"
+                        android:paddingStart="@dimen/space_small_1"
+                        android:text="@={registerViewModel.codeStr}"
+                        android:textColor="@color/text_color"
+                        android:textColorHint="#FFAAAAAA"
+                        android:textSize="@dimen/text_size_small_1" />
+                </android.support.design.widget.TextInputLayout>
+
+                <Button
+                    android:id="@+id/register_btn"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/size_48dp"
+                    android:layout_marginLeft="@dimen/space_large_2"
+                    android:layout_marginRight="@dimen/space_large_2"
+                    android:layout_marginTop="@dimen/space_large_1"
+                    android:background="@drawable/selector_account_bg"
+                    android:enabled="false"
+                    android:text="@string/register"
+                    android:textColor="@android:color/white"
+                    android:textSize="@dimen/text_size_normal" />
+            </LinearLayout>
+        </ScrollView>
+    </LinearLayout>
+</layout>

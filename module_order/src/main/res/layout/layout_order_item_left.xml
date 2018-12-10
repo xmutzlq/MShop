@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
+    <com.allen.library.SuperTextView
+        android:id="@+id/order_goods_dispatching_tv"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/size_60dp"
+        app:sUseRipple="false"
+        app:sBottomDividerLineMarginLR="@dimen/size_10dp"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/size_60dp"
+        android:layout_marginLeft="@dimen/size_10dp"
+        android:orientation="horizontal"
+        android:gravity="center_vertical">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/color_282828"
+            android:layout_marginRight="@dimen/size_5dp"
+            android:textSize="@dimen/text_size_15sp"
+            android:text="@string/order_str_buyers_left"/>
+        <EditText
+            android:id="@+id/order_goods_buyers_left_et"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:background="@null"
+            android:textColor="@color/color_282828"
+            android:hint="@string/order_str_buyers_left_hint"
+            android:textColorHint="@color/color_999999"
+            android:textSize="@dimen/text_size_15sp"/>
+    </LinearLayout>
+
+    <View style="@style/DeepUnderLine"
+        android:layout_marginLeft="@dimen/size_10dp"
+        android:layout_marginRight="@dimen/size_10dp"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/size_60dp"
+        android:layout_marginRight="@dimen/size_10dp"
+        android:orientation="horizontal"
+        android:gravity="center_vertical|right">
+        <TextView
+            android:id="@+id/order_shop_goods_num_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="@dimen/size_15dp"
+            android:textColor="@color/color_282828"
+            android:textSize="@dimen/text_size_15sp"/>
+        <TextView
+            android:id="@+id/order_shop_goods_price_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/color_282828"
+            android:textSize="@dimen/text_size_15sp"/>
+    </LinearLayout>
+</LinearLayout>

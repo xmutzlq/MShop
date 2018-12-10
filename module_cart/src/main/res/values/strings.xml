@@ -1,0 +1,20 @@
+<resources>
+    <string name="app_name">购物车模块</string>
+    <string name="moudle_name">购物车</string>
+    <string name="cart_manage">管理</string>
+    <string name="cart_manage_close">完成</string>
+    <string name="cart_edit">编辑</string>
+    <string name="cart_ticket">领券</string>
+    <string name="cart_item_delete">删除</string>
+    <string name="cart_add_to_favorites">移入收藏夹</string>
+    <string name="cart_edit_all">全选</string>
+    <string name="cart_all_money">合计:¥0</string>
+    <string name="cart_all_money_value">合计:¥%s</string>
+    <string name="cart_commit_money">结算(0)</string>
+    <string name="cart_commit_money_value">结算(%d)</string>
+    <string name="cart_unselect_value">您还未选择宝贝</string>
+    <string name="cart_empty_tip">您的购物车还是空空的</string>
+    <string name="cart_empty_choice_tip">去挑一些喜欢的商品吧</string>
+    <string name="cart_empty_go_tip">随便逛逛</string>
+    <string name="cart_guess_you_like_title">为·你·推·荐</string>
+</resources>

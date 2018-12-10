@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    >
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="450dp"
+        android:layout_centerInParent="true">
+    <RelativeLayout
+        android:id="@+id/update_content_lay"
+        android:layout_width="wrap_content"
+        android:layout_height="420dp"
+        android:layout_centerInParent="true"
+        android:background="@mipmap/update_dialog_bg" >
+         <ScrollView
+             android:layout_width="300dp"
+             android:layout_height="220dp"
+             android:orientation="vertical"
+             android:layout_centerHorizontal="true"
+
+             >
+        <LinearLayout
+            android:id="@+id/list_ll"
+            android:layout_width="match_parent"
+            android:layout_height="220dp"
+            android:orientation="vertical"
+            android:gravity="center_horizontal|top"
+            android:layout_gravity="start"
+             >
+
+        </LinearLayout>
+         </ScrollView>
+        <TextView
+            android:id="@+id/update_comfirm_tv"
+            android:layout_width="210dp"
+            android:layout_height="40dp"
+            android:layout_alignParentBottom="true"
+            android:layout_centerHorizontal="true"
+            android:background="@mipmap/btn_update"
+            android:gravity="center"
+            android:text="立即升级"
+            android:layout_marginBottom="20dp"
+            android:textColor="@color/white"
+            android:textSize="@dimen/text_size_18sp" />
+    </RelativeLayout>
+    <ImageView
+        android:id="@+id/update_close_iv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentRight="true"
+        android:padding="10dp"
+        android:layout_marginBottom="5dp"
+        android:src="@mipmap/pop_del_icon" />
+    </RelativeLayout>
+</RelativeLayout>

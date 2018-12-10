@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<net.soulwolf.widget.ratiolayout.widget.RatioFrameLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:soulwolf="http://schemas.android.com/apk/res-auto"
+    soulwolf:datumRatio="datumWidth"
+    soulwolf:widthRatio="1"
+    soulwolf:heightRatio="1"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content">
+    <ImageView
+        android:id="@+id/common_ratio_iv"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:scaleType="fitXY"/>
+</net.soulwolf.widget.ratiolayout.widget.RatioFrameLayout>

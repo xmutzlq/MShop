@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/white"
+        android:orientation="vertical">
+
+        <include
+            android:id="@+id/app_bar"
+            layout="@layout/toolbar"/>
+
+        <android.support.v4.widget.SwipeRefreshLayout
+            android:id="@id/id_swipe_refresh"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:orientation="vertical">
+            <android.support.v7.widget.RecyclerView
+                android:id="@id/id_recycler_view"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:scrollbars="none"
+                android:overScrollMode="never"/>
+        </android.support.v4.widget.SwipeRefreshLayout>
+
+        <!-- 底部-->
+        <LinearLayout
+            android:id="@+id/footprint_select_layout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:background="@color/white"
+            android:visibility="gone">
+            <View style="@style/DeepUnderLine"/>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:gravity="center_vertical">
+                <LinearLayout
+                    android:id="@+id/btn_footprint_all_select"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:orientation="horizontal"
+                    android:gravity="center_vertical"
+                    android:paddingTop="@dimen/size_10dp"
+                    android:paddingBottom="@dimen/size_10dp"
+                    android:paddingLeft="@dimen/size_15dp"
+                    android:paddingRight="@dimen/size_15dp">
+                    <CheckBox
+                        android:id="@+id/cb_footprint_all_select"
+                        android:layout_width="@dimen/size_23dp"
+                        android:layout_height="@dimen/size_23dp"
+                        android:clickable="false"
+                        android:focusable="false"
+                        android:focusableInTouchMode="false"
+                        style="@style/CartCheckbox"/>
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:padding="@dimen/size_5dp"
+                        android:lines="1"
+                        android:textSize="@dimen/text_size_14sp"
+                        android:textColor="@color/text_black_4d"
+                        android:text="全选"/>
+
+                </LinearLayout>
+
+
+                <TextView
+                    android:id="@+id/btn_footprint_commit"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:paddingTop="@dimen/size_5dp"
+                    android:paddingBottom="@dimen/size_5dp"
+                    android:paddingLeft="@dimen/size_20dp"
+                    android:paddingRight="@dimen/size_20dp"
+                    android:layout_marginLeft="@dimen/size_10dp"
+                    android:background="@color/themePrimaryDark"
+                    android:gravity="center_vertical"
+                    android:lines="1"
+                    android:textSize="@dimen/text_size_15sp"
+                    android:textColor="@color/white"
+                    android:text="（0）删除"/>
+            </LinearLayout>
+        </LinearLayout>
+    </LinearLayout>
+
+</layout>

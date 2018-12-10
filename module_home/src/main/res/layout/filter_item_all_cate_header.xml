@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
+    <View
+        android:id="@+id/filter_all_cate_item_line"
+        style="@style/DeepUnderLine" />
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingLeft="@dimen/size_14dp"
+        android:paddingRight="@dimen/size_14dp"
+        android:paddingTop="@dimen/size_14dp"
+        android:paddingBottom="@dimen/size_14dp"
+        android:orientation="horizontal"
+        android:gravity="center_vertical"
+        android:background="@color/white">
+        <TextView
+            android:id="@+id/filter_all_cate_item_label"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:textColor="@color/color_666666"
+            android:textSize="@dimen/text_size_14sp"
+            android:lines="1"
+            android:ellipsize="end"/>
+
+        <FrameLayout
+            android:id="@+id/filter_all_cate_item_arrow_btn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true">
+            <ImageView
+                android:id="@+id/filter_all_cate_item_arrow_iv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@mipmap/ic_filter_arrow_down_normal"/>
+        </FrameLayout>
+    </LinearLayout>
+</LinearLayout>

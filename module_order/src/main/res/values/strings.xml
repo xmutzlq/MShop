@@ -1,0 +1,34 @@
+<resources>
+    <string name="app_name">OrderApplication</string>
+    <string name="order_str_consignee_empty">没有地址信息，请点击后添加地址</string>
+    <string name="order_str_consignee_empty_tip">您还没有收货地址，请点击下方+新建</string>
+    <string name="order_str_add_address">+添加地址</string>
+    <string name="order_str_consignee">收货人：</string>
+    <string name="order_str_delivery_address">收货地址：</string>
+    <string name="order_str_dispatching_type">配送方式</string>
+    <string name="order_str_buyers_left">买家留言</string>
+    <string name="order_str_all_goods_num">共%d件</string>
+    <string name="order_str_all_goods_money">总金额</string>
+    <string name="order_str_shop_goods_num">共%d件商品</string>
+    <string name="order_str_shop_goods_money">小计：</string>
+
+    <string name="order_confirm">确认订单</string>
+    <string name="order_commit">提交订单</string>
+    <string name="order_str_buyers_left_hint">选填:填写内容已和卖家协商确认</string>
+
+    <string name="order_pay">支付</string>
+
+    <string name="address_consignee">收货人姓名</string>
+    <string name="address_phone">手机号码</string>
+    <string name="address_zip_code">邮政编码</string>
+    <string name="address_all">所在地区</string>
+    <string name="address_dispatching">配送至</string>
+    <string name="address_detail">详细地址</string>
+    <string name="address_del_tip">确认删除此收货地址吗？</string>
+    <string name="address_first_tip">确认先设置收货地址</string>
+
+    <string name="add_choice">选择收货地址</string>
+    <string name="add_address">新增收货地址</string>
+    <string name="add_default">设置默认地址</string>
+    <string name="add_manage">管理收货地址</string>
+</resources>

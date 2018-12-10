@@ -1,0 +1,93 @@
+<resources>
+    <string name="app_name">module_personal</string>
+
+    <string name="personal_info_title">个人资料</string>
+    <string name="personal_setting_title">设置</string>
+
+    <string name="login_register">登录/注册</string>
+    <string name="login_out">退出登录</string>
+    <string name="login_out_confirm">确定退出登录？</string>
+
+    <string name="login">登录</string>
+    <string name="account">帐号</string>
+    <string name="account_hint">手机号/邮箱/用户名</string>
+    <string name="password_org">原密码</string>
+    <string name="password">密码</string>
+    <string name="password_comfirm">新密码</string>
+    <string name="user_name_only">用户名(不可更改)</string>
+
+    <string name="register_new_user">新用户注册</string>
+    <string name="register">注册</string>
+    <string name="waytype">注册方式</string>
+    <string name="registcode">验证码</string>
+    <string name="send">发送验证</string>
+
+    <string name="feed_back_title">用户反馈</string>
+
+    <string name="forgot_login">忘记密码？</string>
+    <string name="rest_login">重置登录密码</string>
+    <string name="modify_title">修改</string>
+    <string name="modify_login">修改登录密码</string>
+    <string name="modify_email">修改邮箱</string>
+    <string name="modify_phone">修改手机号</string>
+    <string name="modify_phone_email">修改手机号/邮箱</string>
+    <string name="modify_account">修改账户</string>
+    <string name="modify_nick_name">修改昵称</string>
+
+    <string name="file_operating">文件正在处理...</string>
+
+    <string name="personal_my_favorites_title">我的收藏</string>
+    <string name="personal_my_footprint_title">浏览记录</string>
+    <string name="personal_my_favorites_empty_tip">目前还没有相关的收藏</string>
+    <string name="personal_foot_print_empty_tip">目前还没有相关的浏览记录</string>
+    <string name="personal_my_comment_title">我的评价</string>
+    <string name="personal_my_comment_commit_title">评价</string>
+    <string name="personal_my_comment_empty_tip">目前还没有相关的评价</string>
+    <string name="personal_my_all_orders_title">全部订单</string>
+    <string name="personal_my_order_title">我的订单</string>
+    <string name="personal_my_order_empty_tip">目前还没有相关的订单</string>
+    <string name="personal_order_detail_title">订单详情</string>
+    <string name="personal_order_detail_goods_total_price">商品总价</string>
+    <string name="personal_order_detail_goods_dispatch_price">运费(快递)</string>
+    <string name="personal_order_detail_order_total_price">订单总价</string>
+    <string name="personal_order_detail_total_pay">需付款</string>
+    <string name="personal_order_detail_order_no">订单编号：%s</string>
+    <string name="personal_order_detail_order_create_time">创建时间：%s</string>
+
+    <string name="input_min_size">至少输入%d个字</string>
+    <string name="welcome_back">%1$s 欢迎回来</string>
+
+    <string name="personal_order_1">待付款</string>
+    <string name="personal_order_2">待收货</string>
+    <string name="personal_order_3">待评价</string>
+    <string name="personal_order_4">退换/售后</string>
+    <string name="personal_order_5">我的订单</string>
+    <string name="personal_order_6">查看电子发票</string>
+
+    <string name="personal_package_1">沃豆</string>
+    <string name="personal_package_2">优惠券</string>
+    <string name="personal_package_3">白条</string>
+    <string name="personal_package_4">小金库</string>
+    <string name="personal_package_5">我的钱包</string>
+    <string name="personal_package_6">最高5万额度</string>
+    <string name="personal_package_7">新人有礼</string>
+
+    <string name="personal_about_us">关于我们</string>
+    <string name="personal_share_app">分享App</string>
+    <string name="personal_account_safe">账户安全</string>
+    <string name="personal_check_update">检查更新</string>
+
+    <string name="personal_info_base">基础资料</string>
+    <string name="personal_info_base_head">头像</string>
+    <string name="personal_info_base_account">账号</string>
+    <string name="personal_info_base_name">姓名</string>
+    <string name="personal_info_base_user_name">用户名</string>
+    <string name="personal_info_base_nick_name">昵称</string>
+
+    <string name="personal_info_secret">保密资料</string>
+    <string name="personal_info_secret_set_pwd">设置密码</string>
+    <string name="personal_info_secret_phone">手机号</string>
+    <string name="personal_info_secret_email">邮箱</string>
+
+
+</resources>

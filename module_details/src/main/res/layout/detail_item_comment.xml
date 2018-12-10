@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:expandableTextView="http://schemas.android.com/apk/res-auto"
+    xmlns:ngl="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:padding="@dimen/size_15dp">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center_vertical">
+
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:id="@+id/detail_comment_u_head_ico"
+            android:layout_width="@dimen/size_25dp"
+            android:layout_height="@dimen/size_25dp"
+            app:civ_border_width="@dimen/size_0.5dp"
+            app:civ_border_color="@color/color_808080"/>
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:layout_marginLeft="@dimen/size_8dp"
+            android:orientation="horizontal"
+            android:gravity="center_vertical">
+            <TextView
+                android:id="@+id/detail_comment_u_head_nick"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="@dimen/text_size_14sp"
+                android:textColor="@color/color_282828"
+                android:lines="1"
+                android:ellipsize="end"/>
+
+            <ImageView
+                android:id="@+id/detail_comment_u_head_vip"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/detail_comment_publish_time"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="@dimen/text_size_14sp"
+            android:textColor="@color/color_9b9b9b"
+            android:text="0000-00-00"/>
+    </LinearLayout>
+
+    <google.architecture.common.widget.ExpandableTextView
+        android:id="@+id/detail_comment_publish_ex"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        expandableTextView:animAlphaStart="1"
+        expandableTextView:maxCollapsedLines="3">
+
+        <TextView
+            android:id="@id/expandable_text"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/size_10dp"
+            android:layout_marginRight="@dimen/size_10dp"
+            android:layout_marginTop="@dimen/size_8dp"
+            android:textColor="@color/color_666666"
+            android:textSize="@dimen/text_size_14sp" />
+
+        <TextView
+            android:id="@id/expand_collapse"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/size_10dp"
+            android:layout_marginRight="@dimen/size_10dp"
+            android:layout_marginTop="@dimen/size_3dp"
+            android:layout_gravity="left|bottom"
+            android:textSize="@dimen/text_size_12sp"
+            android:textColor="@color/black"
+            android:text="展开"/>
+    </google.architecture.common.widget.ExpandableTextView>
+
+    <com.jaeger.ninegridimageview.NineGridImageView
+        android:id="@+id/detail_comment_publish_img"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/size_16dp"
+        ngl:imgGap="@dimen/size_3dp"/>
+</LinearLayout>

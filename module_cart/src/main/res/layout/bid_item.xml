@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:bind="http://schemas.android.com/apk/res-auto">
+    <data>
+        <import type="android.view.View"/>
+        <variable name="bidsItem"
+                  type="google.architecture.coremodel.data.BidsData.IntelligentBidInfo"/>
+        <variable name="callback"
+                  type="com.king.android.BidItemClickCallback"/>
+    </data>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingLeft="15dp"
+        android:paddingRight="15dp"
+        android:orientation="horizontal"
+        android:gravity="center_vertical"
+        android:onClick="@{() ->  callback.onClick(bidsItem)}">
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:padding="@dimen/size_4dp"
+            android:textColor="#666666"
+            android:textSize="@dimen/text_size_20sp"
+            android:text="@{bidsItem.title}"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:padding="@dimen/size_4dp"
+                android:textColor="#666666"
+                android:textSize="@dimen/text_size_20sp"
+                android:text="@{bidsItem.cre_msg}"/>
+    </LinearLayout>
+</layout>

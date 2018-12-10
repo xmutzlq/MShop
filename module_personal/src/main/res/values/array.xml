@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="wayArr">
+        <item>手机号</item>
+        <item>邮箱</item>
+    </string-array>
+
+    <!--首页网格标题-->
+    <string-array name="personal_head_titles">
+        <item>精品推荐</item>
+        <item>办公神器</item>
+        <item>午睡神器</item>
+        <item>恋上床</item>
+        <item>搞机</item>
+        <item>如音随行</item>
+        <item>钢铁洪流</item>
+        <item>型男</item>
+        <item>数码控</item>
+        <item>电子书童</item>
+    </string-array>
+
+    <!--我的订单-->
+    <string-array name="personal_my_order_titles">
+        <item>全部</item>
+        <item>待付款</item>
+        <item>待收货</item>
+        <item>已完成</item>
+        <item>已取消</item>
+    </string-array>
+
+    <!--我的评价-->
+    <string-array name="personal_my_comment_titles">
+        <item>待评价</item>
+    </string-array>
+</resources>

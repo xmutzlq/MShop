@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
+    <LinearLayout
+        android:id="@+id/common_btn_material"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center"
+        android:orientation="vertical"
+        android:paddingTop="@dimen/size_15dp"
+        android:paddingBottom="@dimen/size_15dp"
+        android:background="@drawable/bg_gradient_bar_cart"
+        android:clickable="true">
+        <TextView
+            android:id="@+id/common_btn_material_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/str_sure"
+            android:textColor="@color/white"
+            android:textSize="@dimen/text_size_13sp"
+            android:textStyle="bold" />
+    </LinearLayout>
+</LinearLayout>

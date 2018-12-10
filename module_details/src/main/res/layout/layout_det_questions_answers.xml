@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:stv="http://schemas.android.com/apk/res-auto">
+    <LinearLayout
+        android:id="@+id/detail_commodity_qa_root"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <com.allen.library.SuperTextView
+            android:id="@+id/detail_commodity_qa_tv"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/size_15dp"
+            stv:sUseRipple="false"/>
+
+        <com.allen.library.SuperTextView
+            android:id="@+id/detail_commodity_qa_1_tv"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/size_10dp"
+            stv:sLeftViewGravity="left_center"
+            stv:sUseRipple="false"/>
+
+        <com.allen.library.SuperTextView
+            android:id="@+id/detail_commodity_qa_2_tv"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/size_10dp"
+            stv:sLeftViewGravity="left_center"
+            stv:sUseRipple="false"/>
+
+        <include layout="@layout/layout_common_one_btn"
+            android:id="@+id/layout_common_one_btn"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/size_30dp"
+            android:layout_marginBottom="@dimen/size_15dp"/>
+    </LinearLayout>
+</layout>

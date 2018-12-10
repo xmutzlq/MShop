@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:soulwolf="http://schemas.android.com/apk/res-auto"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <data>
+        <import type="google.architecture.coremodel.data.HomeItemsInfo"/>
+        <variable name="homeItemsInfo" type="HomeItemsInfo"/>
+    </data>
+    <LinearLayout
+        android:id="@+id/layout_new_goods"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:foreground="?android:attr/selectableItemBackground"
+        android:gravity="center">
+
+        <net.soulwolf.widget.ratiolayout.widget.RatioFrameLayout
+            android:id="@+id/rf_grid"
+            soulwolf:datumRatio="datumWidth"
+            soulwolf:widthRatio="1"
+            soulwolf:heightRatio="1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+            <ImageView
+                android:id="@+id/iv_new_goods"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:scaleType="centerCrop"
+                app:imageUrl="@{homeItemsInfo.getImgUrl()}"/>
+        </net.soulwolf.widget.ratiolayout.widget.RatioFrameLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+            <TextView
+                android:id="@+id/tv_new_goods"
+                android:layout_marginTop="@dimen/size_5dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:singleLine="true"
+                android:ellipsize="end"
+                android:textSize="@dimen/text_size_12sp"
+                android:textColor="@color/text_908f94"
+                android:text="@{homeItemsInfo.getTitle()}"/>
+            <TextView
+                android:id="@+id/tv_new_goods_money"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:singleLine="true"
+                android:ellipsize="end"
+                android:textSize="@dimen/text_size_14sp"
+                android:textColor="@color/color_ff3234"
+                android:text="@{homeItemsInfo.getPrice()}"/>
+
+        </LinearLayout>
+
+    </LinearLayout>
+</layout>

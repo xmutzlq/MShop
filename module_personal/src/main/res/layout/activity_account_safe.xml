@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:stv="http://schemas.android.com/apk/res-auto">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <include layout="@layout/toolbar" />
+
+        <com.allen.library.SuperTextView
+            android:id="@+id/personal_setting_modify_login"
+            android:layout_width="wrap_content"
+            android:layout_height="@dimen/size_60dp"
+            android:paddingLeft="@dimen/size_15dp"
+            android:paddingRight="@dimen/size_15dp"
+            stv:sLeftViewMarginLeft="0dp"
+            stv:sLeftTextSize="@dimen/text_size_16sp"
+            stv:sLeftTextString="@string/modify_login"
+            stv:sLeftTextColor="@color/color_282828"
+            stv:sRightIconRes="@drawable/ic_arrow_right"/>
+
+        <com.allen.library.SuperTextView
+            android:id="@+id/personal_setting_modify_phone_email"
+            android:layout_width="wrap_content"
+            android:layout_height="@dimen/size_60dp"
+            android:paddingLeft="@dimen/size_15dp"
+            android:paddingRight="@dimen/size_15dp"
+            stv:sLeftViewMarginLeft="0dp"
+            stv:sLeftTextSize="@dimen/text_size_16sp"
+            stv:sLeftTextString="@string/modify_phone_email"
+            stv:sLeftTextColor="@color/color_282828"
+            stv:sRightIconRes="@drawable/ic_arrow_right"/>
+    </LinearLayout>
+</layout>

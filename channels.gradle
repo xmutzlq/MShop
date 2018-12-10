@@ -1,0 +1,56 @@
+apply plugin: 'com.android.application'
+// load properties
+Properties properties = new Properties()
+properties.load(project.rootProject.file('channels.properties').newDataInputStream())
+String channelDefault = properties.getProperty('channel.default')
+String channelList = properties.getProperty('channel.list')
+String[] channelArray = channelList.split(',')
+
+boolean isNeedChannels = false
+
+def getProductName() {//获取产品的名字
+    return "app"
+}
+def releaseTime() {//获取当前系统的时间
+    return new Date().format("yyyy-MM-dd-hh-mm", TimeZone.getTimeZone("UTC"))
+}
+android {
+    defaultConfig {
+        manifestPlaceholders = [UMENG_CHANNEL_VALUE : channelDefault,
+                                UMENG_APP_KEY : "5b8397ab8f4a9d2ec7000016",
+                                JPUSH_APP_KEY : "a43f8784a03007ed25d674b7",
+                                JPUSH_CHANNEL_VALUE : "developer-default"]
+        flavorDimensions "default"
+    }
+
+    productFlavors {
+        if(isNeedChannels && channelArray.size() > 0) {
+            for (int i = 0 ; i < channelArray.size(); i++) {
+                def channel = channelArray[i]
+                "${channel}"{
+                    manifestPlaceholders = [UMENG_CHANNEL_VALUE: channel]
+                }
+            }
+        } else {
+            "${channelDefault}" {
+                manifestPlaceholders = [UMENG_CHANNEL_VALUE: channelDefault]
+            }
+        }
+    }
+
+    //批量修改生成的apk文件名
+    applicationVariants.all { variant ->
+        variant.outputs.all {
+            if (!variant.buildType.debuggable) {
+                outputFileName = getProductName() + "_v${defaultConfig.versionName}_${releaseTime()}_" + variant.productFlavors[0].name + '_release.apk'
+            } else {
+                outputFileName = getProductName() + "_v${defaultConfig.versionName}_${releaseTime()}_" + variant.productFlavors[0].name + '_debug.apk'
+            }
+        }
+    }
+
+    freeline {
+        hack true
+        productFlavor channelDefault
+    }
+}

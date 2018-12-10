@@ -1,0 +1,204 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:zhy="http://schemas.android.com/apk/res-auto">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/white"
+        android:orientation="vertical">
+
+        <android.support.v4.widget.NestedScrollView
+            android:id="@+id/filter_top_nsv"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:fillViewport="true">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <LinearLayout
+                    android:id="@+id/filter_shop_server"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/size_12dp"
+                    android:layout_marginRight="@dimen/size_12dp"
+                    android:layout_marginTop="@dimen/size_18dp"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal"
+                    android:visibility="gone">
+
+                    <TextView
+                        style="@style/TextView_Filter_Title"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginRight="@dimen/size_10dp"
+                        android:text="@string/filter_title_server" />
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:orientation="horizontal"
+                        android:gravity="center_vertical|right">
+                        <ImageView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:padding="@dimen/size_3dp"
+                            android:src="@mipmap/ic_location"/>
+
+                        <TextView
+                            android:id="@+id/tv_filter_location"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/filter_title_right_location"
+                            android:textColor="@color/color_ff593e"
+                            android:textSize="@dimen/text_size_13sp"
+                            android:lines="1"
+                            android:ellipsize="end"/>
+                    </LinearLayout>
+                </LinearLayout>
+
+                <google.architecture.common.widget.TagFlowLayout
+                    android:id="@+id/filter_tag_layout"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/size_12dp"
+                    android:layout_marginRight="@dimen/size_12dp"
+                    android:layout_marginTop="@dimen/size_15dp"
+                    android:focusable="false"
+                    android:focusableInTouchMode="false"
+                    zhy:flow_row_item_count="3"
+                    zhy:line_spacing="@dimen/size_10dp"
+                    zhy:max_select="-1" />
+
+                <TextView
+                    style="@style/TextView_Filter_Title"
+                    android:layout_marginLeft="@dimen/size_12dp"
+                    android:layout_marginRight="@dimen/size_12dp"
+                    android:layout_marginTop="@dimen/size_8dp"
+                    android:text="@string/filter_title_range" />
+
+                <!-- 价格区间 -->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/size_12dp"
+                    android:layout_marginRight="@dimen/size_12dp"
+                    android:layout_marginTop="@dimen/size_15dp"
+                    android:layout_marginBottom="@dimen/size_15dp"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal">
+
+                    <EditText
+                        android:id="@+id/filter_price_left"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:background="@drawable/bg_round_angle_filter_item"
+                        android:gravity="center"
+                        android:hint="@string/filter_price_left"
+                        android:inputType="number"
+                        android:textColor="@color/black"
+                        android:textColorHint="@color/gray_D5"
+                        android:textSize="@dimen/text_size_13sp" />
+
+                    <TextView
+                        style="@style/TextView_Divide"
+                        android:layout_marginLeft="@dimen/size_8dp"
+                        android:layout_marginRight="@dimen/size_8dp" />
+
+                    <EditText
+                        android:id="@+id/filter_price_right"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:background="@drawable/bg_round_angle_filter_item"
+                        android:gravity="center"
+                        android:hint="@string/filter_price_right"
+                        android:inputType="number"
+                        android:textColor="@color/black"
+                        android:textColorHint="@color/gray_D5"
+                        android:textSize="@dimen/text_size_13sp" />
+                </LinearLayout>
+
+                <!-- 全部分类 -->
+                <LinearLayout
+                    android:id="@+id/filter_all_kinds_ll"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/size_18dp"
+                    android:background="@drawable/bg_filter_btn"
+                    android:clickable="true"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal"
+                    android:paddingBottom="@dimen/size_15dp"
+                    android:paddingLeft="@dimen/size_12dp"
+                    android:paddingRight="@dimen/size_12dp"
+                    android:paddingTop="@dimen/size_15dp">
+
+                    <TextView
+                        style="@style/TextView_Filter_Title"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:gravity="left"
+                        android:text="@string/filter_title_all_kinds" />
+
+                    <TextView
+                        android:id="@+id/filter_all_kinds_tv"
+                        style="@style/TextView_Filter_Title_right"
+                        android:text="@string/filter_title_all_kinds_" />
+
+                    <ImageView
+                        android:layout_width="@dimen/size_10dp"
+                        android:layout_height="@dimen/size_10dp"
+                        android:layout_marginLeft="@dimen/size_3dp"
+                        android:src="@mipmap/ic_filter_arrow_right_normal" />
+                </LinearLayout>
+
+                <View style="@style/SpaceLine"></View>
+
+                <android.support.v7.widget.RecyclerView
+                    android:id="@+id/filter_more_recyclerView"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent" />
+            </LinearLayout>
+
+        </android.support.v4.widget.NestedScrollView>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/white"
+            android:orientation="vertical">
+            <View style="@style/DeepUnderLine"/>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <Button
+                    android:id="@+id/btn_reset"
+                    android:layout_width="wrap_content"
+                    android:layout_height="@dimen/size_40dp"
+                    android:layout_weight="1"
+                    android:background="@color/white"
+                    android:text="重置"
+                    android:textColor="@color/color_9c8d8c" />
+
+                <Button
+                    android:id="@+id/btn_confirm"
+                    android:layout_width="wrap_content"
+                    android:layout_height="@dimen/size_40dp"
+                    android:layout_weight="1"
+                    android:background="@color/color_ff593e"
+                    android:text="确定"
+                    android:textColor="@color/white" />
+            </LinearLayout>
+        </LinearLayout>
+    </LinearLayout>
+</layout>

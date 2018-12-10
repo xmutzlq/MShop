@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
+
+    <include layout="@layout/layout_address_item_info"/>
+
+    <View style="@style/DeepUnderLine"/>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:focusable="true"
+        android:focusableInTouchMode="true"
+        android:paddingLeft="@dimen/size_12dp"
+        android:paddingRight="@dimen/size_12dp"
+        android:paddingTop="@dimen/size_12dp"
+        android:paddingBottom="@dimen/size_12dp">
+
+        <LinearLayout
+            android:id="@+id/btn_default_address_cb"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:orientation="horizontal">
+            <CheckBox
+                android:id="@+id/address_default_cb"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:clickable="false"
+                android:focusable="false"
+                android:focusableInTouchMode="false"
+                style="@style/CartCheckbox"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/size_5dp"
+                android:textColor="@color/color_282828"
+                android:textSize="@dimen/text_size_15sp"
+                android:text="@string/add_default"/>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_centerVertical="true"
+            android:layout_alignParentRight="true">
+            <TextView
+                android:id="@+id/btn_address_edit"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/color_282828"
+                android:layout_marginRight="@dimen/size_12dp"
+                android:textSize="@dimen/text_size_15sp"
+                android:text="@string/str_edit"
+                android:background="@drawable/bg_round_angle_white"/>
+
+            <TextView
+                android:id="@+id/btn_address_del"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/color_282828"
+                android:textSize="@dimen/text_size_15sp"
+                android:text="@string/str_del"
+                android:background="@drawable/bg_round_angle_white"/>
+        </LinearLayout>
+
+    </RelativeLayout>
+</LinearLayout>

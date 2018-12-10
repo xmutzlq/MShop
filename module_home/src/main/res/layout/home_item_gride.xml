@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:soulwolf="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:background="@color/white"
+    android:foreground="?android:attr/selectableItemBackground"
+    android:gravity="center"
+    android:padding="@dimen/size_10dp"
+    android:id="@+id/ll_new_seed_item"
+    android:transitionName="@string/transitionName_list_img_to_img">
+    <net.soulwolf.widget.ratiolayout.widget.RatioFrameLayout
+        android:id="@+id/rf_grid"
+        soulwolf:datumRatio="datumWidth"
+        soulwolf:widthRatio="1"
+        soulwolf:heightRatio="1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+        <ImageView
+            android:id="@+id/iv_new_seed_ic"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:scaleType="fitXY"/>
+    </net.soulwolf.widget.ratiolayout.widget.RatioFrameLayout>
+
+    <TextView
+        android:id="@+id/tv_new_seed_title"
+        android:layout_marginTop="@dimen/size_5dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:singleLine="true"
+        android:ellipsize="end"
+        android:textSize="@dimen/text_size_12sp"
+        android:textColor="@color/text_908f94" />
+
+</LinearLayout>

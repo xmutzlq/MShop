@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="google.architecture.category">
+
+    <application>
+        <activity android:name=".ActivityCategory"></activity>
+        <activity android:name=".ActivityGirls"></activity>
+        <activity android:name=".ActivityDynamicGirls"></activity>
+
+    </application>
+
+</manifest>

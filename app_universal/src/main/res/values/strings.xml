@@ -1,0 +1,8 @@
+<resources>
+    <string name="app_name">值得赞</string>
+
+    <string name="title_home">首页</string>
+    <string name="title_news">分类</string>
+    <string name="title_discovery">购物车</string>
+    <string name="title_personal">个人</string>
+</resources>

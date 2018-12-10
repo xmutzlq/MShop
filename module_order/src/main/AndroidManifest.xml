@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.king.android.order">
+
+    <application>
+        <activity android:name="com.king.android.order.ActivityOrder" />
+        <activity android:name="com.king.android.order.ActivityChoiceAddress" />
+        <activity android:name="com.king.android.order.ActivityAddAddress" />
+        <activity android:name="com.king.android.order.ActivityAddressManage"></activity>
+        <activity android:name="com.king.android.order.ActivityPayWay"></activity>
+    </application>
+
+</manifest>

@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:attribute="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/personal_login_register"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+    <google.architecture.common.widget.arc.CrescentoContainer
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/size_210dp"
+        android:elevation="0dp"
+        android:scaleType="centerCrop"
+        attribute:curvature="@dimen/size_30dp">
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@mipmap/bg_personal_unlogin" />
+    </google.architecture.common.widget.arc.CrescentoContainer>
+
+    <!--用户信息-->
+    <include layout="@layout/layout_u_head"/>
+</FrameLayout>

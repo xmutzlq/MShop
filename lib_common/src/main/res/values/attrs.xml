@@ -1,0 +1,242 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <declare-styleable name="AmountView">
+        <!-- 左右2边+-按钮的宽度 -->
+        <attr name="cart_btnWidth" format="dimension" />
+        <!-- 中间TextView的宽度 -->
+        <attr name="cart_tvWidth" format="dimension" />
+        <!--<attr name="tvColor" format="color"/>-->
+        <attr name="cart_tvTextSize" format="dimension"/>
+        <attr name="cart_btnTextSize" format="dimension"/>
+    </declare-styleable>
+
+    <declare-styleable name="TagFlowLayout">
+        <attr name="line_spacing" format="integer"></attr>
+        <attr name="max_select" format="integer"></attr>
+        <attr name="flow_row_item_count" format="integer"></attr>
+    </declare-styleable>
+
+    <declare-styleable name="FlowLayout">
+        <attr name="flFlow" format="boolean"/>
+        <attr name="flChildSpacing" format="enum|dimension">
+            <enum name="auto" value="-65536"/>
+        </attr>
+        <attr name="flMinChildSpacing" format="dimension"/>
+        <attr name="flChildSpacingForLastRow" format="enum|dimension">
+            <enum name="auto" value="-65536"/>
+            <enum name="align" value="-65537"/>
+        </attr>
+        <attr name="flRowSpacing" format="enum|dimension">
+            <enum name="auto" value="-65536"/>
+        </attr>
+        <attr name="flRtl" format="boolean"/>
+        <attr name="flMaxRows" format="integer"/>
+        <attr name="flRowVerticalGravity" format="enum">
+            <enum name="auto" value="-65536"/>
+            <enum name="top" value="0x30"/>
+            <enum name="center" value="0x10"/>
+            <enum name="bottom" value="0x50"/>
+        </attr>
+        <attr name="android:gravity"/>
+    </declare-styleable>
+
+    <!-- expandlist固定group -->
+    <declare-styleable name="StickyListHeadersListView">
+        <attr name="stickyListHeadersListViewStyle" format="reference"/>
+
+        <!-- View attributes -->
+        <attr name="android:clipToPadding" />
+        <attr name="android:scrollbars" />
+        <attr name="android:overScrollMode" />
+        <attr name="android:padding" />
+        <attr name="android:paddingLeft" />
+        <attr name="android:paddingTop" />
+        <attr name="android:paddingRight" />
+        <attr name="android:paddingBottom" />
+
+        <!-- ListView attributes -->
+        <attr name="android:fadingEdgeLength" />
+        <attr name="android:requiresFadingEdge" />
+        <attr name="android:cacheColorHint" />
+        <attr name="android:choiceMode" />
+        <attr name="android:drawSelectorOnTop" />
+        <attr name="android:fastScrollEnabled" />
+        <attr name="android:fastScrollAlwaysVisible" />
+        <attr name="android:listSelector" />
+        <attr name="android:scrollingCache" />
+        <attr name="android:scrollbarStyle" />
+        <attr name="android:divider" />
+        <attr name="android:dividerHeight" />
+        <attr name="android:transcriptMode" />
+        <attr name="android:stackFromBottom" />
+
+        <!-- StickyListHeaders attributes -->
+        <attr name="hasStickyHeaders" format="boolean" />
+        <attr name="isDrawingListUnderStickyHeader" format="boolean" />
+    </declare-styleable>
+
+    <!-- stickyHeader -->
+    <declare-styleable name="ForegroundImageView">
+        <attr name="android:foreground" />
+    </declare-styleable>
+
+    <declare-styleable name="CrescentoImageView">
+        <attr name="curvature" format="dimension"/>
+        <attr name="gravity" format="integer">
+            <flag name="top" value="0"/>
+            <flag name="bottom" value="1"/>
+        </attr>
+        <attr name="curvatureDirection" format="integer">
+            <flag name="outward" value="0"/>
+            <flag name="inward" value="1"/>
+        </attr>
+        <attr name="crescentoTintMode" format="integer">
+            <flag name="automatic" value="0"/>
+            <flag name="manual" value="1"/>
+        </attr>
+        <attr name="crescentoTintColor" format="color"/>
+        <attr name="crescentoTintAlpha" format="integer"/>
+        <attr name="gradientDirection" format="integer">
+            <flag name="top_to_bottom" value="0" />
+            <flag name="bottom_to_top" value="1" />
+            <flag name="left_to_right" value="2" />
+            <flag name="right_to_left" value="3" />
+        </attr>
+        <attr name="gradientStartColor" format="color"/>
+        <attr name="gradientEndColor" format="color"/>
+    </declare-styleable>
+
+    <declare-styleable name="ThumbUpView">
+        <attr name="ThumbUpView_edgeColor" format="color|reference"></attr>
+        <attr name="ThumbUpView_fillColor" format="color|reference"></attr>
+        <attr name="ThumbUpView_cracksColor" format="color|reference"></attr>
+        <attr name="ThumbUpView_bgColor" format="color|reference"></attr>
+        <attr name="ThumbUpView_unlikeType" format="integer"></attr>
+    </declare-styleable>
+
+    <!--RatingBar-->
+    <declare-styleable name="CBRatingBar">
+        <attr name="starSize" format="dimension|reference"/>
+        <attr name="starCount" format="integer"/>
+        <attr name="starSpace" format="dimension|reference"/>
+        <attr name="starMaxProgress" format="float"/>
+        <attr name="starProgress" format="float"/>
+        <attr name="starStrokeWidth" format="dimension|reference"/>
+        <attr name="starShowStroke" format="boolean"/>
+        <attr name="starStrokeColor" format="color|reference"/>
+        <attr name="starFillColor" format="color|reference"/>
+        <attr name="starCoverColor" format="color|reference"/>
+        <attr name="starCanTouch" format="boolean"/>
+        <attr name="starUseGradient" format="boolean"/>
+        <attr name="starStartColor" format="color|reference"/>
+        <attr name="starEndColor" format="color|reference"/>
+        <attr name="starPathData" format="string|reference"/>
+        <attr name="starPathDataId" format="reference"/>
+        <attr name="starCoverDir">
+            <enum name="left_to_right" value="0" />
+            <enum name="right_to_left" value="1" />
+            <enum name="top_to_bottom" value="2" />
+            <enum name="bottom_to_top" value="3" />
+        </attr>
+    </declare-styleable>
+
+    <declare-styleable name="SlideDetailsLayout">
+        <!-- float value for indicate the moment of switch panel-->
+        <attr name="percent" format="float"/>
+        <!-- how long the animation keep-->
+        <attr name="duration" format="integer"/>
+        <!-- default panel to show after init-->
+        <attr name="default_panel" format="enum">
+            <enum name="front" value="0"/>
+            <enum name="behind" value="1"/>
+        </attr>
+    </declare-styleable>
+
+    <declare-styleable name="PaletteImageView">
+        <attr name="paletteRadius" format="dimension" />
+        <attr name="paletteSrc" format="reference" />
+        <attr name="palettePadding" format="dimension" />
+        <attr name="paletteOffsetX" format="dimension" />
+        <attr name="paletteOffsetY" format="dimension" />
+        <attr name="paletteShadowRadius" format="dimension" />
+
+    </declare-styleable>
+
+    <!-- 数字进度条 -->
+    <declare-styleable name="NumberProgressBar">
+        <attr name="progress_current" format="integer" />
+        <attr name="progress_max" format="integer" />
+        <attr name="progress_unreached_color" format="color" />
+        <attr name="progress_reached_color" format="color" />
+        <attr name="progress_reached_bar_height" format="dimension" />
+        <attr name="progress_unreached_bar_height" format="dimension" />
+        <attr name="progress_text_size" format="dimension" />
+        <attr name="progress_text_color" format="color" />
+        <attr name="progress_text_offset" format="dimension" />
+        <attr name="progress_text_visibility" format="enum">
+            <enum name="visible" value="0" />
+            <enum name="invisible" value="1" />
+        </attr>
+    </declare-styleable>
+
+    <!--圆角按钮-->
+    <declare-styleable name="RoundButton">
+        <!-- 背景色 -->
+        <attr name="btnSolidColor" format="color"/>
+        <!-- 边框色 -->
+        <attr name="btnStrokeColor" format="color"/>
+        <!-- 边框厚度 -->
+        <attr name="btnStrokeWidth" format="dimension"/>
+        <!-- 边框虚线长度 -->
+        <attr name="btnStrokeDashWidth" format="dimension"/>
+        <!-- 边框虚线间隙 -->
+        <attr name="btnStrokeDashGap" format="dimension"/>
+        <!-- 圆角半径，stadium 表示半径为 min(height,width) / 2-->
+        <attr name="btnCornerRadius" format="dimension">
+            <enum name="stadium" value="-1"/>
+        </attr>
+        <!-- 自动计算按下(pressed)状态颜色的系数, 值为0时不自动计算 -->
+        <attr name="btnPressedRatio" format="float"/>
+    </declare-styleable>
+
+    <declare-styleable name="Themes">
+        <attr name="numberProgressBarStyle" format="reference" />
+    </declare-styleable>
+
+    <declare-styleable name="ExpandableTextView">
+        <attr name="maxCollapsedLines" format="integer"/>
+        <attr name="animDuration" format="integer"/>
+        <attr name="animAlphaStart" format="float"/>
+        <attr name="expandIndicator" format="reference"/>
+        <attr name="collapseIndicator" format="reference"/>
+        <attr name="expandToggleType" format="enum">
+            <enum name="ImageButton" value="0"/>
+            <enum name="TextView" value="1"/>
+        </attr>
+        <attr name="expandableTextId" format="reference"/>
+        <attr name="expandCollapseToggleId" format="reference"/>
+        <attr name="expandToggleOnTextClick" format="boolean"/>
+    </declare-styleable>
+
+    <!-- MaxHeightLayout属性 -->
+    <declare-styleable name="MaxHeightLayout">
+        <attr name="mhl_HeightRatio" format="reference|float" />
+        <attr name="mhl_HeightDimen" format="reference|dimension" />
+    </declare-styleable>
+
+    <attr name="mwhWaves" format="string|enum">
+        <enum name="MultiWave" value="-1"/>
+        <enum name="PairWave" value="-2"/>
+    </attr>
+    <declare-styleable name="MultiWaveHeader">
+        <attr name="mwhWaveHeight" format="dimension"/>
+        <attr name="mwhStartColor" format="color"/>
+        <attr name="mwhCloseColor" format="color"/>
+        <attr name="mwhIsRunning" format="boolean"/>
+        <attr name="mwhColorAlpha" format="fraction|float"/>
+        <attr name="mwhProgress" format="fraction|float"/>
+        <attr name="mwhVelocity" format="fraction|float"/>
+        <attr name="mwhGradientAngle" format="integer"/>
+        <attr name="mwhWaves"/>
+    </declare-styleable>
+</resources>

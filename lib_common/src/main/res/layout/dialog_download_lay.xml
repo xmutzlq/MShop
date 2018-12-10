@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:custom="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/bg_dialog"
+    android:orientation="vertical"
+    android:padding="20dp" >
+
+    <TextView
+        style="@style/StyleNormalTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="版本升级"
+        android:textColor="@color/bg_black"
+        android:textSize="@dimen/text_size_20sp" />
+
+    <TextView
+        style="@style/StyleNormalTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:text="正在下载安装包，请稍候"
+        android:textColor="@color/color_666666"
+        android:textSize="@dimen/text_size_15sp" />
+
+    <com.base.dehong.widget.NumberProgressBar
+        android:id="@+id/down_load_progress"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:paddingBottom="10dp"
+        android:paddingTop="20dp"
+        custom:progress_current="0"
+        custom:progress_max="100"
+        custom:progress_text_size="15sp" />
+</LinearLayout>
