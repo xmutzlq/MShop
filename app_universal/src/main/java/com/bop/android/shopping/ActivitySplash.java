@@ -46,6 +46,7 @@ public class ActivitySplash extends BaseActivity<ActivitySplashBinding>{
             }
         }
 
+        //UI线程空闲以后调用
         Looper.myQueue().addIdleHandler(() -> {
             ARouter.getInstance()
                     .build(ARouterPath.AppMainAty)
