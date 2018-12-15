@@ -104,12 +104,12 @@ public class HomeSearchComponentsImp implements HomeSearchComponents {
                 = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT);
         lp.gravity = Gravity.CENTER;
         ImageView iv = new ImageView(context);
-        iv.setImageResource(R.mipmap.icon_message_white);
+        iv.setImageResource(R.mipmap.icon_member);
         iv.setLayoutParams(lp);
         TextView tv = new TextView(context);
         tv.setTextColor(ContextCompat.getColor(context, R.color.white));
         tv.setTextSize(TypedValue.COMPLEX_UNIT_SP, 9);
-        tv.setText(R.string.home_message_lable);
+        tv.setText(R.string.home_member_lable);
         tv.setLayoutParams(lp);
         return new View[]{iv, tv};
     }
