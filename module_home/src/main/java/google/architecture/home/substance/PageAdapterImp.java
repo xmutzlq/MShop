@@ -31,11 +31,13 @@ import java.util.Random;
 
 import google.architecture.common.imgloader.ImageLoader;
 import google.architecture.common.util.DimensionsUtil;
+import google.architecture.common.util.ScreenUtils;
 import google.architecture.common.vcontent.BaseDelegateAdapter;
 import google.architecture.common.vcontent.BaseViewHolder;
 import google.architecture.common.widget.SpaceViewItemLine;
 import google.architecture.common.widget.banner.CirclePageIndicator;
 import google.architecture.common.widget.banner.recycle.AdvertImagePagerAdapter;
+import google.architecture.common.widget.banner.recycle.LocalBannerAdapter;
 import google.architecture.common.widget.banner.recycle.RecycleAutoScrollViewPager;
 import google.architecture.coremodel.data.HomeData;
 import google.architecture.coremodel.data.HomeItemsInfo;
@@ -158,12 +160,16 @@ public class PageAdapterImp implements PageAdapter {
                 if(!isBannerBind) {
                     View rootView = holder.getView(R.id.home_banner_root);
                     ViewGroup.LayoutParams lp = new ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT);
-                    lp.height = banner.getStyle().getPageHeight() * 2;
+                    //lp.height = banner.getStyle().getPageHeight() * 2;
+                    lp.height = ScreenUtils.getScreenHeight()/2+50;
                     rootView.setLayoutParams(lp);
                     RecycleAutoScrollViewPager mBanner = holder.getView(R.id.adv_image);
-                    mBanner.setAdapter(new AdvertImagePagerAdapter(mContext, new ArrayList<>(banner.getItems())).setBannerClickListener(position1 -> {
+                    /*mBanner.setAdapter(new AdvertImagePagerAdapter(mContext, new ArrayList<>(banner.getItems())).setBannerClickListener(position1 -> {
                         HomeGoHelper.goPage(mContext, banner.getItems().get(position1).getAction());
-                    }));
+                    }));*/
+                    ArrayList<Integer> imgList = new ArrayList<>();
+                    imgList.add(R.drawable.top_banner);
+                    mBanner.setAdapter(new LocalBannerAdapter(mContext,imgList));
                     CirclePageIndicator indicator = holder.getView(R.id.adv_circlePageIndicator);
                     indicator.setViewPager(mBanner);
                     mBanner.setInterval(banner.getStyle().getAutoScroll());
@@ -178,37 +184,12 @@ public class PageAdapterImp implements PageAdapter {
     }
 
     @Override
-    public BaseDelegateAdapter initGvMenu(HomeData.HomeInfo gvIcons) {
-        //menu
-        GridLayoutHelper gridLayoutHelper = new GridLayoutHelper(gvIcons.getStyle().getNumberOfColumns());
-        if(gvIcons.getStyle().getPadding() != null && gvIcons.getStyle().getPadding().size() > 3) {
-            gridLayoutHelper.setPadding(gvIcons.getStyle().getPadding().get(0), gvIcons.getStyle().getPadding().get(1),
-                    gvIcons.getStyle().getPadding().get(2), gvIcons.getStyle().getPadding().get(3));
-        }
-        gridLayoutHelper.setAutoExpand(false);
-        gridLayoutHelper.setVGap(gvIcons.getStyle().getvGap());
-        gridLayoutHelper.setHGap(gvIcons.getStyle().gethGap());
-        gridLayoutHelper.setBgColor(Color.parseColor(gvIcons.getStyle().getBgColor()));
-        gridLayoutHelper.setSpanSizeLookup(new GridLayoutHelper.SpanSizeLookup() {
+    public BaseDelegateAdapter initBrand() {
+        LinearLayoutHelper linearLayoutHelper = new LinearLayoutHelper();
+        return new BaseDelegateAdapter(mContext,linearLayoutHelper, R.layout.brand_layout,1,PageConstans.viewType.typeBrand){
             @Override
-            public int getSpanSize(int position) {
-                return 1;
-            }
-        });
-        return new BaseDelegateAdapter(mContext, gridLayoutHelper, R.layout.home_item_gride, gvIcons.getItems().size(), PageConstans.viewType.typeGv) {
-            @Override
-            public void onBindViewHolder(BaseViewHolder holder, @SuppressLint("RecyclerView") final int position) {
+            public void onBindViewHolder(BaseViewHolder holder, int position) {
                 super.onBindViewHolder(holder, position);
-                RatioFrameLayout rf = holder.getView(R.id.rf_grid);
-                if(gvIcons.getItems().get(position).getStyle() != null
-                        && gvIcons.getItems().get(position).getStyle().getAspectRatio() > 0) {
-                    rf.setRatio(RatioDatumMode.DATUM_WIDTH, gvIcons.getItems().get(position).getStyle().getAspectRatio(), 1);
-                }
-                holder.setText(R.id.tv_new_seed_title, gvIcons.getItems().get(position).getTitle());
-                ImageLoader.get().load(holder.getView(R.id.iv_new_seed_ic), gvIcons.getItems().get(position).getImgUrl());
-                holder.getItemView().setOnClickListener(v -> {
-                    HomeGoHelper.goPage(mContext, gvIcons.getItems().get(position).getAction());
-                });
             }
         };
     }

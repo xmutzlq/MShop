@@ -64,7 +64,7 @@ public class CommRecyclingPagerAdapter<T> extends RecyclingPagerAdapter {
         if (view == null) {
             holder = new CommRecyclingPagerAdapter.ViewHolder();
             view = holder.imageView = new ImageView(context);
-            holder.imageView.setScaleType(ImageView.ScaleType.CENTER_CROP);
+            holder.imageView.setScaleType(ImageView.ScaleType.FIT_XY);
             ViewCompat.setTransitionName(holder.imageView, getTransitionName());
             view.setTag(holder);
         } else {
