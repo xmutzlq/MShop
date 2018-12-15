@@ -79,8 +79,8 @@ public class ActivityMain extends BaseActivity<ActivityMainBinding> implements B
             BaseFragment fragmentPersonal = (BaseFragment) ARouter.getInstance().build(ARouterPath.PersonalShoppingFgt).navigation();
             mFragments.add(fragmentNews);
             mFragments.add(fragmentGirls);
-            mFragments.add(fragmentBids);
-            mFragments.add(fragmentPersonal);
+//            mFragments.add(fragmentBids);
+//            mFragments.add(fragmentPersonal);
             binding.setViewPaAdapter(mAdapter);
             return false;
         });

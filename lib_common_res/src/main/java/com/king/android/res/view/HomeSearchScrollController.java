@@ -57,11 +57,15 @@ public class HomeSearchScrollController extends RecyclerView.OnScrollListener{
             } else if (overallXScroll > 0 && overallXScroll <= height) { //滑动距离小于banner图的高度时，设置背景和字体颜色颜色透明度渐变
                 float scale = (float) overallXScroll / height;
                 float alpha = (255 * scale);
-                homeSearchComponentsImp.onChangeActionBar(Color.argb((int) alpha, 255, 200, 55));
-                rollView.setBackgroundColor(Color.argb((int) alpha, 255, 200, 55));
+//                homeSearchComponentsImp.onChangeActionBar(Color.argb((int) alpha, 255, 200, 55));
+//                rollView.setBackgroundColor(Color.argb((int) alpha, 255, 200, 55));
+                homeSearchComponentsImp.onChangeActionBar(Color.argb((int) alpha, 0, 0, 0));
+                rollView.setBackgroundColor(Color.argb((int) alpha, 0, 0, 0));
             } else {
-                homeSearchComponentsImp.onChangeActionBar(Color.argb((int) 255, 255, 200, 55));
-                rollView.setBackgroundColor(Color.argb((int) 255, 255, 200, 55));
+//                homeSearchComponentsImp.onChangeActionBar(Color.argb((int) 255, 255, 200, 55));
+//                rollView.setBackgroundColor(Color.argb((int) 255, 255, 200, 55));
+                homeSearchComponentsImp.onChangeActionBar(Color.argb((int) 255, 0, 0, 0));
+                rollView.setBackgroundColor(Color.argb((int) 255, 0, 0, 0));
             }
         }
     }
