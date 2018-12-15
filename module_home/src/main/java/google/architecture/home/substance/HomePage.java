@@ -110,12 +110,12 @@ public class HomePage implements ContantDelegate, PageAdapter.IActionTitleRightL
                             itemDelegates.add(mPageAdapter.initTitle("", info.getHeader().getTitle(),
                                     "", 0, 0, false, -1, null));
                         }
-                        itemDelegates.add(mPageAdapter.initGvMenu(info));
+                        itemDelegates.add(mPageAdapter.initBrand());
                     }
                     break;
                 case HomeTypes.TYPE_CONTAINER_FIVE_COLUMN:
                     if(HomeModels.MODEL_ICON.equals(info.getId())) {
-                        itemDelegates.add(mPageAdapter.initGvMenu(info));
+                        itemDelegates.add(mPageAdapter.initBrand());
                     }
                     break;
             }

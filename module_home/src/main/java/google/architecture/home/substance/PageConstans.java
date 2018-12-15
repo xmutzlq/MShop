@@ -21,6 +21,7 @@ public final class PageConstans {
         int typeRecommend = 11;     //推荐
         int typeNewestGoods = 12;   //最新商品
         int typeYouLikeList = 13;   //猜你喜欢
+        int typeBrand = 14;         //商品列表
     }
 
     public interface titleRightClickType {

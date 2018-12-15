@@ -1,8 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <!--APP的主题色-->
-    <color name="colorPrimary">#FFC837</color>
+    <!--<color name="colorPrimary">#FFC837</color>-->
+    <color name="colorPrimary">#000000</color>
     <color name="colorPrimaryDark">#FFC837</color>
+    <!--<color name="colorPrimaryDark">#000000</color>-->
     <color name="colorAccent">#FFC837</color>
 
 

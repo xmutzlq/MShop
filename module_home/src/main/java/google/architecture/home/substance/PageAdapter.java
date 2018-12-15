@@ -15,7 +15,7 @@ public interface PageAdapter {
     BaseDelegateAdapter initTitle(String title, String titleCenter, String rightTip, int drawableRightRes, int titleBgRes, boolean isNeedBottomLine,
                                   int clickType, IActionTitleRightLabelClick listener);
     BaseDelegateAdapter initBanner(HomeData.HomeInfo banner);
-    BaseDelegateAdapter initGvMenu(HomeData.HomeInfo gvIcons);
+    BaseDelegateAdapter initBrand();
     BaseDelegateAdapter initHomeAd(HomeData.HomeInfo adImages);
     BaseDelegateAdapter initRecommend(HomeData.HomeInfo recommends);
     BaseDelegateAdapter initNewestGoods(HomeData.HomeInfo newestGoods);
