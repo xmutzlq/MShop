@@ -134,4 +134,8 @@ public class ApiConstants {
     public static final String ShoppingConfirmReceipt = URL_BASE + "order/receivesure";
     //商城-提醒发货
     public static final String ShoppingReminding = URL_BASE + "order/remindsend";
+
+
+    //##======新乐纪======##
+    public static final String XLJ_Category = URL_BASE + "Lists/goodsList";
 }

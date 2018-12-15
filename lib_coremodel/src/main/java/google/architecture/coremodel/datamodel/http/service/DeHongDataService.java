@@ -275,4 +275,9 @@ public interface DeHongDataService {
     @FormUrlEncoded
     @POST(ApiConstants.ShoppingReminding)
     Flowable<HttpResult<String>> remindingSend(@Field("user_id") String user_id, @Field("order_id") String order_id);
+
+    //##========新乐纪=======##
+    @FormUrlEncoded
+    @POST(ApiConstants.XLJ_Category)
+    Flowable<HttpResult<String>> xlj_getCategory(@Field("request_json") String requestJson);
 }

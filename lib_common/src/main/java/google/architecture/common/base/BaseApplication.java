@@ -20,7 +20,7 @@ import com.scwang.smartrefresh.layout.api.RefreshHeader;
 import com.scwang.smartrefresh.layout.api.RefreshLayout;
 import com.scwang.smartrefresh.layout.footer.ClassicsFooter;
 import com.scwang.smartrefresh.layout.header.ClassicsHeader;
-import com.tencent.bugly.crashreport.CrashReport;
+//import com.tencent.bugly.crashreport.CrashReport;
 import com.tencent.smtt.export.external.TbsCoreSettings;
 import com.tencent.smtt.sdk.QbSdk;
 import com.umeng.commonsdk.UMConfigure;
@@ -96,7 +96,7 @@ public abstract class BaseApplication extends BaseApp {
 
 //        Account.get().initUserInfo();
 
-        CrashReport.initCrashReport(this);
+        //CrashReport.initCrashReport(this);
 
 
         UMConfigure.init(this, UMConfigure.DEVICE_TYPE_PHONE, "");

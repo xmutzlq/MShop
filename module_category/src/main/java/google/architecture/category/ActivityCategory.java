@@ -3,7 +3,12 @@ package google.architecture.category;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 
+import com.alibaba.android.arouter.launcher.ARouter;
+import com.king.android.res.config.ARouterPath;
+
 import google.architecture.common.base.BaseActivity;
+import google.architecture.common.base.BaseApplication;
+import google.architecture.common.base.BaseFragment;
 import google.architecture.coremodel.datamodel.http.EmptyConsumer;
 import google.architecture.coremodel.datamodel.http.ErrorConsumer;
 import io.reactivex.BackpressureStrategy;
@@ -25,7 +30,17 @@ public class ActivityCategory extends BaseActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        loadData(this_,null);
+//        loadData(this_,null);
+
+        BaseFragment fragment = (BaseFragment)ARouter.getInstance()
+                .build(ARouterPath.CategoryFgt).navigation();
+
+        if(fragment != null) {
+            getSupportFragmentManager()
+                    .beginTransaction()
+                    .add(R.id.container_category, fragment)
+                    .commit();
+        }
     }
 
     public static void loadData(final AppCompatActivity activity, final Runnable post) {
