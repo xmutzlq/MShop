@@ -195,6 +195,39 @@ public class PageAdapterImp implements PageAdapter {
     }
 
     @Override
+    public BaseDelegateAdapter initSecondBrand() {
+        LinearLayoutHelper linearLayoutHelper = new LinearLayoutHelper();
+        return new BaseDelegateAdapter(mContext, linearLayoutHelper, R.layout.temp_second_brand, 1, PageConstans.viewType.typeBrand){
+            @Override
+            public void onBindViewHolder(BaseViewHolder holder, int position) {
+                super.onBindViewHolder(holder, position);
+            }
+        };
+    }
+
+    @Override
+    public BaseDelegateAdapter initRowBrands() {
+        LinearLayoutHelper linearLayoutHelper = new LinearLayoutHelper();
+        return new BaseDelegateAdapter(mContext, linearLayoutHelper, R.layout.temp_row_shoes, 1, PageConstans.viewType.typeBrand){
+            @Override
+            public void onBindViewHolder(BaseViewHolder holder, int position) {
+                super.onBindViewHolder(holder, position);
+            }
+        };
+    }
+
+    @Override
+    public BaseDelegateAdapter initLongPic() {
+        LinearLayoutHelper linearLayoutHelper = new LinearLayoutHelper();
+        return new BaseDelegateAdapter(mContext, linearLayoutHelper, R.layout.temp_long_pic, 1, PageConstans.viewType.typeBrand){
+            @Override
+            public void onBindViewHolder(BaseViewHolder holder, int position) {
+                super.onBindViewHolder(holder, position);
+            }
+        };
+    }
+
+    /*@Override
     public BaseDelegateAdapter initHomeAd(HomeData.HomeInfo adImages) {
         LinearLayoutHelper linearLayoutHelper = new LinearLayoutHelper();
         linearLayoutHelper.setMargin(0, 0, 0, 0);
@@ -329,5 +362,5 @@ public class PageAdapterImp implements PageAdapter {
                 });
             }
         };
-    }
+    }*/
 }

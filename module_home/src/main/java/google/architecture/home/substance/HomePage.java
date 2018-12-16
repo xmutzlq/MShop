@@ -78,39 +78,39 @@ public class HomePage implements ContantDelegate, PageAdapter.IActionTitleRightL
                             itemDelegates.add(mPageAdapter.initTitle("", info.getHeader().getTitle(),
                                     "", 0, 0, false, -1, null));
                         }
-                        itemDelegates.add(mPageAdapter.initNewestGoods(info));
+                        //itemDelegates.add(mPageAdapter.initNewestGoods(info));
                     }
                     break;
                 case HomeTypes.TYPE_CONTAINER_ONE_COLUMN:
                     if(HomeModels.MODEL_IMAGE.equals(info.getId())) {
-                        itemDelegates.add(mPageAdapter.initHomeAd(info));
+                        //itemDelegates.add(mPageAdapter.initHomeAd(info));
                     }
                     break;
                 case HomeTypes.TYPE_CONTAINER_TWO_COLUMN:
                     if(HomeModels.MODEL_GOODS.equals(info.getId())) {
                         if(info.getHeader() != null
                                 && !TextUtil.isEmpty(info.getHeader().getTitle())) {
-                            itemDelegates.add(mPageAdapter.initTitle("", info.getHeader().getTitle(),
-                                    "", 0, R.color.common_bg, false, -1, null));
+                            /*itemDelegates.add(mPageAdapter.initTitle("", info.getHeader().getTitle(),
+                                    "", 0, R.color.common_bg, false, -1, null));*/
                         }
-                        itemDelegates.add(mPageAdapter.initYouLikeList(info));
+                        //itemDelegates.add(mPageAdapter.initYouLikeList(info));
                     }
                     break;
                 case HomeTypes.TYPE_CONTAINER_FOUR_COLUMN:
                     if(HomeModels.MODEL_RECOMMENT_ICON.equals(info.getId())) {
                         if(info.getHeader() != null) {
-                            itemDelegates.add(mPageAdapter.initTitle(info.getHeader().getTitle(), "",
+                            /*itemDelegates.add(mPageAdapter.initTitle(info.getHeader().getTitle(), "",
                                     info.getHeader().getText(), R.mipmap.icon_title_right_exchange, 0, false,
-                                    PageConstans.titleRightClickType.clickTypeRecommnedExchange, this));
+                                    PageConstans.titleRightClickType.clickTypeRecommnedExchange, this));*/
                         }
-                        itemDelegates.add(mPageAdapter.initRecommend(info));
+                        //itemDelegates.add(mPageAdapter.initRecommend(info));
                     }  else if(HomeModels.MODEL_HOT_BRAND.equals(info.getId())) {
                         if(info.getHeader() != null
                                 && !TextUtil.isEmpty(info.getHeader().getTitle())) {
-                            itemDelegates.add(mPageAdapter.initTitle("", info.getHeader().getTitle(),
-                                    "", 0, 0, false, -1, null));
+                            /*itemDelegates.add(mPageAdapter.initTitle("", info.getHeader().getTitle(),
+                                    "", 0, 0, false, -1, null));*/
                         }
-                        itemDelegates.add(mPageAdapter.initBrand());
+                        //itemDelegates.add(mPageAdapter.initBrand());
                     }
                     break;
                 case HomeTypes.TYPE_CONTAINER_FIVE_COLUMN:
@@ -120,6 +120,10 @@ public class HomePage implements ContantDelegate, PageAdapter.IActionTitleRightL
                     break;
             }
         }
+        itemDelegates.add(mPageAdapter.initSecondBrand());
+        itemDelegates.add(mPageAdapter.initRowBrands());
+        itemDelegates.add(mPageAdapter.initLongPic());
+        itemDelegates.add(mPageAdapter.initRowBrands());
         return itemDelegates;
     }
 

@@ -16,10 +16,13 @@ public interface PageAdapter {
                                   int clickType, IActionTitleRightLabelClick listener);
     BaseDelegateAdapter initBanner(HomeData.HomeInfo banner);
     BaseDelegateAdapter initBrand();
-    BaseDelegateAdapter initHomeAd(HomeData.HomeInfo adImages);
-    BaseDelegateAdapter initRecommend(HomeData.HomeInfo recommends);
-    BaseDelegateAdapter initNewestGoods(HomeData.HomeInfo newestGoods);
-    BaseDelegateAdapter initYouLikeList(HomeData.HomeInfo likeGoods);
+    BaseDelegateAdapter initSecondBrand();
+    BaseDelegateAdapter initRowBrands();
+    BaseDelegateAdapter initLongPic();
+//    BaseDelegateAdapter initHomeAd(HomeData.HomeInfo adImages);
+//    BaseDelegateAdapter initRecommend(HomeData.HomeInfo recommends);
+//    BaseDelegateAdapter initNewestGoods(HomeData.HomeInfo newestGoods);
+//    BaseDelegateAdapter initYouLikeList(HomeData.HomeInfo likeGoods);
 
     public void reSetBinded();
 
