@@ -4,4 +4,7 @@
     <!-- TODO: Remove or change this placeholder text -->
     <string name="girls_fragment">FragmentGirls</string>
     <string name="category_title_name">全部分类</string>
+
+    <string name="category_filter_tab_man">男子</string>
+    <string name="category_filter_tab_women">女子</string>
 </resources>

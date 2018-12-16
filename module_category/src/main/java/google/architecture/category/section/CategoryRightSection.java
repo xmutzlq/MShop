@@ -11,7 +11,7 @@ import google.architecture.coremodel.data.OpDiscoverCates;
 
 public class CategoryRightSection extends SectionEntity<OpDiscoverCates>{
 
-    public static final int SECTION_TYPE_BANNER = 0;
+    //public static final int SECTION_TYPE_BANNER = 0;
     public static final int SECTION_TYPE_TITLE = 1;
     public static final int SECTION_TYPE_ITEM = 2;
 

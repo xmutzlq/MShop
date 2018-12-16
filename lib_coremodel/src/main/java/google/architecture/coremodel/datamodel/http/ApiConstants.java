@@ -19,6 +19,11 @@ public class ApiConstants {
     public static final String HEADER_UN_EN_PARAMS_VALUE = "true";
     public static final String HEADER_UN_EN_PARAMS = HEADER_UN_EN_PARAMS_prefix + ":" + HEADER_UN_EN_PARAMS_VALUE;
 
+    //配置Headers(),post请求使用Request Payload方式
+    public static final String HEADER_USE_JSON_REQUEST_prefix = "use_json_request";
+    public static final String HEADER_USE_JSON_REQUEST_VALUE = "payload";
+    public static final String HEADER_USE_JSON_REQUEST = HEADER_USE_JSON_REQUEST_prefix + ":" + HEADER_USE_JSON_REQUEST_VALUE;
+
     // 设置超时
     public static final long DEFAULT_CONNECT_TIMEOUT = 10L;
     public static final long DEFAULT_READ_TIMEOUT = DEFAULT_CONNECT_TIMEOUT + 5L;
@@ -27,7 +32,7 @@ public class ApiConstants {
     // 项目主地址
     public static final String URLHost = BuildConfig.APP_REQUEST_URL;
     // 项目分地址
-    public static final String GankHost = "http://gank.io/";
+    public static final String GankHost = "https://mwx.s.cn/";
     //项目分地址
     public static final String GoodsHost = "http://7xij5m.com1.z0.glb.clouddn.com/spRecommend.txt";
 
@@ -137,5 +142,5 @@ public class ApiConstants {
 
 
     //##======新乐纪======##
-    public static final String XLJ_Category = URL_BASE + "Lists/goodsList";
+    public static final String XLJ_Category = URL_BASE + "wechatapp/Lists/goodsList";
 }

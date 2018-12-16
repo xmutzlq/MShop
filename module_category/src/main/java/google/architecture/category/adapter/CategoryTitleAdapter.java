@@ -65,15 +65,15 @@ public class CategoryTitleAdapter extends BaseQuickAdapter<OpDiscoverCates, Cate
 
     private void refreshSelectState(BaseViewHolder holder, boolean isSelected) {
         if (isSelected) {
-            holder.itemView.setBackgroundColor(ContextCompat.getColor(Utils.getContext(), R.color.white));
+            holder.itemView.setBackgroundColor(ContextCompat.getColor(Utils.getContext(), R.color.color_f6f6f6));
             holder.setGone(R.id.category_title_iv, true);
-            holder.setTextColor(R.id.category_title_tv, ContextCompat.getColor(Utils.getContext(), R.color.color_f44336));
-            ((TextView)holder.getView(R.id.category_title_tv)).setTextSize(TypedValue.COMPLEX_UNIT_SP, 16);
+            holder.setTextColor(R.id.category_title_tv, ContextCompat.getColor(Utils.getContext(), R.color.colorAccent));
+            //((TextView)holder.getView(R.id.category_title_tv)).setTextSize(TypedValue.COMPLEX_UNIT_SP, 16);
         } else {
             holder.itemView.setBackgroundColor(ContextCompat.getColor(Utils.getContext(), R.color.color_f6f6f6));
             holder.setGone(R.id.category_title_iv, false);
-            holder.setTextColor(R.id.category_title_tv, ContextCompat.getColor(Utils.getContext(), R.color.color_999999));
-            ((TextView)holder.getView(R.id.category_title_tv)).setTextSize(TypedValue.COMPLEX_UNIT_SP, 14);
+            holder.setTextColor(R.id.category_title_tv, ContextCompat.getColor(Utils.getContext(), R.color.color_9b9b9b));
+            //((TextView)holder.getView(R.id.category_title_tv)).setTextSize(TypedValue.COMPLEX_UNIT_SP, 14);
         }
     }
 }

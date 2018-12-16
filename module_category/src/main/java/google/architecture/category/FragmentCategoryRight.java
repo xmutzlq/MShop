@@ -73,9 +73,8 @@ public class FragmentCategoryRight extends BaseFragment {
         sectionAdapter = new CategoryRightAdapter(R.layout.item_category_section_conent, R.layout.item_category_section_head, categoryRightSections);
         sectionAdapter.setOnItemClickListener((adapter, view1, position) -> {
             if(CategoryRightSection.SECTION_TYPE_ITEM == sectionAdapter.getData().get(position).getType()) {
-                CategoryRightSection categoryRightSection = sectionAdapter.getData().get(position);
-                ARouter.getInstance().build(ARouterPath.Search2Aty)
-                        .withString(CommKeyUtil.EXTRA_KEY, String.valueOf(categoryRightSection.t.getElement_id())).navigation();
+                //CategoryRightSection categoryRightSection = sectionAdapter.getData().get(position);
+                //ARouter.getInstance().build(ARouterPath.Search2Aty).withString(CommKeyUtil.EXTRA_KEY, String.valueOf(categoryRightSection.t.getElement_id())).navigation();
             }
         });
         sectionAdapter.bindToRecyclerView(recyclerView);
@@ -89,7 +88,7 @@ public class FragmentCategoryRight extends BaseFragment {
                         return 3;
                     default:
                     case CategoryRightSection.SECTION_TYPE_TITLE:
-                    case CategoryRightSection.SECTION_TYPE_BANNER:
+                    //case CategoryRightSection.SECTION_TYPE_BANNER:
                         return 1;
                 }
             }
@@ -116,7 +115,7 @@ public class FragmentCategoryRight extends BaseFragment {
         }
         categoryRightSections.clear();
         //头部-banner
-        if(result.getBanners() != null
+        /*if(result.getBanners() != null
                 && result.getBanners().size() > 0) {
             result.getDiscoverList().get(0).setChildren(new OpChildrenCates());
             result.getDiscoverList().get(0).getChildren().setBanner(result.getBanners());
@@ -124,7 +123,7 @@ public class FragmentCategoryRight extends BaseFragment {
             CategoryRightSection sectionBanner = new CategoryRightSection(true, result.getDiscoverList().get(0));
             sectionBanner.setType(CategoryRightSection.SECTION_TYPE_BANNER);
             categoryRightSections.add(sectionBanner);
-        }
+        }*/
 
         for (OpDiscoverCates cate : result.getDiscoverList()) {
             //头部-标题

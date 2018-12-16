@@ -24,10 +24,20 @@
             android:layout_centerInParent="true"
             android:text="@string/category_title_name"/>
     </RelativeLayout>
+    <LinearLayout
+        android:id="@+id/category_tab"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/category_title"
+        android:orientation="vertical">
+        <include layout="@layout/activity_category_filter_tab"></include>
+        <View style="@style/DeepUnderLine"></View>
+    </LinearLayout>
+
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_below="@id/category_title">
+        android:layout_below="@id/category_tab">
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"

@@ -4,18 +4,23 @@ import android.os.Bundle;
 import android.os.Looper;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ProgressBar;
+import android.widget.TextView;
 
 import com.alibaba.android.arouter.facade.annotation.Route;
 import com.apkfuns.logutils.LogUtils;
 import com.king.android.res.config.ARouterPath;
 import com.king.android.res.view.HomeSearchScrollController;
 
+import org.w3c.dom.Text;
+
+import google.architecture.category.adapter.CategoryLeftItemDecoration;
 import google.architecture.category.adapter.CategoryTitleAdapter;
 import google.architecture.common.base.BaseFragment;
 import google.architecture.common.util.FragmentUtils;
@@ -75,12 +80,32 @@ public class FragmentCategory extends BaseFragment{
 
         //左边列表
         mCatesTiltsRV = (RecyclerView) findViewById(view, R.id.category_left_rv);
+        mCatesTiltsRV.addItemDecoration(new CategoryLeftItemDecoration());
+
+        ViewGroup leftBtn = (ViewGroup) findViewById(view, R.id.category_left_tab_left_content);
+        ViewGroup rightBtn = (ViewGroup) findViewById(view, R.id.category_left_tab_right_content);
+        View leftFlagView = (View)findViewById(view, R.id.category_left_tab_left_flag);
+        View rightFlagView = (View)findViewById(view, R.id.category_left_tab_right_flag);
+        TextView leftTabTv = (TextView) findViewById(view, R.id.category_left_tab_left_tv);
+        TextView rightTabTv = (TextView) findViewById(view, R.id.category_left_tab_right_tv);
+        leftBtn.setOnClickListener(view1 -> {
+            leftFlagView.setVisibility(View.VISIBLE);
+            rightFlagView.setVisibility(View.INVISIBLE);
+            leftTabTv.setTextColor(ContextCompat.getColor(mContext, R.color.colorAccent));
+            rightTabTv.setTextColor(ContextCompat.getColor(mContext, R.color.color_9b9b9b));
+        });
+        rightBtn.setOnClickListener(view1 -> {
+            leftFlagView.setVisibility(View.INVISIBLE);
+            rightFlagView.setVisibility(View.VISIBLE);
+            leftTabTv.setTextColor(ContextCompat.getColor(mContext, R.color.color_9b9b9b));
+            rightTabTv.setTextColor(ContextCompat.getColor(mContext, R.color.colorAccent));
+        });
     }
 
     @Override
     public void onFragmentFirstVisible() {
         loadCategoryData();
-        //        loadData();
+        //loadData();
     }
 
     private void loadCategoryData() {
@@ -107,6 +132,7 @@ public class FragmentCategory extends BaseFragment{
             LinearLayoutManager catesTiltsLM = new LinearLayoutManager(Utils.getContext());
             mCatesTiltsRV.setLayoutManager(catesTiltsLM);
             mCatesTiltsRV.setAdapter(mAdapter);
+
             ViewGroup.LayoutParams vglp = mCatesTiltsRV.getLayoutParams();
             vglp.width = (int) (ScreenUtils.getScreenWidth() * (0.25));
             mAdapter.setSelectPos(0);

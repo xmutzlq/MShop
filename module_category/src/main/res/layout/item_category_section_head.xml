@@ -3,9 +3,14 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content">
 
-    <include
-        android:id="@+id/category_section_banner"
-        layout="@layout/item_category_section_banner" />
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:visibility="gone">
+        <include
+            android:id="@+id/category_section_banner"
+            layout="@layout/item_category_section_banner" />
+    </FrameLayout>
 
     <LinearLayout
         android:id="@+id/category_section_title"
@@ -18,11 +23,10 @@
             android:layout_width="match_parent"
             android:layout_height="@dimen/size_20dp"
             android:layout_weight="1"
-            android:gravity="center_vertical"
+            android:gravity="center"
             android:maxLines="1"
             android:textColor="@color/text_color"
-            android:textSize="@dimen/text_size_12sp"
-            android:textStyle="bold" />
+            android:textSize="@dimen/text_size_13sp" />
 
         <TextView
             android:id="@+id/category_section_tvMore"

@@ -5,9 +5,13 @@ import android.text.TextUtils;
 import com.apkfuns.logutils.LogUtils;
 
 import java.io.IOException;
+import java.util.List;
 
+import google.architecture.coremodel.datamodel.http.request.IRequestType;
+import google.architecture.coremodel.datamodel.http.request.RequestFactory;
 import google.architecture.coremodel.util.DESSecretUtils;
 import okhttp3.FormBody;
+import okhttp3.HttpUrl;
 import okhttp3.Interceptor;
 import okhttp3.MediaType;
 import okhttp3.Request;
@@ -27,36 +31,20 @@ public class EncryptInterceptor implements Interceptor {
         if (request.method().equals("GET")) {
         } else if (request.method().equals("POST")) {
             if (request.body() instanceof FormBody) {
-                //FormBody.Builder bodyBuilder = new FormBody.Builder();
+                String requestType = RequestFactory.TYPE_FORM;
                 FormBody formBody = (FormBody) request.body();
-                // 构造加密串
-                StringBuilder encodedParams = new StringBuilder();
-                for (int i = 0; i < formBody.size(); i++) {
-                    if(!TextUtils.isEmpty(formBody.name(i))) {
-                        encodedParams.append(formBody.encodedName(i));
+                List<String> headerValues = request.headers(ApiConstants.HEADER_USE_JSON_REQUEST_prefix);
+                if (headerValues != null && headerValues.size() > 0) {
+                    String headerValue = headerValues.get(0);
+                    if (ApiConstants.HEADER_USE_JSON_REQUEST_VALUE.equals(headerValue)) {
+                        requestType = headerValue;
                     }
-                    encodedParams.append('=');
-                    if(!TextUtils.isEmpty(formBody.value(i))) {
-//                        if(request.headers().names().contains(ApiConstants.HEADER_UN_EN_PARAMS_prefix)) {
-//                            LogUtils.tag("zlq").e("params normal");
-//                            encodedParams.append(formBody.value(i));
-//                        } else {
-//                            LogUtils.tag("zlq").e("params encode");
-                            encodedParams.append(formBody.encodedValue(i));
-//                        }
-                    }
-                    encodedParams.append('&');
                 }
-                LogUtils.tag("zlq").e("encodedParams = " + encodedParams.substring(0, encodedParams.length() - 1).toString());
-                String secret = DESSecretUtils.AES_cbc_encrypt(encodedParams.substring(0, encodedParams.length() - 1).toString());
-                LogUtils.tag("zlq").e("local_secret = " + secret);
-                // 正常使用FormBody后台收不到
-                //formBody = bodyBuilder.addEncoded("param=", secret).build();
-                // 所以使用RequestBody[application/x-www-form-urlencoded]
-                StringBuilder sb = new StringBuilder("param=").append(secret);
-                LogUtils.tag("zlq").e("param = " + secret);
-                RequestBody body = RequestBody.create(MediaType.parse("application/x-www-form-urlencoded; charset=UTF-8"), sb.toString());
-                request = request.newBuilder().post(body).removeHeader("User-Agent").addHeader("User-Agent",getUserAgent())
+                IRequestType requestResult = RequestFactory.makeRequest(requestType);
+                request = request.newBuilder()
+                        .post(requestResult.makeRequest(formBody))
+                        .removeHeader("User-Agent")
+                        .addHeader("User-Agent",getUserAgent())
                         .build();
             }
         }

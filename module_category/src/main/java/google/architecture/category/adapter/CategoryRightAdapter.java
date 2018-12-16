@@ -39,9 +39,9 @@ public class CategoryRightAdapter extends BaseSectionQuickAdapter<CategoryRightS
             case CategoryRightSection.SECTION_TYPE_TITLE:
                 helper.setGone(R.id.category_section_title, true);
                 helper.setGone(R.id.category_section_banner, false);
-                helper.setText(R.id.category_section_tvTitle, item.header);
+                helper.setText(R.id.category_section_tvTitle, "——" + item.header + "——");
                 break;
-            case CategoryRightSection.SECTION_TYPE_BANNER:
+            /*case CategoryRightSection.SECTION_TYPE_BANNER:
                 helper.setGone(R.id.category_section_title, false);
                 helper.setGone(R.id.category_section_banner, true);
 
@@ -64,7 +64,7 @@ public class CategoryRightAdapter extends BaseSectionQuickAdapter<CategoryRightS
                     banner.turnPage();
                 }
 
-                break;
+                break;*/
         }
     }
 

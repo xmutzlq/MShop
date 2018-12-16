@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal">
+    <LinearLayout
+        android:id="@+id/category_left_tab_left_content"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:gravity="center"
+        android:paddingTop="@dimen/size_10dp"
+        android:orientation="vertical">
+        <TextView
+            android:id="@+id/category_left_tab_left_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:textSize="@dimen/text_size_13sp"
+            android:textColor="@color/colorAccent"
+            android:text="@string/category_filter_tab_man"/>
+        <TextView
+            android:id="@+id/category_left_tab_left_flag"
+            android:layout_width="@dimen/size_10dp"
+            android:layout_height="@dimen/size_10dp"
+            android:background="@drawable/bg_category_left_tab_tag"/>
+    </LinearLayout>
+    
+    <View style="@style/DivideLine"
+        android:layout_gravity="center_vertical"></View>
+    <LinearLayout
+        android:id="@+id/category_left_tab_right_content"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:gravity="center"
+        android:paddingTop="@dimen/size_10dp"
+        android:orientation="vertical">
+        <TextView
+            android:id="@+id/category_left_tab_right_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:textSize="@dimen/text_size_13sp"
+            android:textColor="@color/color_9b9b9b"
+            android:text="@string/category_filter_tab_women"/>
+        <TextView
+            android:id="@+id/category_left_tab_right_flag"
+            android:layout_width="@dimen/size_10dp"
+            android:layout_height="@dimen/size_10dp"
+            android:layout_marginTop="@dimen/size_2dp"
+            android:background="@drawable/bg_category_left_tab_tag"
+            android:visibility="invisible"/>
+    </LinearLayout>
+</LinearLayout>

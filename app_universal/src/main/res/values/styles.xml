@@ -4,8 +4,8 @@
     <style name="ShopAppTheme" parent="CommAppTheme">
         <!-- Customize your theme here. -->
         <item name="colorPrimary">@color/colorPrimary</item>
-        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
-        <item name="colorAccent">@color/colorAccent</item>
+        <item name="colorPrimaryDark">@color/colorPrimary</item>
+        <item name="colorAccent">@color/colorPrimary</item>
 
         <item name="android:textColorPrimary">@color/white</item>
         <item name="android:windowBackground">@color/f5</item>

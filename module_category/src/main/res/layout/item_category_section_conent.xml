@@ -2,8 +2,11 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    android:paddingTop="@dimen/size_8dp"
+    android:paddingBottom="@dimen/size_8dp"
     android:gravity="center_horizontal"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    android:background="@color/color_f6f6f6">
 
     <ImageView
         android:id="@+id/category_section_fivCover"
@@ -15,7 +18,7 @@
         android:id="@+id/category_section_tvName"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/size_6dp"
+        android:layout_marginTop="@dimen/size_5dp"
         android:maxLength="4"
         android:maxLines="1"
         android:textColor="@color/color_666666"
