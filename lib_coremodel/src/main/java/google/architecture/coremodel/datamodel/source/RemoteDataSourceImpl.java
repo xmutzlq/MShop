@@ -33,9 +33,12 @@ import google.architecture.coremodel.data.SearchResult;
 import google.architecture.coremodel.data.StartInfo;
 import google.architecture.coremodel.data.UploadResultData;
 import google.architecture.coremodel.data.VersionInfo;
+import google.architecture.coremodel.data.xlj.goodsdetail.GoodsDetailData;
 import google.architecture.coremodel.datamodel.http.HttpResult;
+import google.architecture.coremodel.datamodel.http.XLJ_HttpResult;
 import google.architecture.coremodel.datamodel.http.exception.ExceptionFunc;
 import google.architecture.coremodel.datamodel.http.exception.ResulteFunc;
+import google.architecture.coremodel.datamodel.http.exception.XLJ_ResultFunc;
 import google.architecture.coremodel.datamodel.http.service.DeHongDataService;
 import io.reactivex.Flowable;
 import io.reactivex.android.schedulers.AndroidSchedulers;
@@ -330,6 +333,11 @@ public class RemoteDataSourceImpl implements IRemoteDataSource {
         return prepareSubscribe(dataService.remindingSend(user_id, order_id));
     }
 
+    @Override
+    public Flowable<XLJ_HttpResult<GoodsDetailData>> xlj_getCategory(String requestJson) {
+        return xlj_prepareSubscribe(dataService.xlj_getCategory(requestJson));
+    }
+
     /**
      * 已定义subscribeOn、
      * onErrorResumeNext、
@@ -345,6 +353,17 @@ public class RemoteDataSourceImpl implements IRemoteDataSource {
                 .onErrorResumeNext(new ExceptionFunc())
                 // 后台异常捕获通知
                 .map(new ResulteFunc())
+                .observeOn(AndroidSchedulers.mainThread())
+                // App内部查看的日志
+                .doOnError(throwable -> LogUtils.tag("zlq").e("doOnError: " + throwable.toString()));
+    }
+
+    private Flowable xlj_prepareSubscribe(Flowable flowable) {
+        return flowable.subscribeOn(Schedulers.io())
+                // Http、Json及其他异常捕获通知
+                .onErrorResumeNext(new ExceptionFunc())
+                // 后台异常捕获通知
+                .map(new XLJ_ResultFunc())
                 .observeOn(AndroidSchedulers.mainThread())
                 // App内部查看的日志
                 .doOnError(throwable -> LogUtils.tag("zlq").e("doOnError: " + throwable.toString()));

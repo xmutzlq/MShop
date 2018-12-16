@@ -24,6 +24,7 @@
             android:layout_height="@dimen/size_20dp"
             android:layout_weight="1"
             android:gravity="center"
+            android:layout_marginLeft="@dimen/size_10dp"
             android:maxLines="1"
             android:textColor="@color/text_color"
             android:textSize="@dimen/text_size_13sp" />

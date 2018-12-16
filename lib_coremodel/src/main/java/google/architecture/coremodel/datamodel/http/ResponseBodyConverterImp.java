@@ -7,6 +7,7 @@ import com.google.gson.TypeAdapter;
 import java.io.IOException;
 
 import google.architecture.coremodel.util.DESSecretUtils;
+import google.architecture.coremodel.util.TextUtil;
 import okhttp3.ResponseBody;
 import retrofit2.Converter;
 
@@ -28,7 +29,8 @@ public class ResponseBodyConverterImp<T> implements Converter<ResponseBody, T> {
         try {
             String response = value.string();
             LogUtils.tag("zlq").e("remote_secret = " + response);
-            response = DESSecretUtils.AES_cbc_decrypt(response);
+            String desResponse = DESSecretUtils.AES_cbc_decrypt(response);
+            response = TextUtil.isEmpty(desResponse) ? response : desResponse;
             LogUtils.tag("zlq").e("decrypt_data = " + response);
             return adapter.fromJson(response);
         } catch (Exception e) {

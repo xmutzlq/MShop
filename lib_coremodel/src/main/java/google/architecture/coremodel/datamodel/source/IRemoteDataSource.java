@@ -31,8 +31,12 @@ import google.architecture.coremodel.data.SearchResult;
 import google.architecture.coremodel.data.StartInfo;
 import google.architecture.coremodel.data.UploadResultData;
 import google.architecture.coremodel.data.VersionInfo;
+import google.architecture.coremodel.data.xlj.goodsdetail.GoodsDetailData;
 import google.architecture.coremodel.datamodel.http.HttpResult;
+import google.architecture.coremodel.datamodel.http.XLJ_HttpResult;
+import google.architecture.coremodel.datamodel.http.exception.XLJ_ResultFunc;
 import io.reactivex.Flowable;
+import retrofit2.http.Field;
 
 /**
  * @author lq.zeng
@@ -139,4 +143,7 @@ public interface IRemoteDataSource {
     Flowable<HttpResult<String>> deleteOrder(String user_id, String order_id);
     Flowable<HttpResult<String>> confirmReceipt(String user_id, String order_id);
     Flowable<HttpResult<String>> remindingSend(String user_id, String order_id);
+
+    //##=======新乐纪=======##
+    Flowable<XLJ_HttpResult<GoodsDetailData>> xlj_getCategory(String requestJson);
 }

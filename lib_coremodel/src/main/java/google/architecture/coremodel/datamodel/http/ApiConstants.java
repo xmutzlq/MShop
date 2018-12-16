@@ -143,4 +143,5 @@ public class ApiConstants {
 
     //##======新乐纪======##
     public static final String XLJ_Category = URL_BASE + "wechatapp/Lists/goodsList";
+    public static final String XLJ_Goods_Detail = URL_BASE + "wechatapp/Goods/goodsDetail";
 }

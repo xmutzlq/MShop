@@ -7,6 +7,7 @@ import google.architecture.common.util.ToastUtils;
 import google.architecture.coremodel.datamodel.http.EmptyConsumer;
 import google.architecture.coremodel.datamodel.http.ErrorConsumer;
 import google.architecture.coremodel.datamodel.http.HttpResult;
+import google.architecture.coremodel.datamodel.http.XLJ_HttpResult;
 import io.reactivex.Flowable;
 import io.reactivex.disposables.Disposable;
 
@@ -52,7 +53,11 @@ public class UIViewModel extends BaseViewModel implements  EmptyConsumer.IPresen
         isRunning.set(false);
         clear();
         if(doOnNext != null) {
-            doOnNext.doOnNext(((HttpResult)o).getData());
+            if(o instanceof HttpResult) {
+                doOnNext.doOnNext(((HttpResult)o).getData());
+            } else if(o instanceof XLJ_HttpResult) {
+                doOnNext.doOnNext(((XLJ_HttpResult)o).getData());
+            }
         }
     }
 
