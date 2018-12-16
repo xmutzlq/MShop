@@ -126,18 +126,23 @@ public class FragmentCategoryRight extends BaseFragment {
         }*/
 
         for (OpDiscoverCates cate : result.getDiscoverList()) {
-            //头部-标题
-            CategoryRightSection sectionTitle = new CategoryRightSection(true, cate);
-            sectionTitle.setType(CategoryRightSection.SECTION_TYPE_TITLE);
-            categoryRightSections.add(sectionTitle);
+
 
             //孩子
             if(cate.getChild() != null && cate.getChild().size() > 0) {
+
+                //头部-标题
+                CategoryRightSection sectionTitle = new CategoryRightSection(true, cate);
+                sectionTitle.setType(CategoryRightSection.SECTION_TYPE_TITLE);
+                categoryRightSections.add(sectionTitle);
+
                 for (OpDiscoverCates cates : cate.getChild()) {
                     CategoryRightSection sChild = new CategoryRightSection(cates);
                     sChild.setType(CategoryRightSection.SECTION_TYPE_ITEM);
                     categoryRightSections.add(sChild);
                 }
+
+
             }
         }
 

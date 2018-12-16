@@ -5,7 +5,13 @@ import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.View;
 
+import com.apkfuns.logutils.LogUtils;
 import com.chad.library.adapter.base.BaseViewHolder;
+import com.king.android.sharesdk.utils.LogUtil;
+
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 
 import google.architecture.category.viewholder.CategoryRightTitleViewHolder;
 import google.architecture.common.base.BaseApplication;
@@ -18,7 +24,8 @@ import google.architecture.common.imgloader.util.DisplayUtil;
 
 public class CategoryRightDecoration extends ExRvDecoration {
 
-    private int flagPosition = 0;
+    private Map<Integer, Integer> titlePositions = new HashMap<>();
+    private int titlePosition = 0;
 
     @Override
     protected void getExRvItemOffsets(Rect outRect, View view, RecyclerView parent, RecyclerView.State state) {
@@ -35,7 +42,7 @@ public class CategoryRightDecoration extends ExRvDecoration {
                     outRect.right = DisplayUtil.dip2px(BaseApplication.getIns(),5);
                     break;*/
                 case CategoryRightSection.SECTION_TYPE_TITLE:
-                    flagPosition = position;
+                    titlePosition = position;
                     if(position == 0) {
                         outRect.top = DisplayUtil.dip2px(BaseApplication.getIns(),8);
                     } else {
@@ -46,12 +53,19 @@ public class CategoryRightDecoration extends ExRvDecoration {
                     outRect.right = outRect.left;
                     break;
                 case CategoryRightSection.SECTION_TYPE_ITEM:
-                    int currentPosition = position - flagPosition - 1;
-                    Log.d("zlq", "currentPosition: " + currentPosition);
-                    if(currentPosition % 3 == 0) {
+                    int where;
+                    if(position > titlePosition) {
+                        int currentPosition = position - titlePosition;
+                        where = currentPosition % 3;
+                        titlePositions.put(position, where);
+                    } else {
+                        where = titlePositions.get(position);
+                    }
+
+                    if(where == 1) {
                         outRect.left = DisplayUtil.dip2px(BaseApplication.getIns(),10);
                         outRect.right = DisplayUtil.dip2px(BaseApplication.getIns(),5);
-                    } else if(currentPosition % 3 == 2) {
+                    } else if(where == 0) {
                         outRect.left = DisplayUtil.dip2px(BaseApplication.getIns(),5);
                         outRect.right = DisplayUtil.dip2px(BaseApplication.getIns(),10);
                     } else {
@@ -62,5 +76,14 @@ public class CategoryRightDecoration extends ExRvDecoration {
                     break;
             }
         }
+    }
+
+    private int getLastPosition(int position) {
+        for (int i = 0; i < titlePositions.size(); i++) {
+            if(titlePositions.get(i) == position) {
+                return i;
+            }
+        }
+        return -1;
     }
 }
