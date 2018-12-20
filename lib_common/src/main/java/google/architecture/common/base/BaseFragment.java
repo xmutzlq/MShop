@@ -7,6 +7,7 @@ import android.databinding.Observable;
 import android.databinding.ViewDataBinding;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
@@ -32,6 +33,7 @@ public abstract class BaseFragment<VB extends ViewDataBinding> extends BaseFragm
     private RunCallBack runCallBack;
     private DataCallBack dataCallBack;
     private EmptyCallBack emptyCallBack;
+    private LoadingFragment loadingFragment;
 
     protected abstract int getLayout();
     protected void responseEvent(CommEvent event){}
@@ -45,18 +47,25 @@ public abstract class BaseFragment<VB extends ViewDataBinding> extends BaseFragm
     }
 
     public void showProgressDialog(int message) {
-        if (progressDialog == null) {
-            progressDialog = new ProgressDialog(this.getActivity());
-            progressDialog.setCanceledOnTouchOutside(false);
+       /* if(loadingDialog == null){
+            loadingDialog = new LoadingDialog(getActivity());
         }
-        progressDialog.setMessage(getString(message));
-        progressDialog.show();
+        if(!loadingDialog.isShowing()) {
+            loadingDialog.show();
+        }*/
+        if(loadingFragment == null){
+            loadingFragment = LoadingFragment.newInstance(false);
+
+        }
+        FragmentTransaction transaction = getChildFragmentManager().beginTransaction();
+        transaction.add(loadingFragment, "loading");
+        loadingFragment.setAlert(getString(message));
+        transaction.commitAllowingStateLoss();
     }
 
     public void dismissProgressDialog() {
-        if (progressDialog != null && progressDialog.isShowing()) {
-            progressDialog.dismiss();
-        }
+//        loadingDialog.dismiss();
+        loadingFragment.dismissAllowingStateLoss();
     }
 
     @SuppressWarnings("unchecked")
