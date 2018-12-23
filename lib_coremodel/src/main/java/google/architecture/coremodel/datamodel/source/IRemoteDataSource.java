@@ -145,5 +145,6 @@ public interface IRemoteDataSource {
     Flowable<HttpResult<String>> remindingSend(String user_id, String order_id);
 
     //##=======新乐纪=======##
-    Flowable<XLJ_HttpResult<GoodsDetailData>> xlj_getCategory(String requestJson);
+    Flowable<XLJ_HttpResult<GoodsDetailData>> xlj_getGoodsDetail(String requestJson);
+    Flowable<XLJ_HttpResult<GoodsDetailData>> xlj_getGoodsList(String requestJson);
 }

@@ -8,17 +8,17 @@ public class SaleSpecChild {
     @SerializedName("isDefault")
     private int isDefault;
     @SerializedName("productNo")
-    private String productNo;
+    private String productNo; //条形码
     @SerializedName("specIds")
-    private String specIds;
+    private String specIds; //颜色ID:尺码ID
     @SerializedName("marketPrice")
     private String marketPrice;
     @SerializedName("specPrice")
     private String specPrice;
     @SerializedName("specStock")
-    private int specStock;
+    private int specStock; //条码库存
     @SerializedName("shopStock")
-    private String shopStock;
+    private String shopStock; //条码店铺库存
 
     public void setId(int id) {
         this.id = id;

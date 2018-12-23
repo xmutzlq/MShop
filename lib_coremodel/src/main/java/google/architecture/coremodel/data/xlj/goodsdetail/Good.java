@@ -8,7 +8,7 @@ public class Good {
     @SerializedName("shopId")
     private int shopId;
     @SerializedName("allsaleTitle")
-    private String allsaleTitle;
+    private String allsaleTitle; //活动名称
     @SerializedName("startDate")
     private String startDate;
     @SerializedName("endDate")
@@ -30,7 +30,7 @@ public class Good {
     @SerializedName("goodsId")
     private int goodsId;
     @SerializedName("salePrice")
-    private String salePrice;
+    private String salePrice; //单品活动价
 
     public void setAllsaleId(int allsaleId) {
         this.allsaleId = allsaleId;

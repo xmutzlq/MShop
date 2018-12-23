@@ -10,7 +10,7 @@ public class Order {
     @SerializedName("shopId")
     private int shopId;
     @SerializedName("allsaleTitle")
-    private String allsaleTitle;
+    private String allsaleTitle; //活动名称
     @SerializedName("startDate")
     private String startDate;
     @SerializedName("endDate")
@@ -36,9 +36,9 @@ public class Order {
     @SerializedName("json")
     private List<Json> json;
     @SerializedName("orderMoney")
-    private int orderMoney;
+    private int orderMoney; //满足订单金额参与活动
     @SerializedName("saleMoney")
-    private int saleMoney;
+    private int saleMoney; //优惠金额
 
     public void setAllsaleId(int allsaleId) {
         this.allsaleId = allsaleId;

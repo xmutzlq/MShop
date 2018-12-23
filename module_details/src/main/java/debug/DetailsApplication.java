@@ -16,6 +16,7 @@ public class DetailsApplication extends BaseApplication {
     @Override
     public void onCreate() {
         super.onCreate();
+        BaseApplication.APP_STATUS = BaseApplication.APP_STATUS_NORMAL;
         if (Utils.isAppDebug()) {
             //开启InstantRun之后，一定要在ARouter.init之前调用openDebug
             ARouter.openDebug();

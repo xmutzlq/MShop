@@ -5,6 +5,6 @@ import google.architecture.coremodel.datamodel.http.repository.DeHongDataReposit
 
 public class XLJ_GoodsDetailViewModel extends UIViewModel {
     public void getGoodsDetail(String requestJson, IDoOnNext doOnNext) {
-        subscribe(DeHongDataRepository.get().xlj_getCategory(requestJson), doOnNext);
+        subscribe(DeHongDataRepository.get().xlj_getGoodsDetail(requestJson), doOnNext);
     }
 }

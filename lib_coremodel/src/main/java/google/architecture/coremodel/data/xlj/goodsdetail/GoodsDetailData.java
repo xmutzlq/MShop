@@ -1,55 +1,107 @@
 package google.architecture.coremodel.data.xlj.goodsdetail;
 
+import com.google.gson.annotations.SerializedName;
+
 public class GoodsDetailData {
-    private int goodsId;
+    @SerializedName("goodsId")
+    private int goodsId; //商品ID
+    @SerializedName("goodsSn")
     private String goodsSn;
-    private String productNo;
-    private String goodsName;
+    @SerializedName("productNo")
+    private String productNo; //货号
+    @SerializedName("goodsName")
+    private String goodsName; //商品名称
+    @SerializedName("goodsImg")
     private String goodsImg;
+    @SerializedName("shopId")
     private int shopId;
+    @SerializedName("goodsType")
     private int goodsType;
-    private String marketPrice;
-    private String shopPrice;
+    @SerializedName("marketPrice")
+    private String marketPrice; //吊牌价
+    @SerializedName("shopPrice")
+    private String shopPrice; //商品价格
+    @SerializedName("warnStock")
     private int warnStock;
-    private int goodsStock;
+    @SerializedName("goodsStock")
+    private int goodsStock; //库存
+    @SerializedName("webStock")
     private int webStock;
+    @SerializedName("goodsUnit")
     private String goodsUnit;
+    @SerializedName("goodsTips")
     private String goodsTips;
+    @SerializedName("isSale")
     private int isSale;
+    @SerializedName("isBest")
     private int isBest;
+    @SerializedName("isHot")
     private int isHot;
+    @SerializedName("isNew")
     private int isNew;
+    @SerializedName("isRecom")
     private int isRecom;
+    @SerializedName("goodsCatIdPath")
     private java.util.List<String> goodsCatIdPath;
+    @SerializedName("goodsCatId")
     private int goodsCatId;
+    @SerializedName("shopCatId1")
     private int shopCatId1;
+    @SerializedName("shopCatId2")
     private int shopCatId2;
-    private int brandId;
-    private String goodsDesc;
+    @SerializedName("brandId")
+    private int brandId; //品牌ID
+    @SerializedName("goodsDesc")
+    private String goodsDesc; //商品详情
+    @SerializedName("goodsStatus")
     private int goodsStatus;
+    @SerializedName("saleNum")
     private int saleNum;
+    @SerializedName("saleTime")
     private String saleTime;
+    @SerializedName("visitNum")
     private int visitNum;
+    @SerializedName("appraiseNum")
     private int appraiseNum;
+    @SerializedName("isSpec")
     private int isSpec;
-    private java.util.List<String> gallery;
+    @SerializedName("gallery")
+    private java.util.List<String> gallery; //商品焦点图
+    @SerializedName("goodsSeoKeywords")
     private String goodsSeoKeywords;
+    @SerializedName("illegalRemarks")
     private String illegalRemarks;
+    @SerializedName("dataFlag")
     private int dataFlag;
+    @SerializedName("createTime")
     private String createTime;
+    @SerializedName("isFreeShipping")
     private int isFreeShipping;
+    @SerializedName("goodsSerachKeywords")
     private String goodsSerachKeywords;
+    @SerializedName("goodSource")
     private int goodSource;
+    @SerializedName("shop")
     private Shop shop;
+    @SerializedName("saleSpec")
     private SaleSpec saleSpec;
+    @SerializedName("spec")
     private Spec spec;
+    @SerializedName("defaultSpecs")
     private DefaultSpecs defaultSpecs;
+    @SerializedName("attrs")
     private java.util.List<Attrs> attrs;
+    @SerializedName("scores")
     private String scores;
+    @SerializedName("isFavorite")
     private int isFavorite;
+    @SerializedName("goodsAppr")
     private java.util.List<String> goodsAppr;
+    @SerializedName("promotion")
     private Promotion promotion;
+    @SerializedName("like")
     private java.util.List<Like> like;
+
     public void setGoodsId(int goodsId) {
         this.goodsId = goodsId;
     }
