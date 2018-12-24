@@ -120,13 +120,13 @@ public class DetailHeaderView extends FrameLayout {
     }
 
     private void initView() {
-        statusBarHeight = StatusbarUtils.getStatusBarHeight(getContext());
+//        statusBarHeight = StatusbarUtils.getStatusBarHeight(getContext());
 
         LayoutInflater.from(getContext()).inflate(R.layout.detail_item_head, this, true);
 
-        statusBarView = findViewById(R.id.detail_head_statubar_space);
-        ViewGroup.LayoutParams spaceLayoutParams = statusBarView.getLayoutParams();
-        spaceLayoutParams.height = statusBarHeight;
+//        statusBarView = findViewById(R.id.detail_head_statubar_space);
+//        ViewGroup.LayoutParams spaceLayoutParams = statusBarView.getLayoutParams();
+//        spaceLayoutParams.height = statusBarHeight;
 
         mHeadBackBg = findViewById(R.id.detail_head_back_fl);
         mHeadShareBg = findViewById(R.id.detail_head_share_fl);

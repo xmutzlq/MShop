@@ -126,7 +126,7 @@ public class DetCommodityFragment extends BaseFragment<FragmentDetCommodityBindi
 
     @Override
     protected boolean isStatusBarTransparent() {
-        return true;
+        return false;
     }
 
     @Override
@@ -574,7 +574,7 @@ public class DetCommodityFragment extends BaseFragment<FragmentDetCommodityBindi
 
     @Override
     public void onOffsetChanged(AppBarLayout appBarLayout, int verticalOffset) {
-        if(mActivityDetails != null) mActivityDetails.updateHeader(true, verticalOffset, appBarLayout.getTotalScrollRange());
+//        if(mActivityDetails != null) mActivityDetails.updateHeader(true, verticalOffset, appBarLayout.getTotalScrollRange());
     }
 
     @Override

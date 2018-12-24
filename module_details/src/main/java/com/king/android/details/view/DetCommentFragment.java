@@ -49,7 +49,7 @@ public class DetCommentFragment extends BaseFragment<FragmentDetCommentBinding> 
 
     @Override
     protected boolean isStatusBarTransparent() {
-        return true;
+        return false;
     }
 
     @Override

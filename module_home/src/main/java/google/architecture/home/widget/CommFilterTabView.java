@@ -16,6 +16,9 @@ import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TextView;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import google.architecture.common.util.DimensionsUtil;
 import google.architecture.common.widget.BackgroundDarkPopupWindow;
 import google.architecture.home.R;
@@ -135,6 +138,7 @@ public class CommFilterTabView extends FrameLayout implements View.OnClickListen
                 pressedSalesVolume(true);
                 pressedPrice(false, false);
                 pressedTabFilter(false);
+                changeDefaultFilterFlag(true, false);
                 if(mTabClickListener != null) {
                     mTabClickListener.onTabClick(true, currentTag);
                 }
@@ -146,18 +150,19 @@ public class CommFilterTabView extends FrameLayout implements View.OnClickListen
                 isPriceToggle = !isPriceToggle;
                 pressedPrice(true, isPriceToggle);
                 pressedTabFilter(false);
+                changeDefaultFilterFlag(true, false);
                 if(mTabClickListener != null) {
                     mTabClickListener.onTabClick(true, currentTag);
                 }
                 break;
             case TAB_EXCHANGE:
                 currentTag = tag;
-                isPriceToggle = true;
+//                isPriceToggle = true;
                 isExchangeToggle = !isExchangeToggle;
-                pressedTabColligation(false);
-                pressedSalesVolume(false);
-                pressedPrice(false, false);
-                pressedTabFilter(false);
+//                pressedTabColligation(false);
+//                pressedSalesVolume(false);
+//                pressedPrice(false, false);
+//                pressedTabFilter(false);
                 selectedTabExchange();
                 if(mTabClickListener != null) {
                     mTabClickListener.onTabClick(true, currentTag);
@@ -165,7 +170,8 @@ public class CommFilterTabView extends FrameLayout implements View.OnClickListen
                 break;
             case TAB_FILTER:
                 isDrawerOpen = true;
-                pressedTabFilter(true);
+//                pressedTabFilter(true);
+//                changeDefaultFilterFlag(true, false);
                 if(mFilterOpenListener != null) mFilterOpenListener.onFilterOpenListener();
                 break;
         }
@@ -220,13 +226,13 @@ public class CommFilterTabView extends FrameLayout implements View.OnClickListen
         ListView listView = contentView.findViewById(R.id.default_filter_lv);
         listView.setOnItemClickListener((parent, view, position, id) -> {
             adapter.selectItem(position);
-            adapter.notifyDataSetChanged();
+            if(popWindow != null) popWindow.dismiss();
         });
-        listView.setAdapter(new DefaultFilterAdapter(getContext()));
+        listView.setAdapter(adapter);
         adapter.notifyDataSetChanged();
         popWindow = new BackgroundDarkPopupWindow(contentView, WindowManager.LayoutParams.MATCH_PARENT,
                 WindowManager.LayoutParams.WRAP_CONTENT);
-        popWindow.setOnDismissListener(() -> changeDefaultFilterFlag(true, false));
+        popWindow.setOnDismissListener(() -> changeDefaultFilterFlag(true, true));
         popWindow.setFocusable(true);
         popWindow.setBackgroundDrawable(new BitmapDrawable());
         popWindow.setAnimationStyle(android.R.style.Animation_Dialog);

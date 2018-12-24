@@ -61,7 +61,7 @@ public class DetailHeadAdapter extends CommonNavigatorAdapter {
     public IPagerIndicator getIndicator(Context context) {
         LinePagerIndicator indicator = new LinePagerIndicator(context);
         indicator.setMode(LinePagerIndicator.MODE_EXACTLY);
-        indicator.setLineHeight(UIUtil.dip2px(context, 4));
+        indicator.setLineHeight(UIUtil.dip2px(context, 2));
         indicator.setLineWidth(UIUtil.dip2px(context, 30));
         indicator.setRoundRadius(UIUtil.dip2px(context, 1));
         indicator.setStartInterpolator(new AccelerateInterpolator());

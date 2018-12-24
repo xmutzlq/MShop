@@ -32,6 +32,7 @@ public class DefaultFilterAdapter extends BaseAdapter {
 
     public void selectItem(int position) {
         selectedPosition = position;
+        notifyDataSetChanged();
     }
 
     @Override
@@ -63,8 +64,13 @@ public class DefaultFilterAdapter extends BaseAdapter {
         }
         String filterName = filterDefaultDataList.get(position);
         holder.nameTv.setText(filterName);
-        holder.nameTv.setSelected(position == selectedPosition ? true : false);
-        holder.nameIv.setVisibility(position == selectedPosition ? View.VISIBLE : View.GONE);
+        if(selectedPosition == position) {
+            holder.nameTv.setSelected(true);
+            holder.nameIv.setVisibility(View.VISIBLE);
+        } else {
+            holder.nameTv.setSelected(false);
+            holder.nameIv.setVisibility(View.GONE);
+        }
         return convertView;
     }
 

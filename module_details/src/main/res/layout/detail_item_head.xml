@@ -54,7 +54,7 @@
             <net.lucode.hackware.magicindicator.MagicIndicator
                 android:id="@+id/detail_head_indicator"
                 android:layout_width="wrap_content"
-                android:layout_height="match_parent"/>
+                android:layout_height="@dimen/size_50dp"/>
         </RelativeLayout>
 
         <FrameLayout

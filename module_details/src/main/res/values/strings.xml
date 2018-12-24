@@ -1,6 +1,8 @@
 <resources>
     <string name="app_name">DetailsApplication</string>
 
+    <string name="title_goods_detail">宝贝详情页</string>
+
     <string name="detail_promotion_time">距离结束还剩:</string>
 
     <string name="detail_goods_intro">商品介绍</string>

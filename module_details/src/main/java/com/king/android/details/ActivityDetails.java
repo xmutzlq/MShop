@@ -64,6 +64,9 @@ public class ActivityDetails extends BaseActivity {
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
+        setCanBack(false);
+        setTitleName(getString(R.string.title_goods_detail));
+
         detailViewModel = new DetailViewModel();
 
         mViewPager = findViewById(R.id.detail_view_pager);
@@ -72,7 +75,7 @@ public class ActivityDetails extends BaseActivity {
         ViewGroup mHeader = findViewById(R.id.detail_header_fl);
         detailHeaderView = new DetailHeaderView(this_);
 //        detailHeaderView.setHeadViewBgRes(false);
-        detailHeaderView.setHeadViewBgRes(true, R.mipmap.bg_detail_bar);
+        detailHeaderView.setHeadViewBgRes(false, R.mipmap.bg_detail_bar);
         detailHeaderView.bindToViewPager(mViewPager);
         mHeader.removeAllViews();
         mHeader.addView(detailHeaderView);
@@ -129,14 +132,14 @@ public class ActivityDetails extends BaseActivity {
             @Override
             public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
                 if(position == 0) {
-                    detailHeaderView.updateHead(false, positionOffsetPixels, ScreenUtils.getScreenWidth());
+                    //detailHeaderView.updateHead(false, positionOffsetPixels, ScreenUtils.getScreenWidth());
                 }
             }
 
             @Override
             public void onPageSelected(int position) {
                 if(position > 0) {
-                    detailHeaderView.updateHead(false, ScreenUtils.getScreenWidth(), ScreenUtils.getScreenWidth());
+                    //detailHeaderView.updateHead(false, ScreenUtils.getScreenWidth(), ScreenUtils.getScreenWidth());
                 }
             }
 
@@ -144,7 +147,7 @@ public class ActivityDetails extends BaseActivity {
             public void onPageScrollStateChanged(int state) {}
         });
 
-        updateHeader(false, 0, ScreenUtils.getScreenWidth());
+//        updateHeader(false, 0, ScreenUtils.getScreenWidth());
 
         Looper.myQueue().addIdleHandler(() -> {
             AppCompat.schedulePostponeEnterTransition(this_);
