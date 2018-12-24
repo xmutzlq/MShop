@@ -12,30 +12,30 @@ import com.google.gson.annotations.SerializedName;
 public class HttpResult <T> {
 
     @SerializedName("error")
-    private String error;
+    private String code;
     @SerializedName("message")
-    private String message;
+    private String msg;
     @SerializedName("data")
     private T data;
 
     public boolean isOK() {
-        return !TextUtils.isEmpty(error) && error.equals("0") && data != null;
+        return !TextUtils.isEmpty(code) && code.equals("0") && data != null;
     }
 
     public String getInfo() {
-        return message;
+        return msg;
     }
 
     public void setInfo(String info) {
-        this.message = info;
+        this.msg = info;
     }
 
     public String getCode() {
-        return error;
+        return code;
     }
 
     public void setCode(String code) {
-        this.error = code;
+        this.code = code;
     }
 
     public T getData() {

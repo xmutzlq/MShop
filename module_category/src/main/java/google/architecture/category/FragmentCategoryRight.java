@@ -22,7 +22,6 @@ import google.architecture.common.base.BaseFragment;
 import google.architecture.common.util.CommKeyUtil;
 import google.architecture.common.util.ScreenUtils;
 import google.architecture.common.viewmodel.CategoryViewModel;
-import google.architecture.coremodel.data.OpChildrenCates;
 import google.architecture.coremodel.data.OpDiscoverCates;
 import google.architecture.coremodel.data.OpDiscoverIndexResult;
 
@@ -73,8 +72,8 @@ public class FragmentCategoryRight extends BaseFragment {
         sectionAdapter = new CategoryRightAdapter(R.layout.item_category_section_conent, R.layout.item_category_section_head, categoryRightSections);
         sectionAdapter.setOnItemClickListener((adapter, view1, position) -> {
             if(CategoryRightSection.SECTION_TYPE_ITEM == sectionAdapter.getData().get(position).getType()) {
-                //CategoryRightSection categoryRightSection = sectionAdapter.getData().get(position);
-                //ARouter.getInstance().build(ARouterPath.Search2Aty).withString(CommKeyUtil.EXTRA_KEY, String.valueOf(categoryRightSection.t.getElement_id())).navigation();
+                CategoryRightSection categoryRightSection = sectionAdapter.getData().get(position);
+                ARouter.getInstance().build(ARouterPath.Search2Aty).withString(CommKeyUtil.EXTRA_KEY, String.valueOf(categoryRightSection.t.getElement_id())).navigation();
             }
         });
         sectionAdapter.bindToRecyclerView(recyclerView);

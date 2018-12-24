@@ -2,36 +2,45 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:paddingTop="@dimen/size_10dp"
-    android:paddingBottom="@dimen/size_10dp"
     android:background="@color/white">
-    <FrameLayout
+    <LinearLayout
         android:id="@+id/btn_tab_colligation"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_weight="1"
-        android:gravity="center">
+        android:paddingTop="@dimen/size_15dp"
+        android:paddingBottom="@dimen/size_15dp"
+        android:gravity="center"
+        android:orientation="horizontal">
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:drawablePadding="@dimen/size_5dp"
-            android:text="@string/comm_str_colligation"
+            android:text="@string/xlj_filter_default"
             android:textSize="@dimen/text_size_16sp"
             android:textColor="@drawable/bg_tab_filter"/>
-    </FrameLayout>
+        <TextView
+            android:id="@+id/filter_default_flag"
+            android:layout_width="@dimen/size_10dp"
+            android:layout_height="@dimen/size_10dp"
+            android:gravity="center_vertical"
+            android:background="@drawable/ic_triangle_down"/>
+    </LinearLayout>
     <FrameLayout
         android:id="@+id/btn_tab_sales_volume"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_weight="1"
+        android:paddingTop="@dimen/size_15dp"
+        android:paddingBottom="@dimen/size_15dp"
         android:gravity="center">
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:drawablePadding="@dimen/size_5dp"
-            android:text="@string/comm_str_sales_volume"
+            android:text="@string/xlj_filter_newest"
             android:textSize="@dimen/text_size_16sp"
             android:textColor="@drawable/bg_tab_filter"/>
     </FrameLayout>
@@ -41,22 +50,43 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_weight="1"
+        android:paddingTop="@dimen/size_15dp"
+        android:paddingBottom="@dimen/size_15dp"
         android:gravity="center">
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:drawablePadding="@dimen/size_5dp"
-            android:text="@string/comm_str_price"
+            android:text="@string/xlj_filter_hot"
             android:textSize="@dimen/text_size_16sp"
             android:textColor="@drawable/bg_tab_filter"/>
     </FrameLayout>
+
+    <FrameLayout
+        android:id="@+id/btn_tab_exchange"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:paddingTop="@dimen/size_15dp"
+        android:paddingBottom="@dimen/size_15dp"
+        android:layout_gravity="center">
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:src="@mipmap/ic_grid"/>
+    </FrameLayout>
+
+    <View style="@style/DivideLine"></View>
 
     <FrameLayout
         android:id="@+id/btn_tab_filter"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_weight="1"
+        android:paddingTop="@dimen/size_15dp"
+        android:paddingBottom="@dimen/size_15dp"
         android:gravity="center">
         <TextView
             android:layout_width="wrap_content"
@@ -64,9 +94,9 @@
             android:layout_gravity="center"
             android:drawablePadding="@dimen/size_5dp"
             android:drawableRight="@mipmap/ic_filter"
-            android:text="@string/comm_str_filter"
+            android:text="@string/xlj_filter_str"
             android:textSize="@dimen/text_size_16sp"
-            android:textColor="@drawable/bg_tab_filter_2"/>
+            android:textColor="@drawable/bg_tab_filter"/>
     </FrameLayout>
 
 </LinearLayout>

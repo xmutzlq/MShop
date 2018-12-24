@@ -112,6 +112,9 @@ public class ActivitySearchSecond extends BasePagingActivity<ActivitySearchSecon
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
+        setCanBack(false);
+        setTitleName(getString(R.string.xlj_goods_list));
+
         searchInputValue = getIntent().getExtras().getString(CommKeyUtil.EXTRA_VALUE);
         searchInputId = getIntent().getExtras().getString(CommKeyUtil.EXTRA_KEY);
 
@@ -249,6 +252,10 @@ public class ActivitySearchSecond extends BasePagingActivity<ActivitySearchSecon
     @Override
     public void onTabClick(boolean fromBtn, String type) {
         if(CommFilterTabView.TAB_FILTER.equals(type)) return;
+        if(CommFilterTabView.TAB_EXCHANGE.equals(type)) {
+            binding.ibSearch2Exchange.performClick();
+            return;
+        }
         switch (type) {
             case CommFilterTabView.TAB_COLLIGATION:
                 isPriceLower = false;

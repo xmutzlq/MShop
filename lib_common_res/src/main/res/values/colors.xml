@@ -51,6 +51,7 @@
     <color name="gray_88">#ff888888</color>
     <color name="gray_8832">#88323232</color>
     <color name="gray_AD">#ffadadad</color>
+    <color name="gray_C1">#ffc1c1c1</color>
     <color name="gray_C8">#ffc8c8c8</color>
     <color name="gray_D5">#ffd5d5d5</color>
     <color name="gray_E6">#ffe6e6e6</color>
@@ -108,6 +109,7 @@
     <color name="color_666666">#666666</color>
     <color name="color_ededed">#ededed</color>
     <color name="color_e5e5e5">#e5e5e5</color>
+    <color name="color_e6e6e6">#e6e6e6</color>
     <color name="color_e57100">#e57100</color>
     <color name="color_986b05">#986b05</color>
     <color name="color_divide_1">#18ffffff</color>
@@ -158,6 +160,7 @@
     <color name="color_20808080">#20808080</color>
     <color name="color_EC308A">#EC308A</color>
     <color name="color_D83256">#D83256</color>
+    <color name="color_A30598">#A30598</color>
 
     <color name="vw_BgItem">#353535</color>
     <color name="vw_ShadowItem">#94333232</color>
