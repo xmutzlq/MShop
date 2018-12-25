@@ -4,12 +4,15 @@ import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.content.ContextCompat;
+import android.text.TextUtils;
+import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.FrameLayout;
 import android.widget.TextView;
 
 import com.alibaba.android.arouter.facade.annotation.Route;
+import com.apkfuns.logutils.LogUtils;
 import com.king.android.details.R;
 import com.king.android.details.databinding.FragmentDetDetailBinding;
 import com.king.android.res.config.ARouterPath;
@@ -28,7 +31,7 @@ public class DetDetailFragment extends BaseFragment<FragmentDetDetailBinding> {
     public static final String DetDetailTag = "isNormal";
     private int currentPosition;
     private TextView leftBtn, rightBtn, centerBtn;
-    private String url;
+    public static String url;
 
     private CommWebView commWebView;
 
@@ -101,9 +104,12 @@ public class DetDetailFragment extends BaseFragment<FragmentDetDetailBinding> {
 
     @Override
     public void onFragmentFirstVisible() {
+        if(TextUtils.isEmpty(url)) {
+            url = getArguments().getString(CommKeyUtil.EXTRA_KEY);
+        }
         boolean isNormal = getArguments().getBoolean(DetDetailTag, true);
         commWebView.setIsNormal(isNormal);
-        commWebView.loadUrl(urls[0]);
+        commWebView.loadUrl(url);
         changeTextColor(0);
     }
 

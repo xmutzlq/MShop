@@ -9,7 +9,9 @@ import android.support.annotation.Nullable;
 import android.support.design.widget.AppBarLayout;
 import android.support.v4.content.ContextCompat;
 import android.support.v4.view.ViewPager;
+import android.support.v7.widget.LinearLayoutManager;
 import android.text.TextUtils;
+import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -20,10 +22,14 @@ import com.alibaba.android.arouter.launcher.ARouter;
 import com.king.android.details.ActivityDetails;
 import com.king.android.details.R;
 import com.king.android.details.adapter.DetailBannerAdapter;
+import com.king.android.details.adapter.DetailRecommendAdapter;
+import com.king.android.details.adapter.DetailRecommendParentAdapter;
 import com.king.android.details.cache.DetailInfoManager;
 import com.king.android.details.databinding.FragmentDetCommodityBinding;
 import com.king.android.details.util.DetailUtil;
+import com.king.android.details.widget.DetailRecommendCircleNavigator;
 import com.king.android.res.config.ARouterPath;
+import com.king.android.res.util.ConvertUtils;
 
 import java.util.ArrayList;
 
@@ -34,12 +40,14 @@ import google.architecture.common.util.ScreenUtils;
 import google.architecture.common.viewmodel.xlj.GoodsDetailRequestEntity;
 import google.architecture.common.viewmodel.xlj.XLJ_GoodsDetailViewModel;
 import google.architecture.common.widget.hmore.RefreshCallBack;
+import google.architecture.common.widget.hmore.pager.GravityPagerSnapHelper;
 import google.architecture.common.widget.nested.MyNestedScrollView;
 import google.architecture.common.widget.nested.SlideDetailsLayout;
 import google.architecture.common.widget.preload.FiftyShadesOf;
 import google.architecture.common.widget.span.Spans;
 import google.architecture.coremodel.data.DetailSpecSelectedInfo;
 import google.architecture.coremodel.data.xlj.goodsdetail.GoodsDetailData;
+import google.architecture.coremodel.data.xlj.goodsdetail.Like;
 import google.architecture.coremodel.datamodel.http.event.CommEvent;
 import google.architecture.coremodel.util.TextUtil;
 
@@ -163,6 +171,17 @@ public class DetCommodityNewFragment extends BaseFragment<FragmentDetCommodityBi
     @Override
     protected void onDataResult(Object o) {
         GoodsDetailData info = (GoodsDetailData) o;
+
+        DetDetailFragment.url = info.getGoodsDesc();
+
+        if(!hasLoadDetailWeb) {
+            hasLoadDetailWeb = true;
+            mActivityDetails.getSupportFragmentManager()
+                    .beginTransaction()
+                    .add(R.id.detail_bottom_page, DetDetailFragment.newInstance(false, info.getGoodsDesc()),
+                            DetDetailFragment.class.getSimpleName()).commit();
+        }
+
         //gallery
         adapter = new DetailBannerAdapter(mContext, new ArrayList<>(info.getGallery()));
         binding.detailCommodityBanner.setAdapter(adapter);
@@ -183,6 +202,10 @@ public class DetCommodityNewFragment extends BaseFragment<FragmentDetCommodityBi
             binding.xljLayoutTicket.detailLayoutTicketName.setText(getString(R.string.detail_ticket_get_value,
                     info.getCouponsList().get(0).getUseMoney(), info.getCouponsList().get(0).getCouponValue()));
             binding.xljLayoutTicket.detailLayoutTicketGiftTv.setText(getString(R.string.detail_ticket_gift_value));
+            binding.xljLayoutTicket.detailLayoutTicketGet.setOnClickListener(view -> {
+                TicketBottomSheetFragment ticketBottomSheetFragment = new TicketBottomSheetFragment();
+                ticketBottomSheetFragment.show(getChildFragmentManager(), "Dialog");
+            });
         } else {
             binding.xljLayoutTicket.getRoot().setVisibility(View.GONE);
         }
@@ -223,30 +246,30 @@ public class DetCommodityNewFragment extends BaseFragment<FragmentDetCommodityBi
         binding.layoutDetComment.detailCommodityCommentTv.setBottomDividerLineVisibility(View.GONE); //去线
 
         //猜你喜欢
-//        isRecommendState = true;
-//        LinearLayoutManager detailLinearLayoutManager = new LinearLayoutManager(mContext,
-//                LinearLayoutManager.HORIZONTAL, false);
-//        binding.layoutDetRecommend.detailCommodityRecommendRec.setLayoutManager(detailLinearLayoutManager);
-//        binding.layoutDetRecommend.detailCommodityRecommendRec.setNestedScrollingEnabled(false);
-//        binding.layoutDetRecommend.detailCommodityRecommendRec.setHasFixedSize(true);
-//        List<Like> pageDetailRecommendInfos = new ArrayList<>(info.getLike());
-//        //总记录数
-//        int rows = pageDetailRecommendInfos.size();
-//        //每页显示的记录数
-//        int pageCount = 6;
-//        //页数
-//        int pageSize = (rows - 1) / pageCount + 1;
-//        if(pageSize == 0) pageSize = 1;
-//        List<List<Like>> pages = ConvertUtils.averageAssign(pageDetailRecommendInfos, pageSize);
-//        DetailRecommendParentAdapter detailRecommendAdapter = new DetailRecommendParentAdapter(R.layout.layout_comm_recyclerview_auto_size, pages);
-//        binding.layoutDetRecommend.detailCommodityRecommendRec.setAdapter(detailRecommendAdapter);
-//        final DetailRecommendCircleNavigator circleNavigator = new DetailRecommendCircleNavigator(mContext);
-//        circleNavigator.setFollowTouch(false);
-//        circleNavigator.setCircleCount(pageSize);
-//        new GravityPagerSnapHelper(Gravity.START, true, position -> {
-//            circleNavigator.onPageSelected(position);
-//        }).attachToRecyclerView(binding.layoutDetRecommend.detailCommodityRecommendRec);
-//        binding.layoutDetRecommend.detailCommodityRecommendIndicator.setNavigator(circleNavigator);
+        isRecommendState = true;
+        LinearLayoutManager detailLinearLayoutManager = new LinearLayoutManager(mContext,
+                LinearLayoutManager.HORIZONTAL, false);
+        binding.layoutDetRecommend.detailCommodityRecommendRec.setLayoutManager(detailLinearLayoutManager);
+        binding.layoutDetRecommend.detailCommodityRecommendRec.setNestedScrollingEnabled(false);
+        binding.layoutDetRecommend.detailCommodityRecommendRec.setHasFixedSize(true);
+        java.util.List<Like> pageDetailRecommendInfos = new ArrayList<>(info.getLike());
+        //总记录数
+        int rows = pageDetailRecommendInfos.size();
+        //每页显示的记录数
+        int pageCount = 6;
+        //页数
+        int pageSize = (rows - 1) / pageCount + 1;
+        if(pageSize == 0) pageSize = 1;
+        java.util.List<java.util.List<Like>> pages = ConvertUtils.averageAssign(pageDetailRecommendInfos, pageSize);
+        DetailRecommendParentAdapter detailRecommendAdapter = new DetailRecommendParentAdapter(R.layout.layout_comm_recyclerview_auto_size, pages);
+        binding.layoutDetRecommend.detailCommodityRecommendRec.setAdapter(detailRecommendAdapter);
+        final DetailRecommendCircleNavigator circleNavigator = new DetailRecommendCircleNavigator(mContext);
+        circleNavigator.setFollowTouch(false);
+        circleNavigator.setCircleCount(pageSize);
+        new GravityPagerSnapHelper(Gravity.START, true, position -> {
+            circleNavigator.onPageSelected(position);
+        }).attachToRecyclerView(binding.layoutDetRecommend.detailCommodityRecommendRec);
+        binding.layoutDetRecommend.detailCommodityRecommendIndicator.setNavigator(circleNavigator);
     }
 
     private void loadCommodityData() {

@@ -86,7 +86,7 @@
             android:id="@+id/detail_head_share_iv"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:src="@mipmap/ic_share_h"
+            android:src="@mipmap/ic_detail_cart_white"
             android:layout_gravity="center"
             android:background="@color/transparent"/>
         </FrameLayout>

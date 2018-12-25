@@ -7,8 +7,10 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.util.AttributeSet;
+import android.util.Patterns;
 import android.view.ViewGroup;
 
+import com.apkfuns.logutils.LogUtils;
 import com.kongzue.dialog.v2.SelectDialog;
 import com.tencent.smtt.export.external.interfaces.SslError;
 import com.tencent.smtt.export.external.interfaces.SslErrorHandler;
@@ -217,14 +219,27 @@ public class CommWebView extends MyWebView {
     @Override
     public void loadUrl(String s) {
         try {
-            Uri uri = Uri.parse(s);
-            if (TextUtils.isEmpty(uri.getScheme())) {
-                loadData(s, "text/html; charset=UTF-8", null);
-            } else {
+//            Uri uri = Uri.parse(s);
+
+            if (Patterns.WEB_URL.matcher(s).matches()) {
+                LogUtils.tag("zlq").e("load url");
                 super.loadUrl(s);
+            } else{
+                LogUtils.tag("zlq").e("load content");
+                loadData(s, "text/html; charset=UTF-8", null);
             }
+
+
+//            if (TextUtils.isEmpty(uri.getScheme())) {
+//                LogUtils.tag("zlq").e("load content");
+//                loadData(s, "text/html; charset=UTF-8", null);
+//            } else {
+//                LogUtils.tag("zlq").e("load url");
+//                super.loadUrl(s);
+//            }
         } catch (Exception e) {
             e.printStackTrace();
+            LogUtils.tag("zlq").e("load content error");
             loadData(s, "text/html; charset=UTF-8", null);
         }
     }

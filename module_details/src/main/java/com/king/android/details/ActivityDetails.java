@@ -151,12 +151,12 @@ public class ActivityDetails extends BaseActivity {
             BaseFragment fragmentCommodity = (BaseFragment) ARouter.getInstance().build(ARouterPath.DetailCommodityFgt).navigation();
             BaseFragment fragmentDetail = (BaseFragment) ARouter.getInstance().build(ARouterPath.DetailDetailFgt).navigation();
             BaseFragment fragmentComment = (BaseFragment) ARouter.getInstance().build(ARouterPath.DetailCommentFgt).navigation();
-//            BaseFragment fragmentRecommend = (BaseFragment) ARouter.getInstance().build(ARouterPath.DetailRecommendFgt).navigation();
+            BaseFragment fragmentRecommend = (BaseFragment) ARouter.getInstance().build(ARouterPath.DetailRecommendFgt).navigation();
 
             mFragments.add(fragmentCommodity);
             mFragments.add(fragmentDetail);
             mFragments.add(fragmentComment);
-//            mFragments.add(fragmentRecommend);
+            mFragments.add(fragmentRecommend);
             mViewPager.setAdapter(mAdapter);
             mViewPager.setScanScroll(true);
 

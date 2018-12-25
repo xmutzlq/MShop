@@ -77,6 +77,7 @@
             android:textColor="@color/gray_C1"
             android:textSize="@dimen/text_size_14sp"
             android:text="@string/detail_ticket_get"
+            android:clickable="true"
             android:drawablePadding="@dimen/size_5dp"
             android:drawableRight="@drawable/ic_arrow_right"/>
     </LinearLayout>

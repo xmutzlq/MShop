@@ -6,6 +6,7 @@
         <item>商品</item>
         <item>详情</item>
         <item>评价</item>
+        <item>推荐</item>
     </string-array>
 
     <!--首页网格标题-->

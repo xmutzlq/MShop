@@ -1,8 +1,10 @@
 package com.king.android.details.adapter;
 
+import android.graphics.Paint;
 import android.graphics.drawable.Drawable;
 import android.support.annotation.Nullable;
 import android.widget.ImageView;
+import android.widget.TextView;
 
 import com.bumptech.glide.load.DataSource;
 import com.bumptech.glide.load.engine.GlideException;
@@ -55,6 +57,8 @@ public class DetailRecommendAdapter extends BaseQuickAdapter<Like, BaseViewHolde
         });
         helper.setText(R.id.recommend_item_name_tv, item.getGoodsName());
         helper.setText(R.id.recommend_item_price_tv, "¥" + item.getShopPrice());
+        helper.setText(R.id.recommend_item_market_price_tv, "¥" + item.getMarketPrice());
+        ((TextView)helper.getView(R.id.recommend_item_market_price_tv)).getPaint().setFlags(Paint. STRIKE_THRU_TEXT_FLAG);
 
         if(isRank) {
             ImageView rankRightIv = helper.getView(R.id.recommend_item_right_iv);

@@ -17,14 +17,14 @@
         <ImageView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:src="@mipmap/service"/>
+            android:src="@mipmap/ic_detail_home"/>
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/size_2dp"
             android:textColor="@color/color_666666"
             android:textSize="@dimen/text_size_11sp"
-            android:text="@string/detail_service"/>
+            android:text="@string/detail_bottom_home"/>
     </LinearLayout>
 
     <LinearLayout
@@ -39,7 +39,7 @@
             android:id="@+id/detail_btn_like_iv"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:src="@mipmap/like"/>
+            android:src="@mipmap/ic_detail_kefu"/>
         <TextView
             android:id="@+id/detail_btn_like_tv"
             android:layout_width="wrap_content"
@@ -47,7 +47,7 @@
             android:layout_marginTop="@dimen/size_2dp"
             android:textColor="@color/color_666666"
             android:textSize="@dimen/text_size_11sp"
-            android:text="@string/detail_like"/>
+            android:text="@string/detail_bottom_service"/>
     </LinearLayout>
 
     <LinearLayout
@@ -64,7 +64,7 @@
             android:id="@+id/detail_btn_go_cart_iv"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:src="@mipmap/cart"/>
+            android:src="@mipmap/ic_detail_cart"/>
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
