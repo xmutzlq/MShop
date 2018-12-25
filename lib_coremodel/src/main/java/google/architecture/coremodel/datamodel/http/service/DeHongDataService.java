@@ -32,6 +32,7 @@ import google.architecture.coremodel.data.StartInfo;
 import google.architecture.coremodel.data.UploadResultData;
 import google.architecture.coremodel.data.VersionInfo;
 import google.architecture.coremodel.data.xlj.goodsdetail.GoodsDetailData;
+import google.architecture.coremodel.data.xlj.shopdata.ShopData;
 import google.architecture.coremodel.datamodel.http.ApiConstants;
 import google.architecture.coremodel.datamodel.http.HttpResult;
 import google.architecture.coremodel.datamodel.http.XLJ_HttpResult;
@@ -280,6 +281,11 @@ public interface DeHongDataService {
     Flowable<HttpResult<String>> remindingSend(@Field("user_id") String user_id, @Field("order_id") String order_id);
 
     //##========新乐纪=======##
+    @Headers({ApiConstants.HEADER_MULTI_URL, ApiConstants.HEADER_USE_JSON_REQUEST})
+    @FormUrlEncoded
+    @POST(ApiConstants.XLJ_Shop_Data)
+    Flowable<XLJ_HttpResult<ShopData>> xlj_getShopData(@Field("request_json") String requestJson);
+
     @Headers({ApiConstants.HEADER_MULTI_URL, ApiConstants.HEADER_USE_JSON_REQUEST})
     @FormUrlEncoded
     @POST(ApiConstants.XLJ_Goods_Detail)
