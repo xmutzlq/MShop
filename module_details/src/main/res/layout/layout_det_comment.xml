@@ -11,8 +11,8 @@
             android:id="@+id/detail_commodity_comment_tv"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/size_10dp"
-            android:layout_marginBottom="@dimen/size_15dp"
+            android:layout_marginLeft="@dimen/size_5dp"
+            android:layout_marginTop="@dimen/size_15dp"
             stv:sUseRipple="false"/>
 
         <google.architecture.common.widget.TagFlowLayout
@@ -31,10 +31,5 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"/>
 
-        <include layout="@layout/layout_common_two_btn"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/size_10dp"
-            android:layout_marginBottom="@dimen/size_20dp"/>
     </LinearLayout>
 </layout>

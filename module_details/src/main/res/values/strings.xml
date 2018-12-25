@@ -20,4 +20,16 @@
 
     <string name="detail_buy_now">立即购买</string>
     <string name="detail_add_cart">加入购物车</string>
+    
+    <string name="detail_ticket_favourable">优惠</string>
+    <string name="detail_ticket_gift">赠品</string>
+    <string name="detail_ticket_gift_value">无需发货，首次关注店铺领取10元店铺券</string>
+    <string name="detail_ticket_get">领券</string>
+    <string name="detail_ticket_get_value">领券满%1$s减%2$s</string>
+
+    <string name="detail_choice">已选</string>
+    <string name="detail_server">服务</string>
+    <string name="detail_server_str">商家发货&#038;售后；7天无理由退换；货到付款；...</string>
+    <string name="detail_param">参数</string>
+    <string name="detail_param_str">品牌；功能；系列；...</string>
 </resources>

@@ -16,6 +16,7 @@ import java.util.ArrayList;
 import google.architecture.common.imgloader.ImageLoader;
 import google.architecture.common.util.AppCompat;
 import google.architecture.common.widget.banner.recycle.CommRecyclingPagerAdapter;
+import google.architecture.coremodel.datamodel.http.ApiConstants;
 
 /**
  * @author lq.zeng
@@ -30,7 +31,8 @@ public class DetailBannerAdapter extends CommRecyclingPagerAdapter<String>{
 
     @Override
     protected void loadImage(CommRecyclingPagerAdapter.ViewHolder holder, String imgId, int position) {
-        ImageLoader.get().load(holder.imageView, imgId, new RequestListener<Drawable>() {
+        String newImgId = ApiConstants.GankHost + imgId;
+        ImageLoader.get().load(holder.imageView, newImgId, new RequestListener<Drawable>() {
             @Override
             public boolean onLoadFailed(@Nullable GlideException e, Object model, Target<Drawable> target, boolean isFirstResource) {
                 return false;

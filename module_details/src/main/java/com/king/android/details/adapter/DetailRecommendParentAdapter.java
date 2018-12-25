@@ -11,21 +11,21 @@ import com.king.android.details.R;
 import java.util.List;
 
 import google.architecture.common.util.DimensionsUtil;
-import google.architecture.coremodel.data.DetailRecommendInfo;
+import google.architecture.coremodel.data.xlj.goodsdetail.Like;
 
 /**
  * @author lq.zeng
  * @date 2018/6/29
  */
 
-public class DetailRecommendParentAdapter extends BaseQuickAdapter<List<DetailRecommendInfo>, BaseViewHolder> {
+public class DetailRecommendParentAdapter extends BaseQuickAdapter<List<Like>, BaseViewHolder> {
 
-    public DetailRecommendParentAdapter(int layoutResId, @Nullable List<List<DetailRecommendInfo>> data) {
+    public DetailRecommendParentAdapter(int layoutResId, @Nullable List<List<Like>> data) {
         super(layoutResId, data);
     }
 
     @Override
-    protected void convert(BaseViewHolder helper, List<DetailRecommendInfo> item) {
+    protected void convert(BaseViewHolder helper, List<Like> item) {
         RecyclerView recyclerView = helper.getView(R.id.comm_recyclerView_auto_size);
         recyclerView.addItemDecoration(new DetailDividerItemMarginDecoration(mContext, DimensionsUtil.DIPToPX(8)));
         recyclerView.setLayoutManager(new GridLayoutManager(mContext, 3));

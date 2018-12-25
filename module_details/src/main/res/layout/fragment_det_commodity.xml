@@ -47,7 +47,8 @@
                         <android.support.v4.view.ViewPager
                             android:id="@+id/detail_commodity_banner"
                             android:layout_width="match_parent"
-                            android:layout_height="wrap_content"/>
+                            android:layout_height="wrap_content"
+                            android:background="@color/common_bg"/>
                         <TextView
                             android:id="@+id/detail_banner_indicator_tv"
                             android:layout_width="wrap_content"
@@ -78,33 +79,22 @@
                     android:orientation="vertical">
                     <!--价格-->
                     <include
-                        android:id="@+id/layout_price_promotion"
-                        layout="@layout/layout_price_promotion"/>
-                    <!--标题-->
-                    <include android:id="@+id/layout_det_title"
-                        layout="@layout/layout_det_title"/>
+                        android:id="@+id/xlj_layout_price"
+                        layout="@layout/xlj_layout_price"/>
+                    <View style="@style/SpaceLine" />
+                    <!--优惠券-->
+                    <include
+                        android:id="@+id/xlj_layout_ticket"
+                        layout="@layout/xlj_layout_ticket"/>
                     <View style="@style/SpaceLine" />
                     <!--已选-->
-                    <include android:id="@+id/layout_det_choice"
-                        layout="@layout/layout_det_choice"/>
-                    <View style="@style/SpaceLine"
-                        android:visibility="gone"/>
-                    <!--已选-->
-                    <include android:id="@+id/layout_det_shipping_address"
-                        layout="@layout/layout_det_shipping_address"/>
-                    <View style="@style/SpaceLine"
-                        android:visibility="gone"/>
-                    <!--热门配件-->
-                    <include android:id="@+id/layout_det_hot_rec"
-                        layout="@layout/layout_det_hot_rec"/>
-                    <View style="@style/SpaceLine" />
+                    <include
+                        android:id="@+id/xlj_layout_choice"
+                        layout="@layout/xlj_layout_choice"/>
+                    <View style="@style/SpaceLine"/>
                     <!--评论-->
                     <include android:id="@+id/layout_det_comment"
                         layout="@layout/layout_det_comment"/>
-                    <View style="@style/DeepUnderLine" />
-                    <!--问答-->
-                    <include android:id="@+id/layout_det_questions_answers"
-                        layout="@layout/layout_det_questions_answers"/>
                     <View style="@style/SpaceLine" />
                     <!--推荐-->
                     <include android:id="@+id/layout_det_recommend"

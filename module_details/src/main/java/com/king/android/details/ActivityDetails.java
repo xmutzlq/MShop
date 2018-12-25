@@ -15,8 +15,6 @@ import com.alibaba.android.arouter.launcher.ARouter;
 import com.apkfuns.logutils.LogUtils;
 import com.king.android.details.adapter.DetailFragmentAdapter;
 import com.king.android.details.cache.DetailInfoManager;
-import com.king.android.details.view.DetBottomSheetSpecFragment;
-import com.king.android.details.view.DetCommodityFragment;
 import com.king.android.details.view.DetailHeaderView;
 import com.king.android.res.config.ARouterPath;
 
@@ -28,12 +26,10 @@ import google.architecture.common.base.BaseFragment;
 import google.architecture.common.base.ViewManager;
 import google.architecture.common.util.AppCompat;
 import google.architecture.common.util.CommKeyUtil;
-import google.architecture.common.util.ScreenUtils;
 import google.architecture.common.util.ToastUtils;
 import google.architecture.common.viewmodel.DetailViewModel;
 import google.architecture.common.widget.NoScrollViewPager;
 import google.architecture.coremodel.data.CartNum;
-import google.architecture.coremodel.data.FavoriteResultData;
 import google.architecture.coremodel.datamodel.http.event.CommEvent;
 import q.rorbin.badgeview.Badge;
 import q.rorbin.badgeview.QBadgeView;
@@ -87,45 +83,45 @@ public class ActivityDetails extends BaseActivity {
         });
 
         /**客服**/
-        findViewById(R.id.detail_btn_service).setOnClickListener(v -> {
-            if(mDetailInfoManager == null) return;
-            if(mFragments.get(0) instanceof DetCommodityFragment) {
-                ((DetCommodityFragment)mFragments.get(0)).goService();
-            }
-        });
+//        findViewById(R.id.detail_btn_service).setOnClickListener(v -> {
+//            if(mDetailInfoManager == null) return;
+//            if(mFragments.get(0) instanceof DetCommodityFragment) {
+//                ((DetCommodityFragment)mFragments.get(0)).goService();
+//            }
+//        });
 
         /**收藏**/
-        favoriteIv = findViewById(R.id.detail_btn_like_iv);
-        favoriteTv = findViewById(R.id.detail_btn_like_tv);
-        findViewById(R.id.detail_btn_like).setOnClickListener(v -> {
-            if(mDetailInfoManager == null) return;
-            if(mFragments.get(0) instanceof DetCommodityFragment) {
-                String goodsId = mDetailInfoManager.getGoodsId();
-                boolean hasFavorite = mDetailInfoManager.hasFavorites();
-                detailViewModel.checkFavorites(goodsId, hasFavorite, t -> {
-                    FavoriteResultData favoriteResultData = (FavoriteResultData) t;
-                    mDetailInfoManager.setHasFavorites(hasFavorite ? 0 : 1);
-                    boolean favorite = mDetailInfoManager.hasFavorites();
-                    updateFavorite(favoriteResultData.getCollect_flag() == 1);
-                });
-            }
-        });
+//        favoriteIv = findViewById(R.id.detail_btn_like_iv);
+//        favoriteTv = findViewById(R.id.detail_btn_like_tv);
+//        findViewById(R.id.detail_btn_like).setOnClickListener(v -> {
+//            if(mDetailInfoManager == null) return;
+//            if(mFragments.get(0) instanceof DetCommodityFragment) {
+//                String goodsId = mDetailInfoManager.getGoodsId();
+//                boolean hasFavorite = mDetailInfoManager.hasFavorites();
+//                detailViewModel.checkFavorites(goodsId, hasFavorite, t -> {
+//                    FavoriteResultData favoriteResultData = (FavoriteResultData) t;
+//                    mDetailInfoManager.setHasFavorites(hasFavorite ? 0 : 1);
+//                    boolean favorite = mDetailInfoManager.hasFavorites();
+//                    updateFavorite(favoriteResultData.getCollect_flag() == 1);
+//                });
+//            }
+//        });
 
         /**加入购物车**/
-        findViewById(R.id.detail_btn_add_cart).setOnClickListener(v -> {
-            if(mDetailInfoManager == null) return;
-            if(mFragments.get(0) instanceof DetCommodityFragment) {
-                ((DetCommodityFragment)mFragments.get(0)).showBuyDialog(DetBottomSheetSpecFragment.TYPE_ADD_CART);
-            }
-        });
+//        findViewById(R.id.detail_btn_add_cart).setOnClickListener(v -> {
+//            if(mDetailInfoManager == null) return;
+//            if(mFragments.get(0) instanceof DetCommodityFragment) {
+//                ((DetCommodityFragment)mFragments.get(0)).showBuyDialog(DetBottomSheetSpecFragment.TYPE_ADD_CART);
+//            }
+//        });
 
         /**立即购买**/
-        findViewById(R.id.detail_btn_buy).setOnClickListener(v -> {
-            if(mDetailInfoManager == null) return;
-            if(mFragments.get(0) instanceof DetCommodityFragment) {
-                ((DetCommodityFragment)mFragments.get(0)).showBuyDialog(DetBottomSheetSpecFragment.TYPE_BUY);
-            }
-        });
+//        findViewById(R.id.detail_btn_buy).setOnClickListener(v -> {
+//            if(mDetailInfoManager == null) return;
+//            if(mFragments.get(0) instanceof DetCommodityFragment) {
+//                ((DetCommodityFragment)mFragments.get(0)).showBuyDialog(DetBottomSheetSpecFragment.TYPE_BUY);
+//            }
+//        });
 
         mAdapter = new DetailFragmentAdapter(getSupportFragmentManager(), mFragments);
         mViewPager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
@@ -198,7 +194,7 @@ public class ActivityDetails extends BaseActivity {
     @Override
     protected void responseEvent(CommEvent event) {
         if(CommEvent.MSG_TYPE_UPDATE_FAVORITE_CART.equals(event.msgType)) { //更新购物车和收藏状态
-            mDetailInfoManager = ((DetCommodityFragment)mFragments.get(0)).getDetailInfoManager();
+//            mDetailInfoManager = ((DetCommodityFragment)mFragments.get(0)).getDetailInfoManager();
             Bundle bundle = event.bundle;
             String favorite = bundle.getString(CommKeyUtil.EXTRA_KEY);
             String cartNum = bundle.getString(CommKeyUtil.EXTRA_KEY_2);

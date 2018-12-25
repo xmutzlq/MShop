@@ -2,6 +2,8 @@ package google.architecture.coremodel.data.xlj.goodsdetail;
 
 import com.google.gson.annotations.SerializedName;
 
+import java.util.List;
+
 public class GoodsDetailData {
     @SerializedName("goodsId")
     private int goodsId; //商品ID
@@ -62,7 +64,7 @@ public class GoodsDetailData {
     @SerializedName("visitNum")
     private int visitNum;
     @SerializedName("appraiseNum")
-    private int appraiseNum;
+    private String appraiseNum;
     @SerializedName("isSpec")
     private int isSpec;
     @SerializedName("gallery")
@@ -99,6 +101,8 @@ public class GoodsDetailData {
     private java.util.List<String> goodsAppr;
     @SerializedName("promotion")
     private Promotion promotion;
+    @SerializedName("couponsList")
+    private java.util.List<CouponsItem> couponsList;
     @SerializedName("like")
     private java.util.List<Like> like;
 
@@ -305,10 +309,10 @@ public class GoodsDetailData {
         return visitNum;
     }
 
-    public void setAppraiseNum(int appraiseNum) {
+    public void setAppraiseNum(String appraiseNum) {
         this.appraiseNum = appraiseNum;
     }
-    public int getAppraiseNum() {
+    public String getAppraiseNum() {
         return appraiseNum;
     }
 
@@ -436,6 +440,14 @@ public class GoodsDetailData {
     }
     public Promotion getPromotion() {
         return promotion;
+    }
+
+    public java.util.List<CouponsItem> getCouponsList() {
+        return couponsList;
+    }
+
+    public void setCouponsList(List<CouponsItem> couponsList) {
+        this.couponsList = couponsList;
     }
 
     public void setLike(java.util.List<Like> like) {

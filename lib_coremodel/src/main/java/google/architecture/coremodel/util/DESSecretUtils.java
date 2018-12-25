@@ -2,11 +2,14 @@ package google.architecture.coremodel.util;
 
 import android.util.Base64;
 
+import com.apkfuns.logutils.LogUtils;
+
 import java.io.UnsupportedEncodingException;
 import java.security.InvalidAlgorithmParameterException;
 import java.security.InvalidKeyException;
 import java.security.NoSuchAlgorithmException;
 import java.security.NoSuchProviderException;
+import java.util.Arrays;
 
 import javax.crypto.BadPaddingException;
 import javax.crypto.Cipher;
@@ -38,7 +41,11 @@ public class DESSecretUtils {
         String value = null;
         try {
             byte[] newKey = getSecKey();
+            LogUtils.tag("zlq").e("key = " + newKey);
+            System.out.println(Arrays.toString(newKey));
             byte[] iv = getIv();
+            LogUtils.tag("zlq").e("iv = " + iv);
+            System.out.println(Arrays.toString(iv));
             // 补位操作(不做此操作,后台无法解密成功)
             int asc = 32 - data.length() % 32;
             char ascc = (char)asc;
@@ -49,6 +56,8 @@ public class DESSecretUtils {
             }
             byte[] tmpData = sb.toString().getBytes("UTF-8");
             byte[] decData = AES_cbc_encrypt(tmpData, newKey, iv);
+            LogUtils.tag("zlq").e("data = " + decData);
+            System.out.println(Arrays.toString(decData));
             if(decData == null) return value;
             byte[] newFill = new byte[tmpData.length];
             System.arraycopy(decData, 0, newFill, 0, newFill.length);

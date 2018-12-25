@@ -1,6 +1,5 @@
 package com.king.android.details.view;
 
-import android.app.Activity;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -8,11 +7,9 @@ import android.support.v4.content.ContextCompat;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.FrameLayout;
-import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.alibaba.android.arouter.facade.annotation.Route;
-import com.gyf.barlibrary.ImmersionBar;
 import com.king.android.details.R;
 import com.king.android.details.databinding.FragmentDetDetailBinding;
 import com.king.android.res.config.ARouterPath;
@@ -67,8 +64,6 @@ public class DetDetailFragment extends BaseFragment<FragmentDetDetailBinding> {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        LinearLayout.LayoutParams layoutParams = (LinearLayout.LayoutParams)binding.detailToolbar.getLayoutParams();
-        layoutParams.topMargin = ImmersionBar.getStatusBarHeight((Activity) mContext);
         String[] titles = mContext.getResources().getStringArray(R.array.detail_web_titles);
 
         leftBtn = findViewById(view, R.id.common_3_left_btn);

@@ -9,7 +9,7 @@
     <string name="comm_str_shipping_address">送至</string>
     <string name="comm_str_hot_rec">热门配件</string>
     <string name="comm_str_check_all">查看全部</string>
-    <string name="comm_str_comment_count">评价(%s)</string>
+    <string name="comm_str_comment_count">宝贝评价(%s)</string>
     <string name="comm_str_comment_check_all">查看全部评价</string>
     <string name="comm_str_qa_check_all">查看全部%s条问题</string>
     <string name="comm_str_good_comment_percent">好评度 %s</string>
@@ -51,7 +51,7 @@
     <string name="str_edit">编辑</string>
     <string name="str_del">删除</string>
     <string name="str_add">添加</string>
-
+    <string name="str_share">分享</string>
     <string name="str_del_count">（%d）删除</string>
     <string name="str_del_success">删除成功</string>
 </resources>

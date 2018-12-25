@@ -10,9 +10,9 @@ public class List {
     @SerializedName("productNo")
     private String productNo;
     @SerializedName("catId")
-    private int catId;
+    private String catId;
     @SerializedName("itemId")
-    private int itemId;
+    private String itemId;
     @SerializedName("itemName")
     private String itemName;
     @SerializedName("itemImg")
@@ -45,17 +45,17 @@ public class List {
         return productNo;
     }
 
-    public void setCatId(int catId) {
+    public void setCatId(String catId) {
         this.catId = catId;
     }
-    public int getCatId() {
+    public String getCatId() {
         return catId;
     }
 
-    public void setItemId(int itemId) {
+    public void setItemId(String itemId) {
         this.itemId = itemId;
     }
-    public int getItemId() {
+    public String getItemId() {
         return itemId;
     }
 

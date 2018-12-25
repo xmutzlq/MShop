@@ -15,30 +15,32 @@ import com.king.android.details.R;
 import java.util.List;
 
 import google.architecture.common.imgloader.ImageLoader;
-import google.architecture.coremodel.data.DetailRecommendInfo;
+import google.architecture.coremodel.data.xlj.goodsdetail.Like;
+import google.architecture.coremodel.datamodel.http.ApiConstants;
 
 /**
  * @author lq.zeng
  * @date 2018/6/29
  */
 
-public class DetailRecommendAdapter extends BaseQuickAdapter<DetailRecommendInfo, BaseViewHolder> {
+public class DetailRecommendAdapter extends BaseQuickAdapter<Like, BaseViewHolder> {
 
     private boolean isRank;
 
-    public DetailRecommendAdapter(int layoutResId, @Nullable List<DetailRecommendInfo> data) {
+    public DetailRecommendAdapter(int layoutResId, @Nullable List<Like> data) {
         super(layoutResId, data);
     }
 
-    public DetailRecommendAdapter(int layoutResId, @Nullable List<DetailRecommendInfo> data, boolean isRank) {
+    public DetailRecommendAdapter(int layoutResId, @Nullable List<Like> data, boolean isRank) {
         super(layoutResId, data);
         this.isRank = isRank;
     }
 
     @Override
-    protected void convert(BaseViewHolder helper, DetailRecommendInfo item) {
+    protected void convert(BaseViewHolder helper, Like item) {
         ImageView iconView = helper.getView(R.id.common_ratio_iv);
-        ImageLoader.get().load(helper.getView(R.id.common_ratio_iv), item.rec_url, new RequestListener<Drawable>() {
+        String recUrl = ApiConstants.GankHost + item.getGoodsImg();
+        ImageLoader.get().load(helper.getView(R.id.common_ratio_iv), recUrl, new RequestListener<Drawable>() {
             @Override
             public boolean onLoadFailed(@Nullable GlideException e, Object model, Target< Drawable > target, boolean isFirstResource) {
                 return false;
@@ -51,8 +53,8 @@ public class DetailRecommendAdapter extends BaseQuickAdapter<DetailRecommendInfo
                 return false;
             }
         });
-        helper.setText(R.id.recommend_item_name_tv, item.rec_title);
-        helper.setText(R.id.recommend_item_price_tv, "¥" + item.rec_price);
+        helper.setText(R.id.recommend_item_name_tv, item.getGoodsName());
+        helper.setText(R.id.recommend_item_price_tv, "¥" + item.getShopPrice());
 
         if(isRank) {
             ImageView rankRightIv = helper.getView(R.id.recommend_item_right_iv);

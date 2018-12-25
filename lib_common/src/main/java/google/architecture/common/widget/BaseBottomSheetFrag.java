@@ -41,6 +41,15 @@ public abstract class BaseBottomSheetFrag extends BottomSheetDialogFragment {
         }
     };
 
+
+
+    public abstract int getLayoutResId();
+
+    /**
+     * 初始化View和设置数据等操作的方法
+     */
+    public abstract void initView();
+
     @Override
     public void onAttach(Context context) {
         super.onAttach(context);
@@ -81,22 +90,17 @@ public abstract class BaseBottomSheetFrag extends BottomSheetDialogFragment {
         //圆角边的关键(设置背景透明)
 //        ((View) rootView.getParent()).setBackgroundColor(Color.TRANSPARENT);
         //重置高度
-        if (dialog != null) {
-            View bottomSheet = dialog.findViewById(R.id.design_bottom_sheet);
-            bottomSheet.getLayoutParams().height = ScreenUtils.getScreenHeight() * 2 / 3;
+        if(isNeedHeight()) {
+            if (dialog != null) {
+                View bottomSheet = dialog.findViewById(R.id.design_bottom_sheet);
+                bottomSheet.getLayoutParams().height = ScreenUtils.getScreenHeight() * 2 / 3;
+            }
+            rootView.post(() ->{
+                mBehavior.setPeekHeight(rootView.getHeight());
+            });
         }
-        rootView.post(() ->{
-            mBehavior.setPeekHeight(rootView.getHeight());
-        });
         return dialog;
     }
-
-    public abstract int getLayoutResId();
-
-    /**
-     * 初始化View和设置数据等操作的方法
-     */
-    public abstract void initView();
 
     /**
      * 重置的View和数据的空方法 子类可以选择实现
@@ -110,6 +114,10 @@ public abstract class BaseBottomSheetFrag extends BottomSheetDialogFragment {
 
     public boolean isShowing() {
         return dialog != null && dialog.isShowing();
+    }
+
+    public boolean isNeedHeight() {
+        return true;
     }
 
     /**
