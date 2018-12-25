@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!--黑色-->
+    <style name="TextBlack12">
+        <item name="android:textSize">12sp</item>
+        <item name="android:textColor">@color/text_black</item>
+    </style>
+
+    <style name="TextBlack14">
+        <item name="android:textSize">14sp</item>
+        <item name="android:textColor">@color/text_black</item>
+    </style>
+
+    <style name="TextBlack16">
+        <item name="android:textSize">16sp</item>
+        <item name="android:textColor">@color/text_black</item>
+    </style>
+
+    <style name="TextBlack18">
+        <item name="android:textSize">18sp</item>
+        <item name="android:textColor">@color/text_black</item>
+    </style>
+
+    <style name="TextBlack20">
+        <item name="android:textSize">20sp</item>
+        <item name="android:textColor">@color/text_black</item>
+    </style>
+    <!--灰色-->
+    <style name="TextGray12">
+        <item name="android:textSize">12sp</item>
+        <item name="android:textColor">@color/text_gray</item>
+    </style>
+    <style name="TextGray14">
+        <item name="android:textSize">14sp</item>
+        <item name="android:textColor">@color/text_gray</item>
+    </style>
+    <style name="TextGray16">
+        <item name="android:textSize">16sp</item>
+        <item name="android:textColor">@color/text_gray</item>
+    </style>
+    <style name="TextGray18">
+        <item name="android:textSize">18sp</item>
+        <item name="android:textColor">@color/text_gray</item>
+    </style>
+    <style name="TextGray20">
+        <item name="android:textSize">20sp</item>
+        <item name="android:textColor">@color/text_gray</item>
+    </style>
+    <!--白色-->
+    <style name="TextWhite12">
+        <item name="android:textSize">12sp</item>
+        <item name="android:textColor">@android:color/white</item>
+    </style>
+    <style name="TextWhite14">
+        <item name="android:textSize">14sp</item>
+        <item name="android:textColor">@android:color/white</item>
+    </style>
+    <style name="TextWhite16">
+        <item name="android:textSize">16sp</item>
+        <item name="android:textColor">@android:color/white</item>
+    </style>
+    <style name="TextWhite18">
+        <item name="android:textSize">18sp</item>
+        <item name="android:textColor">@android:color/white</item>
+    </style>
+    <style name="TextWhite20">
+        <item name="android:textSize">20sp</item>
+        <item name="android:textColor">@android:color/white</item>
+    </style>
+    <style name="TextWhite25">
+        <item name="android:textSize">25sp</item>
+        <item name="android:textColor">@android:color/white</item>
+    </style>
+    <!--蓝色-->
+    <style name="TextBlue12">
+        <item name="android:textSize">12sp</item>
+        <item name="android:textColor">@color/text_blue</item>
+    </style>
+    <style name="TextBlue14">
+        <item name="android:textSize">14sp</item>
+        <item name="android:textColor">@color/text_blue</item>
+    </style>
+    <style name="TextBlue16">
+        <item name="android:textSize">16sp</item>
+        <item name="android:textColor">@color/text_blue</item>
+    </style>
+    <style name="TextBlue18">
+        <item name="android:textSize">18sp</item>
+        <item name="android:textColor">@color/text_blue</item>
+    </style>
+    <style name="TextBlue20">
+        <item name="android:textSize">20sp</item>
+        <item name="android:textColor">@color/text_blue</item>
+    </style>
+    <!--红色-->
+    <style name="TextRed12">
+        <item name="android:textSize">12sp</item>
+        <item name="android:textColor">@color/text_red</item>
+    </style>
+    <style name="TextRed14">
+        <item name="android:textSize">14sp</item>
+        <item name="android:textColor">@color/text_red</item>
+    </style>
+    <style name="TextRed16">
+        <item name="android:textSize">16sp</item>
+        <item name="android:textColor">@color/text_red</item>
+    </style>
+    <style name="TextRed18">
+        <item name="android:textSize">18sp</item>
+        <item name="android:textColor">@color/text_red</item>
+    </style>
+    <style name="TextRed20">
+        <item name="android:textSize">20sp</item>
+        <item name="android:textColor">@color/text_red</item>
+    </style>
+    <!-- tab选项卡风格 -->
+    <style name="TabStyle">
+        <item name="android:layout_height">match_parent</item>
+        <item name="android:layout_width">0dp</item>
+        <item name="android:layout_weight">1</item>
+        <item name="android:gravity">center</item>
+        <item name="android:button">@null</item>
+    </style>
+</resources>

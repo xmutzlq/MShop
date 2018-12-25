@@ -1,7 +1,7 @@
 <resources>
     <string name="app_name">module_personal</string>
 
-    <string name="personal_info_title">个人资料</string>
+    <string name="personal_info_title">个人中心</string>
     <string name="personal_setting_title">设置</string>
 
     <string name="login_register">登录/注册</string>

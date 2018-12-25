@@ -3,9 +3,10 @@
     <!--APP的主题色-->
     <!--<color name="colorPrimary">#FFC837</color>-->
     <color name="colorPrimary">#000000</color>
-    <color name="colorPrimaryDark">#FFC837</color>
-    <!--<color name="colorPrimaryDark">#000000</color>-->
-    <color name="colorAccent">#FFC837</color>
+    <!--<color name="colorPrimaryDark">#FFC837</color>-->
+    <color name="colorPrimaryDark">#000000</color>
+    <!--<color name="colorAccent">#FFC837</color>-->
+    <color name="colorAccent">#000000</color>
 
 
     <color name="colorGreen">#ff669900</color>

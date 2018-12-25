@@ -80,7 +80,7 @@ public class ActivityMain extends BaseActivity<ActivityMainBinding> implements B
             mFragments.add(fragmentNews);
             mFragments.add(fragmentGirls);
 //            mFragments.add(fragmentBids);
-//            mFragments.add(fragmentPersonal);
+            mFragments.add(fragmentPersonal);
             binding.setViewPaAdapter(mAdapter);
             return false;
         });

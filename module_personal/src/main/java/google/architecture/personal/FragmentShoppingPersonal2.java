@@ -54,7 +54,7 @@ import google.architecture.personal.login.ActivityLogin;
  * @author lq.zeng
  * @date 2018/7/23
  */
-@Route(path = ARouterPath.PersonalShoppingFgt)
+//@Route(path = ARouterPath.PersonalShoppingFgt)
 public class FragmentShoppingPersonal2 extends BaseFragment<FragmentShoppingPersonal2Binding> implements AppShareMain.IShareResponse {
 
     private int height = 0;// 滑动开始变色的高,真实项目中此高度是由头部view高度决定
