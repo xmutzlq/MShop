@@ -18,7 +18,7 @@ public class HomeViewModel extends BaseViewModel {
     public void getShoppingHome(boolean isNeedRunningState) {
         if (isRunning.get()) return;
 
-        /*String requestJson = "{"
+        String requestJson = "{"
                              +"\"appType\":\"erp\","
                              +"\"appToken\":\"rXwIxQo8dEFWTBpa\","
                              +"\"method\":\"Shops/getShopData\""
@@ -30,14 +30,14 @@ public class HomeViewModel extends BaseViewModel {
                         return;
                     }
                     setDataObject(result.getData(), data);
-                }).subscribe(new EmptyConsumer(), new ErrorConsumer()));*/
-        disposable.add(DeHongDataRepository.get().getShoppingHome().doOnSubscribe(disposable -> isRunning.set(isNeedRunningState))
+                }).subscribe(new EmptyConsumer(), new ErrorConsumer()));
+        /*disposable.add(DeHongDataRepository.get().getShoppingHome().doOnSubscribe(disposable -> isRunning.set(isNeedRunningState))
                 .doOnTerminate(() -> isRunning.set(false))
                 .doOnNext(result -> {
                     if (result == null || result.getData() == null) {
                         return;
                     }
                     setDataObject(result.getData(), data);
-                }).subscribe(new EmptyConsumer(), new ErrorConsumer()));
+                }).subscribe(new EmptyConsumer(), new ErrorConsumer()));*/
     }
 }

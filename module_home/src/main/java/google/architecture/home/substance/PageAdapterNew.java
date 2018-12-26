@@ -1,6 +1,7 @@
 package google.architecture.home.substance;
 
 import android.content.Context;
+import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.view.ViewGroup;
@@ -19,6 +20,7 @@ import google.architecture.common.widget.banner.recycle.CommonImagePagerAdapter;
 import google.architecture.common.widget.banner.recycle.RecycleAutoScrollViewPager;
 import google.architecture.coremodel.data.xlj.shopdata.ImgInfo;
 import google.architecture.home.R;
+import google.architecture.home.adapter.HomeBrandAdapter;
 
 public class PageAdapterNew {
 
@@ -62,13 +64,18 @@ public class PageAdapterNew {
         };
     }
 
-    public BaseDelegateAdapter initBrands(){
+    public BaseDelegateAdapter initBrands(List<ImgInfo> list){
         LinearLayoutHelper linearLayoutHelper = new LinearLayoutHelper();
         return new BaseDelegateAdapter(mContext, linearLayoutHelper, R.layout.home_item_brands,1, PageConstans.viewType.typeBanner){
             @Override
             public void onBindViewHolder(BaseViewHolder holder, int position) {
                 super.onBindViewHolder(holder, position);
                 RecyclerView brandView = holder.getView(R.id.brand_recycler_view);
+                HomeBrandAdapter adapter = new HomeBrandAdapter(list);
+                LinearLayoutManager layoutManager = new LinearLayoutManager(mContext);
+                layoutManager.setOrientation(LinearLayoutManager.HORIZONTAL);
+                brandView.setLayoutManager(layoutManager);
+                brandView.setAdapter(adapter);
             }
         };
     }

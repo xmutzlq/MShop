@@ -138,7 +138,7 @@ public class FragmentHome extends BaseFragment {
     @Override
     protected void onDataResult(Object o) {
         refreshLayout.finishRefresh(0);
-        HomeData data = (HomeData)o;
+       /* HomeData data = (HomeData)o;
         if(data == null || data.getCard() == null || data.getCard().size() == 0) return; //暂无数据
         for (HomeData.HomeInfo info : data.getCard()) {
             if(HomeTypes.TYPE_CONTAINER_SCROLL.equals(info.getType())
@@ -153,11 +153,11 @@ public class FragmentHome extends BaseFragment {
             homePage.reSetBinded();
             mAdapters.clear();
         }
-        DelegateAdapter delegateAdapter = homePage.initRecyclerView(recyclerView);
-        /*ShopData data = (ShopData) o;
+        DelegateAdapter delegateAdapter = homePage.initRecyclerView(recyclerView);*/
+        ShopData data = (ShopData) o;
         searchScrollAdapter.setMaxHeight(250);
         HomePageNew homePage = new HomePageNew(mContext,data);
-        DelegateAdapter delegateAdapter = homePage.initRecyclerView(recyclerView);*/
+        DelegateAdapter delegateAdapter = homePage.initRecyclerView(recyclerView);
         mAdapters.addAll(homePage.initItemDelegates());
         delegateAdapter.setAdapters(mAdapters);
         recyclerView.requestLayout();

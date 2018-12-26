@@ -48,6 +48,7 @@ public class HomePageNew implements ContantDelegate, PageAdapter.IActionTitleRig
     public List<BaseDelegateAdapter> initItemDelegates() {
         List<BaseDelegateAdapter> itemDelegates = new ArrayList<>();
         itemDelegates.add(mPageAdapter.initBanner(mData.getSlideImg()));
+        itemDelegates.add(mPageAdapter.initBrands(mData.getBrandNav()));
         return itemDelegates;
     }
 
