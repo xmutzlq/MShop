@@ -47,8 +47,11 @@ public class HomePageNew implements ContantDelegate, PageAdapter.IActionTitleRig
     @Override
     public List<BaseDelegateAdapter> initItemDelegates() {
         List<BaseDelegateAdapter> itemDelegates = new ArrayList<>();
-        itemDelegates.add(mPageAdapter.initBanner(mData.getSlideImg()));
-        itemDelegates.add(mPageAdapter.initBrands(mData.getBrandNav()));
+        itemDelegates.add(mPageAdapter.initBanner(mData.getSlideImg()));//顶部图片滚动
+        itemDelegates.add(mPageAdapter.initBrands(mData.getBrandNav()));//品牌
+        itemDelegates.add(mPageAdapter.initSecondBrand());
+        itemDelegates.add(mPageAdapter.initTitle("NEW COLLECTION"));
+        itemDelegates.add(mPageAdapter.initNewCollection(mData.getGoodsList().get(0)));//new Collection
         return itemDelegates;
     }
 

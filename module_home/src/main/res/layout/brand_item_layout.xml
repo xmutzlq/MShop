@@ -4,6 +4,6 @@
     android:layout_height="wrap_content" android:orientation="vertical" android:padding="10dp">
     <ImageView
         android:id="@+id/brand_iv"
-        android:layout_width="@dimen/dp_40"
-        android:layout_height="@dimen/dp_40" />
+        android:layout_width="@dimen/dp_72"
+        android:layout_height="@dimen/dp_72" />
 </LinearLayout>

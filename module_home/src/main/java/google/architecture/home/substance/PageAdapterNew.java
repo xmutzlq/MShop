@@ -1,10 +1,12 @@
 package google.architecture.home.substance;
 
 import android.content.Context;
+import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 
 import com.alibaba.android.vlayout.layout.LinearLayoutHelper;
 
@@ -18,9 +20,11 @@ import google.architecture.common.widget.banner.CirclePageIndicator;
 import google.architecture.common.widget.banner.recycle.CommRecyclingPagerAdapter;
 import google.architecture.common.widget.banner.recycle.CommonImagePagerAdapter;
 import google.architecture.common.widget.banner.recycle.RecycleAutoScrollViewPager;
+import google.architecture.coremodel.data.xlj.shopdata.Goods;
 import google.architecture.coremodel.data.xlj.shopdata.ImgInfo;
 import google.architecture.home.R;
 import google.architecture.home.adapter.HomeBrandAdapter;
+import google.architecture.home.adapter.HomeGridAdapter;
 
 public class PageAdapterNew {
 
@@ -28,6 +32,17 @@ public class PageAdapterNew {
 
     public PageAdapterNew(Context context){
         mContext = context;
+    }
+
+    public BaseDelegateAdapter initTitle(String title){
+        LinearLayoutHelper linearLayoutHelper = new LinearLayoutHelper();
+        return new BaseDelegateAdapter(mContext, linearLayoutHelper, R.layout.home_item_common_title, 1,PageConstans.viewType.typeBanner){
+            @Override
+            public void onBindViewHolder(BaseViewHolder holder, int position) {
+                super.onBindViewHolder(holder, position);
+                ((TextView)holder.getView(R.id.title_tv)).setText(title);
+            }
+        };
     }
 
     public BaseDelegateAdapter initBanner(final List<ImgInfo> dataList){
@@ -76,6 +91,31 @@ public class PageAdapterNew {
                 layoutManager.setOrientation(LinearLayoutManager.HORIZONTAL);
                 brandView.setLayoutManager(layoutManager);
                 brandView.setAdapter(adapter);
+            }
+        };
+    }
+
+    public BaseDelegateAdapter initSecondBrand() {
+        LinearLayoutHelper linearLayoutHelper = new LinearLayoutHelper();
+        return new BaseDelegateAdapter(mContext, linearLayoutHelper, R.layout.temp_second_brand, 1, PageConstans.viewType.typeBrand){
+            @Override
+            public void onBindViewHolder(BaseViewHolder holder, int position) {
+                super.onBindViewHolder(holder, position);
+            }
+        };
+    }
+
+    public BaseDelegateAdapter initNewCollection(List<Goods> list){
+        LinearLayoutHelper linearLayoutHelper = new LinearLayoutHelper();
+        return new BaseDelegateAdapter(mContext, linearLayoutHelper, R.layout.home_item_common_recycle_view, 1,PageConstans.viewType.typeBrand){
+            @Override
+            public void onBindViewHolder(BaseViewHolder holder, int position) {
+                super.onBindViewHolder(holder, position);
+                RecyclerView recycleView = holder.getView(R.id.common_recycle_view);
+                HomeGridAdapter adapter = new HomeGridAdapter(list);
+                recycleView.setAdapter(adapter);
+                GridLayoutManager layoutManager = new GridLayoutManager(mContext,2);
+                recycleView.setLayoutManager(layoutManager);
             }
         };
     }
