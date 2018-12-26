@@ -147,7 +147,7 @@ public interface IRemoteDataSource {
     //##=======新乐纪=======##
     Flowable<XLJ_HttpResult<ShopData>> xlj_getShopData(String requestJson);
     Flowable<XLJ_HttpResult<GoodsDetailData>> xlj_getGoodsDetail(String requestJson);
-    Flowable<XLJ_HttpResult<GoodsDetailData>> xlj_getGoodsList(String requestJson);
+    Flowable<XLJ_HttpResult<SearchResult>> xlj_getGoodsList(String requestJson);
     Flowable<XLJ_HttpResult<List<OpDiscoverCates>>> xlj_getTopCat(String requestJson);
     Flowable<XLJ_HttpResult<List<OpDiscoverCates>>> xlj_getChildCat(String requestJson);
 }

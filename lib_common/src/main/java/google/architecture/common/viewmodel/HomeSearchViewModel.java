@@ -3,6 +3,9 @@ package google.architecture.common.viewmodel;
 import android.databinding.ObservableField;
 import android.text.TextUtils;
 
+import com.google.gson.Gson;
+import com.google.gson.annotations.SerializedName;
+
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
@@ -37,6 +40,7 @@ public class HomeSearchViewModel extends BaseListViewModel {
 
     //搜索参数
     private SearchResultParams searchResultParams;
+    private SearchResultParamsNew searchResultParamsNew;
 
     public void loadSearchResultData(String search_id, String search_name) {
         searchResultParams = new SearchResultParams(search_id, search_name, "", "", "", "", new HashMap<>());
@@ -50,6 +54,10 @@ public class HomeSearchViewModel extends BaseListViewModel {
     public void loadSearchResultData(String search_id, String search_name, String orderField,
                                      String orderDirection, String min_price, String max_price, Map<String, String> otherParams) {
         searchResultParams = new SearchResultParams(search_id, search_name, orderField, orderDirection, min_price, max_price, otherParams);
+    }
+
+    public void loadSearchResultDataNew(String urlids, String keyword, int msort, int mdesc) {
+        searchResultParamsNew = new SearchResultParamsNew(urlids, keyword, msort, mdesc);
     }
 
     public void loadHotData() {
@@ -121,37 +129,64 @@ public class HomeSearchViewModel extends BaseListViewModel {
 
     @Override
     public void refreshData(boolean refresh) {
-        if(searchResultParams != null) {
-            String search_id = searchResultParams.getSearch_id();
-            String search_name = searchResultParams.getSearch_name();
-            String orderField = searchResultParams.getOrderField();
-            String orderDirection = searchResultParams.getOrderDirection();
-            String min_price = searchResultParams.getMin_price();
-            String max_price = searchResultParams.getMax_price();
-            Map<String, String> otherParams = searchResultParams.getOtherParams();
-            if (isRunning.get()) return;
-            disposable.add(DeHongDataRepository.get().getSearchList(search_id, search_name, orderField,
-                orderDirection, min_price, max_price, String.valueOf(page), String.valueOf(PAGE_SIZE), otherParams)
-                .doOnSubscribe(disposable -> isRunning.set(true))
-                .doOnTerminate(() -> isRunning.set(false))
-                .doOnNext(result -> {
-                    SearchResult searchResult = result.getData();
-                    pageTotal = searchResult.getGoods_total();
-                    filterData = searchResult.getScreening_conditions();
-                    for (SearchResult.GoodsItem data : searchResult.getGoods_list()) {
-                        data.setItemType(state);
-                    }
-                    RefreshListModel<SearchResult.GoodsItem> refreshListModel = new RefreshListModel<>();
-                    if (refresh) {
-                        refreshListModel.setRefreshType(searchResult.getGoods_list());
-                    } else {
-                        refreshListModel.setUpdateType(searchResult.getGoods_list());
-                    }
-                    if(refreshListModel.isRefreshType()) checkEmpty(result.getData().getGoods_list());
-                    setDataObject(refreshListModel, data);
-                }).subscribe(new EmptyConsumer(), new ErrorConsumer(this)));
-        }
+        if (isRunning.get()) return;
+        searchResultParamsNew.page = page;
+        searchResultParamsNew.limit = PAGE_SIZE;
+        String requestJson = new Gson().toJson(searchResultParamsNew);
+        disposable.add(DeHongDataRepository.get().xlj_getGoodsList(requestJson)
+            .doOnSubscribe(disposable -> isRunning.set(true))
+            .doOnTerminate(() -> isRunning.set(false))
+            .doOnNext(result -> {
+                SearchResult searchResult = result.getData();
+                pageTotal = searchResult.getGoods_total();
+                filterData = searchResult.getScreening_conditions();
+                for (SearchResult.GoodsItem data : searchResult.getGoods_list()) {
+                    data.setItemType(state);
+                }
+                RefreshListModel<SearchResult.GoodsItem> refreshListModel = new RefreshListModel<>();
+                if (refresh) {
+                    refreshListModel.setRefreshType(searchResult.getGoods_list());
+                } else {
+                    refreshListModel.setUpdateType(searchResult.getGoods_list());
+                }
+                if(refreshListModel.isRefreshType()) checkEmpty(result.getData().getGoods_list());
+                setDataObject(refreshListModel, data);
+            }).subscribe(new EmptyConsumer(), new ErrorConsumer(this)));
     }
+
+    //    @Override
+//    public void refreshData(boolean refresh) {
+//        if(searchResultParams != null) {
+//            String search_id = searchResultParams.getSearch_id();
+//            String search_name = searchResultParams.getSearch_name();
+//            String orderField = searchResultParams.getOrderField();
+//            String orderDirection = searchResultParams.getOrderDirection();
+//            String min_price = searchResultParams.getMin_price();
+//            String max_price = searchResultParams.getMax_price();
+//            Map<String, String> otherParams = searchResultParams.getOtherParams();
+//            if (isRunning.get()) return;
+//            disposable.add(DeHongDataRepository.get().getSearchList(search_id, search_name, orderField,
+//                orderDirection, min_price, max_price, String.valueOf(page), String.valueOf(PAGE_SIZE), otherParams)
+//                .doOnSubscribe(disposable -> isRunning.set(true))
+//                .doOnTerminate(() -> isRunning.set(false))
+//                .doOnNext(result -> {
+//                    SearchResult searchResult = result.getData();
+//                    pageTotal = searchResult.getGoods_total();
+//                    filterData = searchResult.getScreening_conditions();
+//                    for (SearchResult.GoodsItem data : searchResult.getGoods_list()) {
+//                        data.setItemType(state);
+//                    }
+//                    RefreshListModel<SearchResult.GoodsItem> refreshListModel = new RefreshListModel<>();
+//                    if (refresh) {
+//                        refreshListModel.setRefreshType(searchResult.getGoods_list());
+//                    } else {
+//                        refreshListModel.setUpdateType(searchResult.getGoods_list());
+//                    }
+//                    if(refreshListModel.isRefreshType()) checkEmpty(result.getData().getGoods_list());
+//                    setDataObject(refreshListModel, data);
+//                }).subscribe(new EmptyConsumer(), new ErrorConsumer(this)));
+//        }
+//    }
 
     public int getState() {
         return state;
@@ -175,6 +210,136 @@ public class HomeSearchViewModel extends BaseListViewModel {
 
     public void setFilterResultData(SearchResult.FilterResultData filterResultData) {
         this.filterResultData = filterResultData;
+    }
+
+    public static class SearchResultParamsNew {
+        @SerializedName("appType")
+        private String appType = "android";
+        @SerializedName("appToken")
+        private String appToken = "y7w7jkt12E6I3BM9";
+        @SerializedName("method")
+        private String method = "Lists/goodsList";
+        @SerializedName("urlids")
+        private String urlids;
+        @SerializedName("keyword")
+        private String keyword;
+        @SerializedName("page")
+        private int page = 1;
+        @SerializedName("limit")
+        private int limit = 10;
+        @SerializedName("msort")
+        private int msort;
+        @SerializedName("mdesc")
+        private int mdesc;
+        @SerializedName("sprice")
+        private int sprice;
+        @SerializedName("eprice")
+        private int eprice;
+        @SerializedName("only")
+        private int only = 1;
+
+        public SearchResultParamsNew(String urlids, String keyword, int msort, int mdesc) {
+            this.urlids = urlids;
+            this.keyword = keyword;
+            this.msort = msort;
+            this.mdesc = mdesc;
+        }
+
+        public String getAppType() {
+            return appType;
+        }
+
+        public void setAppType(String appType) {
+            this.appType = appType;
+        }
+
+        public String getAppToken() {
+            return appToken;
+        }
+
+        public void setAppToken(String appToken) {
+            this.appToken = appToken;
+        }
+
+        public String getMethod() {
+            return method;
+        }
+
+        public void setMethod(String method) {
+            this.method = method;
+        }
+
+        public String getUrlids() {
+            return urlids;
+        }
+
+        public void setUrlids(String urlids) {
+            this.urlids = urlids;
+        }
+
+        public String getKeyword() {
+            return keyword;
+        }
+
+        public void setKeyword(String keyword) {
+            this.keyword = keyword;
+        }
+
+        public int getPage() {
+            return page;
+        }
+
+        public void setPage(int page) {
+            this.page = page;
+        }
+
+        public int getLimit() {
+            return limit;
+        }
+
+        public void setLimit(int limit) {
+            this.limit = limit;
+        }
+
+        public int getMsort() {
+            return msort;
+        }
+
+        public void setMsort(int msort) {
+            this.msort = msort;
+        }
+
+        public int getMdesc() {
+            return mdesc;
+        }
+
+        public void setMdesc(int mdesc) {
+            this.mdesc = mdesc;
+        }
+
+        public int getSprice() {
+            return sprice;
+        }
+
+        public void setSprice(int sprice) {
+            this.sprice = sprice;
+        }
+
+        public int getEprice() {
+            return eprice;
+        }
+
+        public void setEprice(int eprice) {
+            this.eprice = eprice;
+        }
+
+        public int getOnly() {
+            return only;
+        }
+
+        public void setOnly(int only) {
+            this.only = only;
+        }
     }
 
     public static class SearchResultParams {

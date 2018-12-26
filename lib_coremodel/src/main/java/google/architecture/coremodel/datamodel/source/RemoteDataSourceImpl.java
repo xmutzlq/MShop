@@ -346,7 +346,7 @@ public class RemoteDataSourceImpl implements IRemoteDataSource {
     }
 
     @Override
-    public Flowable<XLJ_HttpResult<GoodsDetailData>> xlj_getGoodsList(String requestJson) {
+    public Flowable<XLJ_HttpResult<SearchResult>> xlj_getGoodsList(String requestJson) {
         return xlj_prepareSubscribe(dataService.xlj_getGoodsList(requestJson));
     }
 

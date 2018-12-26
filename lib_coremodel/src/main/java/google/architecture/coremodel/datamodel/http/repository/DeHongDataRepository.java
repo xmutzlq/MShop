@@ -384,7 +384,7 @@ public class DeHongDataRepository implements IRemoteDataSource {
     }
 
     @Override
-    public Flowable<XLJ_HttpResult<GoodsDetailData>> xlj_getGoodsList(String requestJson) {
+    public Flowable<XLJ_HttpResult<SearchResult>> xlj_getGoodsList(String requestJson) {
         return remoteDataSource.xlj_getGoodsList(requestJson);
     }
 

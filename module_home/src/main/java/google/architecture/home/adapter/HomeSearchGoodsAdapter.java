@@ -1,29 +1,23 @@
 package google.architecture.home.adapter;
 
-import android.graphics.Color;
-import android.graphics.drawable.Drawable;
-import android.support.annotation.Nullable;
-import android.support.v4.view.ViewCompat;
+import android.graphics.Paint;
 import android.support.v7.util.DiffUtil;
-import android.text.TextUtils;
-import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.bumptech.glide.load.DataSource;
-import com.bumptech.glide.load.engine.GlideException;
-import com.bumptech.glide.request.RequestListener;
-import com.bumptech.glide.request.target.Target;
+import com.bumptech.glide.Glide;
+import com.bumptech.glide.request.RequestOptions;
 import com.chad.library.adapter.base.BaseMultiItemQuickAdapter;
 import com.chad.library.adapter.base.BaseViewHolder;
+import com.facebook.drawee.view.SimpleDraweeView;
 
 import java.util.ArrayList;
 import java.util.List;
 
-import google.architecture.common.imgloader.ImageLoader;
+import google.architecture.common.base.BaseApplication;
 import google.architecture.common.util.DimensionsUtil;
-import google.architecture.common.widget.span.Spans;
 import google.architecture.coremodel.data.SearchResult;
+import google.architecture.coremodel.datamodel.http.ApiConstants;
 import google.architecture.coremodel.util.TextUtil;
 import google.architecture.home.R;
 
@@ -59,29 +53,20 @@ public class HomeSearchGoodsAdapter extends BaseMultiItemQuickAdapter<SearchResu
         return itemType;
     }
 
+    RequestOptions options = new RequestOptions()
+            .error(google.architecture.common.R.drawable.image_mark)
+            .placeholder(google.architecture.common.R.drawable.image_mark)
+            .override(DimensionsUtil.dip2px(BaseApplication.getIns(), 120), DimensionsUtil.dip2px(BaseApplication.getIns(), 120))
+            .dontAnimate();
+
     @Override
     protected void convert(BaseViewHolder helper, SearchResult.GoodsItem item) {
         switch (helper.getItemViewType()) {
             case SearchResult.GoodsItem.ITEM_TYPE_LIST:
-                ImageView imageView = helper.getView(R.id.search_goods_list_iv);
-                ViewGroup.LayoutParams layoutParams = imageView.getLayoutParams();
-                layoutParams.width = DimensionsUtil.dip2px(mContext, 110);
-                layoutParams.height = layoutParams.width;
-                ImageLoader.get().load(imageView, item.getOriginal_img(), new RequestListener<Drawable>() {
-                    @Override
-                    public boolean onLoadFailed(@Nullable GlideException e, Object model, Target<Drawable> target, boolean isFirstResource) {
-                        ViewCompat.setTransitionName(imageView, mContext.getResources().getString(R.string.transitionName_list_img_to_img));
-                        return false;
-                    }
+                SimpleDraweeView imageView = helper.getView(R.id.search_goods_list_iv);
+                String lImg = ApiConstants.GankHost + item.getOriginal_img();
+                imageView.setImageURI(lImg);
 
-                    @Override
-                    public boolean onResourceReady(Drawable resource, Object model, Target<Drawable> target, DataSource dataSource, boolean isFirstResource) {
-                        imageView.setImageDrawable(resource);
-                        ViewCompat.setTransitionName(imageView, mContext.getResources().getString(R.string.transitionName_list_img_to_img));
-                        return false;
-                    }
-                });
-                ((TextView)helper.getView(R.id.search_goods_title_list_tv)).setMaxLines(2);
                 if(TextUtil.isEmpty(item.getGoods_name())) {
                     helper.setGone(R.id.search_goods_title_list_tv, false);
                 } else {
@@ -96,35 +81,18 @@ public class HomeSearchGoodsAdapter extends BaseMultiItemQuickAdapter<SearchResu
                 }
 
                 if(TextUtil.isEmpty(item.getShop_price())) item.setShop_price("0.00");
-                helper.setText(R.id.search_goods_price_list_tv, Spans.builder().text("￥",12, Color.RED)
-                        .text(item.getShop_price(), 15, Color.RED).build());
+                helper.setText(R.id.search_goods_price_list_tv, "¥" + item.getShop_price());
+
+                if(TextUtil.isEmpty(item.getMarketprice())) item.setMarketprice("0.00");
+                TextView marketPrice = helper.getView(R.id.search_goods_market_price_list_tv);
+                marketPrice.getPaint().setFlags(Paint. STRIKE_THRU_TEXT_FLAG);
+                helper.setText(R.id.search_goods_market_price_list_tv, "¥" + item.getMarketprice());
 
                 break;
             case SearchResult.GoodsItem.ITEM_TYPE_GRID:
                 ImageView gImageView = helper.getView(R.id.search_goods_grid_iv);
-                ImageLoader.get().load(gImageView, item.getOriginal_img(), new RequestListener<Drawable>() {
-                    @Override
-                    public boolean onLoadFailed(@Nullable GlideException e, Object model, Target<Drawable> target, boolean isFirstResource) {
-                        ViewCompat.setTransitionName(gImageView, mContext.getResources().getString(R.string.transitionName_list_img_to_img));
-                        return false;
-                    }
-
-                    @Override
-                    public boolean onResourceReady(Drawable resource, Object model, Target<Drawable> target, DataSource dataSource, boolean isFirstResource) {
-                        gImageView.setImageDrawable(resource);
-                        ViewCompat.setTransitionName(gImageView, mContext.getResources().getString(R.string.transitionName_list_img_to_img));
-                        return false;
-                    }
-                });
-
-                TextView textView1 = helper.getView(R.id.search_goods_title_grid_tv);
-                TextView textView2 = helper.getView(R.id.search_goods_title_2_grid_tv);
-
-                textView1.setEllipsize(TextUtils.TruncateAt.END);
-                textView1.setSingleLine(true);
-
-                textView2.setEllipsize(TextUtils.TruncateAt.END);
-                textView2.setSingleLine(true);
+                String gImg = ApiConstants.GankHost + item.getOriginal_img();
+                Glide.with(mContext).load(gImg).apply(options).into(gImageView);
 
                 if(TextUtil.isEmpty(item.getGoods_name())) {
                     helper.setGone(R.id.search_goods_title_grid_tv, false);
@@ -141,8 +109,12 @@ public class HomeSearchGoodsAdapter extends BaseMultiItemQuickAdapter<SearchResu
                 }
 
                 if(TextUtil.isEmpty(item.getShop_price())) item.setShop_price("0.00");
-                helper.setText(R.id.search_goods_price_grid_tv, Spans.builder().text("￥",12, Color.RED)
-                        .text(item.getShop_price(), 15, Color.RED).build());
+                helper.setText(R.id.search_goods_price_grid_tv, "¥" + item.getShop_price());
+
+                if(TextUtil.isEmpty(item.getMarketprice())) item.setMarketprice("0.00");
+                TextView gMarketPrice = helper.getView(R.id.search_goods_market_price_grid_tv);
+                gMarketPrice.getPaint().setFlags(Paint. STRIKE_THRU_TEXT_FLAG);
+                helper.setText(R.id.search_goods_market_price_grid_tv, "¥" + item.getMarketprice());
                 break;
         }
     }

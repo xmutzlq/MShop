@@ -26,6 +26,7 @@ import java.util.ArrayList;
 import google.architecture.common.base.BasePagingActivity;
 import google.architecture.common.base.ViewManager;
 import google.architecture.common.util.CommKeyUtil;
+import google.architecture.common.util.DimensionsUtil;
 import google.architecture.common.util.FragmentUtils;
 import google.architecture.common.util.TransitionHelper;
 import google.architecture.common.util.TransitionInformation;
@@ -85,9 +86,10 @@ public class ActivitySearchSecond extends BasePagingActivity<ActivitySearchSecon
 
     @Override
     protected void prePareRecycleView() {
+        recyclerView.setPadding(DimensionsUtil.dip2px(this_, 15), DimensionsUtil.dip2px(this_, 15),
+                DimensionsUtil.dip2px(this_, 15), DimensionsUtil.dip2px(this_, 15));
         if(recyclerView.getItemDecorationCount() > 0) recyclerView.removeItemDecorationAt(0);
-        recyclerView.setHasFixedSize(true);
-        recyclerView.addItemDecoration(new GridSpacingItemDecoration(1, 10, false));
+        recyclerView.addItemDecoration(new GridSpacingItemDecoration(1, 30, false));
         layoutManager = new GridLayoutManager(this_, 2);
         recyclerView.setLayoutManager(layoutManager);
     }
@@ -115,8 +117,8 @@ public class ActivitySearchSecond extends BasePagingActivity<ActivitySearchSecon
         setCanBack(false);
         setTitleName(getString(R.string.xlj_goods_list));
 
-        searchInputValue = getIntent().getExtras().getString(CommKeyUtil.EXTRA_VALUE);
-        searchInputId = getIntent().getExtras().getString(CommKeyUtil.EXTRA_KEY);
+        searchInputValue = getIntent().getExtras().getString(CommKeyUtil.EXTRA_VALUE); //分类项中的：catName
+        searchInputId = getIntent().getExtras().getString(CommKeyUtil.EXTRA_KEY); //分类项中的：urlids
 
         //搜索结果
         binding.tvSearch2Result.setText(searchInputValue);
@@ -145,11 +147,11 @@ public class ActivitySearchSecond extends BasePagingActivity<ActivitySearchSecon
             binding.ibSearch2Exchange.setImageResource(mHomeSearchViewModel.getState() == SearchResult.GoodsItem.ITEM_TYPE_LIST ? R.mipmap.ic_grid : R.mipmap.ic_list);
             if(recyclerView.getItemDecorationCount() > 0) recyclerView.removeItemDecorationAt(0);
             RecyclerView.ItemDecoration itemDecoration = mHomeSearchViewModel.getState() == SearchResult.GoodsItem.ITEM_TYPE_LIST ?
-                    new GridSpacingItemDecoration(1, 10, false) :
-                    new GridSpacingItemDecoration(2, 10, false);
+                    new GridSpacingItemDecoration(1, 30, false) :
+                    new GridSpacingItemDecoration(2, 30, false);
             recyclerView.addItemDecoration(itemDecoration);
-            recyclerView.setLayoutManager(layoutManager);
             mHomeSearchGoodsAdapter.notifyDataSetChanged();
+            recyclerView.setLayoutManager(layoutManager);
         });
         //主筛选
         tabView = binding.filterTabView;
@@ -175,7 +177,8 @@ public class ActivitySearchSecond extends BasePagingActivity<ActivitySearchSecon
             mHomeSearchViewModel = new HomeSearchViewModel();
             setListViewModel(mHomeSearchViewModel);
             LogUtils.tag("zlq").e("searchInputId = " + searchInputId + ", searchInputValue = " + searchInputValue);
-            mHomeSearchViewModel.loadSearchResultData(searchInputId, searchInputValue);
+//            mHomeSearchViewModel.loadSearchResultData(searchInputId, searchInputValue);
+            mHomeSearchViewModel.loadSearchResultDataNew("0a1-0b1-0c1_0c2", "nike", 3, 1);
             pagingHelper.onRefresh();
             return false;
         });

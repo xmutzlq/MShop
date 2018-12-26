@@ -21,11 +21,11 @@ public class SearchResult {
     @SerializedName("screening_conditions")
     private List<FilterContainer> screening_conditions;
 
-    @SerializedName("goods_list")
+    @SerializedName("goodsList")
     private List<GoodsItem> goods_list;
 
     @SerializedName("goods_total")
-    private int goods_total;
+    private int goods_total = 1;
 
     public List<FilterContainer> getScreening_conditions() {
         return screening_conditions;
@@ -252,11 +252,11 @@ public class SearchResult {
             this.itemType = itemType;
         }
 
-        @SerializedName("goods_id")
+        @SerializedName("id")
         private String goods_id;
         @SerializedName("goods_sn")
         private String goods_sn;
-        @SerializedName("goods_name")
+        @SerializedName("goodsname")
         private String goods_name;
         @SerializedName("click_count")
         private String click_count;
@@ -268,9 +268,13 @@ public class SearchResult {
         private String comment_count;
         @SerializedName("category_path")
         private String category_path;
-        @SerializedName("shop_price")
+        @SerializedName("shopprice")
         private String shop_price;
-        @SerializedName("original_img")
+
+        @SerializedName("marketprice")
+        private String marketprice;
+
+        @SerializedName("goodsimg")
         private String original_img;
         @SerializedName("is_on_sale")
         private String is_on_sale;
@@ -355,6 +359,14 @@ public class SearchResult {
 
         public void setShop_price(String shop_price) {
             this.shop_price = shop_price;
+        }
+
+        public String getMarketprice() {
+            return marketprice;
+        }
+
+        public void setMarketprice(String marketprice) {
+            this.marketprice = marketprice;
         }
 
         public String getOriginal_img() {

@@ -20,7 +20,6 @@ import com.scwang.smartrefresh.layout.api.RefreshHeader;
 import com.scwang.smartrefresh.layout.api.RefreshLayout;
 import com.scwang.smartrefresh.layout.footer.ClassicsFooter;
 import com.scwang.smartrefresh.layout.header.ClassicsHeader;
-//import com.tencent.bugly.crashreport.CrashReport;
 import com.tencent.smtt.export.external.TbsCoreSettings;
 import com.tencent.smtt.sdk.QbSdk;
 import com.umeng.commonsdk.UMConfigure;
@@ -38,6 +37,8 @@ import google.architecture.common.util.Utils;
 import google.architecture.coremodel.BuildConfig;
 import google.architecture.coremodel.datamodel.http.upload.OkHttpStack;
 import me.jessyan.autosize.AutoSizeConfig;
+
+//import com.tencent.bugly.crashreport.CrashReport;
 
 /**
  * 要想使用BaseApplication，必须在组件中实现自己的Application，并且继承BaseApplication；
@@ -97,7 +98,6 @@ public abstract class BaseApplication extends BaseApp {
 //        Account.get().initUserInfo();
 
         //CrashReport.initCrashReport(this);
-
 
         UMConfigure.init(this, UMConfigure.DEVICE_TYPE_PHONE, "");
 

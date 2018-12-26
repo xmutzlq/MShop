@@ -1,6 +1,7 @@
 package debug;
 
 import com.alibaba.android.arouter.launcher.ARouter;
+import com.facebook.drawee.backends.pipeline.Fresco;
 
 import google.architecture.common.base.BaseApplication;
 import google.architecture.common.util.Utils;
@@ -24,5 +25,6 @@ public class HomeApplication extends BaseApplication {
         ARouter.init(this);
         //1号用户当成测试用户，后端需关闭登录失效功能
         Account.get().setUserIdToLocal("1");
+        Fresco.initialize(this.getApplicationContext());
     }
 }

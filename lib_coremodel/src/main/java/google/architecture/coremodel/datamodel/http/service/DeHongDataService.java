@@ -294,7 +294,7 @@ public interface DeHongDataService {
     @Headers({ApiConstants.HEADER_MULTI_URL, ApiConstants.HEADER_USE_JSON_REQUEST})
     @FormUrlEncoded
     @POST(ApiConstants.XLJ_Goods_List)
-    Flowable<XLJ_HttpResult<GoodsDetailData>> xlj_getGoodsList(@Field("request_json") String requestJson);
+    Flowable<XLJ_HttpResult<SearchResult>> xlj_getGoodsList(@Field("request_json") String requestJson);
 
     @Headers({ApiConstants.HEADER_MULTI_URL, ApiConstants.HEADER_USE_JSON_REQUEST})
     @FormUrlEncoded
