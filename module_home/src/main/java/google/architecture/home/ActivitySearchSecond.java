@@ -17,6 +17,7 @@ import com.alibaba.android.arouter.facade.annotation.Route;
 import com.alibaba.android.arouter.launcher.ARouter;
 import com.apkfuns.logutils.LogUtils;
 import com.chad.library.adapter.base.BaseQuickAdapter;
+import com.facebook.drawee.backends.pipeline.Fresco;
 import com.king.android.res.config.ARouterPath;
 
 import org.greenrobot.eventbus.EventBus;
@@ -114,6 +115,8 @@ public class ActivitySearchSecond extends BasePagingActivity<ActivitySearchSecon
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
+        Fresco.initialize(this.getApplicationContext());
+
         setCanBack(false);
         setTitleName(getString(R.string.xlj_goods_list));
 
@@ -189,15 +192,15 @@ public class ActivitySearchSecond extends BasePagingActivity<ActivitySearchSecon
         super.onDataResult(o);
         //右侧筛选
         if(!hasLoadFilter) {
-            hasLoadFilter = true;
-            int position = PreferencesUtils.getInt(this_, PreferencesUtils.PREFERENCE_KEY_FILTER_ALL_CATE_POSITION, -1);
-            String choiceCate = position == -1 ? "" : mHomeSearchViewModel.getFilterData().get(0).getList().get(position).getName();
-            Looper.myQueue().addIdleHandler(() -> {
-                binding.filterDrawerLayout.setDrawerLockMode(CommDrawerLayout.LOCK_MODE_LOCKED_CLOSED);
-                FragmentUtils.addFragment(getSupportFragmentManager(), FragmentFilterMain.newInstance(new ArrayList<>(mHomeSearchViewModel.getFilterData()), choiceCate),
-                        R.id.filter_drawer_content, false, true);
-                return  false;
-            });
+//            hasLoadFilter = true;
+//            int position = PreferencesUtils.getInt(this_, PreferencesUtils.PREFERENCE_KEY_FILTER_ALL_CATE_POSITION, -1);
+//            String choiceCate = position == -1 ? "" : mHomeSearchViewModel.getFilterData().get(0).getList().get(position).getName();
+//            Looper.myQueue().addIdleHandler(() -> {
+//                binding.filterDrawerLayout.setDrawerLockMode(CommDrawerLayout.LOCK_MODE_LOCKED_CLOSED);
+//                FragmentUtils.addFragment(getSupportFragmentManager(), FragmentFilterMain.newInstance(new ArrayList<>(mHomeSearchViewModel.getFilterData()), choiceCate),
+//                        R.id.filter_drawer_content, false, true);
+//                return  false;
+//            });
         }
     }
 
