@@ -2,10 +2,8 @@ package google.architecture.home.adapter;
 
 import android.graphics.Paint;
 import android.support.v7.util.DiffUtil;
-import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.RequestOptions;
 import com.chad.library.adapter.base.BaseMultiItemQuickAdapter;
 import com.chad.library.adapter.base.BaseViewHolder;
@@ -90,9 +88,9 @@ public class HomeSearchGoodsAdapter extends BaseMultiItemQuickAdapter<SearchResu
 
                 break;
             case SearchResult.GoodsItem.ITEM_TYPE_GRID:
-                ImageView gImageView = helper.getView(R.id.search_goods_grid_iv);
+                SimpleDraweeView gImageView = helper.getView(R.id.search_goods_grid_iv);
                 String gImg = ApiConstants.GankHost + item.getOriginal_img();
-                Glide.with(mContext).load(gImg).apply(options).into(gImageView);
+                gImageView.setImageURI(gImg);
 
                 if(TextUtil.isEmpty(item.getGoods_name())) {
                     helper.setGone(R.id.search_goods_title_grid_tv, false);

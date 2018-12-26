@@ -3,6 +3,7 @@
     xmlns:soulwolf="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    xmlns:fresco="http://schemas.android.com/tools"
     android:orientation="vertical"
     android:background="@color/white">
     <net.soulwolf.widget.ratiolayout.widget.RatioFrameLayout
@@ -11,13 +12,15 @@
         soulwolf:heightRatio="1"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
-        <ImageView
+
+        <com.facebook.drawee.view.SimpleDraweeView
             android:id="@+id/search_goods_grid_iv"
             android:scaleType="centerCrop"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:adjustViewBounds="true"
+            fresco:placeholderImage="@drawable/image_mark"
             android:transitionName="@string/transitionName_list_img_to_img"/>
+
     </net.soulwolf.widget.ratiolayout.widget.RatioFrameLayout>
     <LinearLayout
         android:layout_width="match_parent"
