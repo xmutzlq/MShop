@@ -5,6 +5,7 @@ import android.content.Context;
 import java.util.ArrayList;
 
 import google.architecture.common.imgloader.ImageLoader;
+import google.architecture.coremodel.datamodel.http.ApiConstants;
 
 public class CommonImagePagerAdapter extends CommRecyclingPagerAdapter<String> {
 
@@ -14,6 +15,6 @@ public class CommonImagePagerAdapter extends CommRecyclingPagerAdapter<String> {
 
     @Override
     protected void loadImage(ViewHolder holder, String imgId, int position) {
-        ImageLoader.get().load(holder.imageView, imgId);
+        ImageLoader.get().load(holder.imageView, ApiConstants.GankHost+imgId);
     }
 }
