@@ -34,6 +34,7 @@ import google.architecture.coremodel.data.StartInfo;
 import google.architecture.coremodel.data.UploadResultData;
 import google.architecture.coremodel.data.VersionInfo;
 import google.architecture.coremodel.data.xlj.goodsdetail.GoodsDetailData;
+import google.architecture.coremodel.data.xlj.shopdata.ShopData;
 import google.architecture.coremodel.datamodel.http.HttpResult;
 import google.architecture.coremodel.datamodel.http.XLJ_HttpResult;
 import google.architecture.coremodel.datamodel.http.exception.ExceptionFunc;
@@ -331,6 +332,11 @@ public class RemoteDataSourceImpl implements IRemoteDataSource {
     @Override
     public Flowable<HttpResult<String>> remindingSend(String user_id, String order_id) {
         return prepareSubscribe(dataService.remindingSend(user_id, order_id));
+    }
+
+    @Override
+    public Flowable<XLJ_HttpResult<ShopData>> xlj_getShopData(String requestJson) {
+        return xlj_prepareSubscribe(dataService.xlj_getShopData(requestJson));
     }
 
     @Override

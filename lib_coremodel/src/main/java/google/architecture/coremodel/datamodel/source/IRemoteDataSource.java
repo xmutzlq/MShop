@@ -32,6 +32,7 @@ import google.architecture.coremodel.data.StartInfo;
 import google.architecture.coremodel.data.UploadResultData;
 import google.architecture.coremodel.data.VersionInfo;
 import google.architecture.coremodel.data.xlj.goodsdetail.GoodsDetailData;
+import google.architecture.coremodel.data.xlj.shopdata.ShopData;
 import google.architecture.coremodel.datamodel.http.HttpResult;
 import google.architecture.coremodel.datamodel.http.XLJ_HttpResult;
 import google.architecture.coremodel.datamodel.http.exception.XLJ_ResultFunc;
@@ -145,6 +146,7 @@ public interface IRemoteDataSource {
     Flowable<HttpResult<String>> remindingSend(String user_id, String order_id);
 
     //##=======新乐纪=======##
+    Flowable<XLJ_HttpResult<ShopData>> xlj_getShopData(String requestJson);
     Flowable<XLJ_HttpResult<GoodsDetailData>> xlj_getGoodsDetail(String requestJson);
     Flowable<XLJ_HttpResult<GoodsDetailData>> xlj_getGoodsList(String requestJson);
 }

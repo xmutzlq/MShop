@@ -32,6 +32,7 @@ import google.architecture.coremodel.data.StartInfo;
 import google.architecture.coremodel.data.UploadResultData;
 import google.architecture.coremodel.data.VersionInfo;
 import google.architecture.coremodel.data.xlj.goodsdetail.GoodsDetailData;
+import google.architecture.coremodel.data.xlj.shopdata.ShopData;
 import google.architecture.coremodel.datamodel.db.AppDatabase;
 import google.architecture.coremodel.datamodel.db.entity.SearchInfoEntity;
 import google.architecture.coremodel.datamodel.db.entity.UserInfoEntity;
@@ -369,6 +370,11 @@ public class DeHongDataRepository implements IRemoteDataSource {
     @Override
     public Flowable<HttpResult<String>> remindingSend(String user_id, String order_id) {
         return remoteDataSource.remindingSend(user_id, order_id);
+    }
+
+    @Override
+    public Flowable<XLJ_HttpResult<ShopData>> xlj_getShopData(String requestJson) {
+        return remoteDataSource.xlj_getShopData(requestJson);
     }
 
     @Override
