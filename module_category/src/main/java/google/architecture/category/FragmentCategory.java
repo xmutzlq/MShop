@@ -18,7 +18,7 @@ import com.apkfuns.logutils.LogUtils;
 import com.king.android.res.config.ARouterPath;
 import com.king.android.res.view.HomeSearchScrollController;
 
-import org.w3c.dom.Text;
+import java.util.List;
 
 import google.architecture.category.adapter.CategoryLeftItemDecoration;
 import google.architecture.category.adapter.CategoryTitleAdapter;
@@ -27,6 +27,7 @@ import google.architecture.common.util.FragmentUtils;
 import google.architecture.common.util.ScreenUtils;
 import google.architecture.common.util.Utils;
 import google.architecture.common.viewmodel.CategoryViewModel;
+import google.architecture.coremodel.data.OpDiscoverCates;
 import google.architecture.coremodel.data.OpDiscoverIndexResult;
 import io.reactivex.Observable;
 import io.reactivex.ObservableEmitter;
@@ -42,10 +43,14 @@ import io.reactivex.schedulers.Schedulers;
 @Route(path = ARouterPath.CategoryFgt)
 public class FragmentCategory extends BaseFragment{
 
+    private String sex = "1";
+
     private RecyclerView mCatesTiltsRV;
     private ProgressBar mCategoryPb;
     private CategoryViewModel categoryViewModel;
     private int currentPosition;
+
+    private FragmentCategoryRight fragmentCategoryRight;
 
     public static FragmentCategory newInstance() {
         return new FragmentCategory();
@@ -89,43 +94,46 @@ public class FragmentCategory extends BaseFragment{
         TextView leftTabTv = (TextView) findViewById(view, R.id.category_left_tab_left_tv);
         TextView rightTabTv = (TextView) findViewById(view, R.id.category_left_tab_right_tv);
         leftBtn.setOnClickListener(view1 -> {
+            sex = "1";
             leftFlagView.setVisibility(View.VISIBLE);
             rightFlagView.setVisibility(View.INVISIBLE);
             leftTabTv.setTextColor(ContextCompat.getColor(mContext, R.color.colorAccent));
             rightTabTv.setTextColor(ContextCompat.getColor(mContext, R.color.color_9b9b9b));
+            loadCategoryData(sex);
         });
         rightBtn.setOnClickListener(view1 -> {
+            sex = "2";
             leftFlagView.setVisibility(View.INVISIBLE);
             rightFlagView.setVisibility(View.VISIBLE);
             leftTabTv.setTextColor(ContextCompat.getColor(mContext, R.color.color_9b9b9b));
             rightTabTv.setTextColor(ContextCompat.getColor(mContext, R.color.colorAccent));
+            loadCategoryData(sex);
         });
     }
 
     @Override
     public void onFragmentFirstVisible() {
-        loadCategoryData();
+        loadCategoryData(sex);
         //loadData();
     }
 
-    private void loadCategoryData() {
+    private void loadCategoryData(String sex) {
         LogUtils.tag("zlq").e("loadCategoryData");
         categoryViewModel = new CategoryViewModel();
         addRunStatusChangeCallBack(categoryViewModel);
-        categoryViewModel.getShoppingCategory();
+        categoryViewModel.getCategoryLeft(sex);
     }
 
     @Override
     protected void onDataResult(Object o) {
-        OpDiscoverIndexResult result = (OpDiscoverIndexResult)o;
+        List<OpDiscoverCates> result = (List<OpDiscoverCates>)o;
         if(result != null) {
-            CategoryTitleAdapter mAdapter = new CategoryTitleAdapter(R.layout.item_category_title, result.getDiscoverList());
+            CategoryTitleAdapter mAdapter = new CategoryTitleAdapter(R.layout.item_category_title, result);
             mAdapter.setOnItemClickListener((adapter1, view1, position) -> {
                 if(currentPosition == position) return;
                 currentPosition = position;
                 mAdapter.setSelectPos(position);
-                FragmentCategoryRight fragmentCategoryRight = (FragmentCategoryRight)FragmentUtils.findFragment(getChildFragmentManager(), FragmentCategoryRight.class);
-                fragmentCategoryRight.refreshData(position);
+                fragmentCategoryRight.refreshData(position, sex);
             });
 
             //左边列表
@@ -135,14 +143,18 @@ public class FragmentCategory extends BaseFragment{
 
             ViewGroup.LayoutParams vglp = mCatesTiltsRV.getLayoutParams();
             vglp.width = (int) (ScreenUtils.getScreenWidth() * (0.25));
-            mAdapter.setSelectPos(0);
+            mAdapter.setSelectPos(currentPosition);
 
-            Looper.myQueue().addIdleHandler(() -> {
-                //右边列表
-                FragmentUtils.addFragment(getChildFragmentManager(), FragmentCategoryRight.newInstance(result.getDiscoverList()),
-                        R.id.category_right_fl, false, true);
-                return false;
-            });
+            if(fragmentCategoryRight == null) {
+                Looper.myQueue().addIdleHandler(() -> {
+                    //右边列表
+                    fragmentCategoryRight = FragmentCategoryRight.newInstance(result);
+                    FragmentUtils.replaceFragment(getChildFragmentManager(), R.id.category_right_fl, fragmentCategoryRight, true);
+                    return false;
+                });
+            } else {
+                fragmentCategoryRight.refreshData(currentPosition, sex);
+            }
         }
     }
 
@@ -164,7 +176,7 @@ public class FragmentCategory extends BaseFragment{
                 mAdapter.setOnItemClickListener((adapter1, view1, position) -> {
                     mAdapter.setSelectPos(position);
                     FragmentCategoryRight fragmentCategoryRight = (FragmentCategoryRight)FragmentUtils.findFragment(getChildFragmentManager(), FragmentCategoryRight.class);
-                    fragmentCategoryRight.refreshData(position);
+                    fragmentCategoryRight.refreshData(position, sex);
                 });
                 LinearLayoutManager catesTiltsLM = new LinearLayoutManager(Utils.getContext());
                 mCatesTiltsRV.setLayoutManager(catesTiltsLM);

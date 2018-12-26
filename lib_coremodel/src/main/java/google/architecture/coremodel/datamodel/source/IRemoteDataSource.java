@@ -18,6 +18,7 @@ import google.architecture.coremodel.data.FootprintData;
 import google.architecture.coremodel.data.GoodsSpecData;
 import google.architecture.coremodel.data.HomeData;
 import google.architecture.coremodel.data.MyOrderData;
+import google.architecture.coremodel.data.OpDiscoverCates;
 import google.architecture.coremodel.data.OpDiscoverIndexResult;
 import google.architecture.coremodel.data.OrderData;
 import google.architecture.coremodel.data.OrderDetailData;
@@ -35,9 +36,7 @@ import google.architecture.coremodel.data.xlj.goodsdetail.GoodsDetailData;
 import google.architecture.coremodel.data.xlj.shopdata.ShopData;
 import google.architecture.coremodel.datamodel.http.HttpResult;
 import google.architecture.coremodel.datamodel.http.XLJ_HttpResult;
-import google.architecture.coremodel.datamodel.http.exception.XLJ_ResultFunc;
 import io.reactivex.Flowable;
-import retrofit2.http.Field;
 
 /**
  * @author lq.zeng
@@ -149,4 +148,6 @@ public interface IRemoteDataSource {
     Flowable<XLJ_HttpResult<ShopData>> xlj_getShopData(String requestJson);
     Flowable<XLJ_HttpResult<GoodsDetailData>> xlj_getGoodsDetail(String requestJson);
     Flowable<XLJ_HttpResult<GoodsDetailData>> xlj_getGoodsList(String requestJson);
+    Flowable<XLJ_HttpResult<List<OpDiscoverCates>>> xlj_getTopCat(String requestJson);
+    Flowable<XLJ_HttpResult<List<OpDiscoverCates>>> xlj_getChildCat(String requestJson);
 }

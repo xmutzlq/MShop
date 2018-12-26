@@ -3,5 +3,6 @@
     android:id="@+id/category_right_rv"
     android:layout_width="wrap_content"
     android:layout_height="match_parent"
+    android:paddingTop="@dimen/size_10dp"
     android:paddingRight="@dimen/size_10dp"/>
 

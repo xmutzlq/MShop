@@ -23,7 +23,6 @@ import google.architecture.common.util.CommKeyUtil;
 import google.architecture.common.util.ScreenUtils;
 import google.architecture.common.viewmodel.CategoryViewModel;
 import google.architecture.coremodel.data.OpDiscoverCates;
-import google.architecture.coremodel.data.OpDiscoverIndexResult;
 
 /**
  * @author lq.zeng
@@ -101,12 +100,12 @@ public class FragmentCategoryRight extends BaseFragment {
         //组装数据
         categoryViewModel = new CategoryViewModel();
         addRunStatusChangeCallBack(categoryViewModel);
-        refreshData(0);
+        refreshData(0, "1");
     }
 
     @Override
     protected void onDataResult(Object o) {
-        OpDiscoverIndexResult result = (OpDiscoverIndexResult)o;
+        List<OpDiscoverCates> result = (List<OpDiscoverCates>)o;
         if(result == null) return;
         if(categoryViewModel.isEmpty.get()) {
             sectionAdapter.setEmptyView(R.layout.layout_view_empty);
@@ -124,25 +123,29 @@ public class FragmentCategoryRight extends BaseFragment {
             categoryRightSections.add(sectionBanner);
         }*/
 
-        for (OpDiscoverCates cate : result.getDiscoverList()) {
+        for (OpDiscoverCates cate : result) {
 
+
+            CategoryRightSection sChild = new CategoryRightSection(cate);
+            sChild.setType(CategoryRightSection.SECTION_TYPE_ITEM);
+            categoryRightSections.add(sChild);
 
             //孩子
-            if(cate.getChild() != null && cate.getChild().size() > 0) {
-
-                //头部-标题
-                CategoryRightSection sectionTitle = new CategoryRightSection(true, cate);
-                sectionTitle.setType(CategoryRightSection.SECTION_TYPE_TITLE);
-                categoryRightSections.add(sectionTitle);
-
-                for (OpDiscoverCates cates : cate.getChild()) {
-                    CategoryRightSection sChild = new CategoryRightSection(cates);
-                    sChild.setType(CategoryRightSection.SECTION_TYPE_ITEM);
-                    categoryRightSections.add(sChild);
-                }
-
-
-            }
+//            if(cate.getChild() != null && cate.getChild().size() > 0) {
+//
+//                //头部-标题
+//                CategoryRightSection sectionTitle = new CategoryRightSection(true, cate);
+//                sectionTitle.setType(CategoryRightSection.SECTION_TYPE_TITLE);
+//                categoryRightSections.add(sectionTitle);
+//
+//                for (OpDiscoverCates cates : cate.getChild()) {
+//                    CategoryRightSection sChild = new CategoryRightSection(cates);
+//                    sChild.setType(CategoryRightSection.SECTION_TYPE_ITEM);
+//                    categoryRightSections.add(sChild);
+//                }
+//
+//
+//            }
         }
 
         if(sectionAdapter != null) sectionAdapter.notifyDataSetChanged();
@@ -152,8 +155,8 @@ public class FragmentCategoryRight extends BaseFragment {
 
     }
 
-    public void refreshData(int position) {
-        categoryViewModel.getShoppingCategory(String.valueOf(opDiscoverCates.get(position).getElement_id()));
+    public void refreshData(int position, String sex) {
+        categoryViewModel.getCategoryRight(sex, String.valueOf(opDiscoverCates.get(position).getElement_id()));
     }
 
     private boolean noData(int position) {

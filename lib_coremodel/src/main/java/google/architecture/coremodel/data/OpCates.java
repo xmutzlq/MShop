@@ -25,17 +25,19 @@ public class OpCates implements Parcelable {
     public static final String TYPE_TOPIC_3PIC = "single_topic_3";//新用户专场
     public static final String TYPE_BANNER = "banner";              //Banner类型
 
-    @SerializedName("id")
+    @SerializedName("catId")
     private int element_id;
     @SerializedName("element_type")
     private String element_type = TextUtil.TEXT_EMPTY;
-    @SerializedName("mobile_name")
+    @SerializedName("catName")
     private String title = TextUtil.TEXT_EMPTY;
     @SerializedName("subtitle")
     private String subtitle = TextUtil.TEXT_EMPTY;
     @SerializedName("extend")
     private String extend = TextUtil.TEXT_EMPTY;
-    @SerializedName("image")
+    @SerializedName("urlids")
+    private String urlids;
+    @SerializedName("catImg")
     private String pic = TextUtil.TEXT_EMPTY;
     @SerializedName("pic_width")
     private int pic_width;
@@ -70,6 +72,8 @@ public class OpCates implements Parcelable {
         pic_height = in.readInt();
         child = in.readArrayList(OpDiscoverCates.class.getClassLoader());
 
+        urlids = in.readString();
+
         name = in.readString();
         type = in.readString();
         h5_url = in.readString();
@@ -93,6 +97,8 @@ public class OpCates implements Parcelable {
         dest.writeInt(pic_width);
         dest.writeInt(pic_height);
         dest.writeList(child);
+
+        dest.writeString(urlids);
 
         dest.writeString(name);
         dest.writeString(type);
@@ -232,6 +238,14 @@ public class OpCates implements Parcelable {
     public boolean isTypeBanner() {
 
         return TYPE_BANNER.equals(element_type);
+    }
+
+    public String getUrlids() {
+        return urlids;
+    }
+
+    public void setUrlids(String urlids) {
+        this.urlids = urlids;
     }
 
     @Override

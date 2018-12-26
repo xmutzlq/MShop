@@ -1,8 +1,6 @@
 package google.architecture.category.adapter;
 
 import com.chad.library.adapter.base.BaseSectionQuickAdapter;
-import com.youth.banner.BannerConfig;
-import com.youth.banner.Transformer;
 
 import java.util.List;
 
@@ -10,8 +8,7 @@ import google.architecture.category.R;
 import google.architecture.category.section.CategoryRightSection;
 import google.architecture.category.viewholder.CategoryRightTitleViewHolder;
 import google.architecture.common.imgloader.ImageLoader;
-import google.architecture.common.util.GlideImageLoader;
-import google.architecture.common.widget.banner.MyBanner;
+import google.architecture.coremodel.datamodel.http.ApiConstants;
 
 /**
  * @author lq.zeng
@@ -71,7 +68,8 @@ public class CategoryRightAdapter extends BaseSectionQuickAdapter<CategoryRightS
     @Override
     protected void convert(CategoryRightTitleViewHolder helper, CategoryRightSection item) {
         helper.setType(item.getType());
-        ImageLoader.get().load(helper.getView(R.id.category_section_fivCover), item.t.getPic());
+        String pic = ApiConstants.GankHost + item.t.getPic();
+        ImageLoader.get().load(helper.getView(R.id.category_section_fivCover), pic);
         helper.setText(R.id.category_section_tvName, item.t.getTitle());
     }
 

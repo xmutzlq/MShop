@@ -18,6 +18,7 @@ import google.architecture.coremodel.data.FootprintData;
 import google.architecture.coremodel.data.GoodsSpecData;
 import google.architecture.coremodel.data.HomeData;
 import google.architecture.coremodel.data.MyOrderData;
+import google.architecture.coremodel.data.OpDiscoverCates;
 import google.architecture.coremodel.data.OpDiscoverIndexResult;
 import google.architecture.coremodel.data.OrderData;
 import google.architecture.coremodel.data.OrderDetailData;
@@ -385,6 +386,16 @@ public class DeHongDataRepository implements IRemoteDataSource {
     @Override
     public Flowable<XLJ_HttpResult<GoodsDetailData>> xlj_getGoodsList(String requestJson) {
         return remoteDataSource.xlj_getGoodsList(requestJson);
+    }
+
+    @Override
+    public Flowable<XLJ_HttpResult<List<OpDiscoverCates>>> xlj_getTopCat(String requestJson) {
+        return remoteDataSource.xlj_getTopCat(requestJson);
+    }
+
+    @Override
+    public Flowable<XLJ_HttpResult<List<OpDiscoverCates>>> xlj_getChildCat(String requestJson) {
+        return remoteDataSource.xlj_getChildCat(requestJson);
     }
 
 }

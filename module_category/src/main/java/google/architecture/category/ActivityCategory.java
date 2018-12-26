@@ -21,6 +21,7 @@ import io.reactivex.schedulers.Schedulers;
  */
 
 public class ActivityCategory extends BaseActivity {
+
     @Override
     protected int getLayout() {
         return R.layout.activity_category;

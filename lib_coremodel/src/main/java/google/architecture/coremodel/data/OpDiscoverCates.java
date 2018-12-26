@@ -20,7 +20,7 @@ import google.architecture.coremodel.util.IOUtil;
 public class OpDiscoverCates extends OpCates implements Parcelable {
     public static final String TYPE_TITLE = "title";  //本地标记
 
-    @SerializedName("parent_id")
+    @SerializedName("parentId")
     private int parentId;
     @SerializedName("parentChannelId")
     private int parentChannelId;

@@ -18,6 +18,7 @@ import google.architecture.coremodel.data.FootprintData;
 import google.architecture.coremodel.data.GoodsSpecData;
 import google.architecture.coremodel.data.HomeData;
 import google.architecture.coremodel.data.MyOrderData;
+import google.architecture.coremodel.data.OpDiscoverCates;
 import google.architecture.coremodel.data.OpDiscoverIndexResult;
 import google.architecture.coremodel.data.OrderData;
 import google.architecture.coremodel.data.OrderDetailData;
@@ -36,7 +37,6 @@ import google.architecture.coremodel.data.xlj.shopdata.ShopData;
 import google.architecture.coremodel.datamodel.http.ApiConstants;
 import google.architecture.coremodel.datamodel.http.HttpResult;
 import google.architecture.coremodel.datamodel.http.XLJ_HttpResult;
-import google.architecture.coremodel.datamodel.http.exception.XLJ_ResultFunc;
 import io.reactivex.Flowable;
 import retrofit2.http.Field;
 import retrofit2.http.FieldMap;
@@ -295,4 +295,14 @@ public interface DeHongDataService {
     @FormUrlEncoded
     @POST(ApiConstants.XLJ_Goods_List)
     Flowable<XLJ_HttpResult<GoodsDetailData>> xlj_getGoodsList(@Field("request_json") String requestJson);
+
+    @Headers({ApiConstants.HEADER_MULTI_URL, ApiConstants.HEADER_USE_JSON_REQUEST})
+    @FormUrlEncoded
+    @POST(ApiConstants.XLJ_Cat_TOP)
+    Flowable<XLJ_HttpResult<List<OpDiscoverCates>>> xlj_getTopCat(@Field("request_json") String requestJson);
+
+    @Headers({ApiConstants.HEADER_MULTI_URL, ApiConstants.HEADER_USE_JSON_REQUEST})
+    @FormUrlEncoded
+    @POST(ApiConstants.XLJ_Cat_Child)
+    Flowable<XLJ_HttpResult<List<OpDiscoverCates>>> xlj_getChildCat(@Field("request_json") String requestJson);
 }

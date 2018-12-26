@@ -13,6 +13,7 @@ import java.util.List;
 public class OpDiscoverIndexResult implements Serializable{
     @SerializedName("category_list")
     private List<OpDiscoverCates> discoverList;
+    @SerializedName("data")
     private List<OpDiscoverCates> localLevel2List;
 
     @SerializedName("slide_list")
