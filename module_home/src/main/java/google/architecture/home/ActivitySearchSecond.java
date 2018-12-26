@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.os.Looper;
 import android.support.annotation.Nullable;
 import android.support.v4.app.ActivityOptionsCompat;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.text.TextUtils;
@@ -87,6 +88,7 @@ public class ActivitySearchSecond extends BasePagingActivity<ActivitySearchSecon
 
     @Override
     protected void prePareRecycleView() {
+        recyclerView.setBackgroundColor(ContextCompat.getColor(this, R.color.white));
         recyclerView.setPadding(DimensionsUtil.dip2px(this_, 15), DimensionsUtil.dip2px(this_, 15),
                 DimensionsUtil.dip2px(this_, 15), DimensionsUtil.dip2px(this_, 15));
         if(recyclerView.getItemDecorationCount() > 0) recyclerView.removeItemDecorationAt(0);

@@ -164,7 +164,7 @@ public class DetCommodityNewFragment extends BaseFragment<FragmentDetCommodityBi
     public void onFragmentFirstVisible() {
         if(null != getActivity() && getActivity().getIntent() != null) {
             String goodsId = getActivity().getIntent().getStringExtra(CommEvent.KEY_EXTRA_VALUE);
-            loadCommodityData();
+            loadCommodityData(goodsId);
         }
     }
 
@@ -272,10 +272,10 @@ public class DetCommodityNewFragment extends BaseFragment<FragmentDetCommodityBi
         binding.layoutDetRecommend.detailCommodityRecommendIndicator.setNavigator(circleNavigator);
     }
 
-    private void loadCommodityData() {
+    private void loadCommodityData(String goodsId) {
         xlj_goodsDetailViewModel = new XLJ_GoodsDetailViewModel();
         addRunStatusChangeCallBack(xlj_goodsDetailViewModel);
-        xlj_goodsDetailViewModel.getGoodsDetail(GoodsDetailRequestEntity.getRequestJson());
+        xlj_goodsDetailViewModel.getGoodsDetail(GoodsDetailRequestEntity.getRequestJson(goodsId));
     }
 
     private void updateBannerIndicator(int position, int count) {

@@ -13,13 +13,13 @@ public class GoodsDetailRequestEntity {
     @SerializedName("goodsId")
     private String goodsId;
 
-    public static String getRequestJson() {
+    public static String getRequestJson(String goodsId) {
         Gson gson = new Gson();
         GoodsDetailRequestEntity goodsDetailRequestEntity = new GoodsDetailRequestEntity();
         goodsDetailRequestEntity.setAppType("android");
         goodsDetailRequestEntity.setAppToken("y7w7jkt12E6I3BM9");
         goodsDetailRequestEntity.setMethod("Goods/goodsDetail");
-        goodsDetailRequestEntity.setGoodsId("53963");
+        goodsDetailRequestEntity.setGoodsId(goodsId);
         return gson.toJson(goodsDetailRequestEntity);
     }
 
