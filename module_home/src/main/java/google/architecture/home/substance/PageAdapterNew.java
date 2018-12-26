@@ -1,6 +1,7 @@
 package google.architecture.home.substance;
 
 import android.content.Context;
+import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.view.ViewGroup;
 
@@ -60,4 +61,16 @@ public class PageAdapterNew {
             }
         };
     }
+
+    public BaseDelegateAdapter initBrands(){
+        LinearLayoutHelper linearLayoutHelper = new LinearLayoutHelper();
+        return new BaseDelegateAdapter(mContext, linearLayoutHelper, R.layout.home_item_brands,1, PageConstans.viewType.typeBanner){
+            @Override
+            public void onBindViewHolder(BaseViewHolder holder, int position) {
+                super.onBindViewHolder(holder, position);
+                RecyclerView brandView = holder.getView(R.id.brand_recycler_view);
+            }
+        };
+    }
+
 }
