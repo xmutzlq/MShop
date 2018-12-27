@@ -49,7 +49,7 @@ public class ActivityTestList extends BaseActivity {
         adapter.setOnItemClickListener((adapter1, view, position) -> {
             ActivityOptionsCompat options = ActivityOptionsCompat.makeSceneTransitionAnimation(this, view, ViewCompat.getTransitionName(view));
             Intent intent = new Intent(this, ActivityDetails.class);
-            intent.putExtra(CommEvent.KEY_EXTRA_VALUE, "3");
+            intent.putExtra(CommEvent.KEY_EXTRA_VALUE, "53963");
             ActivityCompat.startActivity(this, intent, options.toBundle());
         });
         RecyclerView recyclerView = findViewById(R.id.comm_recyclerView);

@@ -3,7 +3,7 @@ package com.king.android.details.adapter.spec.provider;
 import com.chad.library.adapter.base.BaseViewHolder;
 import com.king.android.details.R;
 import com.king.android.details.adapter.spec.SpecAdapter;
-import com.king.android.details.adapter.spec.SpecFilterTagAdapter;
+import com.king.android.details.adapter.spec.SpecFilterTagNewAdapter;
 import com.king.android.details.cache.SpecData;
 
 import java.util.Set;
@@ -37,11 +37,11 @@ public class ColorSpecProvider extends BaseItemProvider<SpecData, BaseViewHolder
     @Override
     public void convert(BaseViewHolder helper, SpecData data, int position) {
         helper.setText(R.id.spec_item_color_title, data.name);
-        SpecFilterTagAdapter adapter = new SpecFilterTagAdapter(mContext, data.colors);
+        SpecFilterTagNewAdapter adapter = new SpecFilterTagNewAdapter(mContext, data.item1);
         TagFlowLayout tagFlowLayout = helper.getView(R.id.filter_spec_layout);
         tagFlowLayout.setMaxSelectCount(1);
         tagFlowLayout.setOnTagClickListener((view, position1, parent) -> {
-            if(itemCheckedListener != null && adapter.getData().get(position1).getSelected() == 1) {
+            if(itemCheckedListener != null && adapter.getData().get(position1).getIsDefault() == 1) {
                 itemCheckedListener.onItemCheckedListener(tagFlowLayout.getSelectedList());
             }
             return true;

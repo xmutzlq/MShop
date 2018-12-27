@@ -1,5 +1,6 @@
 package com.king.android.details;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.os.Looper;
 import android.support.annotation.Nullable;
@@ -17,6 +18,8 @@ import com.king.android.details.adapter.DetailFragmentAdapter;
 import com.king.android.details.cache.DetailInfoManager;
 import com.king.android.details.view.DetailHeaderView;
 import com.king.android.res.config.ARouterPath;
+
+import org.greenrobot.eventbus.EventBus;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -82,13 +85,13 @@ public class ActivityDetails extends BaseActivity {
             ARouter.getInstance().build(ARouterPath.CartAty).navigation();
         });
 
-        /**客服**/
-//        findViewById(R.id.detail_btn_service).setOnClickListener(v -> {
-//            if(mDetailInfoManager == null) return;
-//            if(mFragments.get(0) instanceof DetCommodityFragment) {
-//                ((DetCommodityFragment)mFragments.get(0)).goService();
-//            }
-//        });
+        /**首页**/
+        findViewById(R.id.detail_btn_service).setOnClickListener(v -> {
+            Bundle bundle = new Bundle();
+            bundle.putInt(CommKeyUtil.EXTRA_KEY, 0);
+            EventBus.getDefault().post(new CommEvent(CommEvent.MSG_TYPE_HOME_GO, bundle));
+            ARouter.getInstance().build(ARouterPath.AppMainAty).withFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP).navigation(this_);
+        });
 
         /**收藏**/
 //        favoriteIv = findViewById(R.id.detail_btn_like_iv);

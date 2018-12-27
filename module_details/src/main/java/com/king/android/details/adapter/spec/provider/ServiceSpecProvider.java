@@ -3,8 +3,10 @@ package com.king.android.details.adapter.spec.provider;
 import com.chad.library.adapter.base.BaseViewHolder;
 import com.king.android.details.R;
 import com.king.android.details.adapter.spec.SpecAdapter;
+import com.king.android.details.adapter.spec.SpecFilterTagAdapter;
 import com.king.android.details.cache.SpecData;
 
+import google.architecture.common.widget.TagFlowLayout;
 import google.architecture.common.widget.adapter.BaseItemProvider;
 
 /**
@@ -14,18 +16,35 @@ import google.architecture.common.widget.adapter.BaseItemProvider;
 
 public class ServiceSpecProvider extends BaseItemProvider<SpecData, BaseViewHolder> {
 
+    private ColorSpecProvider.IItemCheckedListener itemCheckedListener;
+
+    public ServiceSpecProvider(ColorSpecProvider.IItemCheckedListener itemCheckedListener) {
+        this.itemCheckedListener = itemCheckedListener;
+    }
+
     @Override
     public int viewType() {
-        return SpecAdapter.TYPE_COUNT;
+        return SpecAdapter.TYPE_SERVICE;
     }
 
     @Override
     public int layout() {
-        return R.layout.layout_spec_item_count;
+        return R.layout.layout_spec_item_color;
     }
 
     @Override
     public void convert(BaseViewHolder helper, SpecData data, int position) {
+        helper.setText(R.id.spec_item_color_title, data.name);
+        SpecFilterTagAdapter adapter = new SpecFilterTagAdapter(mContext, data.colors);
+        TagFlowLayout tagFlowLayout = helper.getView(R.id.filter_spec_layout);
+        tagFlowLayout.setMaxSelectCount(1);
+        tagFlowLayout.setOnTagClickListener((view, position1, parent) -> {
+            if(itemCheckedListener != null && adapter.getData().get(position1).getSelected() == 1) {
+                itemCheckedListener.onItemCheckedListener(tagFlowLayout.getSelectedList());
+            }
+            return true;
+        });
+        tagFlowLayout.setAdapter(adapter);
     }
 
     @Override
@@ -36,4 +55,5 @@ public class ServiceSpecProvider extends BaseItemProvider<SpecData, BaseViewHold
     public boolean onLongClick(BaseViewHolder helper, SpecData data, int position) {
         return true;
     }
+
 }

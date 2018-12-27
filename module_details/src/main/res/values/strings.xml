@@ -41,4 +41,7 @@
     <string name="detail_off">满减</string>
     <string name="detail_gift">赠品</string>
     <string name="detail_point">积分</string>
+
+    <string name="detail_save_get_value">总库存%1$s 店铺库存%2$s</string>
+    <string name="detail_choose_flag_value">已选择%s</string>
 </resources>

@@ -2,6 +2,7 @@ package google.architecture.common.widget;
 
 import android.app.Dialog;
 import android.content.Context;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.BottomSheetBehavior;
@@ -88,7 +89,9 @@ public abstract class BaseBottomSheetFrag extends BottomSheetDialogFragment {
         mBehavior.setHideable(true);
         mBehavior.setBottomSheetCallback(mBottomSheetBehaviorCallback);
         //圆角边的关键(设置背景透明)
-//        ((View) rootView.getParent()).setBackgroundColor(Color.TRANSPARENT);
+        if(isNeedHideBg()) {
+            ((View) rootView.getParent()).setBackgroundColor(Color.TRANSPARENT);
+        }
         //重置高度
         if(isNeedHeight()) {
             if (dialog != null) {
@@ -119,6 +122,8 @@ public abstract class BaseBottomSheetFrag extends BottomSheetDialogFragment {
     public boolean isNeedHeight() {
         return true;
     }
+
+    public boolean isNeedHideBg() { return false;}
 
     /**
      * 使用关闭弹框 是否使用动画可选

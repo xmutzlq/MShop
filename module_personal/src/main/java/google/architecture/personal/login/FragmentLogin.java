@@ -200,4 +200,8 @@ public class FragmentLogin extends BaseFragment<FragmentLoginBinding> implements
             }
         }
     }
+
+    private static class WeiXinBean {
+
+    }
 }

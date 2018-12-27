@@ -96,6 +96,7 @@
     <color name="blue_zan_deep">#3baaff</color>
     <color name="grey_zan">#FFB6B6B4</color>
 
+    <color name="color_2C04A5">#2C04A5</color>
     <color name="text_color">#EE383838</color>
 
     <!-- 购物车 -->
@@ -160,7 +161,9 @@
     <color name="color_20808080">#20808080</color>
     <color name="color_EC308A">#EC308A</color>
     <color name="color_D83256">#D83256</color>
+    <color name="color_890C58">#890C58</color>
     <color name="color_A30598">#A30598</color>
+    <color name="color_A10498">#A10498</color>
 
     <color name="vw_BgItem">#353535</color>
     <color name="vw_ShadowItem">#94333232</color>

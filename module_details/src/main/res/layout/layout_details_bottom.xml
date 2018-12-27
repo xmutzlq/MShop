@@ -2,26 +2,27 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
+    android:layout_height="?attr/actionBarSize"
+    android:paddingRight="@dimen/size_5dp"
     android:orientation="horizontal"
     android:gravity="center_vertical"
-    android:background="@color/white">
+    android:background="@color/common_bg">
     <LinearLayout
         android:id="@+id/detail_btn_service"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:paddingLeft="@dimen/size_10dp"
-        android:paddingRight="@dimen/size_8dp"
+        android:paddingLeft="@dimen/size_20dp"
+        android:paddingRight="@dimen/size_10dp"
         android:gravity="center_horizontal"
         android:orientation="vertical">
         <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="@dimen/size_20dp"
+            android:layout_height="@dimen/size_20dp"
             android:src="@mipmap/ic_detail_home"/>
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/size_2dp"
+            android:layout_marginTop="@dimen/size_5dp"
             android:textColor="@color/color_666666"
             android:textSize="@dimen/text_size_11sp"
             android:text="@string/detail_bottom_home"/>
@@ -31,20 +32,20 @@
         android:id="@+id/detail_btn_like"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:paddingLeft="@dimen/size_8dp"
-        android:paddingRight="@dimen/size_8dp"
+        android:paddingLeft="@dimen/size_10dp"
+        android:paddingRight="@dimen/size_10dp"
         android:gravity="center_horizontal"
         android:orientation="vertical">
         <ImageView
             android:id="@+id/detail_btn_like_iv"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="@dimen/size_20dp"
+            android:layout_height="@dimen/size_20dp"
             android:src="@mipmap/ic_detail_kefu"/>
         <TextView
             android:id="@+id/detail_btn_like_tv"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/size_2dp"
+            android:layout_marginTop="@dimen/size_5dp"
             android:textColor="@color/color_666666"
             android:textSize="@dimen/text_size_11sp"
             android:text="@string/detail_bottom_service"/>
@@ -54,42 +55,44 @@
         android:id="@+id/detail_btn_go_cart"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:paddingLeft="@dimen/size_8dp"
-        android:paddingRight="@dimen/size_10dp"
-        android:paddingTop="@dimen/size_12dp"
-        android:paddingBottom="@dimen/size_12dp"
+        android:paddingLeft="@dimen/size_10dp"
+        android:paddingRight="@dimen/size_20dp"
         android:gravity="center_horizontal"
         android:orientation="vertical">
         <ImageView
             android:id="@+id/detail_btn_go_cart_iv"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="@dimen/size_20dp"
+            android:layout_height="@dimen/size_20dp"
             android:src="@mipmap/ic_detail_cart"/>
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/size_2dp"
+            android:layout_marginTop="@dimen/size_5dp"
             android:textColor="@color/color_666666"
             android:textSize="@dimen/text_size_11sp"
             android:text="@string/detail_cart"/>
     </LinearLayout>
 
-    <google.architecture.common.widget.RoundButton
-        android:id="@+id/detail_btn_buy"
-        style="@style/RoundButton"
-        android:text="@string/detail_buy_now"
-        android:layout_marginRight="@dimen/dp_4"
-        app:btnCornerRadius="stadium"
-        app:btnPressedRatio="0.8"
-        app:btnSolidColor="#B60909" />
-
-    <google.architecture.common.widget.RoundButton
+    <TextView
         android:id="@+id/detail_btn_add_cart"
-        style="@style/RoundButton"
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:layout_weight="1"
+        android:gravity="center"
+        android:textSize="@dimen/text_size_15sp"
+        android:textColor="@color/white"
         android:text="@string/detail_add_cart"
-        android:layout_marginLeft="@dimen/dp_4"
-        android:layout_marginRight="@dimen/size_8dp"
-        app:btnCornerRadius="stadium"
-        app:btnPressedRatio="0.8"
-        app:btnSolidColor="#AB8A59" />
+        android:background="@mipmap/left_gradient_btn"/>
+
+    <TextView
+        android:id="@+id/detail_btn_buy"
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:layout_weight="1"
+        android:gravity="center"
+        android:textSize="@dimen/text_size_15sp"
+        android:textColor="@color/white"
+        android:text="@string/detail_buy_now"
+        android:background="@mipmap/right_gradient_btn"/>
+
 </LinearLayout>

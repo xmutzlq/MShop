@@ -22,11 +22,11 @@ import com.alibaba.android.arouter.launcher.ARouter;
 import com.king.android.details.ActivityDetails;
 import com.king.android.details.R;
 import com.king.android.details.adapter.DetailBannerAdapter;
-import com.king.android.details.adapter.DetailRecommendAdapter;
 import com.king.android.details.adapter.DetailRecommendParentAdapter;
 import com.king.android.details.cache.DetailInfoManager;
 import com.king.android.details.databinding.FragmentDetCommodityBinding;
 import com.king.android.details.util.DetailUtil;
+import com.king.android.details.util.SpecParams;
 import com.king.android.details.widget.DetailRecommendCircleNavigator;
 import com.king.android.res.config.ARouterPath;
 import com.king.android.res.util.ConvertUtils;
@@ -202,7 +202,7 @@ public class DetCommodityNewFragment extends BaseFragment<FragmentDetCommodityBi
             binding.xljLayoutTicket.detailLayoutTicketName.setText(getString(R.string.detail_ticket_get_value,
                     info.getCouponsList().get(0).getUseMoney(), info.getCouponsList().get(0).getCouponValue()));
             binding.xljLayoutTicket.detailLayoutTicketGiftTv.setText(getString(R.string.detail_ticket_gift_value));
-            binding.xljLayoutTicket.detailLayoutTicketGet.setOnClickListener(view -> {
+            binding.xljLayoutTicket.getRoot().setOnClickListener(view -> {
                 TicketBottomSheetFragment ticketBottomSheetFragment = new TicketBottomSheetFragment();
                 ticketBottomSheetFragment.show(getChildFragmentManager(), "Dialog");
             });
@@ -222,7 +222,22 @@ public class DetCommodityNewFragment extends BaseFragment<FragmentDetCommodityBi
         binding.xljLayoutChoice.xljLayoutChoiceParams.choiceItemLeftStr.setText(R.string.detail_param);
         binding.xljLayoutChoice.xljLayoutChoiceParams.choiceItemCenterStr.setText(R.string.detail_param_str);
 
-        binding.xljLayoutChoice.xljLayoutChoiceChoose.getRoot().setOnClickListener(v -> {});
+        binding.xljLayoutChoice.xljLayoutChoiceChoose.getRoot().setOnClickListener(v -> {
+            ChooseBottomSheetFragment chooseBottomSheetFragment = new ChooseBottomSheetFragment();
+            java.util.List<SpecParams.SpecChild> specChildList = new ArrayList<>();
+            SpecParams.SpecChild specChild1 = new SpecParams.SpecChild();
+            specChild1.name = info.getSpec().get1().getName();
+            specChild1.detailSpecInfos = info.getSpec().get1().getList();
+            specChildList.add(specChild1);
+            SpecParams.SpecChild specChild5 = new SpecParams.SpecChild();
+            specChild5.name = info.getSpec().get5().getName();
+            specChild5.detailSpecInfos = info.getSpec().get5().getList();
+            specChildList.add(specChild5);
+            SpecParams specParams = new SpecParams();
+            specParams.specs = specChildList;
+            chooseBottomSheetFragment.setData(specParams);
+            chooseBottomSheetFragment.show(getChildFragmentManager(), "Dialog");
+        });
         binding.xljLayoutChoice.xljLayoutChoiceServer.getRoot().setOnClickListener(v -> {
             ServerBottomSheetFragment serverBottomSheetFragment = new ServerBottomSheetFragment();
             serverBottomSheetFragment.show(getChildFragmentManager(), "Dialog");

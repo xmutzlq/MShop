@@ -23,7 +23,7 @@ public class CountSpecProvider extends BaseItemProvider<SpecData, BaseViewHolder
 
     @Override
     public int viewType() {
-        return SpecAdapter.TYPE_COUNT;
+        return SpecAdapter.TYPE_SERVICE;
     }
 
     @Override

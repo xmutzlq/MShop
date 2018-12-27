@@ -3,7 +3,6 @@ package com.king.android.details.cache;
 import java.util.List;
 
 import google.architecture.coremodel.data.DetailSpecListInfo;
-
 /**
  * @author lq.zeng
  * @date 2018/7/12
@@ -18,6 +17,8 @@ public class SpecData {
     public int type; //类型
     public String name; //名称
     public int count; //购买数量
+
+    public java.util.List<google.architecture.coremodel.data.xlj.goodsdetail.List> item1;
 
     public List<DetailSpecListInfo> colors;
     public List<SpecService> services;
