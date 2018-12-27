@@ -2,6 +2,7 @@ package com.king.android.details.adapter.spec;
 
 import android.content.Context;
 import android.support.v4.content.ContextCompat;
+import android.text.TextUtils;
 import android.util.TypedValue;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -71,6 +72,7 @@ public class SpecFilterTagNewAdapter extends TagAdapter<List> {
 
     @Override
     public boolean isEnabled(int position) {
-        return Integer.valueOf(getData().get(position).getShopStock()) > 0;
+        return TextUtils.isEmpty(getData().get(position).getShopStock()) ||
+                Integer.valueOf(getData().get(position).getShopStock()) > 0;
     }
 }

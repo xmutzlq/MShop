@@ -235,6 +235,8 @@ public class DetCommodityNewFragment extends BaseFragment<FragmentDetCommodityBi
             specChildList.add(specChild5);
             SpecParams specParams = new SpecParams();
             specParams.specs = specChildList;
+            specParams.img = info.getGoodsImg();
+            specParams.price = info.getShopPrice();
             chooseBottomSheetFragment.setData(specParams);
             chooseBottomSheetFragment.show(getChildFragmentManager(), "Dialog");
         });

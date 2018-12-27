@@ -10,6 +10,11 @@ import google.architecture.coremodel.data.xlj.goodsdetail.List;
 public class SpecParams {
 
     public java.util.List<SpecChild> specs;
+    public String img;
+    public String price;
+    public String totalSave;
+    public String shopSave;
+    public String chooseStr;
 
     public static class SpecChild {
         public String name;
