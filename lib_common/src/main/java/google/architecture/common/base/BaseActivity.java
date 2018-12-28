@@ -204,7 +204,7 @@ public abstract class BaseActivity<VB extends ViewDataBinding> extends BaseActiv
         super.onDestroy();
     }
 
-    private void release() {
+    protected void release() {
         EventBus.getDefault().unregister(this);
         if (mImmersionBar != null) {
             mImmersionBar.destroy();
@@ -262,57 +262,57 @@ public abstract class BaseActivity<VB extends ViewDataBinding> extends BaseActiv
 
     @Override
     public void setCanBack(boolean isEnable) {
-        mToolbarHelper.setCanBack(isEnable);
+        if(mToolbarHelper != null) mToolbarHelper.setCanBack(isEnable);
     }
 
     @Override
     public void setTitleName(@NonNull String str) {
-        mToolbarHelper.setTitle(str);
+        if(mToolbarHelper != null) mToolbarHelper.setTitle(str);
     }
 
     @Override
     public void setTitleName(@StringRes int str) {
-        mToolbarHelper.setTitle(str);
+        if(mToolbarHelper != null)  mToolbarHelper.setTitle(str);
     }
 
     @Override
     public void setLeftText(int strId, View.OnClickListener clickListener) {
-        mToolbarHelper.setLeftText(strId, clickListener);
+        if(mToolbarHelper != null) mToolbarHelper.setLeftText(strId, clickListener);
     }
 
     @Override
     public void setLeftText(@NonNull String str, View.OnClickListener clickListener) {
-        mToolbarHelper.setLeftText(str, clickListener);
+        if(mToolbarHelper != null) mToolbarHelper.setLeftText(str, clickListener);
     }
 
     @Override
     public void setLeftButton(int drawableId, View.OnClickListener clickListener) {
-        mToolbarHelper.setLeftButton(drawableId, clickListener);
+        if(mToolbarHelper != null) mToolbarHelper.setLeftButton(drawableId, clickListener);
     }
 
     @Override
     public void setLeftButton(Drawable drawable, View.OnClickListener clickListener) {
-        mToolbarHelper.setLeftButton(drawable, clickListener);
+        if(mToolbarHelper != null) mToolbarHelper.setLeftButton(drawable, clickListener);
     }
 
     @Override
     public void setRightText(int strId, View.OnClickListener clickListener) {
-        mToolbarHelper.setRightText(strId, clickListener);
+        if(mToolbarHelper != null) mToolbarHelper.setRightText(strId, clickListener);
     }
 
     @Override
     public void setRightText(@NonNull String str, View.OnClickListener clickListener) {
-        mToolbarHelper.setRightText(str, clickListener);
+        if(mToolbarHelper != null) mToolbarHelper.setRightText(str, clickListener);
     }
 
     @Override
     public void setRightButton(int drawableId, View.OnClickListener clickListener) {
-        mToolbarHelper.setRightButton(drawableId, clickListener);
+        if(mToolbarHelper != null) mToolbarHelper.setRightButton(drawableId, clickListener);
     }
 
     @Override
     public void setRightButton(@NonNull Drawable drawable, View.OnClickListener clickListener) {
-        mToolbarHelper.setRightButton(drawable, clickListener);
+        if(mToolbarHelper != null) mToolbarHelper.setRightButton(drawable, clickListener);
     }
 
     protected void setToolbar(Toolbar toolbar) {

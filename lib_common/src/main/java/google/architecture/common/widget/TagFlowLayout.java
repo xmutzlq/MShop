@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.os.Parcelable;
 import android.text.TextUtils;
 import android.util.AttributeSet;
+import android.view.MotionEvent;
 import android.view.View;
 
 import java.util.HashSet;
@@ -64,6 +65,22 @@ public class TagFlowLayout extends CommFlowLayout
     }
 
     @Override
+    public boolean onTouchEvent(MotionEvent event) {
+        return true;
+    }
+
+    private boolean isHitView(View view, MotionEvent ev) {
+        int[] location = new int[2];
+        view.getLocationOnScreen(location);
+        int x = location[0];
+        int y = location[1];
+        if(ev.getX() < x || ev.getX() > (x + view.getWidth()) || ev.getY() < y || ev.getY() > (y + view.getHeight())){
+            return false;
+        }
+        return true;
+    }
+
+    @Override
     protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
         int cCount = getChildCount();
         for (int i = 0; i < cCount; i++) {
@@ -83,11 +100,9 @@ public class TagFlowLayout extends CommFlowLayout
         super.onMeasure(widthMeasureSpec, heightMeasureSpec);
     }
 
-
     public void setOnSelectListener(OnSelectListener onSelectListener) {
         mOnSelectListener = onSelectListener;
     }
-
 
     public void setOnTagClickListener(OnTagClickListener onTagClickListener) {
         mOnTagClickListener = onTagClickListener;
@@ -128,11 +143,11 @@ public class TagFlowLayout extends CommFlowLayout
             tagViewContainer.addView(tagView);
             addView(tagViewContainer);
 
-            if (preCheckedList.contains(i) && mTagAdapter.isEnabled(i)) {
+            if (preCheckedList.contains(i) /*&& mTagAdapter.isEnabled(i)*/) {
                 setChildChecked(i, tagViewContainer);
             }
 
-            if (mTagAdapter.setSelected(i, adapter.getItem(i)) && mTagAdapter.isEnabled(i)) {
+            if (mTagAdapter.setSelected(i, adapter.getItem(i)) /*&& mTagAdapter.isEnabled(i)*/) {
                 setChildChecked(i, tagViewContainer);
             }
             tagView.setClickable(false);
@@ -140,6 +155,8 @@ public class TagFlowLayout extends CommFlowLayout
             final int position = i;
 
             if(mTagAdapter.isEnabled(i)) { //是否可用
+                tagViewContainer.setEnabled(true);
+                tagViewContainer.setInterrupt(false);
                 tagViewContainer.setOnClickListener(new OnClickListener() {
                     @Override
                     public void onClick(View v) {
@@ -149,6 +166,9 @@ public class TagFlowLayout extends CommFlowLayout
                         }
                     }
                 });
+            } else {
+                tagViewContainer.setEnabled(false);
+                tagViewContainer.setInterrupt(true);
             }
         }
         mSelectedView.addAll(preCheckedList);

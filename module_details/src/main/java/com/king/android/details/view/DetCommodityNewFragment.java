@@ -48,6 +48,7 @@ import google.architecture.common.widget.span.Spans;
 import google.architecture.coremodel.data.DetailSpecSelectedInfo;
 import google.architecture.coremodel.data.xlj.goodsdetail.GoodsDetailData;
 import google.architecture.coremodel.data.xlj.goodsdetail.Like;
+import google.architecture.coremodel.datamodel.http.ApiConstants;
 import google.architecture.coremodel.datamodel.http.event.CommEvent;
 import google.architecture.coremodel.util.TextUtil;
 
@@ -213,8 +214,8 @@ public class DetCommodityNewFragment extends BaseFragment<FragmentDetCommodityBi
         //已选
         binding.xljLayoutChoice.xljLayoutChoiceChoose.choiceItemLeftStr.setText(R.string.detail_choice);
         String color = DetailUtil.getDefaultColor(info.getSpec().get1().getList(), info.getDefaultSpecs().get1());
-        String size = DetailUtil.getDefaultSize(info.getSpec().get5().getList(), info.getDefaultSpecs().get5());
-        binding.xljLayoutChoice.xljLayoutChoiceChoose.choiceItemCenterStr.setText(color + "；" + size);
+        String size = DetailUtil.getDefaultSizeAndSaveCount(info.getSpec().get5().getList(), info.getDefaultSpecs().get5()).pSize;
+        updateSpec(color + "；" + size);
 
         binding.xljLayoutChoice.xljLayoutChoiceServer.choiceItemLeftStr.setText(R.string.detail_server);
         binding.xljLayoutChoice.xljLayoutChoiceServer.choiceItemCenterStr.setText(R.string.detail_server_str);
@@ -224,20 +225,24 @@ public class DetCommodityNewFragment extends BaseFragment<FragmentDetCommodityBi
 
         binding.xljLayoutChoice.xljLayoutChoiceChoose.getRoot().setOnClickListener(v -> {
             ChooseBottomSheetFragment chooseBottomSheetFragment = new ChooseBottomSheetFragment();
-            java.util.List<SpecParams.SpecChild> specChildList = new ArrayList<>();
+
+            SpecParams specParams = new SpecParams();
             SpecParams.SpecChild specChild1 = new SpecParams.SpecChild();
             specChild1.name = info.getSpec().get1().getName();
             specChild1.detailSpecInfos = info.getSpec().get1().getList();
-            specChildList.add(specChild1);
+            specParams.specsColor = specChild1;
+
             SpecParams.SpecChild specChild5 = new SpecParams.SpecChild();
             specChild5.name = info.getSpec().get5().getName();
             specChild5.detailSpecInfos = info.getSpec().get5().getList();
-            specChildList.add(specChild5);
-            SpecParams specParams = new SpecParams();
-            specParams.specs = specChildList;
-            specParams.img = info.getGoodsImg();
+            specParams.specsSize = specChild5;
+
+            specParams.defaultColorId = info.getDefaultSpecs().get1();
+            specParams.defaultSizeId = info.getDefaultSpecs().get5();
+            specParams.img = ApiConstants.GankHost + info.getGoodsImg();
             specParams.price = info.getShopPrice();
             chooseBottomSheetFragment.setData(specParams);
+            chooseBottomSheetFragment.setNotifySpecChange(newSpec ->  updateSpec(newSpec));
             chooseBottomSheetFragment.show(getChildFragmentManager(), "Dialog");
         });
         binding.xljLayoutChoice.xljLayoutChoiceServer.getRoot().setOnClickListener(v -> {
@@ -312,6 +317,10 @@ public class DetCommodityNewFragment extends BaseFragment<FragmentDetCommodityBi
                 }
             }
         }
+    }
+
+    private void updateSpec(String spec) {
+        binding.xljLayoutChoice.xljLayoutChoiceChoose.choiceItemCenterStr.setText(spec);
     }
 
     @Override

@@ -1,6 +1,7 @@
 package google.architecture.common.widget;
 
 import android.content.Context;
+import android.view.MotionEvent;
 import android.view.View;
 import android.widget.Checkable;
 import android.widget.FrameLayout;
@@ -11,6 +12,7 @@ import android.widget.FrameLayout;
  */
 
 public class TagView extends FrameLayout implements Checkable {
+    private boolean isInterrupt;
     private boolean isChecked;
     private static int[] CHECK_STATE = new int[]{android.R.attr.state_checked};
 
@@ -20,6 +22,15 @@ public class TagView extends FrameLayout implements Checkable {
 
     public View getTagView() {
         return getChildAt(0);
+    }
+
+    public void setInterrupt(boolean isInterrupt) {
+        this.isInterrupt = isInterrupt;
+    }
+
+    @Override
+    public boolean onTouchEvent(MotionEvent event) {
+        return isInterrupt ? isInterrupt : super.onTouchEvent(event);
     }
 
     @Override

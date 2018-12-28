@@ -42,7 +42,7 @@ public class ColorSpecProvider extends BaseItemProvider<SpecData, BaseViewHolder
         tagFlowLayout.setMaxSelectCount(1);
         tagFlowLayout.setOnTagClickListener((view, position1, parent) -> {
             if(itemCheckedListener != null && adapter.getData().get(position1).getIsDefault() == 1) {
-                itemCheckedListener.onItemCheckedListener(tagFlowLayout.getSelectedList());
+                itemCheckedListener.onItemCheckedListener(viewType(), adapter.getData().get(position1).getCatId(), tagFlowLayout.getSelectedList());
             }
             return true;
         });
@@ -59,6 +59,6 @@ public class ColorSpecProvider extends BaseItemProvider<SpecData, BaseViewHolder
     }
 
     public interface IItemCheckedListener {
-        void onItemCheckedListener(Set<Integer> selectPosSet);
+        void onItemCheckedListener(int type, String catId, Set<Integer> selectPosSet);
     }
 }

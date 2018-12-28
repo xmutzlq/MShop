@@ -18,13 +18,31 @@ public class DetailUtil {
         return "白色";
     }
 
-    public static String getDefaultSize(java.util.List<List> sizes, String sizeId) {
-        if(sizes == null || sizes.size() == 0) return "0";
+    public static GoodsSizeParam getDefaultSizeAndSaveCount(java.util.List<List> sizes, String sizeId) {
+        GoodsSizeParam params = new GoodsSizeParam();
+        params.pSize = "0";
+        params.pAllSave = 0;
+        params.pShopSave = 0;
+        if(sizes == null || sizes.size() == 0) {
+            return params;
+        }
         for (List size : sizes) {
             if(sizeId.equals(size.getItemId())) {
-                return size.getItemName();
+                params.pSize = size.getItemName();
+                params.pAllSave = size.getSpecStock();
+                params.pShopSave = size.getShopStock();
+                return params;
             }
         }
-        return "0";
+        return params;
+    }
+
+    public static class GoodsSizeParam {
+        //号码大小
+        public String pSize;
+        //号码总库存
+        public int pAllSave;
+        //号码商店库存
+        public int pShopSave;
     }
 }
