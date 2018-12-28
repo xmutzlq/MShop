@@ -225,6 +225,7 @@ public class ActivityDetails extends BaseActivity {
             String goodsId = bundle.getString(CommKeyUtil.EXTRA_KEY);
             ARouter.getInstance().build(ARouterPath.DetailAty)
                     .withString(CommEvent.KEY_EXTRA_VALUE, goodsId).navigation(this_);
+            ViewManager.getInstance().finishActivity();
         }
     }
 

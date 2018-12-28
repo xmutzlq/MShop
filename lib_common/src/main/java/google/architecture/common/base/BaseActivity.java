@@ -63,6 +63,8 @@ public abstract class BaseActivity<VB extends ViewDataBinding> extends BaseActiv
     protected void onEmptyDisplaying() {};
     protected void responseEvent(CommEvent event){}
 
+    boolean isRelease;
+
     @Override
     public Context getContext() {
         return this;
@@ -205,6 +207,8 @@ public abstract class BaseActivity<VB extends ViewDataBinding> extends BaseActiv
     }
 
     protected void release() {
+        if(isRelease) return;
+        isRelease = true;
         EventBus.getDefault().unregister(this);
         if (mImmersionBar != null) {
             mImmersionBar.destroy();

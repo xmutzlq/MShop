@@ -237,7 +237,7 @@ public class FragmentShoppingPersonal2 extends BaseFragment<FragmentShoppingPers
         List<PersonalContentData> personalContentItems2 = new ArrayList<>();
         personalContentItems2.add(new PersonalContentData(String.valueOf(R.mipmap.ic_collection_fill), "我的收藏"));
         personalContentItems2.add(new PersonalContentData(String.valueOf(R.mipmap.ic_foot_print), "浏览记录"));
-        personalContentItems2.add(new PersonalContentData(String.valueOf(R.mipmap.ic_ticket), "优惠券"));
+        //personalContentItems2.add(new PersonalContentData(String.valueOf(R.mipmap.ic_ticket), "优惠券"));
         personalContentItems2.add(new PersonalContentData(String.valueOf(R.mipmap.ic_invite_people), "新人邀请"));
         personalContentItems2.add(new PersonalContentData(String.valueOf(R.mipmap.ic_u_money), "我的资产"));
         personalContentItems2.add(new PersonalContentData(String.valueOf(R.mipmap.ic_u_location), "地址管理"));
