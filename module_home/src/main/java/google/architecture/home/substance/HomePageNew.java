@@ -13,6 +13,7 @@ import java.util.List;
 import google.architecture.common.vcontent.BaseDelegateAdapter;
 import google.architecture.common.vcontent.ContantDelegate;
 import google.architecture.coremodel.data.xlj.shopdata.ShopData;
+import google.architecture.home.R;
 
 public class HomePageNew implements ContantDelegate, PageAdapter.IActionTitleRightLabelClick {
 
@@ -52,6 +53,26 @@ public class HomePageNew implements ContantDelegate, PageAdapter.IActionTitleRig
         itemDelegates.add(mPageAdapter.initSecondBrand());
         itemDelegates.add(mPageAdapter.initTitle("NEW COLLECTION"));
         itemDelegates.add(mPageAdapter.initNewCollection(mData.getGoodsList().get(0)));//new Collection
+        itemDelegates.add(mPageAdapter.initCommonImageView(R.drawable.tem_img_a));//装饰图片
+        itemDelegates.add(mPageAdapter.initHorizontalScrollBrandList(mData.getGoodsList().get(1)));
+        itemDelegates.add(mPageAdapter.initThreeSome(mData.getGoodsList().get(2)));
+        itemDelegates.add(mPageAdapter.initCenterImageView(mData.getFloor().get(6).getImageUrl(),25));
+        itemDelegates.add(mPageAdapter.initCommonImageView(mData.getFloor().get(7).getImageUrl()));
+        itemDelegates.add(mPageAdapter.initCenterImageView(mData.getFloor().get(8).getImageUrl(),25));
+        itemDelegates.add(mPageAdapter.initColumnTwo(mData.getFloor().get(9).getImageUrl(),mData.getFloor().get(10).getImageUrl()));
+        itemDelegates.add(mPageAdapter.initClassify(mData.getClassify()));//classify
+        itemDelegates.add(mPageAdapter.initCommonImageView(mData.getFloor().get(11).getImageUrl(),5,5,5,5));
+        itemDelegates.add(mPageAdapter.initHorizontalScrollBrandList(mData.getGoodsList().get(3)));
+        itemDelegates.add(mPageAdapter.initCommonImageView(mData.getFloor().get(12).getImageUrl(),5,5,5,5));
+        itemDelegates.add(mPageAdapter.initHorizontalScrollBrandList(mData.getGoodsList().get(4)));
+        itemDelegates.add(mPageAdapter.initCommonImageView(mData.getFloor().get(13).getImageUrl(),5,5,5,5));
+        itemDelegates.add(mPageAdapter.initHorizontalScrollBrandList(mData.getGoodsList().get(5)));
+        itemDelegates.add(mPageAdapter.initCommonImageView(mData.getFloor().get(14).getImageUrl(),5,5,5,5));
+        itemDelegates.add(mPageAdapter.initHorizontalScrollBrandList(mData.getGoodsList().get(6)));
+        itemDelegates.add(mPageAdapter.initCommonImageView(mData.getFloor().get(15).getImageUrl(),5,5,5,5));
+        itemDelegates.add(mPageAdapter.initHorizontalScrollBrandList(mData.getGoodsList().get(7)));
+        itemDelegates.add(mPageAdapter.initCommonImageView(mData.getFloor().get(16).getImageUrl(),5,5,5,5));
+        itemDelegates.add(mPageAdapter.initHorizontalScrollBrandList(mData.getGoodsList().get(8)));
         return itemDelegates;
     }
 

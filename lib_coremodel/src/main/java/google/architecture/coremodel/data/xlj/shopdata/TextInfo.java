@@ -1,9 +1,11 @@
 package google.architecture.coremodel.data.xlj.shopdata;
 
+import com.google.gson.annotations.SerializedName;
+
 public class TextInfo {
-
+    @SerializedName("text")
     private String text;
-
+    @SerializedName("urlids")
     private String urlids;
 
     public String getText() {

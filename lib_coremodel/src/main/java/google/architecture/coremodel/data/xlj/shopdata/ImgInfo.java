@@ -1,9 +1,11 @@
 package google.architecture.coremodel.data.xlj.shopdata;
 
+import com.google.gson.annotations.SerializedName;
+
 public class ImgInfo {
-
+    @SerializedName("imageUrl")
     private String imageUrl;
-
+    @SerializedName("urlids")
     private String urlids;
 
     public String getImageUrl() {

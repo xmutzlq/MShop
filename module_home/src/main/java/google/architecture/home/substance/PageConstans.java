@@ -22,6 +22,12 @@ public final class PageConstans {
         int typeNewestGoods = 12;   //最新商品
         int typeYouLikeList = 13;   //猜你喜欢
         int typeBrand = 14;         //商品列表
+        int typeHorizontal = 15;
+        int typeThreeSome = 16;
+        int typeCommonView = 17;
+        int typeCenterView = 18;
+        int typeColumnTwo = 19;
+        int typeClassify = 20;
     }
 
     public interface titleRightClickType {

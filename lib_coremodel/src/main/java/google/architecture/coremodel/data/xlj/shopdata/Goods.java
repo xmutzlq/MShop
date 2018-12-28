@@ -1,15 +1,18 @@
 package google.architecture.coremodel.data.xlj.shopdata;
 
+import com.google.gson.annotations.SerializedName;
+
 public class Goods {
 
+    @SerializedName("imageUrl")
     private String imageUrl;
-
+    @SerializedName("pdu")
     private String pdu;
-
+    @SerializedName("goodsId")
     private long goodsId;
-
+    @SerializedName("goodsName")
     private String goodsName;
-
+    @SerializedName("shopPrice")
     private float shopPrice;
 
     public String getImageUrl() {
