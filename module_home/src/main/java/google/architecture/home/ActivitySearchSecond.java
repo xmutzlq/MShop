@@ -50,8 +50,6 @@ import google.architecture.home.widget.CommFilterTabView;
 public class ActivitySearchSecond extends BasePagingActivity<ActivitySearchSecondBinding>
         implements CommFilterTabView.FilterOpenListener, CommFilterTabView.TabClickListener {
 
-    private final TransitionInformation mTransitionInformation = new TransitionInformation();
-
     private CommFilterTabView tabView;
     //搜索结果数据
     private GridLayoutManager layoutManager;
@@ -183,7 +181,7 @@ public class ActivitySearchSecond extends BasePagingActivity<ActivitySearchSecon
             setListViewModel(mHomeSearchViewModel);
             LogUtils.tag("zlq").e("searchInputId = " + searchInputId + ", searchInputValue = " + searchInputValue);
 //            mHomeSearchViewModel.loadSearchResultData(searchInputId, searchInputValue);
-            mHomeSearchViewModel.loadSearchResultDataNew("0a1-0b1-0c1_0c2", "nike", 3, 1);
+            mHomeSearchViewModel.loadSearchResultDataNew(searchInputId, searchInputValue, 3, 1);
             pagingHelper.onRefresh();
             return false;
         });

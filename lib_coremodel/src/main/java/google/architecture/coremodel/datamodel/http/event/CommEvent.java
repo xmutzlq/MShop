@@ -53,6 +53,8 @@ public class CommEvent {
     /**更新用户已取消订单**/
     public static final String MSG_TYPE_UPDATE_USER_CANCEL_ORDER = "update_user_cancel_order";
 
+    public static final String MSG_OPEN_GOODS_DETAIL_PAGE = "open_goods_detail_page";
+
     /**传参**/
     public static final String KEY_EXTRA_VALUE = "extra_value";
     public static final String KEY_EXTRA_VALUE_2 = "extra_value_2";

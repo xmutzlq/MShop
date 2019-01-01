@@ -219,6 +219,13 @@ public class ActivityDetails extends BaseActivity {
             }, (code, msg) -> {
                 LogUtils.tag("zlq").e("msg = " + msg);
                 ToastUtils.showShortToast(msg);});
+        } else if(CommEvent.MSG_OPEN_GOODS_DETAIL_PAGE.equals(event.msgType)) {
+            release();
+            Bundle bundle = event.bundle;
+            String goodsId = bundle.getString(CommKeyUtil.EXTRA_KEY);
+            ARouter.getInstance().build(ARouterPath.DetailAty)
+                    .withString(CommEvent.KEY_EXTRA_VALUE, goodsId).navigation(this_);
+            ViewManager.getInstance().finishActivity();
         }
     }
 

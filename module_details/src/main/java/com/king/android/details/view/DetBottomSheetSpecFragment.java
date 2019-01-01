@@ -103,7 +103,7 @@ public class DetBottomSheetSpecFragment extends BaseBottomSheetFrag {
         recyclerView.setLayoutManager(linearLayoutManager);
         recyclerView.setNestedScrollingEnabled(false);
         recyclerView.setHasFixedSize(true);
-        adapter = new SpecAdapter(prepareData(detailSpecInfos), selectPosSet -> {
+        adapter = new SpecAdapter(prepareData(detailSpecInfos), (type, catId, selectPosSet) -> {
             detailCommdityViewModel.choiceGoodsSpec(goodsId, getGoodsIds(adapter.getData()), t -> {
                 goodsSpecDataRemote = (GoodsSpecData) t;
                 ImageLoader.get().load(iv, goodsSpecDataRemote.getSpec_select_info().getImage());

@@ -2,70 +2,83 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:paddingTop="@dimen/size_12dp"
-    android:paddingBottom="@dimen/size_12dp"
-    android:gravity="center_vertical"
-    android:orientation="horizontal"
-    android:focusable="true"
-    android:focusableInTouchMode="true">
-    <TextView
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_weight="1"
-        android:layout_marginLeft="@dimen/size_12dp"
-        android:textColor="@color/color_333333"
-        android:textSize="@dimen/text_size_14sp"
-        android:text="数量"/>
+    android:orientation="vertical">
+
+    <View style="@style/DeepUnderLine"
+        android:layout_marginLeft="@dimen/size_15dp"
+        android:layout_marginRight="@dimen/size_15dp"/>
+
     <LinearLayout
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:paddingRight="@dimen/size_10dp"
-        android:orientation="horizontal">
-
+        android:paddingTop="@dimen/size_12dp"
+        android:paddingBottom="@dimen/size_12dp"
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
+        android:focusable="true"
+        android:focusableInTouchMode="true">
         <TextView
-            android:id="@+id/btnDecrease"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:layout_marginLeft="@dimen/size_12dp"
+            android:textColor="@color/color_333333"
+            android:textSize="@dimen/text_size_14sp"
+            android:text="数量"/>
+        <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:paddingLeft="@dimen/size_10dp"
             android:paddingRight="@dimen/size_10dp"
-            android:paddingTop="@dimen/size_5dp"
-            android:paddingBottom="@dimen/size_5dp"
-            android:gravity="center"
-            android:background="@null"
-            android:textSize="@dimen/text_size_16sp"
-            android:textColor="@color/gray_cc"
-            android:text="－"
-            android:textStyle="bold"
-            android:clickable="true"/>
+            android:orientation="horizontal">
 
-        <EditText
-            android:id="@+id/etAmount"
-            android:layout_width="@dimen/size_50dp"
-            android:layout_height="wrap_content"
-            android:maxLength="3"
-            android:maxLines="1"
-            android:gravity="center"
-            android:background="@null"
-            android:inputType="number"
-            android:textSize="@dimen/text_size_15sp"
-            android:textColor="@color/text_color_404040"
-            android:text="1"
-            android:textStyle="bold"/>
+            <TextView
+                android:id="@+id/btnDecrease"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:paddingLeft="@dimen/size_10dp"
+                android:paddingRight="@dimen/size_10dp"
+                android:paddingTop="@dimen/size_5dp"
+                android:paddingBottom="@dimen/size_5dp"
+                android:gravity="center"
+                android:background="@null"
+                android:textSize="@dimen/text_size_16sp"
+                android:textColor="@color/gray_cc"
+                android:text="－"
+                android:textStyle="bold"
+                android:clickable="true"/>
 
-        <TextView
-            android:id="@+id/btnIncrease"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:paddingLeft="@dimen/size_10dp"
-            android:paddingRight="@dimen/size_10dp"
-            android:paddingTop="@dimen/size_5dp"
-            android:paddingBottom="@dimen/size_5dp"
-            android:gravity="center"
-            android:background="@null"
-            android:textSize="@dimen/text_size_16sp"
-            android:textColor="@color/text_color_404040"
-            android:text="＋"
-            android:textStyle="bold"
-            android:clickable="true"/>
+            <EditText
+                android:id="@+id/etAmount"
+                android:layout_width="@dimen/size_50dp"
+                android:layout_height="wrap_content"
+                android:maxLength="3"
+                android:maxLines="1"
+                android:gravity="center"
+                android:background="@null"
+                android:inputType="number"
+                android:textSize="@dimen/text_size_15sp"
+                android:textColor="@color/text_color_404040"
+                android:text="1"
+                android:textStyle="bold"/>
+
+            <TextView
+                android:id="@+id/btnIncrease"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:paddingLeft="@dimen/size_10dp"
+                android:paddingRight="@dimen/size_10dp"
+                android:paddingTop="@dimen/size_5dp"
+                android:paddingBottom="@dimen/size_5dp"
+                android:gravity="center"
+                android:background="@null"
+                android:textSize="@dimen/text_size_16sp"
+                android:textColor="@color/text_color_404040"
+                android:text="＋"
+                android:textStyle="bold"
+                android:clickable="true"/>
+        </LinearLayout>
     </LinearLayout>
+    <View style="@style/DeepUnderLine"
+        android:layout_marginLeft="@dimen/size_15dp"
+        android:layout_marginRight="@dimen/size_15dp"/>
 </LinearLayout>

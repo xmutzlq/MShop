@@ -1,8 +1,6 @@
 package com.king.android.details.adapter.spec;
 
 import android.content.Context;
-import android.support.v4.content.ContextCompat;
-import android.text.TextUtils;
 import android.util.TypedValue;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -45,7 +43,6 @@ public class SpecFilterTagNewAdapter extends TagAdapter<List> {
         tv.setPadding(DimensionsUtil.DIPToPX(15), DimensionsUtil.DIPToPX(5),
                 DimensionsUtil.DIPToPX(15), DimensionsUtil.DIPToPX(5));
         tv.setText(info.getItemName());
-        tv.setTextColor(info.getIsDefault() == 1 ? R.drawable.bg_filter_tag : ContextCompat.getColor(mContext, R.color.color_e1e1e1));
         return tv;
     }
 
@@ -72,7 +69,7 @@ public class SpecFilterTagNewAdapter extends TagAdapter<List> {
 
     @Override
     public boolean isEnabled(int position) {
-        return TextUtils.isEmpty(getData().get(position).getShopStock()) ||
-                Integer.valueOf(getData().get(position).getShopStock()) > 0;
+        return getData().get(position).getShopStock() == -1 ||
+                getData().get(position).getSpecStock() > 0;
     }
 }

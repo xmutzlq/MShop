@@ -25,7 +25,7 @@ public class SearchResult {
     private List<GoodsItem> goods_list;
 
     @SerializedName("goods_total")
-    private int goods_total = 1;
+    private int goods_total = 100;
 
     public List<FilterContainer> getScreening_conditions() {
         return screening_conditions;

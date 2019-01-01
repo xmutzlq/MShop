@@ -4,7 +4,7 @@ import com.google.gson.annotations.SerializedName;
 
 public class Like {
     @SerializedName("goodsId")
-    private long goodsId;
+    private String goodsId;
     @SerializedName("goodsName")
     private String goodsName;
     @SerializedName("goodsImg")
@@ -18,10 +18,10 @@ public class Like {
     @SerializedName("isNew")
     private int isNew;
 
-    public void setGoodsId(long goodsId) {
+    public void setGoodsId(String goodsId) {
         this.goodsId = goodsId;
     }
-    public long getGoodsId() {
+    public String getGoodsId() {
         return goodsId;
     }
 

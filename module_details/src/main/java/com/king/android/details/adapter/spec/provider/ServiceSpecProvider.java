@@ -3,7 +3,6 @@ package com.king.android.details.adapter.spec.provider;
 import com.chad.library.adapter.base.BaseViewHolder;
 import com.king.android.details.R;
 import com.king.android.details.adapter.spec.SpecAdapter;
-import com.king.android.details.adapter.spec.SpecFilterTagAdapter;
 import com.king.android.details.adapter.spec.SpecFilterTagNewAdapter;
 import com.king.android.details.cache.SpecData;
 
@@ -41,7 +40,7 @@ public class ServiceSpecProvider extends BaseItemProvider<SpecData, BaseViewHold
         tagFlowLayout.setMaxSelectCount(1);
         tagFlowLayout.setOnTagClickListener((view, position1, parent) -> {
             if(itemCheckedListener != null && adapter.getData().get(position1).getIsDefault() == 1) {
-                itemCheckedListener.onItemCheckedListener(tagFlowLayout.getSelectedList());
+                itemCheckedListener.onItemCheckedListener(viewType(), adapter.getData().get(position1).getCatId(), tagFlowLayout.getSelectedList());
             }
             return true;
         });

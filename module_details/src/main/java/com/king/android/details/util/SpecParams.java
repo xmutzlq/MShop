@@ -9,12 +9,18 @@ import google.architecture.coremodel.data.xlj.goodsdetail.List;
 
 public class SpecParams {
 
-    public java.util.List<SpecChild> specs;
+    //颜色
+    public SpecChild specsColor;
+    //号码
+    public SpecChild specsSize;
+
+    //默认选中的号码ID
+    public String defaultSizeId;
+    //默认选中的颜色ID
+    public String defaultColorId;
+
     public String img;
     public String price;
-    public String totalSave;
-    public String shopSave;
-    public String chooseStr;
 
     public static class SpecChild {
         public String name;
