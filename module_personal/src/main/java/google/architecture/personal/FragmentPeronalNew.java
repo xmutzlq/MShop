@@ -31,7 +31,7 @@ import google.architecture.personal.databinding.FragmentPersonalNewBinding;
 
 @Route(path = ARouterPath.PersonalShoppingFgt)
 public class FragmentPeronalNew extends BaseFragment<FragmentPersonalNewBinding> {
-    private PersonalNewAdapter mAdapter;
+    HeaderFooterAdapterWrapper adapterWrapper;
     private List<LikeGoods> mList;
     private PersonalViewNewModel viewModel;
 
@@ -44,13 +44,13 @@ public class FragmentPeronalNew extends BaseFragment<FragmentPersonalNewBinding>
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         mList = new ArrayList();
-        mAdapter = new PersonalNewAdapter(mList, new PersonalNewAdapter.OnItemClickListener() {
+        PersonalNewAdapter mAdapter = new PersonalNewAdapter(mList, new PersonalNewAdapter.OnItemClickListener() {
             @Override
             public void onItemClick(View v, int position) {
                 openGoodsDetail(mList.get(position).getGoodsId()+"");
             }
         });
-        HeaderFooterAdapterWrapper adapterWrapper = new HeaderFooterAdapterWrapper(mAdapter);
+        adapterWrapper = new HeaderFooterAdapterWrapper(mAdapter);
         binding.personalNew.setAdapter(adapterWrapper);
         GridLayoutManager gridLayoutManager = new GridLayoutManager(getActivity(),2);
         gridLayoutManager.setSpanSizeLookup(new GridLayoutManager.SpanSizeLookup() {
@@ -82,10 +82,10 @@ public class FragmentPeronalNew extends BaseFragment<FragmentPersonalNewBinding>
         });
 
         viewModel = new PersonalViewNewModel();
-        viewModel.userInfos.addOnPropertyChangedCallback(new Observable.OnPropertyChangedCallback() {
+        viewModel.userInfosObservableField.addOnPropertyChangedCallback(new Observable.OnPropertyChangedCallback() {
             @Override
             public void onPropertyChanged(Observable sender, int propertyId) {
-                refreshData(viewModel.userInfos.get());
+                refreshData(viewModel.userInfosObservableField.get());
             }
         });
         addRunStatusChangeCallBack(viewModel);//为了现实loading界面
@@ -116,7 +116,7 @@ public class FragmentPeronalNew extends BaseFragment<FragmentPersonalNewBinding>
     private void refreshData(UserInfos infos){
         mList.clear();
         mList.addAll(infos.getLike());
-        mAdapter.notifyDataSetChanged();
+        adapterWrapper.notifyDataSetChanged();
     }
 
     @Override

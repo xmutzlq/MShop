@@ -21,6 +21,7 @@ public class ApiConstants {
 
     //配置Headers(),post请求使用Request Payload方式
     public static final String HEADER_USE_JSON_REQUEST_prefix = "use_json_request";
+
     public static final String HEADER_USE_JSON_REQUEST_VALUE = "payload";
     public static final String HEADER_USE_JSON_REQUEST = HEADER_USE_JSON_REQUEST_prefix + ":" + HEADER_USE_JSON_REQUEST_VALUE;
 
