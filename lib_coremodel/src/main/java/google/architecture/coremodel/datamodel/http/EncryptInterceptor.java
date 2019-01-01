@@ -35,10 +35,7 @@ public class EncryptInterceptor implements Interceptor {
                 FormBody formBody = (FormBody) request.body();
                 List<String> headerValues = request.headers(ApiConstants.HEADER_USE_JSON_REQUEST_prefix);
                 if (headerValues != null && headerValues.size() > 0) {
-                    String headerValue = headerValues.get(0);
-                    if (ApiConstants.HEADER_USE_JSON_REQUEST_VALUE.equals(headerValue)) {
-                        requestType = headerValue;
-                    }
+                    requestType = headerValues.get(0);
                 }
                 IRequestType requestResult = RequestFactory.makeRequest(requestType);
                 request = request.newBuilder()

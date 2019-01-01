@@ -35,14 +35,15 @@ public class FormRequest implements IRequestType {
             }
             encodedParams.append('&');
         }
-        String json = new Gson().toJson(param);
-        LogUtils.tag("zlq").e("encodedParams = " + encodedParams.substring(0, encodedParams.length() - 1).toString());
+//        String json = new Gson().toJson(param);
+//        LogUtils.tag("zlq").e("encodedParams = " + encodedParams.substring(0, encodedParams.length() - 1).toString());
 //        String secret = DESSecretUtils.AES_cbc_encrypt(encodedParams.substring(0, encodedParams.length() - 1).toString());
-        String secret = DESSecretUtils.AES_cbc_encrypt(json);
-        LogUtils.tag("zlq").e("local_secret = " + secret);
-        sb.append("param=").append(secret);
-        LogUtils.tag("zlq").e("param = " + secret);
-        RequestBody body = RequestBody.create(MediaType.parse("application/x-www-form-urlencoded; charset=UTF-8"), sb.toString());
+//        String secret = DESSecretUtils.AES_cbc_encrypt(json);
+        String secret = encodedParams.substring(0, encodedParams.length() - 1);
+        //LogUtils.tag("zlq").e("local_secret = " + secret);
+        //sb.append("param=").append(secret);
+        //LogUtils.tag("zlq").e("param = " + secret);
+        RequestBody body = RequestBody.create(MediaType.parse("application/x-www-form-urlencoded; charset=UTF-8"), secret);
         return body;
     }
 
