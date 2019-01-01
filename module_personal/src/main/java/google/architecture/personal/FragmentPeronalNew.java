@@ -82,10 +82,10 @@ public class FragmentPeronalNew extends BaseFragment<FragmentPersonalNewBinding>
         });
 
         viewModel = new PersonalViewNewModel();
-        viewModel.userInfos.addOnPropertyChangedCallback(new Observable.OnPropertyChangedCallback() {
+        viewModel.userInfosObservableField.addOnPropertyChangedCallback(new Observable.OnPropertyChangedCallback() {
             @Override
             public void onPropertyChanged(Observable sender, int propertyId) {
-                refreshData(viewModel.userInfos.get());
+                refreshData(viewModel.userInfosObservableField.get());
             }
         });
         addRunStatusChangeCallBack(viewModel);//为了现实loading界面

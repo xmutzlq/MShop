@@ -307,17 +307,17 @@ public interface DeHongDataService {
     @POST(ApiConstants.XLJ_Cat_Child)
     Flowable<XLJ_HttpResult<List<OpDiscoverCates>>> xlj_getChildCat(@Field("request_json") String requestJson);
 
-    @Headers({ApiConstants.HEADER_MULTI_URL, ApiConstants.HEADER_USE_JSON_REQUEST})
+    @Headers({ApiConstants.HEADER_MULTI_URL, ApiConstants.HEADER_USE_FROM_REQUEST})
     @FormUrlEncoded
     @POST(ApiConstants.XLJ_Get_User_token)
     Flowable<XLJ_HttpResult<String>> xlj_getUserToken(@Field("wxUnionId")String wxUnionId, @Field("method")String method);
 
-    @Headers({ApiConstants.HEADER_MULTI_URL, ApiConstants.HEADER_USE_JSON_REQUEST})
+    @Headers({ApiConstants.HEADER_MULTI_URL, ApiConstants.HEADER_USE_FROM_REQUEST})
     @FormUrlEncoded
     @POST(ApiConstants.XLJ_Get_Refresh_token)
     Flowable<XLJ_HttpResult<String>> xlj_getRefreshToken(@Field("userToken")String userToken, @Field("method")String method);
 
-    @Headers({ApiConstants.HEADER_MULTI_URL, ApiConstants.HEADER_USE_JSON_REQUEST})
+    @Headers({ApiConstants.HEADER_MULTI_URL, ApiConstants.HEADER_USE_FROM_REQUEST})
     @FormUrlEncoded
     @POST(ApiConstants.XLJ_Get_User_Info)
     Flowable<XLJ_HttpResult<UserInfos>> xlj_getUserInfo(@Field("userToken")String userToken, @Field("method")String method);

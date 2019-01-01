@@ -37,6 +37,7 @@ public class EncryptInterceptor implements Interceptor {
                 if (headerValues != null && headerValues.size() > 0) {
                     requestType = headerValues.get(0);
                 }
+                LogUtils.tag("zlq").e("requestType = " + requestType);
                 IRequestType requestResult = RequestFactory.makeRequest(requestType);
                 request = request.newBuilder()
                         .post(requestResult.makeRequest(formBody))
