@@ -22,6 +22,7 @@ import com.gyf.barlibrary.ImmersionBar;
 import com.king.android.res.util.DebouncingOnClickListener;
 import com.tbruyelle.rxpermissions2.RxPermissions;
 import com.umeng.analytics.MobclickAgent;
+import com.umeng.message.PushAgent;
 
 import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
@@ -141,6 +142,7 @@ public abstract class BaseActivity<VB extends ViewDataBinding> extends BaseActiv
             }
             requestPermissions();
         }
+        PushAgent.getInstance(this).onAppStart();
     }
 
     public void setOrientation() {

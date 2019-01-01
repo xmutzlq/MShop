@@ -11,6 +11,9 @@ import com.alibaba.android.arouter.facade.annotation.Route;
 import com.king.android.res.config.ARouterPath;
 import com.qmuiteam.qmui.layout.QMUIFrameLayout;
 import com.qmuiteam.qmui.util.QMUIDisplayHelper;
+import com.scwang.smartrefresh.layout.api.RefreshHeader;
+import com.scwang.smartrefresh.layout.api.RefreshLayout;
+import com.scwang.smartrefresh.layout.listener.SimpleMultiPurposeListener;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -54,5 +57,31 @@ public class FragmentPeronalNew extends BaseFragment<FragmentPersonalNewBinding>
         qmuiFrameALayout.setRadiusAndShadow(QMUIDisplayHelper.dp2px(mContext, 6),
                 QMUIDisplayHelper.dp2px(mContext, 8), 0.5f);
         adapterWrapper.addHeaderView(headerView);
+
+        binding.personalRefreshLayout.setEnableOverScrollBounce(false);
+        binding.personalRefreshLayout.setOnMultiPurposeListener(listener);
+
+    }
+
+    SimpleMultiPurposeListener listener = new SimpleMultiPurposeListener() {
+        @Override
+        public void onLoadMore(@NonNull RefreshLayout refreshLayout) {
+            refreshLayout.finishLoadMore(0);
+        }
+        @Override
+        public void onRefresh(@NonNull RefreshLayout refreshLayout) {
+            refreshLayout.finishRefresh(0);
+            //loadData();
+        }
+        @Override
+        public void onHeaderMoving(RefreshHeader header, boolean isDragging, float percent, int offset, int headerHeight, int maxDragHeight) {
+
+        }
+    };
+
+    @Override
+    public void onFragmentFirstVisible() {
+        super.onFragmentFirstVisible();
+
     }
 }
