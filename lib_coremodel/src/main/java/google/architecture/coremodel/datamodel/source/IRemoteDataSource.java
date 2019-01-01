@@ -33,6 +33,7 @@ import google.architecture.coremodel.data.StartInfo;
 import google.architecture.coremodel.data.UploadResultData;
 import google.architecture.coremodel.data.VersionInfo;
 import google.architecture.coremodel.data.xlj.goodsdetail.GoodsDetailData;
+import google.architecture.coremodel.data.xlj.personal.UserInfos;
 import google.architecture.coremodel.data.xlj.shopdata.ShopData;
 import google.architecture.coremodel.datamodel.http.HttpResult;
 import google.architecture.coremodel.datamodel.http.XLJ_HttpResult;
@@ -150,4 +151,7 @@ public interface IRemoteDataSource {
     Flowable<XLJ_HttpResult<SearchResult>> xlj_getGoodsList(String requestJson);
     Flowable<XLJ_HttpResult<List<OpDiscoverCates>>> xlj_getTopCat(String requestJson);
     Flowable<XLJ_HttpResult<List<OpDiscoverCates>>> xlj_getChildCat(String requestJson);
+    Flowable<XLJ_HttpResult<String>> xlj_getUserToken(String wxUnionId, String method);
+    Flowable<XLJ_HttpResult<String>> xlj_getRefreshToken(String userToken, String method);
+    Flowable<XLJ_HttpResult<UserInfos>> xlj_getUserInfo(String userToken, String method);
 }

@@ -147,4 +147,7 @@ public class ApiConstants {
     public static final String XLJ_Goods_Detail = URL_BASE + "wechatapp/Goods/goodsDetail";
     public static final String XLJ_Cat_TOP = URL_BASE + "wechatapp/GoodsCats/getTopCat";
     public static final String XLJ_Cat_Child = URL_BASE + "wechatapp/GoodsCats/getChildCat";
+    public static final String XLJ_Get_User_token = URL_BASE + "app/Login/appWxlogin";
+    public static final String XLJ_Get_Refresh_token = URL_BASE + "app/Login/getRefreshToken";
+    public static final String XLJ_Get_User_Info = URL_BASE + "app/Users/index";
 }

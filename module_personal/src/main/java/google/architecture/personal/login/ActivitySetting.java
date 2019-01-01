@@ -17,7 +17,7 @@ import google.architecture.personal.databinding.ActivitySettingBinding;
  * @author lq.zeng
  * @date 2018/9/17
  */
-@Route(path = ARouterPath.PersonalSettingAty)
+//@Route(path = ARouterPath.PersonalSettingAty)
 public class ActivitySetting extends BaseActivity<ActivitySettingBinding> {
     @Override
     protected int getLayout() {

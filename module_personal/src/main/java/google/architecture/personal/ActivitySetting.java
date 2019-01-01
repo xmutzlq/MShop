@@ -3,6 +3,8 @@ package google.architecture.personal;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 
+import com.alibaba.android.arouter.facade.annotation.Route;
+import com.king.android.res.config.ARouterPath;
 import com.tencent.mm.opensdk.diffdev.DiffDevOAuthFactory;
 import com.tencent.mm.opensdk.diffdev.IDiffDevOAuth;
 import com.tencent.mm.opensdk.modelmsg.SendAuth;
@@ -12,6 +14,7 @@ import com.tencent.mm.opensdk.openapi.WXAPIFactory;
 import google.architecture.common.base.BaseActivity;
 import google.architecture.personal.databinding.ActivitySettingNewBinding;
 
+@Route(path = ARouterPath.PersonalSettingAty)
 public class ActivitySetting extends BaseActivity<ActivitySettingNewBinding> {
 
     private ActivitySetting _this = this;

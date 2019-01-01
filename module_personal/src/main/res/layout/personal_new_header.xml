@@ -45,6 +45,7 @@
                 app:layout_constraintLeft_toLeftOf="@id/user_name_tv"
                 app:layout_constraintBottom_toBottomOf="@id/avator_iv"/>
             <ImageView
+                android:id="@+id/btn_setting"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:src="@drawable/icon_setting"

@@ -33,6 +33,7 @@ import google.architecture.coremodel.data.StartInfo;
 import google.architecture.coremodel.data.UploadResultData;
 import google.architecture.coremodel.data.VersionInfo;
 import google.architecture.coremodel.data.xlj.goodsdetail.GoodsDetailData;
+import google.architecture.coremodel.data.xlj.personal.UserInfos;
 import google.architecture.coremodel.data.xlj.shopdata.ShopData;
 import google.architecture.coremodel.datamodel.db.AppDatabase;
 import google.architecture.coremodel.datamodel.db.entity.SearchInfoEntity;
@@ -396,6 +397,20 @@ public class DeHongDataRepository implements IRemoteDataSource {
     @Override
     public Flowable<XLJ_HttpResult<List<OpDiscoverCates>>> xlj_getChildCat(String requestJson) {
         return remoteDataSource.xlj_getChildCat(requestJson);
+    }
+
+    public Flowable<XLJ_HttpResult<String>> xlj_getUserToken(String wxUnionId, String method){
+        return remoteDataSource.xlj_getUserToken(wxUnionId, method);
+    }
+
+    @Override
+    public Flowable<XLJ_HttpResult<String>> xlj_getRefreshToken(String userToken, String method) {
+        return remoteDataSource.xlj_getRefreshToken(userToken,method);
+    }
+
+    @Override
+    public Flowable<XLJ_HttpResult<UserInfos>> xlj_getUserInfo(String userToken, String method) {
+        return remoteDataSource.xlj_getUserInfo(userToken, method);
     }
 
 }

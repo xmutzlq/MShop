@@ -26,6 +26,7 @@
         <activity android:name=".ActivityMyComment"></activity>
         <activity android:name=".ActivityCommentDetail"></activity>
         <activity android:name=".ActivityFeedBack"></activity>
+        <activity android:name="google.architecture.personal.ActivitySetting"></activity>
     </application>
 
 </manifest>
