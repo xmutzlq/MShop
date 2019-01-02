@@ -4,6 +4,8 @@ import com.google.gson.annotations.SerializedName;
 
 import java.util.List;
 
+import google.architecture.coremodel.data.DetailCommentInfo;
+
 public class GoodsDetailData {
     @SerializedName("goodsId")
     private int goodsId; //商品ID
@@ -98,7 +100,7 @@ public class GoodsDetailData {
     @SerializedName("isFavorite")
     private int isFavorite;
     @SerializedName("goodsAppr")
-    private java.util.List<GoodsAppr> goodsAppr;
+    private java.util.List<DetailCommentInfo> goodsAppr;
     @SerializedName("promotion")
     private Promotion promotion;
     @SerializedName("couponsList")
@@ -428,10 +430,10 @@ public class GoodsDetailData {
         return isFavorite;
     }
 
-    public void setGoodsAppr(java.util.List<GoodsAppr> goodsAppr) {
+    public void setGoodsAppr(java.util.List<DetailCommentInfo> goodsAppr) {
         this.goodsAppr = goodsAppr;
     }
-    public java.util.List<GoodsAppr> getGoodsAppr() {
+    public java.util.List<DetailCommentInfo> getGoodsAppr() {
         return goodsAppr;
     }
 

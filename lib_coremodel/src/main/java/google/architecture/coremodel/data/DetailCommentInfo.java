@@ -10,9 +10,9 @@ import java.util.List;
  */
 
 public class DetailCommentInfo {
-    @SerializedName("username")
+    @SerializedName("loginName")
     private String username; //评论用户
-    @SerializedName("head_pic")
+    @SerializedName("userPhoto")
     private String head_pic; //用户头像
     @SerializedName("spec_depict")
     private String spec_depict; //购买的规格参数
@@ -20,7 +20,7 @@ public class DetailCommentInfo {
     private String content; //评论内容
     @SerializedName("create_time")
     private String create_time; //时间
-    @SerializedName("image")
+    @SerializedName("images")
     private List<String> image;
 
     public String getUsername() {

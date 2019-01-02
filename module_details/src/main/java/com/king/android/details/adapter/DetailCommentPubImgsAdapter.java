@@ -10,6 +10,7 @@ import com.king.android.details.R;
 import java.util.List;
 
 import google.architecture.common.imgloader.ImageLoader;
+import google.architecture.coremodel.datamodel.http.ApiConstants;
 
 /**
  * @author lq.zeng
@@ -25,6 +26,7 @@ public class DetailCommentPubImgsAdapter extends BaseQuickAdapter<String, BaseVi
     @Override
     protected void convert(BaseViewHolder helper, String item) {
         ImageView pubImg = helper.getView(R.id.common_ratio_iv);
-        ImageLoader.get().load(pubImg, item);
+        String tmpImg = ApiConstants.GankHost + item;
+        ImageLoader.get().load(pubImg, tmpImg);
     }
 }

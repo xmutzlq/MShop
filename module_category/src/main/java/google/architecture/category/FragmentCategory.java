@@ -10,6 +10,8 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.FrameLayout;
+import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
@@ -23,6 +25,7 @@ import java.util.List;
 import google.architecture.category.adapter.CategoryLeftItemDecoration;
 import google.architecture.category.adapter.CategoryTitleAdapter;
 import google.architecture.common.base.BaseFragment;
+import google.architecture.common.statusbar.StatusbarUtils;
 import google.architecture.common.util.FragmentUtils;
 import google.architecture.common.util.ScreenUtils;
 import google.architecture.common.util.Utils;
@@ -63,6 +66,11 @@ public class FragmentCategory extends BaseFragment{
     }
 
     @Override
+    protected boolean isStatusBarTransparent() {
+        return true;
+    }
+
+    @Override
     protected int getLayout() {
         return 0;
     }
@@ -76,12 +84,12 @@ public class FragmentCategory extends BaseFragment{
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        mCategoryPb = (ProgressBar) findViewById(view, R.id.category_progress);
+        View statusBarView = (View) findViewById(view, R.id.action_bar_space);
+        FrameLayout.LayoutParams layoutParams = (FrameLayout.LayoutParams) statusBarView.getLayoutParams();
+        layoutParams.height = StatusbarUtils.getStatusBarHeight(mContext) - 10;
+        statusBarView.setLayoutParams(layoutParams);
 
-        //搜索栏
-        HomeSearchScrollController searchScrollAdapter = new HomeSearchScrollController(Utils.getContext());
-        searchScrollAdapter.bindRollView((View) findViewById(view, R.id.category_top));
-        searchScrollAdapter.onScrolled(null, 0, searchScrollAdapter.getMaxHeight());
+        mCategoryPb = (ProgressBar) findViewById(view, R.id.category_progress);
 
         //左边列表
         mCatesTiltsRV = (RecyclerView) findViewById(view, R.id.category_left_rv);

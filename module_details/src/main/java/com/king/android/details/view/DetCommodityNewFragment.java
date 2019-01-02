@@ -269,12 +269,12 @@ public class DetCommodityNewFragment extends BaseFragment<FragmentDetCommodityBi
         binding.layoutDetComment.detailCommodityCommentTv.setRightString(Spans.builder().text(commentPercent,
                 14, ContextCompat.getColor(mContext, R.color.color_A30598)).build());
         binding.layoutDetComment.detailCommodityCommentTv.setBottomDividerLineVisibility(View.GONE); //去线
-//        DetailCommentAdapter commentAdapter = new DetailCommentAdapter(R.layout.comment_item, null);
-//        binding.layoutDetComment.detailCommodityCommentRec.addItemDecoration(new DetailDividerItemLineDecoration(mContext));
-//        binding.layoutDetComment.detailCommodityCommentRec.setAdapter(commentAdapter);
-//        binding.layoutDetComment.detailCommodityCommentRec.setNestedScrollingEnabled(false);
-//        binding.layoutDetComment.detailCommodityCommentRec.setHasFixedSize(true);
-//        binding.layoutDetComment.detailCommodityCommentRec.setLayoutManager(new LinearLayoutManager(mContext));
+        DetailCommentAdapter commentAdapter = new DetailCommentAdapter(R.layout.comment_item, info.getGoodsAppr());
+        binding.layoutDetComment.detailCommodityCommentRec.addItemDecoration(new DetailDividerItemLineDecoration(mContext));
+        binding.layoutDetComment.detailCommodityCommentRec.setAdapter(commentAdapter);
+        binding.layoutDetComment.detailCommodityCommentRec.setNestedScrollingEnabled(false);
+        binding.layoutDetComment.detailCommodityCommentRec.setHasFixedSize(true);
+        binding.layoutDetComment.detailCommodityCommentRec.setLayoutManager(new LinearLayoutManager(mContext));
 
 
         //猜你喜欢
