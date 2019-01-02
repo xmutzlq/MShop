@@ -16,9 +16,11 @@ import google.architecture.home.R;
 public class HomeBrandAdapter extends RecyclerView.Adapter<HomeBrandAdapter.BrandViewHolder> {
 
     private List<ImgInfo> mList;
+    private OnItemClickListener mListener;
 
-    public HomeBrandAdapter(List<ImgInfo> list){
+    public HomeBrandAdapter(List<ImgInfo> list,OnItemClickListener listener){
         mList = list;
+        mListener = listener;
     }
 
     @Override
@@ -31,6 +33,14 @@ public class HomeBrandAdapter extends RecyclerView.Adapter<HomeBrandAdapter.Bran
     public void onBindViewHolder(BrandViewHolder holder, int position) {
         String imgUrl = ApiConstants.GankHost+ mList.get(position).getImageUrl();
         ImageLoader.get().load(holder.brandIv, imgUrl);
+        holder.clickView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (mListener != null){
+                    mListener.onItemClick(v,position);
+                }
+            }
+        });
     }
 
     @Override
@@ -41,10 +51,16 @@ public class HomeBrandAdapter extends RecyclerView.Adapter<HomeBrandAdapter.Bran
     public static class BrandViewHolder extends RecyclerView.ViewHolder{
 
         public ImageView brandIv;
+        public View clickView;
 
         public BrandViewHolder(View itemView) {
             super(itemView);
+            clickView = itemView;
             brandIv = itemView.findViewById(R.id.brand_iv);
         }
+    }
+
+    public static interface OnItemClickListener{
+        public void onItemClick(View v, int position);
     }
 }

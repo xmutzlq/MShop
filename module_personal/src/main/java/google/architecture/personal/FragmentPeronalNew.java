@@ -5,8 +5,10 @@ import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v7.widget.GridLayoutManager;
+import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.widget.TextView;
 
 import com.alibaba.android.arouter.facade.annotation.Route;
 import com.alibaba.android.arouter.launcher.ARouter;
@@ -20,10 +22,13 @@ import com.scwang.smartrefresh.layout.listener.SimpleMultiPurposeListener;
 import java.util.ArrayList;
 import java.util.List;
 
+import de.hdodenhof.circleimageview.CircleImageView;
 import google.architecture.common.base.BaseFragment;
+import google.architecture.common.imgloader.ImageLoader;
 import google.architecture.common.viewmodel.PersonalViewNewModel;
 import google.architecture.coremodel.data.xlj.personal.LikeGoods;
 import google.architecture.coremodel.data.xlj.personal.UserInfos;
+import google.architecture.coremodel.datamodel.http.ApiConstants;
 import google.architecture.coremodel.datamodel.http.event.CommEvent;
 import google.architecture.personal.adapter.HeaderFooterAdapterWrapper;
 import google.architecture.personal.adapter.PersonalNewAdapter;
@@ -34,6 +39,9 @@ public class FragmentPeronalNew extends BaseFragment<FragmentPersonalNewBinding>
     HeaderFooterAdapterWrapper adapterWrapper;
     private List<LikeGoods> mList;
     private PersonalViewNewModel viewModel;
+
+    private CircleImageView mAvatorIv;
+    private TextView mUserNameTv;
 
     @Override
     protected int getLayout() {
@@ -68,18 +76,18 @@ public class FragmentPeronalNew extends BaseFragment<FragmentPersonalNewBinding>
         QMUIFrameLayout qmuiFrameALayout = headerView.findViewById(R.id.shadow_a_layout);
         qmuiFrameALayout.setRadiusAndShadow(QMUIDisplayHelper.dp2px(mContext, 6),
                 QMUIDisplayHelper.dp2px(mContext, 8), 0.5f);
+
+        QMUIFrameLayout qmuiFrameBLayout = headerView.findViewById(R.id.shadow_b_layout);
+        qmuiFrameBLayout.setRadiusAndShadow(QMUIDisplayHelper.dp2px(mContext, 6),
+                QMUIDisplayHelper.dp2px(mContext, 8), 0.5f);
+
         adapterWrapper.addHeaderView(headerView);
 
         binding.personalRefreshLayout.setEnableOverScrollBounce(false);
         binding.personalRefreshLayout.setOnMultiPurposeListener(listener);
 
-
-        headerView.findViewById(R.id.btn_setting).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                ARouter.getInstance().build(ARouterPath.PersonalSettingAty).navigation(mContext);
-            }
-        });
+        initHeaderViewUI(headerView);
+        initHeaderViewBtn(headerView);
 
         viewModel = new PersonalViewNewModel();
         viewModel.userInfosObservableField.addOnPropertyChangedCallback(new Observable.OnPropertyChangedCallback() {
@@ -90,6 +98,21 @@ public class FragmentPeronalNew extends BaseFragment<FragmentPersonalNewBinding>
         });
         addRunStatusChangeCallBack(viewModel);//为了现实loading界面
         viewModel.loadData();
+    }
+
+    private void initHeaderViewUI(View headerView){
+        mAvatorIv = headerView.findViewById(R.id.avator_iv);//头像
+        mUserNameTv = headerView.findViewById(R.id.user_name_tv);//用户名
+    }
+
+    private void initHeaderViewBtn(View headerView){
+        //设置
+        headerView.findViewById(R.id.btn_setting).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                ARouter.getInstance().build(ARouterPath.PersonalSettingAty).navigation(mContext);
+            }
+        });
     }
 
     SimpleMultiPurposeListener listener = new SimpleMultiPurposeListener() {
@@ -114,6 +137,13 @@ public class FragmentPeronalNew extends BaseFragment<FragmentPersonalNewBinding>
     }
 
     private void refreshData(UserInfos infos){
+        if(!TextUtils.isEmpty(infos.getUserInfo().getUserPhoto())){
+            ImageLoader.get().load(mAvatorIv, ApiConstants.GankHost+infos.getUserInfo().getUserPhoto());
+        }
+        if(!TextUtils.isEmpty(infos.getUserInfo().getUserName())){
+            mUserNameTv.setText(infos.getUserInfo().getUserName());
+        }
+
         mList.clear();
         mList.addAll(infos.getLike());
         adapterWrapper.notifyDataSetChanged();

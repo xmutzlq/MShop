@@ -33,6 +33,8 @@ public class ActivitySetting extends BaseActivity<ActivitySettingNewBinding> {
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        setCanBack(true);
+        setTitleName("设置");
     }
 
     private void regToWx(){

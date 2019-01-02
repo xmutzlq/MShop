@@ -3,24 +3,16 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="match_parent"
+        android:background="#f6f6f6"
         android:orientation="vertical">
-        <RelativeLayout
-            android:id="@+id/category_title"
-            android:layout_width="match_parent"
-            android:layout_height="?actionBarSize"
-            android:background="@color/colorPrimary">
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textColor="@color/white"
-                android:textSize="@dimen/text_size_20sp"
-                android:layout_centerInParent="true"
-                android:text="@string/personal_setting_title"/>
-        </RelativeLayout>
+        <include
+            android:id="@+id/app_bar"
+            layout="@layout/toolbar"/>
         <android.support.constraint.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:background="@android:color/white"
             android:padding="10dp">
         <de.hdodenhof.circleimageview.CircleImageView
             android:id="@+id/avator_iv"
@@ -59,11 +51,13 @@
                 android:drawableRight="@drawable/ic_back_right"/>
 
         </android.support.constraint.ConstraintLayout>
+        <View style="@style/DeepUnderLine"/>
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="center_vertical"
             android:padding="10dp"
+            android:background="@android:color/white"
             android:orientation="horizontal">
             <TextView
                 android:layout_width="wrap_content"
@@ -74,7 +68,90 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
+                android:gravity="right"
                 android:drawableRight="@drawable/ic_back_right"/>
         </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="10dp"
+            android:gravity="center_vertical"
+            android:background="@android:color/white"
+            android:padding="10dp"
+            android:orientation="horizontal">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                style="@style/TextBlack14"
+                android:text="清除本地缓存"/>
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="right"
+                android:drawableRight="@drawable/ic_back_right"/>
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_vertical"
+            android:background="@android:color/white"
+            android:padding="10dp"
+            android:orientation="horizontal">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                style="@style/TextBlack14"
+                android:text="版本信息"/>
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="right"
+                android:text="1.0.0"/>
+        </LinearLayout>
+        <View style="@style/DeepUnderLine"/>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_vertical"
+            android:background="@android:color/white"
+            android:padding="10dp"
+            android:orientation="horizontal">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                style="@style/TextBlack14"
+                android:text="关于我们"/>
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="right"
+                android:drawableRight="@drawable/ic_back_right"/>
+        </LinearLayout>
+        <View style="@style/DeepUnderLine"/>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_vertical"
+            android:background="@android:color/white"
+            android:padding="10dp"
+            android:orientation="horizontal">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                style="@style/TextBlack14"
+                android:text="与新乐纪联系"/>
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="right"
+                android:drawableRight="@drawable/ic_back_right"/>
+        </LinearLayout>
+
     </LinearLayout>
 </layout>

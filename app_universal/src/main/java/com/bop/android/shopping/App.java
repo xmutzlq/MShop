@@ -1,14 +1,25 @@
 package com.bop.android.shopping;
 
+import android.content.Context;
+import android.os.Handler;
+
 import com.alibaba.android.arouter.launcher.ARouter;
 import com.bop.android.shopping.service.InitializeService;
+import com.king.android.res.config.ARouterPath;
 import com.umeng.commonsdk.UMConfigure;
 import com.umeng.message.IUmengRegisterCallback;
 import com.umeng.message.PushAgent;
+import com.umeng.message.UmengMessageHandler;
+import com.umeng.message.entity.UMessage;
 import com.uuzuche.lib_zxing.activity.ZXingLibrary;
 
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import google.architecture.common.base.BaseApplication;
+import google.architecture.common.util.ToastUtils;
 import google.architecture.common.util.Utils;
+import google.architecture.coremodel.datamodel.http.event.CommEvent;
 
 public class App  extends BaseApplication{
 
@@ -28,10 +39,11 @@ public class App  extends BaseApplication{
     }
 
     private void initUmeng(){
-        String appKey = "5c27341ab465f593a000042c";
-        String secretKey = "deddcb32166de27be33c08ad4bc3f866";
+        String appKey = "5c271064f1f556a3ce00021c";
+        String secretKey = "a14c9d5976e35fb2bce7879a88326a0a";
         UMConfigure.init(this,appKey,"Umeng",UMConfigure.DEVICE_TYPE_PHONE, secretKey);
         PushAgent mPushAgent = PushAgent.getInstance(this);
+        mPushAgent.setResourcePackageName("cn.s.android.shopping");//为了正确的找到资源包名，为开发者提供了自定义的设置资源包的接口
         mPushAgent.register(new IUmengRegisterCallback() {
             @Override
             public void onSuccess(String deviceToken) {
@@ -43,5 +55,28 @@ public class App  extends BaseApplication{
 
             }
         });
+        mPushAgent.setMessageHandler(messageHandler);
     }
+
+    UmengMessageHandler messageHandler = new UmengMessageHandler(){
+        @Override
+        public void dealWithCustomMessage(Context context, UMessage uMessage) {
+            new Handler(getMainLooper()).post(new Runnable() {
+                @Override
+                public void run() {
+                    JSONObject json = uMessage.getRaw();
+                    try {
+                        String custom = json.getJSONObject("body").getString("custom");
+                        ToastUtils.showLongToast("getMessage custom:"+custom);
+                        ARouter.getInstance().build(ARouterPath.DetailAty).withString(CommEvent.KEY_EXTRA_VALUE,custom).navigation(getApplicationContext());
+                    } catch (JSONException e) {
+                        e.printStackTrace();
+                    }
+                    //ToastUtils.showLongToast("getMessage:"+json.toString());
+                }
+            });
+
+        }
+    };
+
 }

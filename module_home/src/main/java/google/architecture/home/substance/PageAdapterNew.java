@@ -26,6 +26,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import google.architecture.common.imgloader.ImageLoader;
+import google.architecture.common.util.CommKeyUtil;
 import google.architecture.common.util.DimensionsUtil;
 import google.architecture.common.util.ScreenUtils;
 import google.architecture.common.vcontent.BaseDelegateAdapter;
@@ -159,7 +160,12 @@ public class PageAdapterNew {
             public void onBindViewHolder(BaseViewHolder holder, int position) {
                 super.onBindViewHolder(holder, position);
                 RecyclerView brandView = holder.getView(R.id.brand_recycler_view);
-                HomeBrandAdapter adapter = new HomeBrandAdapter(list);
+                HomeBrandAdapter adapter = new HomeBrandAdapter(list, new HomeBrandAdapter.OnItemClickListener() {
+                    @Override
+                    public void onItemClick(View v, int pos) {
+                        openGoodsType("",list.get(pos).getUrlids());
+                    }
+                });
                 LinearLayoutManager layoutManager = new LinearLayoutManager(mContext);
                 layoutManager.setOrientation(LinearLayoutManager.HORIZONTAL);
                 brandView.setLayoutManager(layoutManager);
@@ -273,6 +279,12 @@ public class PageAdapterNew {
                         text.setBackgroundResource(R.drawable.classify_underline);
                         text.setPadding(0,DimensionsUtil.dip2px(mContext,8),0,DimensionsUtil.dip2px(mContext,8));
                         text.setText(info.getText());
+                        text.setOnClickListener(new View.OnClickListener() {
+                            @Override
+                            public void onClick(View v) {
+                                openGoodsType("", info.getUrlids());
+                            }
+                        });
                         if(i == 0){
                             sneakerList.addView(text);
                         }else if(i == 1){
@@ -298,6 +310,10 @@ public class PageAdapterNew {
                 ImageLoader.get().load(colB,ApiConstants.GankHost+urlB);
             }
         };
+    }
+
+    private void openGoodsType(String catName,String urlids){
+        ARouter.getInstance().build(ARouterPath.Search2Aty).withString(CommKeyUtil.EXTRA_VALUE,catName).withString(CommKeyUtil.EXTRA_KEY,urlids).navigation(mContext);
     }
 
     private void openGoodsDetail(String goodsIs){
