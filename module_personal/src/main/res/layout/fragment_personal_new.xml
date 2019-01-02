@@ -1,39 +1,59 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
-    <com.scwang.smartrefresh.layout.SmartRefreshLayout
-        android:id="@+id/personal_refreshLayout"
+
+    <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:background="@color/white"
-        app:srlAccentColor="@color/white"
-        app:srlEnableLoadMore="false"
-        app:srlPrimaryColor="@color/colorPrimary">
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:background="@android:color/white"
-        android:orientation="vertical">
-        <RelativeLayout
-            android:id="@+id/category_title"
+        android:layout_height="match_parent">
+
+        <FrameLayout
+            android:id="@+id/action_bar_space_fl"
             android:layout_width="match_parent"
-            android:layout_height="?actionBarSize"
-            android:background="@color/colorPrimary">
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textColor="@color/white"
-                android:textSize="@dimen/text_size_20sp"
-                android:layout_centerInParent="true"
-                android:text="@string/personal_info_title"/>
-        </RelativeLayout>
+            android:layout_height="wrap_content">
+            <View
+                android:id="@+id/action_bar_space"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:background="@color/colorAccent"/>
+        </FrameLayout>
 
-        <android.support.v7.widget.RecyclerView
-            android:id="@+id/personal_new"
+        <com.scwang.smartrefresh.layout.SmartRefreshLayout
+            android:id="@+id/personal_refreshLayout"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"/>
+            android:layout_height="match_parent"
+            android:layout_below="@id/action_bar_space_fl"
+            android:background="@color/white"
+            app:srlAccentColor="@color/white"
+            app:srlEnableLoadMore="false"
+            app:srlPrimaryColor="@color/colorPrimary">
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@android:color/white"
+                android:orientation="vertical">
+                <RelativeLayout
+                    android:id="@+id/category_title"
+                    android:layout_width="match_parent"
+                    android:layout_height="?actionBarSize"
+                    android:background="@color/colorPrimary">
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textColor="@color/white"
+                        android:textSize="@dimen/text_size_20sp"
+                        android:layout_centerInParent="true"
+                        android:text="@string/personal_info_title"/>
+                </RelativeLayout>
+
+                <android.support.v7.widget.RecyclerView
+                    android:id="@+id/personal_new"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"/>
 
 
-    </LinearLayout>
-    </com.scwang.smartrefresh.layout.SmartRefreshLayout>
+            </LinearLayout>
+        </com.scwang.smartrefresh.layout.SmartRefreshLayout>
+
+
+    </RelativeLayout>
 </layout>

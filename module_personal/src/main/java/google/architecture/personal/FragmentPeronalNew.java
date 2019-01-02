@@ -8,6 +8,9 @@ import android.support.v7.widget.GridLayoutManager;
 import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
+import android.widget.FrameLayout;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.alibaba.android.arouter.facade.annotation.Route;
@@ -25,6 +28,7 @@ import java.util.List;
 import de.hdodenhof.circleimageview.CircleImageView;
 import google.architecture.common.base.BaseFragment;
 import google.architecture.common.imgloader.ImageLoader;
+import google.architecture.common.statusbar.StatusbarUtils;
 import google.architecture.common.viewmodel.PersonalViewNewModel;
 import google.architecture.coremodel.data.xlj.personal.LikeGoods;
 import google.architecture.coremodel.data.xlj.personal.UserInfos;
@@ -44,6 +48,17 @@ public class FragmentPeronalNew extends BaseFragment<FragmentPersonalNewBinding>
     private TextView mUserNameTv;
 
     @Override
+    public void onFragmentResume() {
+        super.onFragmentResume();
+        getToolbarHelper().getAppBarLayout().setVisibility(View.GONE);
+    }
+
+    @Override
+    protected boolean isStatusBarTransparent() {
+        return true;
+    }
+
+    @Override
     protected int getLayout() {
         return R.layout.fragment_personal_new;
     }
@@ -51,6 +66,12 @@ public class FragmentPeronalNew extends BaseFragment<FragmentPersonalNewBinding>
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+
+        View statusBarView = (View) findViewById(view, R.id.action_bar_space);
+        FrameLayout.LayoutParams layoutParams = (FrameLayout.LayoutParams) statusBarView.getLayoutParams();
+        layoutParams.height = StatusbarUtils.getStatusBarHeight(mContext) - 10;
+        statusBarView.setLayoutParams(layoutParams);
+
         mList = new ArrayList();
         PersonalNewAdapter mAdapter = new PersonalNewAdapter(mList, new PersonalNewAdapter.OnItemClickListener() {
             @Override
