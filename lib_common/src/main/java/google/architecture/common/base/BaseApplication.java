@@ -54,6 +54,8 @@ public abstract class BaseApplication extends BaseApp {
     public final static int APP_STATUS_NORMAL = 1; // 表示应用时正常的启动流程
     public static int APP_STATUS = APP_STATUS_KILLED; // 记录App的启动状态
 
+    private String mDeviceToken;
+
     private static BaseApplication sInstance;
 
     private List<ApplicationDelegate> mAppDelegateList;
@@ -199,5 +201,13 @@ public abstract class BaseApplication extends BaseApp {
     @Override
     protected boolean isDebug() {
         return true;
+    }
+
+    public String getDeviceToken() {
+        return mDeviceToken;
+    }
+
+    public void setDeviceToken(String mDeviceToken) {
+        this.mDeviceToken = mDeviceToken;
     }
 }

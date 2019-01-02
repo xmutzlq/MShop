@@ -2,6 +2,7 @@ package google.architecture.personal;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.view.View;
 
 import com.alibaba.android.arouter.facade.annotation.Route;
 import com.king.android.res.config.ARouterPath;
@@ -12,6 +13,8 @@ import com.tencent.mm.opensdk.openapi.IWXAPI;
 import com.tencent.mm.opensdk.openapi.WXAPIFactory;
 
 import google.architecture.common.base.BaseActivity;
+import google.architecture.common.base.BaseApplication;
+import google.architecture.common.util.ToastUtils;
 import google.architecture.personal.databinding.ActivitySettingNewBinding;
 
 @Route(path = ARouterPath.PersonalSettingAty)
@@ -24,6 +27,7 @@ public class ActivitySetting extends BaseActivity<ActivitySettingNewBinding> {
 
     //IWXAPI 是第三方app和微信通信的openApi接口
     private IWXAPI api;
+    private View mBtnGetDeviceToken;
 
     @Override
     protected int getLayout() {
@@ -35,6 +39,17 @@ public class ActivitySetting extends BaseActivity<ActivitySettingNewBinding> {
         super.onCreate(savedInstanceState);
         setCanBack(true);
         setTitleName("设置");
+        initBtn();
+    }
+
+    private void initBtn(){
+        mBtnGetDeviceToken = findViewById(R.id.btn_get_device_token);
+        mBtnGetDeviceToken.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                ToastUtils.showLongToast(BaseApplication.getIns().getDeviceToken());
+            }
+        });
     }
 
     private void regToWx(){

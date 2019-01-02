@@ -47,12 +47,13 @@ public class App  extends BaseApplication{
         mPushAgent.register(new IUmengRegisterCallback() {
             @Override
             public void onSuccess(String deviceToken) {
+                setDeviceToken(deviceToken);
                 System.out.println("=====szq======device_token:"+deviceToken);
             }
 
             @Override
             public void onFailure(String s, String s1) {
-
+                System.out.println("=====szq======fail:s:"+s+";s1:"+s1);
             }
         });
         mPushAgent.setMessageHandler(messageHandler);
@@ -68,7 +69,7 @@ public class App  extends BaseApplication{
                     try {
                         String custom = json.getJSONObject("body").getString("custom");
                         ToastUtils.showLongToast("getMessage custom:"+custom);
-                        ARouter.getInstance().build(ARouterPath.DetailAty).withString(CommEvent.KEY_EXTRA_VALUE,custom).navigation(getApplicationContext());
+                        ARouter.getInstance().build(ARouterPath.DetailAty).withString(CommEvent.KEY_EXTRA_VALUE_2,custom).navigation(getApplicationContext());
                     } catch (JSONException e) {
                         e.printStackTrace();
                     }
@@ -78,5 +79,4 @@ public class App  extends BaseApplication{
 
         }
     };
-
 }

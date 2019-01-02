@@ -146,11 +146,11 @@ public class ApiConstants {
 
 
     //##======新乐纪======##
-    public static final String XLJ_Shop_Data = URL_BASE + "wechatapp/Shops/getShopData";
-    public static final String XLJ_Goods_List = URL_BASE + "wechatapp/Lists/goodsList";
-    public static final String XLJ_Goods_Detail = URL_BASE + "wechatapp/Goods/goodsDetail";
-    public static final String XLJ_Cat_TOP = URL_BASE + "wechatapp/GoodsCats/getTopCat";
-    public static final String XLJ_Cat_Child = URL_BASE + "wechatapp/GoodsCats/getChildCat";
+    public static final String XLJ_Shop_Data = URL_BASE + "app/Shops/getShopData";
+    public static final String XLJ_Goods_List = URL_BASE + "app/Lists/goodsList";
+    public static final String XLJ_Goods_Detail = URL_BASE + "app/Goods/goodsDetail";
+    public static final String XLJ_Cat_TOP = URL_BASE + "app/GoodsCats/getTopCat";
+    public static final String XLJ_Cat_Child = URL_BASE + "app/GoodsCats/getChildCat";
     public static final String XLJ_Get_User_token = URL_BASE + "app/Login/appWxlogin";
     public static final String XLJ_Get_Refresh_token = URL_BASE + "app/Login/getRefreshToken";
     public static final String XLJ_Get_User_Info = URL_BASE + "app/Users/index";
