@@ -9,7 +9,7 @@ public class XLJ_GoodsDetailViewModel extends UIViewModel {
     public void getGoodsDetail(String requestJson) {
         if (isRunning.get()) return;
         disposable.add(DeHongDataRepository.get().xlj_getGoodsDetail(requestJson)
-                .doOnSubscribe(disposable -> isRunning.set(false))
+                .doOnSubscribe(disposable -> isRunning.set(true))
                 .doOnTerminate(() -> isRunning.set(false))
                 .doOnNext(result -> {
                     if (result == null || result.getData() == null) {

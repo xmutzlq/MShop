@@ -22,6 +22,8 @@ import com.alibaba.android.arouter.launcher.ARouter;
 import com.king.android.details.ActivityDetails;
 import com.king.android.details.R;
 import com.king.android.details.adapter.DetailBannerAdapter;
+import com.king.android.details.adapter.DetailCommentAdapter;
+import com.king.android.details.adapter.DetailDividerItemLineDecoration;
 import com.king.android.details.adapter.DetailRecommendParentAdapter;
 import com.king.android.details.cache.DetailInfoManager;
 import com.king.android.details.databinding.FragmentDetCommodityBinding;
@@ -165,7 +167,8 @@ public class DetCommodityNewFragment extends BaseFragment<FragmentDetCommodityBi
     public void onFragmentFirstVisible() {
         if(null != getActivity() && getActivity().getIntent() != null) {
             String goodsId = getActivity().getIntent().getStringExtra(CommEvent.KEY_EXTRA_VALUE);
-            loadCommodityData(goodsId);
+            String goodsNo = getActivity().getIntent().getStringExtra(CommEvent.KEY_EXTRA_VALUE_2);
+            loadCommodityData(goodsId, goodsNo);
         }
     }
 
@@ -266,6 +269,13 @@ public class DetCommodityNewFragment extends BaseFragment<FragmentDetCommodityBi
         binding.layoutDetComment.detailCommodityCommentTv.setRightString(Spans.builder().text(commentPercent,
                 14, ContextCompat.getColor(mContext, R.color.color_A30598)).build());
         binding.layoutDetComment.detailCommodityCommentTv.setBottomDividerLineVisibility(View.GONE); //去线
+//        DetailCommentAdapter commentAdapter = new DetailCommentAdapter(R.layout.comment_item, null);
+//        binding.layoutDetComment.detailCommodityCommentRec.addItemDecoration(new DetailDividerItemLineDecoration(mContext));
+//        binding.layoutDetComment.detailCommodityCommentRec.setAdapter(commentAdapter);
+//        binding.layoutDetComment.detailCommodityCommentRec.setNestedScrollingEnabled(false);
+//        binding.layoutDetComment.detailCommodityCommentRec.setHasFixedSize(true);
+//        binding.layoutDetComment.detailCommodityCommentRec.setLayoutManager(new LinearLayoutManager(mContext));
+
 
         //猜你喜欢
         isRecommendState = true;
@@ -294,10 +304,10 @@ public class DetCommodityNewFragment extends BaseFragment<FragmentDetCommodityBi
         binding.layoutDetRecommend.detailCommodityRecommendIndicator.setNavigator(circleNavigator);
     }
 
-    private void loadCommodityData(String goodsId) {
+    private void loadCommodityData(String goodsId, String goodsNo) {
         xlj_goodsDetailViewModel = new XLJ_GoodsDetailViewModel();
         addRunStatusChangeCallBack(xlj_goodsDetailViewModel);
-        xlj_goodsDetailViewModel.getGoodsDetail(GoodsDetailRequestEntity.getRequestJson(goodsId));
+        xlj_goodsDetailViewModel.getGoodsDetail(GoodsDetailRequestEntity.getRequestJson(goodsId, goodsNo));
     }
 
     private void updateBannerIndicator(int position, int count) {

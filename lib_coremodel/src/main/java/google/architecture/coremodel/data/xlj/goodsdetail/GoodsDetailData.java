@@ -98,7 +98,7 @@ public class GoodsDetailData {
     @SerializedName("isFavorite")
     private int isFavorite;
     @SerializedName("goodsAppr")
-    private java.util.List<String> goodsAppr;
+    private java.util.List<GoodsAppr> goodsAppr;
     @SerializedName("promotion")
     private Promotion promotion;
     @SerializedName("couponsList")
@@ -428,10 +428,10 @@ public class GoodsDetailData {
         return isFavorite;
     }
 
-    public void setGoodsAppr(java.util.List<String> goodsAppr) {
+    public void setGoodsAppr(java.util.List<GoodsAppr> goodsAppr) {
         this.goodsAppr = goodsAppr;
     }
-    public java.util.List<String> getGoodsAppr() {
+    public java.util.List<GoodsAppr> getGoodsAppr() {
         return goodsAppr;
     }
 
