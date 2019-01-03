@@ -157,7 +157,7 @@ public class ActivitySearchSecond extends BasePagingActivity<ActivitySearchSecon
                     new GridSpacingItemDecoration(1, 30, false) :
                     new GridSpacingItemDecoration(2, 30, false);
             recyclerView.addItemDecoration(itemDecoration);
-            mHomeSearchGoodsAdapter.notifyDataSetChanged();
+            mHomeSearchGoodsAdapter.refresh();
             recyclerView.setLayoutManager(layoutManager);
         });
         //主筛选

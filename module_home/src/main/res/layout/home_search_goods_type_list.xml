@@ -2,18 +2,32 @@
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    xmlns:fresco="http://schemas.android.com/apk/res-auto">
+    xmlns:fresco="http://schemas.android.com/apk/res-auto"
+    xmlns:soulwolf="http://schemas.android.com/apk/res-auto">
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
         android:background="@color/white">
-        <com.facebook.drawee.view.SimpleDraweeView
-            android:id="@+id/search_goods_list_iv"
+
+        <net.soulwolf.widget.ratiolayout.widget.RatioFrameLayout
+            android:id="@+id/list_ratio_lay"
+            soulwolf:datumRatio="datumWidth"
+            soulwolf:widthRatio="1"
+            soulwolf:heightRatio="1"
             android:layout_width="@dimen/size_120dp"
-            android:layout_height="@dimen/size_120dp"
-            fresco:placeholderImage="@drawable/image_mark"
-            android:transitionName="@string/transitionName_list_img_to_img"/>
+            android:layout_height="wrap_content">
+
+            <com.facebook.drawee.view.SimpleDraweeView
+                android:id="@+id/search_goods_list_iv"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                fresco:placeholderImage="@drawable/image_mark"
+                android:transitionName="@string/transitionName_list_img_to_img"/>
+
+        </net.soulwolf.widget.ratiolayout.widget.RatioFrameLayout>
+
+
 
         <LinearLayout
             android:layout_width="wrap_content"
@@ -24,6 +38,7 @@
                 android:id="@+id/search_goods_title_list_tv"
                 style="@style/TextView_Goods_Title_1"
                 android:layout_marginBottom="@dimen/size_5dp"
+                android:textSize="@dimen/text_size_13sp"
                 android:maxLines="2"/>
             <TextView
                 android:id="@+id/search_goods_title_2_list_tv"

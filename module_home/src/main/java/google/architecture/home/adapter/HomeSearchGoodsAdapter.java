@@ -1,13 +1,19 @@
 package google.architecture.home.adapter;
 
 import android.graphics.Paint;
+import android.graphics.Typeface;
+import android.os.Looper;
 import android.support.v7.util.DiffUtil;
+import android.util.TypedValue;
+import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.bumptech.glide.request.RequestOptions;
 import com.chad.library.adapter.base.BaseMultiItemQuickAdapter;
 import com.chad.library.adapter.base.BaseViewHolder;
 import com.facebook.drawee.view.SimpleDraweeView;
+
+import net.soulwolf.widget.ratiolayout.widget.RatioFrameLayout;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -51,6 +57,10 @@ public class HomeSearchGoodsAdapter extends BaseMultiItemQuickAdapter<SearchResu
         return itemType;
     }
 
+    public void refresh() {
+        notifyItemRangeChanged(0, getData().size());
+    }
+
     RequestOptions options = new RequestOptions()
             .error(google.architecture.common.R.drawable.image_mark)
             .placeholder(google.architecture.common.R.drawable.image_mark)
@@ -61,6 +71,7 @@ public class HomeSearchGoodsAdapter extends BaseMultiItemQuickAdapter<SearchResu
     protected void convert(BaseViewHolder helper, SearchResult.GoodsItem item) {
         switch (helper.getItemViewType()) {
             case SearchResult.GoodsItem.ITEM_TYPE_LIST:
+
                 SimpleDraweeView imageView = helper.getView(R.id.search_goods_list_iv);
                 String lImg = ApiConstants.GankHost + item.getOriginal_img();
                 imageView.setImageURI(lImg);
