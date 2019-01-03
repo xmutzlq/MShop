@@ -174,6 +174,27 @@
                 android:gravity="right"
                 android:drawableRight="@drawable/ic_back_right"/>
         </LinearLayout>
+        <View style="@style/DeepUnderLine"/>
+        <LinearLayout
+            android:id="@+id/btn_set_domain"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_vertical"
+            android:background="@android:color/white"
+            android:padding="10dp"
+            android:orientation="horizontal">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                style="@style/TextBlack14"
+                android:text="设置域名地址"/>
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="right"
+                android:drawableRight="@drawable/ic_back_right"/>
+        </LinearLayout>
 
     </LinearLayout>
 </layout>

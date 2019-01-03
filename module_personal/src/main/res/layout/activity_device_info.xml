@@ -27,7 +27,7 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:gravity="right"
+                android:gravity="left"
                 style="@style/TextGray14"/>
         </LinearLayout>
 
@@ -73,13 +73,14 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:gravity="right"
+                android:gravity="left"
                 android:background="@drawable/input_bg"
-                android:layout_marginLeft="10dp"
+                android:layout_marginLeft="20dp"
                 style="@style/TextGray14"/>
         </LinearLayout>
 
         <Button
+            android:id="@+id/btn_upload_device_info"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginLeft="10dp"

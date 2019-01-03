@@ -74,6 +74,10 @@ public class ARouterPath {
     public static final String PersonalSettingAccountSafeAty = PRE_FIX + APP_TAG + "personal/aty/setting/safe/aty/page";
     /**个人中心个人信息Activity*/
     public static final String PersonalInfoAty = PRE_FIX + APP_TAG + "personal/aty/info";
+    /**设备信息*/
+    public static final String DeviceInfoAty = PRE_FIX + APP_TAG + "personal/aty/device_info";
+    /**域名地址设置*/
+    public static final String DomainInfoAty = PRE_FIX + APP_TAG + "personal/aty/domain_info";
 
     /**个人中心我的订单-全部*/
     public static final String PersonalAllOrderListFgt = PRE_FIX + APP_TAG + "personal/myorder/fgt/all_order";

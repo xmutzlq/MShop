@@ -376,6 +376,12 @@ public class RemoteDataSourceImpl implements IRemoteDataSource {
         return xlj_prepareSubscribe(dataService.xlj_getUserInfo(userToken,method));
     }
 
+    @Override
+    public Flowable<XLJ_HttpResult> xlj_uploadDeviceInfo(String requestJson){
+        return xlj_prepareSubscribe(dataService.xlj_uploadDeviceInfo(requestJson));
+    }
+
+
     /**
      * 已定义subscribeOn、
      * onErrorResumeNext、

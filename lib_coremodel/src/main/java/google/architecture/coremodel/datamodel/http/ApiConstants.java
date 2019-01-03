@@ -36,7 +36,7 @@ public class ApiConstants {
     // 项目主地址
     public static final String URLHost = BuildConfig.APP_REQUEST_URL;
     // 项目分地址
-    public static final String GankHost = "https://mwx.s.cn/";
+    public static String GankHost = "https://mwx.s.cn/";
     //项目分地址
     public static final String GoodsHost = "http://7xij5m.com1.z0.glb.clouddn.com/spRecommend.txt";
 
@@ -154,4 +154,5 @@ public class ApiConstants {
     public static final String XLJ_Get_User_token = URL_BASE + "app/Login/appWxlogin";
     public static final String XLJ_Get_Refresh_token = URL_BASE + "app/Login/getRefreshToken";
     public static final String XLJ_Get_User_Info = URL_BASE + "app/Users/index";
+    public static final String XLJ_Upload_Device_Info = URL_BASE + "app/Goods/setDvToken";
 }

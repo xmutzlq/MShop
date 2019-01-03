@@ -28,6 +28,7 @@
         <activity android:name=".ActivityFeedBack"></activity>
         <activity android:name=".ActivitySetting"></activity>
         <activity android:name=".ActivityDeviceInfo"></activity>
+        <activity android:name=".ActivityDomainSetting"></activity>
     </application>
 
 </manifest>

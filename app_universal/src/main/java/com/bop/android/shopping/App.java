@@ -2,6 +2,7 @@ package com.bop.android.shopping;
 
 import android.content.Context;
 import android.os.Handler;
+import android.text.TextUtils;
 
 import com.alibaba.android.arouter.launcher.ARouter;
 import com.bop.android.shopping.service.InitializeService;
@@ -19,7 +20,9 @@ import org.json.JSONObject;
 import google.architecture.common.base.BaseApplication;
 import google.architecture.common.util.ToastUtils;
 import google.architecture.common.util.Utils;
+import google.architecture.coremodel.datamodel.http.ApiConstants;
 import google.architecture.coremodel.datamodel.http.event.CommEvent;
+import google.architecture.coremodel.util.PreferencesUtils;
 
 public class App  extends BaseApplication{
 
@@ -33,9 +36,17 @@ public class App  extends BaseApplication{
             ARouter.openLog();
         }
         ARouter.init(this);
+        initProperties();
         ZXingLibrary.initDisplayOpinion(this);
         InitializeService.start(this);
         initUmeng();//友盟推送注册
+    }
+
+    private void initProperties(){
+        String domain = PreferencesUtils.getString(getApplicationContext(),"domain_address","");
+        if(!TextUtils.isEmpty(domain)){
+            ApiConstants.GankHost = domain;
+        }
     }
 
     private void initUmeng(){

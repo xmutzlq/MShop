@@ -33,4 +33,19 @@ public class PersonalViewNewModel extends UIViewModel {
         userInfosObservableField.set(userInfos);
     }
 
+    public void uploadDeviceInfo(String deviceToken ,String uniqueId,String deviceName){
+        String requestJson = "{\"appType\":\"android\",\"appToken\":\"y7w7jkt12E6I3BM9\",\"method\":\"Goods/setDvToken\","
+                +"\"name\":\""+deviceName+"\","
+                +"\"onlySign\":\""+uniqueId+"\","
+                +"\"dvToken\":\""+deviceToken+"\""
+                +"}";
+        disposable.add(DeHongDataRepository.get().xlj_uploadDeviceInfo(requestJson).doOnSubscribe(disposable -> isRunning.set(true))
+                .doOnTerminate(() -> isRunning.set(false))
+                .doOnNext((result) -> {
+                    setDataObject(result, data);
+                })
+                .subscribe(new EmptyConsumer(), new ErrorConsumer())
+        );
+    }
+
 }

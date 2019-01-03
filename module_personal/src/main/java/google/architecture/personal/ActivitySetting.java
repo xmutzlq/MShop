@@ -5,6 +5,7 @@ import android.support.annotation.Nullable;
 import android.view.View;
 
 import com.alibaba.android.arouter.facade.annotation.Route;
+import com.alibaba.android.arouter.launcher.ARouter;
 import com.king.android.res.config.ARouterPath;
 import com.tencent.mm.opensdk.diffdev.DiffDevOAuthFactory;
 import com.tencent.mm.opensdk.diffdev.IDiffDevOAuth;
@@ -44,10 +45,21 @@ public class ActivitySetting extends BaseActivity<ActivitySettingNewBinding> {
 
     private void initBtn(){
         mBtnGetDeviceToken = findViewById(R.id.btn_get_device_token);
+
+        //设置设备信息
         mBtnGetDeviceToken.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                ToastUtils.showLongToast(BaseApplication.getIns().getDeviceToken());
+                //ToastUtils.showLongToast(BaseApplication.getIns().getDeviceToken());
+                ARouter.getInstance().build(ARouterPath.DeviceInfoAty).navigation(ActivitySetting.this);
+            }
+        });
+
+        //设置域名地址
+        findViewById(R.id.btn_set_domain).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                ARouter.getInstance().build(ARouterPath.DomainInfoAty).navigation(ActivitySetting.this);
             }
         });
     }
