@@ -50,6 +50,11 @@ public class ActivitySearch extends BaseActivity<ActivitySearchBinding> {
     }
 
     @Override
+    protected boolean isStatusBarTransparent() {
+        return true;
+    }
+
+    @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         //搜索按钮
@@ -136,7 +141,7 @@ public class ActivitySearch extends BaseActivity<ActivitySearchBinding> {
 
         Looper.myQueue().addIdleHandler(() -> {
             addRunStatusChangeCallBack(homeSearchViewModel);
-            homeSearchViewModel.loadHotData();
+//            homeSearchViewModel.loadHotData();
             homeSearchViewModel.loadHistorySearch();
             return false;
         });

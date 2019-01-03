@@ -25,14 +25,9 @@ import java.util.LinkedList;
 import java.util.List;
 
 import google.architecture.common.base.BaseFragment;
-import google.architecture.common.statusbar.StatusbarUtils;
 import google.architecture.common.viewmodel.HomeViewModel;
-import google.architecture.coremodel.data.HomeData;
 import google.architecture.coremodel.data.xlj.shopdata.ShopData;
-import google.architecture.home.substance.HomeModels;
-import google.architecture.home.substance.HomePage;
 import google.architecture.home.substance.HomePageNew;
-import google.architecture.home.substance.HomeTypes;
 
 /**
  * @Desc FragmentNews
@@ -92,11 +87,6 @@ public class FragmentHome extends BaseFragment {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        View statusBarView = (View) findViewById(view, R.id.action_bar_space);
-        LinearLayout.LayoutParams layoutParams = new LinearLayout.LayoutParams(
-                ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
-        layoutParams.height = StatusbarUtils.getStatusBarHeight(mContext) - 10;
-        statusBarView.setLayoutParams(layoutParams);
 
         floor = (ImageView)findViewById(view, R.id.secondfloor);
         final TwoLevelHeader header = (TwoLevelHeader)findViewById(view, R.id.header);

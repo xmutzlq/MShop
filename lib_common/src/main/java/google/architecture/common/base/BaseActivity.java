@@ -16,6 +16,7 @@ import android.support.v7.app.ActionBar;
 import android.support.v7.widget.Toolbar;
 import android.view.KeyEvent;
 import android.view.View;
+import android.view.ViewGroup;
 
 import com.apkfuns.logutils.LogUtils;
 import com.gyf.barlibrary.ImmersionBar;
@@ -34,6 +35,7 @@ import google.architecture.common.base.top.ToolbarHelper;
 import google.architecture.common.base.top.ToolbarManager;
 import google.architecture.common.base.top.ToolbarView;
 import google.architecture.common.base.top.options.ToolbarOptions;
+import google.architecture.common.statusbar.StatusbarUtils;
 import google.architecture.coremodel.Account;
 import google.architecture.coremodel.datamodel.http.event.CommEvent;
 import google.architecture.coremodel.util.NetUtils;
@@ -142,9 +144,25 @@ public abstract class BaseActivity<VB extends ViewDataBinding> extends BaseActiv
             if (isImmersionBarEnabled()) {
                 initImmersionBar();
             }
+            //适配状态栏(去除状态栏，使用自定义View替代)
+            if(isStatusBarTransparent()) {
+                replaceStatusBar(rootView);
+            }
+
             requestPermissions();
         }
         PushAgent.getInstance(this).onAppStart();
+    }
+
+    protected void replaceStatusBar(View view) {
+        View statusBarView = findViewById(view, R.id.action_bar_space);
+        if(statusBarView != null) {
+            ViewGroup.LayoutParams layoutParams = statusBarView.getLayoutParams();
+            if(layoutParams != null) {
+                layoutParams.height = StatusbarUtils.getStatusBarHeight(this_);
+                statusBarView.setLayoutParams(layoutParams);
+            }
+        }
     }
 
     public void setOrientation() {

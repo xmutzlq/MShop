@@ -10,22 +10,18 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.FrameLayout;
-import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import com.alibaba.android.arouter.facade.annotation.Route;
 import com.apkfuns.logutils.LogUtils;
 import com.king.android.res.config.ARouterPath;
-import com.king.android.res.view.HomeSearchScrollController;
 
 import java.util.List;
 
 import google.architecture.category.adapter.CategoryLeftItemDecoration;
 import google.architecture.category.adapter.CategoryTitleAdapter;
 import google.architecture.common.base.BaseFragment;
-import google.architecture.common.statusbar.StatusbarUtils;
 import google.architecture.common.util.FragmentUtils;
 import google.architecture.common.util.ScreenUtils;
 import google.architecture.common.util.Utils;
@@ -84,11 +80,6 @@ public class FragmentCategory extends BaseFragment{
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        View statusBarView = (View) findViewById(view, R.id.action_bar_space);
-        FrameLayout.LayoutParams layoutParams = (FrameLayout.LayoutParams) statusBarView.getLayoutParams();
-        layoutParams.height = StatusbarUtils.getStatusBarHeight(mContext) - 10;
-        statusBarView.setLayoutParams(layoutParams);
-
         mCategoryPb = (ProgressBar) findViewById(view, R.id.category_progress);
 
         //左边列表
