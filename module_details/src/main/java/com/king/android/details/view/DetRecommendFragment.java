@@ -22,7 +22,7 @@ public class DetRecommendFragment extends BaseFragment{
 
     @Override
     protected boolean isStatusBarTransparent() {
-        return false;
+        return true;
     }
 
     @Override

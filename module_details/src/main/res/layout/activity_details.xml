@@ -6,6 +6,12 @@
     android:orientation="vertical"
     tools:context="com.king.android.details.ActivityDetails">
 
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <include layout="@layout/layout_common_status_bar_space"/>
+    </FrameLayout>
+
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content">

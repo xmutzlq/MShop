@@ -55,6 +55,11 @@ public class ActivityDetails extends BaseActivity {
     private int operType = 1;
 
     @Override
+    protected boolean isStatusBarTransparent() {
+        return true;
+    }
+
+    @Override
     protected int getLayout() {
         return R.layout.activity_details;
     }

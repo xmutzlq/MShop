@@ -110,7 +110,7 @@ public class DetCommodityNewFragment extends BaseFragment<FragmentDetCommodityBi
 
     @Override
     protected boolean isStatusBarTransparent() {
-        return false;
+        return true;
     }
 
     @Override

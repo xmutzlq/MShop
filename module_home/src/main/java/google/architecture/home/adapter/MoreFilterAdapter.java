@@ -5,6 +5,7 @@ import android.text.TextUtils;
 import android.util.ArrayMap;
 import android.widget.ImageView;
 
+import com.apkfuns.logutils.LogUtils;
 import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.chad.library.adapter.base.BaseViewHolder;
 
@@ -40,13 +41,18 @@ public class MoreFilterAdapter extends BaseQuickAdapter<MoreFilterData, BaseView
 
     public String getParams() {
         StringBuilder stringBuilder = new StringBuilder();
+        int a = 0;
         for (Map.Entry<String, List<String>> entry : params.entrySet()) {
             for (int i = 0; i < entry.getValue().size(); i ++) {
                 stringBuilder.append(entry.getValue().get(i));
                 if(i != entry.getValue().size() - 1) {
-                    stringBuilder.append("-");
+                    stringBuilder.append("_");
                 }
             }
+            if(a != params.size() - 1) {
+                stringBuilder.append("-");
+            }
+            a += 1;
         }
         return stringBuilder.toString();
     }

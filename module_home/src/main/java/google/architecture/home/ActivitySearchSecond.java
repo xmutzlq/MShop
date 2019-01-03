@@ -308,6 +308,9 @@ public class ActivitySearchSecond extends BasePagingActivity<ActivitySearchSecon
             case CommFilterTabView.TAB_HOT:
                 mHomeSearchViewModel.loadSearchResultDataNew(searchInputId, searchInputValue, 3, -1);
                 break;
+            case CommFilterTabView.TAB_DEFAULT:
+                mHomeSearchViewModel.loadSearchResultDataNew(searchInputId, searchInputValue, 1, -1);
+                break;
             case CommFilterTabView.TAB_DEFAULT_AES: //默认—升
                 mHomeSearchViewModel.loadSearchResultDataNew(searchInputId, searchInputValue, 1, 0);
                 break;

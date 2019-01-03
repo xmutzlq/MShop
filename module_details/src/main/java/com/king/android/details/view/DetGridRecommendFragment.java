@@ -11,6 +11,12 @@ import google.architecture.common.base.BaseFragment;
  */
 @Route(path = ARouterPath.DetailGridRecommendFgt)
 public class DetGridRecommendFragment extends BaseFragment {
+
+    @Override
+    protected boolean isStatusBarTransparent() {
+        return true;
+    }
+
     @Override
     protected int getLayout() {
         return 0;

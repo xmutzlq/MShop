@@ -56,7 +56,7 @@ public class DetDetailFragment extends BaseFragment<FragmentDetDetailBinding> {
 
     @Override
     protected boolean isStatusBarTransparent() {
-        return false;
+        return true;
     }
 
     @Override
