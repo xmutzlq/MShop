@@ -154,8 +154,10 @@ ext.build_versions = build_versions
 def addRepos(RepositoryHandler handler) {
     handler.google()
     handler.jcenter()
+    handler.mavenCentral()
     handler.maven { url 'https://oss.jfrog.org/libs-snapshot' }
     handler.maven { url 'https://jitpack.io' }
+    handler.maven { url 'https://dl.bintray.com/umsdk/release' }
 }
 
 ext.addRepos = this.&addRepos
