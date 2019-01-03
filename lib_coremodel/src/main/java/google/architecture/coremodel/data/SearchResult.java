@@ -7,9 +7,10 @@ import android.text.TextUtils;
 import com.chad.library.adapter.base.entity.MultiItemEntity;
 import com.google.gson.annotations.SerializedName;
 
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
+
+import google.architecture.coremodel.data.xlj.searchfilter.SelectedTagsChild;
+import google.architecture.coremodel.data.xlj.searchfilter.ShopLists;
 
 /**
  * @author lq.zeng
@@ -18,14 +19,36 @@ import java.util.Map;
 
 public class SearchResult {
 
-    @SerializedName("screening_conditions")
+    @SerializedName("filters")
     private List<FilterContainer> screening_conditions;
+
+    @SerializedName("selectedTags")
+    private List<SelectedTagsChild> selectedTags;
+
+    @SerializedName("shopLists")
+    private List<ShopLists> shopLists;
 
     @SerializedName("goodsList")
     private List<GoodsItem> goods_list;
 
-    @SerializedName("goods_total")
+    @SerializedName("total_page")
     private int goods_total = 100;
+
+    public List<SelectedTagsChild> getSelectedTags() {
+        return selectedTags;
+    }
+
+    public void setSelectedTags(List<SelectedTagsChild> selectedTags) {
+        this.selectedTags = selectedTags;
+    }
+
+    public List<ShopLists> getShopLists() {
+        return shopLists;
+    }
+
+    public void setShopLists(List<ShopLists> shopLists) {
+        this.shopLists = shopLists;
+    }
 
     public List<FilterContainer> getScreening_conditions() {
         return screening_conditions;
@@ -52,17 +75,17 @@ public class SearchResult {
     }
 
     public static class FilterContainer implements Parcelable{
-        @SerializedName("title")
+        @SerializedName("p_name")
         private String title;
 
-        @SerializedName("search_key")
+        @SerializedName("p_id")
         private String search_key; //搜索传参的参数名
 
         @SerializedName("choose")
         private int choose;
         @SerializedName("choose_num")
         private int choose_num;
-        @SerializedName("list")
+        @SerializedName("c")
         private List<SearchFilterList> list;
 
         protected FilterContainer(Parcel in) {
@@ -439,19 +462,21 @@ public class SearchResult {
     public static class FilterResultData implements Parcelable {
         private String lowPrice;
         private String heightPrice;
-        private Map<String, String> params;
+        private String params;
 
         public FilterResultData(){}
 
         protected FilterResultData(Parcel in) {
             lowPrice = in.readString();
             heightPrice = in.readString();
+            params = in.readString();
         }
 
         @Override
         public void writeToParcel(Parcel dest, int flags) {
             dest.writeString(lowPrice);
             dest.writeString(heightPrice);
+            dest.writeString(params);
         }
 
         @Override
@@ -487,11 +512,11 @@ public class SearchResult {
             this.heightPrice = heightPrice;
         }
 
-        public Map<String, String> getParams() {
-            return params == null ? new HashMap<>() : params;
+        public String getParams() {
+            return params;
         }
 
-        public void setParams(Map<String, String> params) {
+        public void setParams(String params) {
             this.params = params;
         }
     }

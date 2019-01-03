@@ -7,9 +7,7 @@ import com.google.gson.Gson;
 import com.google.gson.annotations.SerializedName;
 
 import java.util.Collections;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 import google.architecture.common.base.BaseListViewModel;
 import google.architecture.coremodel.data.SearchResult;
@@ -43,16 +41,16 @@ public class HomeSearchViewModel extends BaseListViewModel {
     private SearchResultParamsNew searchResultParamsNew;
 
     public void loadSearchResultData(String search_id, String search_name) {
-        searchResultParams = new SearchResultParams(search_id, search_name, "", "", "", "", new HashMap<>());
+        searchResultParams = new SearchResultParams(search_id, search_name, "", "", "", "", "");
     }
 
     public void loadSearchResultData(String search_id, String search_name, String orderField,
                                      String orderDirection, String min_price, String max_price) {
-        searchResultParams = new SearchResultParams(search_id, search_name, orderField, orderDirection, min_price, max_price, new HashMap<>());
+        searchResultParams = new SearchResultParams(search_id, search_name, orderField, orderDirection, min_price, max_price, "");
     }
 
     public void loadSearchResultData(String search_id, String search_name, String orderField,
-                                     String orderDirection, String min_price, String max_price, Map<String, String> otherParams) {
+                                     String orderDirection, String min_price, String max_price, String otherParams) {
         searchResultParams = new SearchResultParams(search_id, search_name, orderField, orderDirection, min_price, max_price, otherParams);
     }
 
@@ -232,9 +230,9 @@ public class HomeSearchViewModel extends BaseListViewModel {
         @SerializedName("mdesc")
         private int mdesc;
         @SerializedName("sprice")
-        private int sprice;
+        private double sprice = 0;
         @SerializedName("eprice")
-        private int eprice;
+        private double eprice = 0;
         @SerializedName("only")
         private int only = 1;
 
@@ -317,19 +315,19 @@ public class HomeSearchViewModel extends BaseListViewModel {
             this.mdesc = mdesc;
         }
 
-        public int getSprice() {
+        public double getSprice() {
             return sprice;
         }
 
-        public void setSprice(int sprice) {
+        public void setSprice(double sprice) {
             this.sprice = sprice;
         }
 
-        public int getEprice() {
+        public double getEprice() {
             return eprice;
         }
 
-        public void setEprice(int eprice) {
+        public void setEprice(double eprice) {
             this.eprice = eprice;
         }
 
@@ -349,10 +347,10 @@ public class HomeSearchViewModel extends BaseListViewModel {
         private String orderDirection;
         private String min_price;
         private String max_price;
-        private Map<String, String> otherParams;
+        private String otherParams;
 
         public SearchResultParams(String search_id, String search_name, String orderField,
-                                  String orderDirection, String min_price, String max_price, Map<String, String> otherParams) {
+                                  String orderDirection, String min_price, String max_price, String otherParams) {
             this.search_id = search_id;
             this.search_name = search_name;
             this.orderField = orderField;
@@ -410,11 +408,11 @@ public class HomeSearchViewModel extends BaseListViewModel {
             this.max_price = max_price;
         }
 
-        public Map<String, String> getOtherParams() {
-            return otherParams == null ? new HashMap<>() : otherParams;
+        public String getOtherParams() {
+            return otherParams;
         }
 
-        public void setOtherParams(Map<String, String> otherParams) {
+        public void setOtherParams(String otherParams) {
             this.otherParams = otherParams;
         }
     }

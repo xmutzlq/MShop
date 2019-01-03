@@ -28,7 +28,8 @@
             android:id="@+id/filter_more_title_righ_tv"
             style="@style/TextView_Filter_Title_right"
             android:maxEms="8"
-            android:text="@string/filter_title_all_kinds_" />
+            android:text="@string/filter_title_all_kinds_"
+            android:visibility="gone"/>
 
         <ImageView
             android:id="@+id/filter_arrow_iv"

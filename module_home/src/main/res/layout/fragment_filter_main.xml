@@ -80,7 +80,8 @@
                     android:layout_marginLeft="@dimen/size_12dp"
                     android:layout_marginRight="@dimen/size_12dp"
                     android:layout_marginTop="@dimen/size_8dp"
-                    android:text="@string/filter_title_range" />
+                    android:text="@string/filter_title_range"
+                    android:visibility="gone"/>
 
                 <!-- 价格区间 -->
                 <LinearLayout
@@ -91,7 +92,8 @@
                     android:layout_marginTop="@dimen/size_15dp"
                     android:layout_marginBottom="@dimen/size_15dp"
                     android:gravity="center_vertical"
-                    android:orientation="horizontal">
+                    android:orientation="horizontal"
+                    android:visibility="gone">
 
                     <EditText
                         android:id="@+id/filter_price_left"
@@ -151,7 +153,8 @@
                     <TextView
                         android:id="@+id/filter_all_kinds_tv"
                         style="@style/TextView_Filter_Title_right"
-                        android:text="@string/filter_title_all_kinds_" />
+                        android:text="@string/filter_title_all_kinds_"
+                        android:visibility="gone"/>
 
                     <ImageView
                         android:layout_width="@dimen/size_10dp"
@@ -160,7 +163,8 @@
                         android:src="@mipmap/ic_filter_arrow_right_normal" />
                 </LinearLayout>
 
-                <View style="@style/SpaceLine"></View>
+                <View style="@style/SpaceLine"
+                    android:visibility="gone"/>
 
                 <android.support.v7.widget.RecyclerView
                     android:id="@+id/filter_more_recyclerView"
@@ -179,23 +183,25 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:paddingTop="@dimen/size_5dp"
+                android:paddingBottom="@dimen/size_5dp"
+                android:gravity="right"
+                android:layout_marginRight="@dimen/size_5dp"
                 android:orientation="horizontal">
 
                 <Button
                     android:id="@+id/btn_reset"
                     android:layout_width="wrap_content"
-                    android:layout_height="@dimen/size_40dp"
-                    android:layout_weight="1"
-                    android:background="@color/white"
+                    android:layout_height="wrap_content"
+                    android:background="@mipmap/left_gradient_btn"
                     android:text="重置"
-                    android:textColor="@color/color_9c8d8c" />
+                    android:textColor="@color/white" />
 
                 <Button
                     android:id="@+id/btn_confirm"
                     android:layout_width="wrap_content"
-                    android:layout_height="@dimen/size_40dp"
-                    android:layout_weight="1"
-                    android:background="@color/color_ff593e"
+                    android:layout_height="wrap_content"
+                    android:background="@mipmap/right_gradient_btn"
                     android:text="确定"
                     android:textColor="@color/white" />
             </LinearLayout>

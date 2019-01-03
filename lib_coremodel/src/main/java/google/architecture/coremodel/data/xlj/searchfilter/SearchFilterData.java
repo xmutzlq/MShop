@@ -1,16 +1,23 @@
 package google.architecture.coremodel.data.xlj.searchfilter;
 
+import com.google.gson.annotations.SerializedName;
+
 import java.util.List;
 
 public class SearchFilterData {
-    private SelectedTags selectedTags;
+    @SerializedName("selectedTags")
+    private List<SelectedTagsChild> selectedTags;
+    @SerializedName("goodsList")
     private List<GoodsList> goodsList;
-    private Filters filters;
+    @SerializedName("filters")
+    private List<Filter> filters;
+    @SerializedName("shopLists")
     private List<ShopLists> shopLists;
-    public void setSelectedTags(SelectedTags selectedTags) {
+
+    public void setSelectedTags(List<SelectedTagsChild> selectedTags) {
         this.selectedTags = selectedTags;
     }
-    public SelectedTags getSelectedTags() {
+    public List<SelectedTagsChild> getSelectedTags() {
         return selectedTags;
     }
 
@@ -21,11 +28,12 @@ public class SearchFilterData {
         return goodsList;
     }
 
-    public void setFilters(Filters filters) {
-        this.filters = filters;
-    }
-    public Filters getFilters() {
+    public List<Filter> getFilters() {
         return filters;
+    }
+
+    public void setFilters(List<Filter> filters) {
+        this.filters = filters;
     }
 
     public void setShopLists(List<ShopLists> shopLists) {

@@ -28,6 +28,8 @@ import google.architecture.home.adapter.MoreFilterAdapter;
 import google.architecture.home.databinding.FragmentFilterMainBinding;
 import google.architecture.home.search.ScrollLinearLayoutManager;
 
+import static google.architecture.home.adapter.MoreFilterAdapter.DEFAULT_SHOWN_TAG_NUM;
+
 /**
  * @author lq.zeng
  * @date 2018/5/25
@@ -51,6 +53,11 @@ public class FragmentFilterMain extends BaseFragment<FragmentFilterMainBinding>{
         FragmentFilterMain filterMain = new FragmentFilterMain();
         filterMain.setArguments(bundle);
         return filterMain;
+    }
+
+    @Override
+    protected boolean isStatusBarTransparent() {
+        return true;
     }
 
     @Override
@@ -154,7 +161,8 @@ public class FragmentFilterMain extends BaseFragment<FragmentFilterMainBinding>{
                 MoreFilterTagParams moreFilterTagParams = new MoreFilterTagParams();
                 moreFilterTagParams.setTagId(searchFilterList.getId());
                 moreFilterTagParams.setTagName(searchFilterList.getName());
-                if(j <= 2) {
+                moreFilterTagParams.setTagUrlId(searchFilterList.getC_urlId());
+                if(j <= DEFAULT_SHOWN_TAG_NUM - 1) {
                     moreFilterTagParams.setShown(true);
                     tagData(tagDatas, moreFilterTagParams);
                 } else {
@@ -255,6 +263,7 @@ public class FragmentFilterMain extends BaseFragment<FragmentFilterMainBinding>{
         MoreFilterTagData moreFilterTagData = new MoreFilterTagData();
         moreFilterTagData.tagId = moreFilterTagParams.tagId;
         moreFilterTagData.tagName = moreFilterTagParams.tagName;
+        moreFilterTagData.tagUrlId = moreFilterTagParams.tagUrlId;
         moreFilterTagData.isShown = moreFilterTagParams.isShown;
         tagData.add(moreFilterTagData);
     }
@@ -262,6 +271,7 @@ public class FragmentFilterMain extends BaseFragment<FragmentFilterMainBinding>{
     private static class MoreFilterTagParams {
         private String tagId;
         private String tagName;
+        private String tagUrlId;
         private boolean isShown;
 
         public String getTagId() {
@@ -278,6 +288,14 @@ public class FragmentFilterMain extends BaseFragment<FragmentFilterMainBinding>{
 
         public void setTagName(String tagName) {
             this.tagName = tagName;
+        }
+
+        public String getTagUrlId() {
+            return tagUrlId;
+        }
+
+        public void setTagUrlId(String tagUrlId) {
+            this.tagUrlId = tagUrlId;
         }
 
         public boolean isShown() {

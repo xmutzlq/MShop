@@ -31,7 +31,6 @@ import google.architecture.common.util.CommKeyUtil;
 import google.architecture.common.util.DimensionsUtil;
 import google.architecture.common.util.FragmentUtils;
 import google.architecture.common.util.TransitionHelper;
-import google.architecture.common.util.TransitionInformation;
 import google.architecture.common.viewmodel.HomeSearchViewModel;
 import google.architecture.common.widget.CommDrawerLayout;
 import google.architecture.common.widget.GridSpacingItemDecoration;
@@ -71,6 +70,11 @@ public class ActivitySearchSecond extends BasePagingActivity<ActivitySearchSecon
     @Override
     protected boolean isNeedRefreshing() {
         return false;
+    }
+
+    @Override
+    protected boolean isStatusBarTransparent() {
+        return true;
     }
 
     @Override
@@ -181,7 +185,7 @@ public class ActivitySearchSecond extends BasePagingActivity<ActivitySearchSecon
             setListViewModel(mHomeSearchViewModel);
             LogUtils.tag("zlq").e("searchInputId = " + searchInputId + ", searchInputValue = " + searchInputValue);
 //            mHomeSearchViewModel.loadSearchResultData(searchInputId, searchInputValue);
-            mHomeSearchViewModel.loadSearchResultDataNew(searchInputId, searchInputValue, 3, 1);
+            mHomeSearchViewModel.loadSearchResultDataNew(searchInputId, searchInputValue, 1, -1);
             pagingHelper.onRefresh();
             return false;
         });
@@ -192,15 +196,15 @@ public class ActivitySearchSecond extends BasePagingActivity<ActivitySearchSecon
         super.onDataResult(o);
         //右侧筛选
         if(!hasLoadFilter) {
-//            hasLoadFilter = true;
-//            int position = PreferencesUtils.getInt(this_, PreferencesUtils.PREFERENCE_KEY_FILTER_ALL_CATE_POSITION, -1);
-//            String choiceCate = position == -1 ? "" : mHomeSearchViewModel.getFilterData().get(0).getList().get(position).getName();
-//            Looper.myQueue().addIdleHandler(() -> {
-//                binding.filterDrawerLayout.setDrawerLockMode(CommDrawerLayout.LOCK_MODE_LOCKED_CLOSED);
-//                FragmentUtils.addFragment(getSupportFragmentManager(), FragmentFilterMain.newInstance(new ArrayList<>(mHomeSearchViewModel.getFilterData()), choiceCate),
-//                        R.id.filter_drawer_content, false, true);
-//                return  false;
-//            });
+            hasLoadFilter = true;
+            int position = PreferencesUtils.getInt(this_, PreferencesUtils.PREFERENCE_KEY_FILTER_ALL_CATE_POSITION, -1);
+            String choiceCate = position == -1 ? "" : mHomeSearchViewModel.getFilterData().get(0).getList().get(position).getName();
+            Looper.myQueue().addIdleHandler(() -> {
+                binding.filterDrawerLayout.setDrawerLockMode(CommDrawerLayout.LOCK_MODE_LOCKED_CLOSED);
+                FragmentUtils.addFragment(getSupportFragmentManager(), FragmentFilterMain.newInstance(new ArrayList<>(mHomeSearchViewModel.getFilterData()), choiceCate),
+                        R.id.filter_drawer_content, false, true);
+                return  false;
+            });
         }
     }
 
@@ -237,8 +241,10 @@ public class ActivitySearchSecond extends BasePagingActivity<ActivitySearchSecon
         } else if(CommEvent.MSG_TYPE_FILTER_RESULT.equals(event.msgType)) {
             if(event.bundle != null) {
                 String type = event.bundle.getString(CommKeyUtil.EXTRA_KEY_2);
-                mHomeSearchViewModel.setFilterResultData(event.bundle.getParcelable(CommKeyUtil.EXTRA_KEY));
+                SearchResult.FilterResultData filterResultData = event.bundle.getParcelable(CommKeyUtil.EXTRA_KEY);
+//                mHomeSearchViewModel.setFilterResultData(filterResultData);
                 if(TextUtils.isEmpty(type) || !FragmentFilterMain.TYPE_FILTER_RESET.equals(type)) {
+                    searchInputId = filterResultData.getParams();
                     onTabClick(false, tabView.getCurrentTag());
                 }
             }
@@ -295,6 +301,18 @@ public class ActivitySearchSecond extends BasePagingActivity<ActivitySearchSecon
                     mHomeSearchViewModel.loadSearchResultData(searchInputId, searchInputValue,
                             "shop_price", order, "", "");
                 }
+                break;
+            case CommFilterTabView.TAB_NEWEST:
+                mHomeSearchViewModel.loadSearchResultDataNew(searchInputId, searchInputValue, 2, -1);
+                break;
+            case CommFilterTabView.TAB_HOT:
+                mHomeSearchViewModel.loadSearchResultDataNew(searchInputId, searchInputValue, 3, -1);
+                break;
+            case CommFilterTabView.TAB_DEFAULT_AES: //默认—升
+                mHomeSearchViewModel.loadSearchResultDataNew(searchInputId, searchInputValue, 1, 0);
+                break;
+            case CommFilterTabView.TAB_DEFAULT_DES: //默认—降
+                mHomeSearchViewModel.loadSearchResultDataNew(searchInputId, searchInputValue, 1, 1);
                 break;
         }
         pagingHelper.onRefresh();

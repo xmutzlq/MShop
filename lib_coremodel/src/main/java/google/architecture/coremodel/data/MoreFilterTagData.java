@@ -8,6 +8,7 @@ package google.architecture.coremodel.data;
 public class MoreFilterTagData {
     public String tagId = "";
     public String tagName = "";
+    public String tagUrlId = "";
     public boolean isShown;
 
     @Override

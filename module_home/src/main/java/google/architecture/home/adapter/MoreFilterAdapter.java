@@ -25,30 +25,30 @@ import google.architecture.home.R;
 
 public class MoreFilterAdapter extends BaseQuickAdapter<MoreFilterData, BaseViewHolder> {
 
+    public static final int DEFAULT_SHOWN_TAG_NUM = 9;
+
     private ArrayMap<Integer, Set<Integer>> selectedMap = new ArrayMap<>();
     private ArrayMap<Integer, List<MoreFilterTagData>> allKinds = new ArrayMap<>();
     private ArrayMap<String, List<String>> params = new ArrayMap<>();
     private ArrayMap<Integer, Integer> prePosition = new ArrayMap<>(); //单选时使用
-    private int mTagsRowCount;
+    private int mTagsRowCount = DEFAULT_SHOWN_TAG_NUM;
 
     public MoreFilterAdapter(int layoutResId, @Nullable List<MoreFilterData> data) {
         super(layoutResId, data);
         initAllKinds(data);
     }
 
-    public ArrayMap<String, String> getParams() {
-        ArrayMap<String, String> tmpParams = new ArrayMap<>();
+    public String getParams() {
+        StringBuilder stringBuilder = new StringBuilder();
         for (Map.Entry<String, List<String>> entry : params.entrySet()) {
-            StringBuilder stringBuilder = new StringBuilder();
             for (int i = 0; i < entry.getValue().size(); i ++) {
                 stringBuilder.append(entry.getValue().get(i));
                 if(i != entry.getValue().size() - 1) {
-                    stringBuilder.append(",");
+                    stringBuilder.append("-");
                 }
             }
-            tmpParams.put(entry.getKey(), stringBuilder.toString());
         }
-        return tmpParams;
+        return stringBuilder.toString();
     }
     public ArrayMap<Integer, List<MoreFilterTagData>> getAllKindsTagData() {
         return allKinds;
@@ -87,7 +87,7 @@ public class MoreFilterAdapter extends BaseQuickAdapter<MoreFilterData, BaseView
         helper.setText(R.id.filter_more_title_tv, item.itemTilteName);
         MoreFilterTagAdapter moreFilterTagAdapter = new MoreFilterTagAdapter(mContext, item.tagData);
         TagFlowLayout tagFlowLayout = helper.getView(R.id.filter_more_layout);
-        mTagsRowCount = tagFlowLayout.getRowItemCount(); //一行显示多少数量
+//        mTagsRowCount = tagFlowLayout.getRowItemCount(); //一行显示多少数量
         if(item.maxChooseNum > 0) tagFlowLayout.setMaxSelectCount(item.maxChooseNum); //设置最大可选数
         tagFlowLayout.setOnTagClickListener((view, position, parent) -> {
             if(!params.containsKey(item.searchParamKey))params.put(item.searchParamKey, new ArrayList<>());
@@ -103,10 +103,10 @@ public class MoreFilterAdapter extends BaseQuickAdapter<MoreFilterData, BaseView
             }
             if(haveTag) {
                 allKinds.get(helper.getAdapterPosition()).add(position, new MoreFilterTagData());
-                params.get(item.searchParamKey).remove(item.tagData.get(position).tagId);
+                params.get(item.searchParamKey).remove(item.tagData.get(position).tagUrlId);
             } else {
                 allKinds.get(helper.getAdapterPosition()).add(position, item.tagData.get(position));
-                params.get(item.searchParamKey).add(item.tagData.get(position).tagId);
+                params.get(item.searchParamKey).add(item.tagData.get(position).tagUrlId);
             }
             List<MoreFilterTagData> tempTags = allKinds.get(helper.getAdapterPosition());
             StringBuilder sb = new StringBuilder();
@@ -137,14 +137,20 @@ public class MoreFilterAdapter extends BaseQuickAdapter<MoreFilterData, BaseView
 
         helper.setGone(R.id.filter_just_a_space, helper.getAdapterPosition() == getItemCount() - 1);
 
-        helper.getView(R.id.filter_more_title_layout).setOnClickListener(v -> {
-            item.isAllShown = !item.isAllShown;
-            for (int i = 0; i < getData ().get(helper.getAdapterPosition()).tagData.size(); i++) {
-                MoreFilterTagData tagData = getData ().get(helper.getAdapterPosition()).tagData.get(i);
-                tagData.isShown = (i >= mTagsRowCount) ? item.isAllShown : true; //前3个Tag不做显示隐藏操作
-            }
-            notifyItemChanged(helper.getAdapterPosition());
-        });
+        if(getData ().get(helper.getAdapterPosition()).tagData.size() > mTagsRowCount) {
+            helper.setGone(R.id.filter_arrow_iv, true);
+            helper.getView(R.id.filter_more_title_layout).setOnClickListener(v -> {
+                item.isAllShown = !item.isAllShown;
+                for (int i = 0; i < getData().get(helper.getAdapterPosition()).tagData.size(); i++) {
+                    MoreFilterTagData tagData = getData().get(helper.getAdapterPosition()).tagData.get(i);
+                    tagData.isShown = (i >= mTagsRowCount) ? item.isAllShown : true; //前3个Tag不做显示隐藏操作
+                }
+//                moreFilterTagAdapter.notifyDataChanged();
+                notifyItemChanged(helper.getAdapterPosition());
+            });
+        } else {
+            helper.setGone(R.id.filter_arrow_iv, false);
+        }
 
         helper.setText(R.id.filter_more_title_righ_tv, TextUtils.isEmpty(item.itemTitleRightName) ?
                 mContext.getResources().getString(R.string.filter_title_all_kinds_) : item.itemTitleRightName);

@@ -16,9 +16,6 @@ import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TextView;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import google.architecture.common.util.DimensionsUtil;
 import google.architecture.common.widget.BackgroundDarkPopupWindow;
 import google.architecture.home.R;
@@ -36,6 +33,8 @@ public class CommFilterTabView extends FrameLayout implements View.OnClickListen
     public static final String TAB_PRICE = "tab_price";
 
     public static final String TAB_DEFAULT = "tab_default"; //默认
+    public static final String TAB_DEFAULT_AES = "tab_default_aes"; //默认_升序
+    public static final String TAB_DEFAULT_DES = "tab_default_des"; //默认_降序
     public static final String TAB_NEWEST = "tab_newest"; //新品
     public static final String TAB_HOT = "tab_hot"; //人气
     public static final String TAB_EXCHANGE = "tab_exchange"; //L&G交换
@@ -226,6 +225,24 @@ public class CommFilterTabView extends FrameLayout implements View.OnClickListen
         ListView listView = contentView.findViewById(R.id.default_filter_lv);
         listView.setOnItemClickListener((parent, view, position, id) -> {
             adapter.selectItem(position);
+            if(mTabClickListener != null) {
+                String tmpTag;
+                switch (position) {
+                    case 0:
+                        tmpTag = TAB_DEFAULT;
+                        break;
+                    case 1:
+                        tmpTag = TAB_DEFAULT_DES;
+                        break;
+                    case 2:
+                        tmpTag = TAB_DEFAULT_AES;
+                        break;
+                    default:
+                        tmpTag = TAB_DEFAULT;
+                        break;
+                }
+                mTabClickListener.onTabClick(true, tmpTag);
+            }
             if(popWindow != null) popWindow.dismiss();
         });
         listView.setAdapter(adapter);

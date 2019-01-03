@@ -2,13 +2,15 @@ package google.architecture.coremodel.data.xlj.searchfilter;
 
 import com.google.gson.annotations.SerializedName;
 
-public class FiltersNumber9 {
+import java.util.List;
+
+public class Filter {
     @SerializedName("p_name")
     private String p_name;
     @SerializedName("p_id")
     private int p_id;
     @SerializedName("c")
-    private FiltersNumber9Child c;
+    private List<FilterChild> c;
 
     public void setP_name(String p_name) {
         this.p_name = p_name;
@@ -24,10 +26,11 @@ public class FiltersNumber9 {
         return p_id;
     }
 
-    public void setC(FiltersNumber9Child c) {
-        this.c = c;
-    }
-    public FiltersNumber9Child getC() {
+    public List<FilterChild> getC() {
         return c;
+    }
+
+    public void setC(List<FilterChild> c) {
+        this.c = c;
     }
 }
