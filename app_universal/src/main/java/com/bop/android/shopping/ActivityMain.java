@@ -59,7 +59,7 @@ public class ActivityMain extends BaseActivity<ActivityMainBinding> implements B
         setCanBack(false);
         getToolbarHelper().getAppBarLayout().setVisibility(View.GONE);
 
-        addBadgeAt(1, 5);
+//        addBadgeAt(1, 5);
 
         binding.setOnNavigationItemSelectedListener(this);
         binding.navigation.enableAnimation(false);
@@ -187,10 +187,11 @@ public class ActivityMain extends BaseActivity<ActivityMainBinding> implements B
         } else if (i == R.id.navigation_notifications) {
             mPager.setCurrentItem(3);
             return true;
-        } else if (i == R.id.navigation_bids) {
-            mPager.setCurrentItem(2);
-            return true;
         }
+//        else if (i == R.id.navigation_bids) {
+//            mPager.setCurrentItem(2);
+//            return true;
+//        }
         return false;
     }
 

@@ -54,6 +54,11 @@ public class FragmentCategoryRight extends BaseFragment {
         return 0;
     }
 
+    @Override
+    protected boolean isStatusBarTransparent() {
+        return true;
+    }
+
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {

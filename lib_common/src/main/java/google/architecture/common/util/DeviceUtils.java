@@ -53,7 +53,8 @@ public class DeviceUtils {
 
     /**
      * 获取设备AndroidID
-     *
+     * 2.2（Froyo，8）版本系统会不可信，来自主要生产厂商的主流手机，至少有一个普遍发现的bug，
+     * 这些有问题的手机相同的ANDROID_ID: 9774d56d682e549c但是如果返厂的手机，或者被root的手机，可能会变
      * @return AndroidID
      */
     @SuppressLint("HardwareIds")
@@ -65,7 +66,7 @@ public class DeviceUtils {
      * 获取设备MAC地址
      * <p>需添加权限 {@code <uses-permission android:name="android.permission.ACCESS_WIFI_STATE"/>}</p>
      * <p>需添加权限 {@code <uses-permission android:name="android.permission.INTERNET"/>}</p>
-     *
+     * !!!!有些设备没有WiFi，或者蓝牙，就不可以，如果WiFi没有打开，硬件也不会返回Mac地址，不建议使用
      * @return MAC地址
      */
     public static String getMacAddress() {

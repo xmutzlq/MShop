@@ -11,10 +11,12 @@
         android:icon="@drawable/ic_redeem_black_24dp"
         android:title="@string/title_news" />
 
+    <!--
     <item
         android:id="@+id/navigation_bids"
         android:icon="@drawable/ic_public_black_24dp"
         android:title="@string/title_discovery" />
+    -->
 
     <item
         android:id="@+id/navigation_notifications"

@@ -10,11 +10,7 @@
             android:id="@+id/action_bar_space_fl"
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
-            <View
-                android:id="@+id/action_bar_space"
-                android:layout_width="match_parent"
-                android:layout_height="0dp"
-                android:background="@color/colorAccent"/>
+            <include layout="@layout/layout_common_status_bar_space"/>
         </FrameLayout>
 
         <com.scwang.smartrefresh.layout.SmartRefreshLayout

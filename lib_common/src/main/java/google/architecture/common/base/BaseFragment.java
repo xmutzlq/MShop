@@ -6,6 +6,7 @@ import android.databinding.DataBindingUtil;
 import android.databinding.Observable;
 import android.databinding.ViewDataBinding;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.ActionBar;
@@ -22,6 +23,7 @@ import org.greenrobot.eventbus.Subscribe;
 import org.greenrobot.eventbus.ThreadMode;
 
 import google.architecture.common.R;
+import google.architecture.common.statusbar.StatusbarUtils;
 import google.architecture.coremodel.datamodel.http.event.CommEvent;
 
 public abstract class BaseFragment<VB extends ViewDataBinding> extends BaseFragmentFrame {
@@ -73,6 +75,17 @@ public abstract class BaseFragment<VB extends ViewDataBinding> extends BaseFragm
         return (T) view.findViewById(id);
     }
 
+    protected void replaceStatusBar(View view) {
+        View statusBarView = findViewById(view, R.id.action_bar_space);
+        if(statusBarView != null) {
+            ViewGroup.LayoutParams layoutParams = statusBarView.getLayoutParams();
+            if(layoutParams != null) {
+                layoutParams.height = StatusbarUtils.getStatusBarHeight(mContext);
+                statusBarView.setLayoutParams(layoutParams);
+            }
+        }
+    }
+
     @Override
     public void onAttach(Context context) {
         super.onAttach(context);
@@ -91,6 +104,14 @@ public abstract class BaseFragment<VB extends ViewDataBinding> extends BaseFragm
         binding = DataBindingUtil.inflate(inflater, getLayout(), container, false);
         onCreateBindView();
         return binding.getRoot();
+    }
+
+    @Override
+    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
+        if(isStatusBarTransparent()) {
+            replaceStatusBar(view);
+        }
     }
 
     @Subscribe(threadMode = ThreadMode.MAIN)
