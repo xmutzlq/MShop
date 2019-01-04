@@ -105,7 +105,8 @@ public abstract class BasePagingActivity<VB extends ViewDataBinding> extends Bas
                             if(adapter != null) adapter.loadMoreEnd();
                         }
                     } else if (refreshListModel.isUpdateType()) {
-                        if(refreshListModel.list == null || refreshListModel.list.size() == 0) {
+                        if(refreshListModel.list == null || refreshListModel.list.size() == 0
+                                || refreshListModel.list.size() < pagingHelper.listViewModel.pageTotal) {
                             if(adapter != null) adapter.loadMoreEnd();
                         } else {
                             if(adapter != null) adapter.addData(refreshListModel.list);

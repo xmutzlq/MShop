@@ -5,7 +5,6 @@ import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.content.ContextCompat;
 import android.text.TextUtils;
-import android.view.LayoutInflater;
 import android.view.View;
 
 import com.alibaba.android.arouter.facade.annotation.Route;
@@ -39,7 +38,6 @@ public class FragmentFilterMain extends BaseFragment<FragmentFilterMainBinding>{
 
     public static final String TYPE_FILTER_RESET = "filter_reset";
 
-    private LayoutInflater mLayoutInflater;
     private MoreFilterAdapter moreFilterAdapter;
 
     private ArrayList<SearchResult.FilterContainer> brands;
@@ -79,7 +77,6 @@ public class FragmentFilterMain extends BaseFragment<FragmentFilterMainBinding>{
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        mLayoutInflater = LayoutInflater.from(getContext());
         //配送地址
         binding.tvFilterLocation.setOnClickListener(v -> {
             EventBus.getDefault().post(new CommEvent(CommEvent.MSG_TYPE_OPEN_AREA));
@@ -143,6 +140,7 @@ public class FragmentFilterMain extends BaseFragment<FragmentFilterMainBinding>{
         refreshCates(choiceCat);
         //更多选择
         moreFilterAdapter = new MoreFilterAdapter(R.layout.filter_item_more, makeData(brands));
+        moreFilterAdapter.setHasStableIds(true);
         binding.filterMoreRecyclerView.setNestedScrollingEnabled(false);
         binding.filterMoreRecyclerView.setAdapter(moreFilterAdapter);
         ScrollLinearLayoutManager scrollLinearLayoutManager = new ScrollLinearLayoutManager(getContext());

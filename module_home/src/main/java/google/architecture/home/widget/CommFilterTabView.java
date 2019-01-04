@@ -51,6 +51,7 @@ public class CommFilterTabView extends FrameLayout implements View.OnClickListen
     private boolean isDrawerOpen;
 
     private String currentTag = TAB_DEFAULT;
+    private String actionTag;
 
     private TabClickListener mTabClickListener;
     private FilterOpenListener mFilterOpenListener;
@@ -69,6 +70,10 @@ public class CommFilterTabView extends FrameLayout implements View.OnClickListen
 
     public String getCurrentTag() {
         return currentTag;
+    }
+
+    public String getActionTag() {
+        return actionTag;
     }
 
     public boolean isDrawerOpen() {
@@ -132,6 +137,7 @@ public class CommFilterTabView extends FrameLayout implements View.OnClickListen
                 break;
             case TAB_NEWEST:
                 currentTag = tag;
+                actionTag = tag;
                 isPriceToggle = true;
                 pressedTabColligation(false);
                 pressedSalesVolume(true);
@@ -144,6 +150,7 @@ public class CommFilterTabView extends FrameLayout implements View.OnClickListen
                 break;
             case TAB_HOT:
                 currentTag = tag;
+                actionTag = tag;
                 pressedTabColligation(false);
                 pressedSalesVolume(false);
                 isPriceToggle = !isPriceToggle;
@@ -241,6 +248,7 @@ public class CommFilterTabView extends FrameLayout implements View.OnClickListen
                         tmpTag = TAB_DEFAULT;
                         break;
                 }
+                actionTag = tmpTag;
                 mTabClickListener.onTabClick(true, tmpTag);
             }
             if(popWindow != null) popWindow.dismiss();

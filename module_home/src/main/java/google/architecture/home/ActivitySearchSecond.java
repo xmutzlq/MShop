@@ -245,7 +245,7 @@ public class ActivitySearchSecond extends BasePagingActivity<ActivitySearchSecon
 //                mHomeSearchViewModel.setFilterResultData(filterResultData);
                 if(TextUtils.isEmpty(type) || !FragmentFilterMain.TYPE_FILTER_RESET.equals(type)) {
                     searchInputId = filterResultData.getParams();
-                    onTabClick(false, tabView.getCurrentTag());
+                    onTabClick(false, tabView.getActionTag());
                 }
             }
         } else if(CommEvent.MSG_TYPE_CLOSE_ALL_FILTER.equals(event.msgType)) {

@@ -1,8 +1,6 @@
 package google.architecture.home.adapter;
 
 import android.graphics.Paint;
-import android.graphics.Typeface;
-import android.os.Looper;
 import android.support.v7.util.DiffUtil;
 import android.util.TypedValue;
 import android.view.ViewGroup;
@@ -68,13 +66,34 @@ public class HomeSearchGoodsAdapter extends BaseMultiItemQuickAdapter<SearchResu
             .dontAnimate();
 
     @Override
+    public void onViewDetachedFromWindow(BaseViewHolder holder) {
+        super.onViewDetachedFromWindow(holder);
+        setHolder(holder);
+    }
+
+    @Override
+    public void onViewAttachedToWindow(BaseViewHolder holder) {
+        super.onViewAttachedToWindow(holder);
+        setHolder(holder);
+    }
+
+    @Override
+    public BaseViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+        BaseViewHolder holder = super.onCreateViewHolder(parent, viewType);
+        setHolder(holder);
+        return holder;
+    }
+
+    @Override
     protected void convert(BaseViewHolder helper, SearchResult.GoodsItem item) {
         switch (helper.getItemViewType()) {
             case SearchResult.GoodsItem.ITEM_TYPE_LIST:
 
                 SimpleDraweeView imageView = helper.getView(R.id.search_goods_list_iv);
-                String lImg = ApiConstants.GankHost + item.getOriginal_img();
-                imageView.setImageURI(lImg);
+                imageView.post(() -> {
+                    String lImg = ApiConstants.GankHost + item.getOriginal_img();
+                    imageView.setImageURI(lImg);
+                });
 
                 if(TextUtil.isEmpty(item.getGoods_name())) {
                     helper.setGone(R.id.search_goods_title_list_tv, false);
@@ -96,12 +115,13 @@ public class HomeSearchGoodsAdapter extends BaseMultiItemQuickAdapter<SearchResu
                 TextView marketPrice = helper.getView(R.id.search_goods_market_price_list_tv);
                 marketPrice.getPaint().setFlags(Paint. STRIKE_THRU_TEXT_FLAG);
                 helper.setText(R.id.search_goods_market_price_list_tv, "¥" + item.getMarketprice());
-
                 break;
             case SearchResult.GoodsItem.ITEM_TYPE_GRID:
                 SimpleDraweeView gImageView = helper.getView(R.id.search_goods_grid_iv);
-                String gImg = ApiConstants.GankHost + item.getOriginal_img();
-                gImageView.setImageURI(gImg);
+                gImageView.post(() -> {
+                    String gImg = ApiConstants.GankHost + item.getOriginal_img();
+                    gImageView.setImageURI(gImg);
+                });
 
                 if(TextUtil.isEmpty(item.getGoods_name())) {
                     helper.setGone(R.id.search_goods_title_grid_tv, false);
@@ -124,6 +144,38 @@ public class HomeSearchGoodsAdapter extends BaseMultiItemQuickAdapter<SearchResu
                 TextView gMarketPrice = helper.getView(R.id.search_goods_market_price_grid_tv);
                 gMarketPrice.getPaint().setFlags(Paint. STRIKE_THRU_TEXT_FLAG);
                 helper.setText(R.id.search_goods_market_price_grid_tv, "¥" + item.getMarketprice());
+                break;
+        }
+    }
+
+    private void setHolder(BaseViewHolder holder) {
+        switch (holder.getItemViewType()) {
+            case SearchResult.GoodsItem.ITEM_TYPE_LIST:
+                RatioFrameLayout ratioFrameLayout = holder.getView(R.id.list_ratio_lay);
+                ViewGroup.LayoutParams layoutParams = ratioFrameLayout.getLayoutParams();
+                layoutParams.width = DimensionsUtil.dip2px(mContext, 120);
+                layoutParams.height = DimensionsUtil.dip2px(mContext, 120);
+
+                TextView titleTv = holder.getView(R.id.search_goods_title_list_tv);
+                titleTv.setTextSize(TypedValue.COMPLEX_UNIT_SP, 13);
+
+                TextView priceTv = holder.getView(R.id.search_goods_price_list_tv);
+                priceTv.setTextSize(TypedValue.COMPLEX_UNIT_SP, 13);
+
+                TextView marketTv = holder.getView(R.id.search_goods_market_price_list_tv);
+                marketTv.setTextSize(TypedValue.COMPLEX_UNIT_SP, 12);
+                break;
+            case SearchResult.GoodsItem.ITEM_TYPE_GRID:
+
+                TextView titleTv2 = holder.getView(R.id.search_goods_title_grid_tv);
+                titleTv2.setTextSize(TypedValue.COMPLEX_UNIT_SP, 13);
+
+                TextView priceTv2 = holder.getView(R.id.search_goods_price_grid_tv);
+                priceTv2.setTextSize(TypedValue.COMPLEX_UNIT_SP, 13);
+
+                TextView marketTv2 = holder.getView(R.id.search_goods_market_price_grid_tv);
+                marketTv2.setTextSize(TypedValue.COMPLEX_UNIT_SP, 12);
+
                 break;
         }
     }
