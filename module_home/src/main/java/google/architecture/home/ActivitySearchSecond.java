@@ -185,7 +185,7 @@ public class ActivitySearchSecond extends BasePagingActivity<ActivitySearchSecon
             setListViewModel(mHomeSearchViewModel);
             LogUtils.tag("zlq").e("searchInputId = " + searchInputId + ", searchInputValue = " + searchInputValue);
 //            mHomeSearchViewModel.loadSearchResultData(searchInputId, searchInputValue);
-            mHomeSearchViewModel.loadSearchResultDataNew(searchInputId, searchInputValue, 1, -1);
+            mHomeSearchViewModel.loadSearchResultDataNew(searchInputId, searchInputValue, 1, 0);
             pagingHelper.onRefresh();
             return false;
         });
