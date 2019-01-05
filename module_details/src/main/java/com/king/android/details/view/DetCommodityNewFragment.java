@@ -3,6 +3,7 @@ package com.king.android.details.view;
 import android.content.Context;
 import android.graphics.Color;
 import android.graphics.Paint;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -16,9 +17,15 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.animation.AnimationUtils;
+import android.widget.ImageView;
+import android.widget.LinearLayout;
 
 import com.alibaba.android.arouter.facade.annotation.Route;
 import com.alibaba.android.arouter.launcher.ARouter;
+import com.bumptech.glide.load.DataSource;
+import com.bumptech.glide.load.engine.GlideException;
+import com.bumptech.glide.request.RequestListener;
+import com.bumptech.glide.request.target.Target;
 import com.king.android.details.ActivityDetails;
 import com.king.android.details.R;
 import com.king.android.details.adapter.DetailBannerAdapter;
@@ -32,15 +39,20 @@ import com.king.android.details.util.SpecParams;
 import com.king.android.details.widget.DetailRecommendCircleNavigator;
 import com.king.android.res.config.ARouterPath;
 import com.king.android.res.util.ConvertUtils;
+import com.kongzue.dialog.v2.MessageDialog;
 
 import java.util.ArrayList;
 
 import google.architecture.common.base.BaseFragment;
+import google.architecture.common.imgloader.ImageLoader;
 import google.architecture.common.util.AppCompat;
 import google.architecture.common.util.CommKeyUtil;
+import google.architecture.common.util.DimensionsUtil;
 import google.architecture.common.util.ScreenUtils;
+import google.architecture.common.util.ToastUtils;
 import google.architecture.common.viewmodel.xlj.GoodsDetailRequestEntity;
 import google.architecture.common.viewmodel.xlj.XLJ_GoodsDetailViewModel;
+import google.architecture.common.widget.CustomPopWindow;
 import google.architecture.common.widget.hmore.RefreshCallBack;
 import google.architecture.common.widget.hmore.pager.GravityPagerSnapHelper;
 import google.architecture.common.widget.nested.MyNestedScrollView;
@@ -74,6 +86,8 @@ public class DetCommodityNewFragment extends BaseFragment<FragmentDetCommodityBi
     private DetailInfoManager detailInfoManager;
     private DetailBannerAdapter adapter;
 
+    private GoodsDetailData info;
+
     public DetailInfoManager getDetailInfoManager() {
         return detailInfoManager;
     }
@@ -92,6 +106,31 @@ public class DetCommodityNewFragment extends BaseFragment<FragmentDetCommodityBi
         if(detailInfoManager == null || detailInfoManager.getDetailInfo() == null
                 || detailInfoManager.getDetailInfo().getItem() == null || TextUtil.isEmpty(detailInfoManager.getDetailInfo().getItem().getChat_url())) return;
         ARouter.getInstance().build(ARouterPath.WebPage).withString(CommKeyUtil.EXTRA_KEY, detailInfoManager.getDetailInfo().getItem().getChat_url()).navigation(mActivityDetails);
+    }
+
+    public void showQrCode() {
+        if(info == null) return;
+        final View rootView = LayoutInflater.from(mContext).inflate(R.layout.layout_det_qrcode, null);
+        ImageView imageView = rootView.findViewById(R.id.det_qr_code_iv);
+        ImageLoader.get().load(imageView, ApiConstants.GankHost + info.getQrcodeImg(), new RequestListener<Drawable>() {
+            @Override
+            public boolean onLoadFailed(@Nullable GlideException e, Object model, Target<Drawable> target, boolean isFirstResource) {
+                ToastUtils.showShortToast("请检查网络是否链接");
+                return false;
+            }
+
+            @Override
+            public boolean onResourceReady(Drawable resource, Object model, Target<Drawable> target, DataSource dataSource, boolean isFirstResource) {
+                imageView.setImageDrawable(resource);
+                new CustomPopWindow.PopupWindowBuilder(mContext)
+                        .enableBackgroundDark(true) //弹出popWindow时，背景是否变暗
+                        .setBgDarkAlpha(0.5f) // 控制亮度
+                        .setView(rootView)
+                        .create()
+                        .showAtLocation(rootView,Gravity.CENTER,0,0);
+                return false;
+            }
+        });
     }
 
     @Override
@@ -174,7 +213,7 @@ public class DetCommodityNewFragment extends BaseFragment<FragmentDetCommodityBi
 
     @Override
     protected void onDataResult(Object o) {
-        GoodsDetailData info = (GoodsDetailData) o;
+        info = (GoodsDetailData) o;
 
         DetDetailFragment.url = info.getGoodsDesc();
 

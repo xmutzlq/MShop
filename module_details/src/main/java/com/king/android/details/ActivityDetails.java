@@ -16,8 +16,10 @@ import com.alibaba.android.arouter.launcher.ARouter;
 import com.apkfuns.logutils.LogUtils;
 import com.king.android.details.adapter.DetailFragmentAdapter;
 import com.king.android.details.cache.DetailInfoManager;
+import com.king.android.details.view.DetCommodityNewFragment;
 import com.king.android.details.view.DetailHeaderView;
 import com.king.android.res.config.ARouterPath;
+import com.kongzue.dialog.v2.MessageDialog;
 
 import org.greenrobot.eventbus.EventBus;
 
@@ -27,11 +29,15 @@ import java.util.List;
 import google.architecture.common.base.BaseActivity;
 import google.architecture.common.base.BaseFragment;
 import google.architecture.common.base.ViewManager;
+import google.architecture.common.dialog.CustomDialog;
+import google.architecture.common.imgloader.ImageLoader;
 import google.architecture.common.util.AppCompat;
 import google.architecture.common.util.CommKeyUtil;
 import google.architecture.common.util.DeviceUtils;
+import google.architecture.common.util.DimensionsUtil;
 import google.architecture.common.util.ToastUtils;
 import google.architecture.common.viewmodel.DetailViewModel;
+import google.architecture.common.widget.CustomPopWindow;
 import google.architecture.common.widget.NoScrollViewPager;
 import google.architecture.coremodel.data.CartNum;
 import google.architecture.coremodel.datamodel.http.event.CommEvent;
@@ -126,12 +132,11 @@ public class ActivityDetails extends BaseActivity {
 //        });
 
         /**立即购买**/
-//        findViewById(R.id.detail_btn_buy).setOnClickListener(v -> {
-//            if(mDetailInfoManager == null) return;
-//            if(mFragments.get(0) instanceof DetCommodityFragment) {
-//                ((DetCommodityFragment)mFragments.get(0)).showBuyDialog(DetBottomSheetSpecFragment.TYPE_BUY);
-//            }
-//        });
+        findViewById(R.id.detail_btn_buy).setOnClickListener(v -> {
+            if(mFragments.get(0) instanceof DetCommodityNewFragment) {
+                ((DetCommodityNewFragment)mFragments.get(0)).showQrCode();
+            }
+        });
 
         mAdapter = new DetailFragmentAdapter(getSupportFragmentManager(), mFragments);
         mViewPager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {

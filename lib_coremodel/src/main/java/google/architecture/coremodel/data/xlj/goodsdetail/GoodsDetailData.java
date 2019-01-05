@@ -108,6 +108,9 @@ public class GoodsDetailData {
     @SerializedName("like")
     private java.util.List<Like> like;
 
+    @SerializedName("qrcodeImg")
+    private String qrcodeImg;
+
     public void setGoodsId(int goodsId) {
         this.goodsId = goodsId;
     }
@@ -457,6 +460,14 @@ public class GoodsDetailData {
     }
     public java.util.List<Like> getLike() {
         return like;
+    }
+
+    public String getQrcodeImg() {
+        return qrcodeImg;
+    }
+
+    public void setQrcodeImg(String qrcodeImg) {
+        this.qrcodeImg = qrcodeImg;
     }
 
     @Override

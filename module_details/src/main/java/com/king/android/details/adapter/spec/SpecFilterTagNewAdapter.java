@@ -69,7 +69,7 @@ public class SpecFilterTagNewAdapter extends TagAdapter<List> {
 
     @Override
     public boolean isEnabled(int position) {
-        return getData().get(position).getShopStock() == -1 ||
+        return (getData().get(position).getShopStock() != null && getData().get(position).getShopStock().getAllStock() > 0) ||
                 getData().get(position).getSpecStock() > 0;
     }
 }

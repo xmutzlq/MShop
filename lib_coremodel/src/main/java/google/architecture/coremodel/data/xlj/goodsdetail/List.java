@@ -22,7 +22,7 @@ public class List {
     @SerializedName("specStock")
     private int specStock;
     @SerializedName("shopStock")
-    private int shopStock = -1;
+    private ShopStock shopStock;
 
     public void setIsAllowImg(int isAllowImg) {
         this.isAllowImg = isAllowImg;
@@ -87,10 +87,10 @@ public class List {
         return specStock;
     }
 
-    public void setShopStock(int shopStock) {
+    public void setShopStock(ShopStock shopStock) {
         this.shopStock = shopStock;
     }
-    public int getShopStock() {
+    public ShopStock getShopStock() {
         return shopStock;
     }
 }

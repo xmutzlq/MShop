@@ -16,6 +16,6 @@ public class XLJ_GoodsDetailViewModel extends UIViewModel {
                         return;
                     }
                     setDataObject(result.getData(), data);
-                }).subscribe(new EmptyConsumer(), new ErrorConsumer()));
+                }).subscribe(new EmptyConsumer(this), new ErrorConsumer(this)));
     }
 }

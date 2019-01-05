@@ -30,7 +30,7 @@ public class DetailUtil {
             if(sizeId.equals(size.getItemId())) {
                 params.pSize = size.getItemName();
                 params.pAllSave = size.getSpecStock();
-                params.pShopSave = size.getShopStock();
+                params.pShopSave = size.getShopStock().getAllStock();
                 return params;
             }
         }
