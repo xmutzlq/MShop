@@ -26,6 +26,11 @@ public class ActivityDeviceInfo extends BaseActivity<ActivityDeviceInfoBinding> 
     }
 
     @Override
+    protected boolean isStatusBarTransparent() {
+        return true;
+    }
+
+    @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         init();

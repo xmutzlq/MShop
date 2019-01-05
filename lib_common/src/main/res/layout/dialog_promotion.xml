@@ -12,7 +12,7 @@
             android:id="@+id/show_img_iv"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:background="#ff0000"/>
+            android:background="@drawable/temp_bg"/>
         <View
             android:id="@+id/btn_close"
             android:layout_width="50dp"

@@ -22,6 +22,11 @@ public class ActivityDomainSetting extends BaseActivity<ActivityDomainSettingBin
     }
 
     @Override
+    protected boolean isStatusBarTransparent() {
+        return true;
+    }
+
+    @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setTitleName("域名设置");

@@ -21,12 +21,12 @@ public class PromotionDialog extends Dialog {
         WindowManager.LayoutParams params = getWindow().getAttributes();
         DisplayMetrics dm = new DisplayMetrics();
         getWindow().getWindowManager().getDefaultDisplay().getMetrics(dm);
-        params.width = dm.widthPixels;//ScreenUtils.getScreenWidth();
-        params.height = dm.heightPixels;//ScreenUtils.getScreenHeight();
+        params.width = ScreenUtils.getScreenWidth();
+        params.height = ScreenUtils.getScreenHeight()-(ScreenUtils.getTitleHight(context)+ScreenUtils.getBackButtonHight(context));
         getWindow().setAttributes(params);
         setContentView(R.layout.dialog_promotion);
         View container = findViewById(R.id.container_layout);
-        container.setLayoutParams(new LinearLayout.LayoutParams(ScreenUtils.getScreenWidth(),ScreenUtils.getScreenHeight()));
+        container.setLayoutParams(new LinearLayout.LayoutParams(ScreenUtils.getScreenWidth(),(ScreenUtils.getScreenHeight()-(ScreenUtils.getTitleHight(context)/*+ScreenUtils.getBackButtonHight(context)*/))));
         findViewById(R.id.btn_close).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

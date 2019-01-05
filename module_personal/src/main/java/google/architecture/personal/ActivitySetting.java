@@ -36,6 +36,11 @@ public class ActivitySetting extends BaseActivity<ActivitySettingNewBinding> {
     }
 
     @Override
+    protected boolean isStatusBarTransparent() {
+        return true;
+    }
+
+    @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setCanBack(true);
