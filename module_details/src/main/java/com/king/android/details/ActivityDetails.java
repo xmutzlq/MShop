@@ -29,6 +29,7 @@ import google.architecture.common.base.BaseFragment;
 import google.architecture.common.base.ViewManager;
 import google.architecture.common.util.AppCompat;
 import google.architecture.common.util.CommKeyUtil;
+import google.architecture.common.util.DeviceUtils;
 import google.architecture.common.util.ToastUtils;
 import google.architecture.common.viewmodel.DetailViewModel;
 import google.architecture.common.widget.NoScrollViewPager;
@@ -80,6 +81,7 @@ public class ActivityDetails extends BaseActivity {
         detailHeaderView = new DetailHeaderView(this_);
 //        detailHeaderView.setHeadViewBgRes(false);
         detailHeaderView.setHeadViewBgRes(false, R.mipmap.bg_detail_bar);
+        detailHeaderView.setIndicatorClickable(true);
         detailHeaderView.bindToViewPager(mViewPager);
         mHeader.removeAllViews();
         mHeader.addView(detailHeaderView);

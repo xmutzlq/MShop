@@ -273,4 +273,7 @@
     <dimen name="account_icon">80dp</dimen>
 
     <dimen name="gap" >100dp</dimen >
+
+    <!--默认ActionbarSize-->
+    <dimen name="default_actionbar_size">48dp</dimen>
 </resources>

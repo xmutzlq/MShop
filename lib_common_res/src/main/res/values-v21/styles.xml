@@ -6,7 +6,8 @@
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@color/colorPrimary</item>
         <item name="colorAccent">@color/colorPrimary</item>
-
+        <item name="android:actionBarSize">@dimen/size_48dp</item>
+        <item name="actionBarSize">@dimen/size_48dp</item>
     </style>
 
     <style name="CommAppTheme" parent="Base.AppTheme">

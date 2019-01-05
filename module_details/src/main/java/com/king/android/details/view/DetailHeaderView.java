@@ -79,6 +79,10 @@ public class DetailHeaderView extends FrameLayout {
         });
     }
 
+    public void setIndicatorClickable(boolean isIndicatorClickable) {
+        this.isIndicatorClickable = isIndicatorClickable;
+    }
+
     public void setHeadViewBgRes(boolean isPromotion) {
         setHeadViewBgRes(isPromotion, 0);
     }
