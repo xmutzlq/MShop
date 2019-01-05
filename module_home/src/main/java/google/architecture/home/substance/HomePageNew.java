@@ -80,4 +80,9 @@ public class HomePageNew implements ContantDelegate, PageAdapter.IActionTitleRig
     public void onActionTitleRightLabelClick(View v, int type) {
 
     }
+
+    public void reSetBinded() {
+        mPageAdapter.reSetBinded();
+    }
+
 }

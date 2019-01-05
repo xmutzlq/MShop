@@ -3,12 +3,16 @@ package google.architecture.common.base;
 import android.os.Bundle;
 import android.support.v4.app.DialogFragment;
 import android.text.TextUtils;
+import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.Window;
+import android.view.WindowManager;
 import android.widget.TextView;
 
 import google.architecture.common.R;
+import google.architecture.common.util.ScreenUtils;
 
 public class LoadingFragment extends DialogFragment {
     private boolean cancel;
@@ -26,6 +30,7 @@ public class LoadingFragment extends DialogFragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.base_loading, null);
+        view.setLayoutParams(new ViewGroup.LayoutParams(ScreenUtils.getScreenWidth(),ScreenUtils.getScreenHeight()));
         tvAlert = (TextView) view.findViewById(R.id.loading_txt);
         if (!TextUtils.isEmpty(alert)) {
             tvAlert.setText(alert);
@@ -56,7 +61,17 @@ public class LoadingFragment extends DialogFragment {
     public void onViewCreated(View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
     }
-    
+
+    @Override
+    public void onActivityCreated(Bundle savedInstanceState) {
+        super.onActivityCreated(savedInstanceState);
+        Window dialogWindow = getDialog().getWindow();
+        WindowManager.LayoutParams lp = dialogWindow.getAttributes();
+        lp.width = ViewGroup.LayoutParams.MATCH_PARENT;
+        lp.gravity = Gravity.CENTER;
+        dialogWindow.setAttributes(lp);
+    }
+
     public void setAlert(String alert) {
         this.alert = alert;
         if (tvAlert != null) {

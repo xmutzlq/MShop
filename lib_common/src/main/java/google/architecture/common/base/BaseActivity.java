@@ -45,7 +45,7 @@ import me.jessyan.autosize.internal.CustomAdapt;
  * <p>Activity基类 </p>
  * @name BaseActivity
  */
-public abstract class BaseActivity<VB extends ViewDataBinding> extends BaseActivityFrame implements ToolbarView, CustomAdapt {
+public abstract class BaseActivity<VB extends ViewDataBinding> extends BaseIdleActivity implements ToolbarView, CustomAdapt {
 
     protected VB binding;
     protected BaseViewModel viewModel;

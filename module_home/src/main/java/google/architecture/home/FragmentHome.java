@@ -147,6 +147,11 @@ public class FragmentHome extends BaseFragment {
         ShopData data = (ShopData) o;
         searchScrollAdapter.setMaxHeight(250);
         HomePageNew homePage = new HomePageNew(mContext,data);
+        if(isRefresh){
+            isRefresh = false;
+            homePage.reSetBinded();
+            mAdapters.clear();
+        }
         DelegateAdapter delegateAdapter = homePage.initRecyclerView(recyclerView);
         mAdapters.addAll(homePage.initItemDelegates());
         delegateAdapter.setAdapters(mAdapters);

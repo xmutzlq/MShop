@@ -53,6 +53,10 @@ public class PageAdapterNew {
         mContext = context;
     }
 
+    public void reSetBinded(){
+
+    }
+
     public BaseDelegateAdapter initTitle(String title){
         LinearLayoutHelper linearLayoutHelper = new LinearLayoutHelper();
         return new BaseDelegateAdapter(mContext, linearLayoutHelper, R.layout.home_item_common_title, 1,PageConstans.viewType.typeBanner){
@@ -128,7 +132,7 @@ public class PageAdapterNew {
                 super.onBindViewHolder(holder, position);
                 View rootView = holder.getView(R.id.home_banner_root);
                 ViewGroup.LayoutParams lp = new ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT);
-                lp.height = ScreenUtils.getScreenHeight()/2+50;
+                lp.height = (int)(((float)ScreenUtils.getScreenWidth())/0.889);
                 rootView.setLayoutParams(lp);
                 RecycleAutoScrollViewPager mBanner = holder.getView(R.id.adv_image);
                 ArrayList<String> imgList = new ArrayList<>();
