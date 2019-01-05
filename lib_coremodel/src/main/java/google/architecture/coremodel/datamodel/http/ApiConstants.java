@@ -155,4 +155,5 @@ public class ApiConstants {
     public static final String XLJ_Get_Refresh_token = URL_BASE + "app/Login/getRefreshToken";
     public static final String XLJ_Get_User_Info = URL_BASE + "app/Users/index";
     public static final String XLJ_Upload_Device_Info = URL_BASE + "app/Goods/setDvToken";
+    public static final String XLJ_Get_Promotion_Media = URL_BASE + "app/Goods/getMedia";
 }

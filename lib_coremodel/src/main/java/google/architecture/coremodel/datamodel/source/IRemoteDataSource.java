@@ -155,4 +155,5 @@ public interface IRemoteDataSource {
     Flowable<XLJ_HttpResult<String>> xlj_getRefreshToken(String userToken, String method);
     Flowable<XLJ_HttpResult<UserInfos>> xlj_getUserInfo(String userToken, String method);
     Flowable<XLJ_HttpResult> xlj_uploadDeviceInfo(String requestJson);
+    Flowable<XLJ_HttpResult> xlj_getPromotionMedia(String requestJson);
 }

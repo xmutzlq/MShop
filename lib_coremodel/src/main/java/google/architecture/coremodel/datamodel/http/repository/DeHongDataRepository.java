@@ -418,4 +418,9 @@ public class DeHongDataRepository implements IRemoteDataSource {
         return remoteDataSource.xlj_uploadDeviceInfo(requestJson);
     }
 
+    @Override
+    public Flowable<XLJ_HttpResult> xlj_getPromotionMedia(String requestJson) {
+        return remoteDataSource.xlj_getPromotionMedia(requestJson);
+    }
+
 }

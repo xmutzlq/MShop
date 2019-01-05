@@ -381,6 +381,11 @@ public class RemoteDataSourceImpl implements IRemoteDataSource {
         return xlj_prepareSubscribe(dataService.xlj_uploadDeviceInfo(requestJson));
     }
 
+    @Override
+    public Flowable<XLJ_HttpResult> xlj_getPromotionMedia(String requestJson) {
+        return xlj_prepareSubscribe(dataService.xlj_getPromotionMedia(requestJson));
+    }
+
 
     /**
      * 已定义subscribeOn、

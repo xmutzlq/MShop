@@ -327,4 +327,9 @@ public interface DeHongDataService {
     @POST(ApiConstants.XLJ_Upload_Device_Info)
     Flowable<XLJ_HttpResult> xlj_uploadDeviceInfo(@Field("request_json") String requestJson);
 
+    @Headers({ApiConstants.HEADER_MULTI_URL, ApiConstants.HEADER_USE_JSON_REQUEST})
+    @FormUrlEncoded
+    @POST(ApiConstants.XLJ_Get_Promotion_Media)
+    Flowable<XLJ_HttpResult> xlj_getPromotionMedia(@Field("request_json") String requestJson);
+
 }
