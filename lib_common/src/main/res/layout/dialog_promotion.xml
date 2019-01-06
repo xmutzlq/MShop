@@ -13,11 +13,18 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:background="@drawable/temp_bg"/>
+
+        <FrameLayout
+            android:id="@+id/videoContainer"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="#FFFFFF"/>
+
         <View
             android:id="@+id/btn_close"
             android:layout_width="50dp"
             android:layout_height="50dp"
-            android:background="#00ff00" />
+            android:background="@drawable/promotion_close" />
     </RelativeLayout>
 
 

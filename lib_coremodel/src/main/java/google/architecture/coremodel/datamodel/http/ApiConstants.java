@@ -12,7 +12,9 @@ public class ApiConstants {
     // OkHttp多Uri配置[@Headers({HEADER_MULTI_URL})]
     public static final String HEADER_prefix = "url_prefix";
     public static final String HEADER_OTHER = "other";
+    public static final String HEADER_TECENT = "tecent";
     public static final String HEADER_MULTI_URL = HEADER_prefix + ":" + HEADER_OTHER;
+    public static final String HEADER_TECENT_URL = HEADER_prefix +":"+ HEADER_TECENT;
 
     //配置Headers(),post请求时不加密
     public static final String HEADER_UN_EN_PARAMS_prefix = "un_en_params_prefix";
@@ -37,6 +39,7 @@ public class ApiConstants {
     public static final String URLHost = BuildConfig.APP_REQUEST_URL;
     // 项目分地址
     public static String GankHost = "https://mwx.s.cn/";
+    public static String TecentHost = "https://api.weixin.qq.com/";
     //项目分地址
     public static final String GoodsHost = "http://7xij5m.com1.z0.glb.clouddn.com/spRecommend.txt";
 
@@ -155,5 +158,7 @@ public class ApiConstants {
     public static final String XLJ_Get_Refresh_token = URL_BASE + "app/Login/getRefreshToken";
     public static final String XLJ_Get_User_Info = URL_BASE + "app/Users/index";
     public static final String XLJ_Upload_Device_Info = URL_BASE + "app/Goods/setDvToken";
-    public static final String XLJ_Get_Promotion_Media = URL_BASE + "app/Goods/getMedia";
+    public static final String XLJ_Get_Promotion_Media = URL_BASE + "app/Shops/getMedia";
+    public static final String XLJ_Get_Tecent_AccessToken = URL_BASE + "cgi-bin/token";
+    public static final String XLJ_Get_Tecent_Ticket = URL_BASE + "cgi-bin/ticket/getticket";
 }

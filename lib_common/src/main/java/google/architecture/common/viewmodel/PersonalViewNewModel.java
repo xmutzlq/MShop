@@ -3,6 +3,11 @@ package google.architecture.common.viewmodel;
 import android.databinding.ObservableField;
 import android.text.TextUtils;
 
+import java.util.HashMap;
+import java.util.Map;
+
+import google.architecture.coremodel.data.xlj.TecentAccessToken;
+import google.architecture.coremodel.data.xlj.TecentTicket;
 import google.architecture.coremodel.data.xlj.personal.UserInfos;
 import google.architecture.coremodel.datamodel.http.EmptyConsumer;
 import google.architecture.coremodel.datamodel.http.ErrorConsumer;
@@ -46,6 +51,29 @@ public class PersonalViewNewModel extends UIViewModel {
                 })
                 .subscribe(new EmptyConsumer(), new ErrorConsumer())
         );
+    }
+
+    public void getTecentAccessToken(Map params){
+        disposable.add(DeHongDataRepository.get().xlj_getTecentAccessToken(params).doOnSubscribe(disposable -> isRunning.set(true))
+                .doOnTerminate(() -> isRunning.set(false))
+                .doOnNext(result -> {
+                    TecentAccessToken token = result;
+                    getTecentTicket(token.getAccessToken());
+                })
+                .subscribe(new EmptyConsumer(), new ErrorConsumer()));
+    }
+
+    public void getTecentTicket(String accessToken){
+        Map<String,String> params = new HashMap<>();
+        params.put("access_token",accessToken);
+        params.put("type","2");
+        disposable.add(DeHongDataRepository.get().xlj_getTecentTicket(params).doOnSubscribe(disposable -> isRunning.set(true))
+                .doOnTerminate(() -> isRunning.set(false))
+                .doOnNext(result -> {
+                    TecentTicket ticket = result;
+                    setDataObject(ticket,data);
+                })
+                .subscribe(new EmptyConsumer(), new ErrorConsumer()));
     }
 
 }

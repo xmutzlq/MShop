@@ -78,6 +78,8 @@ public class ARouterPath {
     public static final String DeviceInfoAty = PRE_FIX + APP_TAG + "personal/aty/device_info";
     /**域名地址设置*/
     public static final String DomainInfoAty = PRE_FIX + APP_TAG + "personal/aty/domain_info";
+    /**微信扫码登录页面*/
+    public static final String WeixinLoginAty = PRE_FIX + APP_TAG + "personal/aty/weixin_login";
 
     /**个人中心我的订单-全部*/
     public static final String PersonalAllOrderListFgt = PRE_FIX + APP_TAG + "personal/myorder/fgt/all_order";

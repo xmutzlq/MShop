@@ -11,6 +11,9 @@ import com.apkfuns.logutils.LogUtils;
 import com.king.android.res.application.BaseApp;
 import com.king.android.res.config.ARouterPath;
 import com.king.android.sharesdk.utils.PublicStaticData;
+//import com.kk.taurus.ijkplayer.IjkPlayer;
+//import com.kk.taurus.playerbase.config.PlayerConfig;
+//import com.kk.taurus.playerbase.entity.DecoderPlan;
 import com.kongzue.dialog.v2.DialogSettings;
 import com.scwang.smartrefresh.layout.SmartRefreshLayout;
 import com.scwang.smartrefresh.layout.api.DefaultRefreshFooterCreator;
@@ -53,6 +56,8 @@ public abstract class BaseApplication extends BaseApp {
     public final static int APP_STATUS_KILLED = 0; // 表示应用是被杀死后在启动的
     public final static int APP_STATUS_NORMAL = 1; // 表示应用时正常的启动流程
     public static int APP_STATUS = APP_STATUS_KILLED; // 记录App的启动状态
+
+    public static final int PLAN_ID_IJK = 1;
 
     private String mDeviceToken;
 
@@ -153,6 +158,15 @@ public abstract class BaseApplication extends BaseApp {
         ArrayMap<String, Object> map = new ArrayMap<>();
         map.put(TbsCoreSettings.TBS_SETTINGS_USE_SPEEDY_CLASSLOADER, true);
         QbSdk.initTbsSettings(map);
+
+
+        /*PlayerConfig.addDecoderPlan(new DecoderPlan(PLAN_ID_IJK, IjkPlayer.class.getName(), "IjkPlayer"));
+        PlayerConfig.setDefaultPlanId(PLAN_ID_IJK);
+
+        //use default NetworkEventProducer.
+        PlayerConfig.setUseDefaultNetworkEventProducer(true);
+
+        PlayerConfig.playRecord(true);*/
     }
 
     /**

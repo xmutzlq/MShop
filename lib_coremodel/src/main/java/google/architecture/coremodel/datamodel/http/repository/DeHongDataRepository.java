@@ -32,6 +32,9 @@ import google.architecture.coremodel.data.SearchResult;
 import google.architecture.coremodel.data.StartInfo;
 import google.architecture.coremodel.data.UploadResultData;
 import google.architecture.coremodel.data.VersionInfo;
+import google.architecture.coremodel.data.xlj.PromotionMedia;
+import google.architecture.coremodel.data.xlj.TecentAccessToken;
+import google.architecture.coremodel.data.xlj.TecentTicket;
 import google.architecture.coremodel.data.xlj.goodsdetail.GoodsDetailData;
 import google.architecture.coremodel.data.xlj.personal.UserInfos;
 import google.architecture.coremodel.data.xlj.shopdata.ShopData;
@@ -419,8 +422,19 @@ public class DeHongDataRepository implements IRemoteDataSource {
     }
 
     @Override
-    public Flowable<XLJ_HttpResult> xlj_getPromotionMedia(String requestJson) {
+    public Flowable<XLJ_HttpResult<PromotionMedia>> xlj_getPromotionMedia(String requestJson) {
         return remoteDataSource.xlj_getPromotionMedia(requestJson);
     }
+
+    @Override
+    public Flowable<TecentAccessToken> xlj_getTecentAccessToken(Map params) {
+        return remoteDataSource.xlj_getTecentAccessToken(params);
+    }
+
+    @Override
+    public Flowable<TecentTicket> xlj_getTecentTicket(Map params) {
+        return remoteDataSource.xlj_getTecentTicket(params);
+    }
+
 
 }

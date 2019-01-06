@@ -20,7 +20,9 @@ import com.scwang.smartrefresh.layout.api.RefreshLayout;
 import com.scwang.smartrefresh.layout.listener.SimpleMultiPurposeListener;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import de.hdodenhof.circleimageview.CircleImageView;
 import google.architecture.common.base.BaseFragment;
@@ -122,7 +124,8 @@ public class FragmentPeronalNew extends BaseFragment<FragmentPersonalNewBinding>
         headerView.findViewById(R.id.btn_setting).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                ARouter.getInstance().build(ARouterPath.PersonalSettingAty).navigation(mContext);
+                //ARouter.getInstance().build(ARouterPath.PersonalSettingAty).navigation(mContext);
+                ARouter.getInstance().build(ARouterPath.WeixinLoginAty).navigation(mContext);
             }
         });
     }

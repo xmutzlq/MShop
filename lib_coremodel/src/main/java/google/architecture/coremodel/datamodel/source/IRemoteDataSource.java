@@ -32,6 +32,9 @@ import google.architecture.coremodel.data.SearchResult;
 import google.architecture.coremodel.data.StartInfo;
 import google.architecture.coremodel.data.UploadResultData;
 import google.architecture.coremodel.data.VersionInfo;
+import google.architecture.coremodel.data.xlj.PromotionMedia;
+import google.architecture.coremodel.data.xlj.TecentAccessToken;
+import google.architecture.coremodel.data.xlj.TecentTicket;
 import google.architecture.coremodel.data.xlj.goodsdetail.GoodsDetailData;
 import google.architecture.coremodel.data.xlj.personal.UserInfos;
 import google.architecture.coremodel.data.xlj.shopdata.ShopData;
@@ -155,5 +158,7 @@ public interface IRemoteDataSource {
     Flowable<XLJ_HttpResult<String>> xlj_getRefreshToken(String userToken, String method);
     Flowable<XLJ_HttpResult<UserInfos>> xlj_getUserInfo(String userToken, String method);
     Flowable<XLJ_HttpResult> xlj_uploadDeviceInfo(String requestJson);
-    Flowable<XLJ_HttpResult> xlj_getPromotionMedia(String requestJson);
+    Flowable<XLJ_HttpResult<PromotionMedia>> xlj_getPromotionMedia(String requestJson);
+    Flowable<TecentAccessToken> xlj_getTecentAccessToken(Map params);
+    Flowable<TecentTicket> xlj_getTecentTicket(Map params);
 }

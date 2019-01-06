@@ -402,3 +402,12 @@
 -keep public class **.R$*{
    public static final int *;
 }
+
+# ijkplayer------------------------------------
+-keep class tv.danmaku.ijk.media.player.**{*;}
+# ijjplayer------------------------------------
+
+# player base----------------------------------
+-keep public class * extends android.view.View{*;}
+-keep public class * implements com.kk.taurus.playerbase.player.IPlayer{*;}
+# player base----------------------------------

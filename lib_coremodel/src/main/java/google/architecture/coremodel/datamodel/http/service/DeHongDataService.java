@@ -32,6 +32,9 @@ import google.architecture.coremodel.data.SearchResult;
 import google.architecture.coremodel.data.StartInfo;
 import google.architecture.coremodel.data.UploadResultData;
 import google.architecture.coremodel.data.VersionInfo;
+import google.architecture.coremodel.data.xlj.PromotionMedia;
+import google.architecture.coremodel.data.xlj.TecentAccessToken;
+import google.architecture.coremodel.data.xlj.TecentTicket;
 import google.architecture.coremodel.data.xlj.goodsdetail.GoodsDetailData;
 import google.architecture.coremodel.data.xlj.personal.UserInfos;
 import google.architecture.coremodel.data.xlj.shopdata.ShopData;
@@ -42,8 +45,10 @@ import io.reactivex.Flowable;
 import retrofit2.http.Field;
 import retrofit2.http.FieldMap;
 import retrofit2.http.FormUrlEncoded;
+import retrofit2.http.GET;
 import retrofit2.http.Headers;
 import retrofit2.http.POST;
+import retrofit2.http.QueryMap;
 
 public interface DeHongDataService {
     @FormUrlEncoded
@@ -330,6 +335,14 @@ public interface DeHongDataService {
     @Headers({ApiConstants.HEADER_MULTI_URL, ApiConstants.HEADER_USE_JSON_REQUEST})
     @FormUrlEncoded
     @POST(ApiConstants.XLJ_Get_Promotion_Media)
-    Flowable<XLJ_HttpResult> xlj_getPromotionMedia(@Field("request_json") String requestJson);
+    Flowable<XLJ_HttpResult<PromotionMedia>> xlj_getPromotionMedia(@Field("request_json") String requestJson);
+
+    @Headers({ApiConstants.HEADER_TECENT_URL, ApiConstants.HEADER_USE_JSON_REQUEST})
+    @GET(ApiConstants.XLJ_Get_Tecent_AccessToken)
+    Flowable<TecentAccessToken> xlj_getTecentAccessToken(@QueryMap Map<String,String> params);
+
+    @Headers({ApiConstants.HEADER_TECENT_URL, ApiConstants.HEADER_USE_JSON_REQUEST})
+    @GET(ApiConstants.XLJ_Get_Tecent_Ticket)
+    Flowable<TecentTicket> xlj_getTecentTicket(@QueryMap Map<String,String> params);
 
 }

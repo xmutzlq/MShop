@@ -29,6 +29,7 @@
         <activity android:name=".ActivitySetting"></activity>
         <activity android:name=".ActivityDeviceInfo"></activity>
         <activity android:name=".ActivityDomainSetting"></activity>
+        <activity android:name=".ActivityWeixinLogin"></activity>
     </application>
 
 </manifest>

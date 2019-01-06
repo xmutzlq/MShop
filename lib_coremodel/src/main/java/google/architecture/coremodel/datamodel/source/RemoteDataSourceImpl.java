@@ -34,6 +34,9 @@ import google.architecture.coremodel.data.SearchResult;
 import google.architecture.coremodel.data.StartInfo;
 import google.architecture.coremodel.data.UploadResultData;
 import google.architecture.coremodel.data.VersionInfo;
+import google.architecture.coremodel.data.xlj.PromotionMedia;
+import google.architecture.coremodel.data.xlj.TecentAccessToken;
+import google.architecture.coremodel.data.xlj.TecentTicket;
 import google.architecture.coremodel.data.xlj.goodsdetail.GoodsDetailData;
 import google.architecture.coremodel.data.xlj.personal.UserInfos;
 import google.architecture.coremodel.data.xlj.shopdata.ShopData;
@@ -42,6 +45,8 @@ import google.architecture.coremodel.datamodel.http.XLJ_HttpResult;
 import google.architecture.coremodel.datamodel.http.exception.ExceptionFunc;
 import google.architecture.coremodel.datamodel.http.exception.ResulteFunc;
 import google.architecture.coremodel.datamodel.http.exception.XLJ_ResultFunc;
+import google.architecture.coremodel.datamodel.http.exception.XLJ_TecentAccessTokenFunc;
+import google.architecture.coremodel.datamodel.http.exception.XLJ_TecentTicketFunc;
 import google.architecture.coremodel.datamodel.http.service.DeHongDataService;
 import io.reactivex.Flowable;
 import io.reactivex.android.schedulers.AndroidSchedulers;
@@ -382,8 +387,18 @@ public class RemoteDataSourceImpl implements IRemoteDataSource {
     }
 
     @Override
-    public Flowable<XLJ_HttpResult> xlj_getPromotionMedia(String requestJson) {
+    public Flowable<XLJ_HttpResult<PromotionMedia>> xlj_getPromotionMedia(String requestJson) {
         return xlj_prepareSubscribe(dataService.xlj_getPromotionMedia(requestJson));
+    }
+
+    @Override
+    public Flowable<TecentAccessToken> xlj_getTecentAccessToken(Map params) {
+        return xlj_tecentAccessToken(dataService.xlj_getTecentAccessToken(params));
+    }
+
+    @Override
+    public Flowable<TecentTicket> xlj_getTecentTicket(Map params) {
+        return xlj_tecentTicket(dataService.xlj_getTecentTicket(params));
     }
 
 
@@ -413,6 +428,28 @@ public class RemoteDataSourceImpl implements IRemoteDataSource {
                 .onErrorResumeNext(new ExceptionFunc())
                 // 后台异常捕获通知
                 .map(new XLJ_ResultFunc())
+                .observeOn(AndroidSchedulers.mainThread())
+                // App内部查看的日志
+                .doOnError(throwable -> LogUtils.tag("zlq").e("doOnError: " + throwable.toString()));
+    }
+
+    private Flowable xlj_tecentAccessToken(Flowable flowable) {
+        return flowable.subscribeOn(Schedulers.io())
+                // Http、Json及其他异常捕获通知
+                .onErrorResumeNext(new ExceptionFunc())
+                // 后台异常捕获通知
+                .map(new XLJ_TecentAccessTokenFunc())
+                .observeOn(AndroidSchedulers.mainThread())
+                // App内部查看的日志
+                .doOnError(throwable -> LogUtils.tag("zlq").e("doOnError: " + throwable.toString()));
+    }
+
+    private Flowable xlj_tecentTicket(Flowable flowable) {
+        return flowable.subscribeOn(Schedulers.io())
+                // Http、Json及其他异常捕获通知
+                .onErrorResumeNext(new ExceptionFunc())
+                // 后台异常捕获通知
+                .map(new XLJ_TecentTicketFunc())
                 .observeOn(AndroidSchedulers.mainThread())
                 // App内部查看的日志
                 .doOnError(throwable -> LogUtils.tag("zlq").e("doOnError: " + throwable.toString()));
