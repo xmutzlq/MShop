@@ -6,6 +6,8 @@ import android.os.Looper;
 import android.support.annotation.Nullable;
 import android.support.v4.view.ViewPager;
 import android.view.Gravity;
+import android.view.MotionEvent;
+import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -40,6 +42,7 @@ import google.architecture.common.viewmodel.DetailViewModel;
 import google.architecture.common.widget.CustomPopWindow;
 import google.architecture.common.widget.NoScrollViewPager;
 import google.architecture.coremodel.data.CartNum;
+import google.architecture.coremodel.data.xlj.goodsdetail.Like;
 import google.architecture.coremodel.datamodel.http.event.CommEvent;
 import q.rorbin.badgeview.Badge;
 import q.rorbin.badgeview.QBadgeView;
@@ -60,6 +63,8 @@ public class ActivityDetails extends BaseActivity {
     private TextView favoriteTv;
 
     private int operType = 1;
+
+    private java.util.List<Like> likes;
 
     @Override
     protected boolean isStatusBarTransparent() {
@@ -179,6 +184,20 @@ public class ActivityDetails extends BaseActivity {
         });
     }
 
+    public void setLikes(java.util.List<Like> likes) {
+        this.likes = likes;
+    }
+
+    public java.util.List<Like> getLikes() {
+        return this.likes;
+    }
+
+    public void setNeedIntercept(boolean isNeedIntercept) {
+        if(mFragments.get(0) instanceof DetCommodityNewFragment) {
+            ((DetCommodityNewFragment)mFragments.get(0)).setNeedIntercept(isNeedIntercept);
+        }
+    }
+
     public void gotoTag(int index) {
         mViewPager.postDelayed(() -> {
             mViewPager.setCurrentItem(index);
@@ -191,6 +210,14 @@ public class ActivityDetails extends BaseActivity {
 
     public void interceptScroll(boolean canScroll) {
         mViewPager.setScanScroll(canScroll);
+    }
+
+    public void setDispatchView(View view) {
+        mViewPager.setDispatchView(view);
+    }
+
+    public void setWebDetailSelfControl(boolean isWebDetailSelfControl) {
+        mViewPager.isWebDetailSelfControl = isWebDetailSelfControl;
     }
 
     public void playHeadTitleAnimat(boolean isClose) {

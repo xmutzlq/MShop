@@ -4,6 +4,8 @@ import android.content.Context;
 import android.util.AttributeSet;
 import android.view.MotionEvent;
 
+import com.apkfuns.logutils.LogUtils;
+import com.king.android.sharesdk.utils.LogUtil;
 import com.tencent.smtt.sdk.WebView;
 
 /**
@@ -16,6 +18,8 @@ public class MyWebView extends WebView {
     private int t;
 
     private boolean isNormal = true;
+
+    private IFixWebView fixWebView;
 
     public MyWebView(Context context) {
         super(context);
@@ -33,8 +37,13 @@ public class MyWebView extends WebView {
         this.isNormal = isNormal;
     }
 
+    public void setFixWebView(IFixWebView fixWebView) {
+        this.fixWebView = fixWebView;
+    }
+
     @Override
     public boolean onTouchEvent(MotionEvent ev) {
+        LogUtils.tag("zlq").e("onTouchEvent, isNormal = " + isNormal);
         if(isNormal) {
             return super.onTouchEvent(ev);
         }
@@ -44,18 +53,28 @@ public class MyWebView extends WebView {
                 float Ys = Y - oldY;
 
                 //滑动到顶部让父控件重新获得触摸事件
+                LogUtils.tag("zlq").e("Ys = " + Ys + ", t = " + t);
                 if (Ys > 0 && t == 0) {
-                    getParent().getParent().requestDisallowInterceptTouchEvent(false);
+                    getParent().getParent().getParent().requestDisallowInterceptTouchEvent(false);
+                    if(fixWebView != null) {
+                        fixWebView.onFixWebView(false);
+                    }
                 }
                 break;
 
             case MotionEvent.ACTION_DOWN:
-                getParent().getParent().requestDisallowInterceptTouchEvent(true);
+                getParent().getParent().getParent().requestDisallowInterceptTouchEvent(true);
+                if(fixWebView != null) {
+                    fixWebView.onFixWebView(true);
+                }
                 oldY = ev.getY();
                 break;
 
             case MotionEvent.ACTION_UP:
-                getParent().getParent().requestDisallowInterceptTouchEvent(true);
+                getParent().getParent().getParent().requestDisallowInterceptTouchEvent(true);
+                if(fixWebView != null) {
+                    fixWebView.onFixWebView(true);
+                }
                 break;
 
             default:
@@ -94,4 +113,8 @@ public class MyWebView extends WebView {
 //        canvas.restore();
 //        return ret;
 //    }
+
+    public interface IFixWebView {
+        void onFixWebView(boolean isSelfControl);
+    }
 }

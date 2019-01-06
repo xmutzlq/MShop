@@ -4,6 +4,9 @@ import android.content.Context;
 import android.support.v4.view.ViewPager;
 import android.util.AttributeSet;
 import android.view.MotionEvent;
+import android.view.View;
+
+import com.apkfuns.logutils.LogUtils;
 
 /**
  * <p>可以禁止滑动翻页的ViewPager </p>
@@ -14,6 +17,9 @@ public class NoScrollViewPager extends ViewPager {
     //是否可以进行滑动
     private boolean isCanScroll  = false;
     private boolean isDispatchChild = false;
+    private View dispatchView;
+
+    public boolean isWebDetailSelfControl;
 
     public NoScrollViewPager(Context context) {
         super(context);
@@ -21,6 +27,10 @@ public class NoScrollViewPager extends ViewPager {
 
     public NoScrollViewPager(Context context, AttributeSet attrs) {
         super(context, attrs);
+    }
+
+    public void setDispatchView(View dispatchView) {
+        this.dispatchView = dispatchView;
     }
 
     /**
@@ -33,6 +43,12 @@ public class NoScrollViewPager extends ViewPager {
 
     public void setDispatchChild(boolean isDispatchChild) {
         this.isDispatchChild = isDispatchChild;
+    }
+
+    @Override
+    public boolean dispatchTouchEvent(MotionEvent ev) {
+        if(dispatchView != null && isWebDetailSelfControl) dispatchView.onTouchEvent(ev);
+        return super.dispatchTouchEvent(ev);
     }
 
     @Override

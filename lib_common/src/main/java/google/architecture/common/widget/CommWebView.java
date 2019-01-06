@@ -74,14 +74,15 @@ public class CommWebView extends MyWebView {
         if (!cacheDir.exists()) {
             cacheDir.mkdirs();
         }
+        setttings.setDefaultTextEncodingName("UTF-8");
         setttings.setAppCachePath(cacheDir.getAbsolutePath());//设置App Cache缓存目录
         setttings.setSupportMultipleWindows(false);//不支持多窗口
         setttings.setJavaScriptCanOpenWindowsAutomatically(true);//支持js打开新窗口
         setttings.setAllowContentAccess(true);
         setttings.setAllowFileAccess(true);//启用WebView访问文件数据
         setttings.setSupportZoom(true);//支持缩放
-        setttings.setDisplayZoomControls(false);//隐藏webview缩放按钮
-        setttings.setBuiltInZoomControls(true);//支持手势缩放
+        setttings.setDisplayZoomControls(true);//隐藏webview缩放按钮
+        setttings.setBuiltInZoomControls(false);//支持手势缩放
         setttings.setLoadWithOverviewMode(true);//缩放至屏幕大小
         setttings.setUseWideViewPort(true);//调整屏幕自适应
         setttings.setDefaultTextEncodingName("utf-8");//设置编码格式为utf-8
@@ -226,7 +227,9 @@ public class CommWebView extends MyWebView {
                 super.loadUrl(s);
             } else{
                 LogUtils.tag("zlq").e("load content");
-                loadData(s, "text/html; charset=UTF-8", null);
+//                loadData(s, "text/html; charset=UTF-8", null);
+                loadData(s, "text/html; charset=UTF-8", "");
+//                loadDataWithBaseURL(null, s, "text/html", "utf-8", null);
             }
 
 
@@ -240,7 +243,7 @@ public class CommWebView extends MyWebView {
         } catch (Exception e) {
             e.printStackTrace();
             LogUtils.tag("zlq").e("load content error");
-            loadData(s, "text/html; charset=UTF-8", null);
+            loadData(s, "text/html; charset=UTF-8", "");
         }
     }
 

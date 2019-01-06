@@ -22,6 +22,7 @@ import android.widget.LinearLayout;
 
 import com.alibaba.android.arouter.facade.annotation.Route;
 import com.alibaba.android.arouter.launcher.ARouter;
+import com.apkfuns.logutils.LogUtils;
 import com.bumptech.glide.load.DataSource;
 import com.bumptech.glide.load.engine.GlideException;
 import com.bumptech.glide.request.RequestListener;
@@ -219,10 +220,12 @@ public class DetCommodityNewFragment extends BaseFragment<FragmentDetCommodityBi
 
         if(!hasLoadDetailWeb) {
             hasLoadDetailWeb = true;
+            BaseFragment fragment = (BaseFragment) ARouter.getInstance().build(ARouterPath.DetailDetailFgt)
+                    .withBoolean(DetDetailFragment.DetDetailTag, false)
+                    .withString(CommKeyUtil.EXTRA_KEY, info.getGoodsDesc()).navigation();
             mActivityDetails.getSupportFragmentManager()
                     .beginTransaction()
-                    .add(R.id.detail_bottom_page, DetDetailFragment.newInstance(false, info.getGoodsDesc()),
-                            DetDetailFragment.class.getSimpleName()).commit();
+                    .replace(R.id.detail_bottom_page, fragment).commit();
         }
 
         //gallery
@@ -323,6 +326,9 @@ public class DetCommodityNewFragment extends BaseFragment<FragmentDetCommodityBi
         binding.layoutDetRecommend.detailCommodityRecommendRec.setLayoutManager(detailLinearLayoutManager);
         binding.layoutDetRecommend.detailCommodityRecommendRec.setNestedScrollingEnabled(false);
         binding.layoutDetRecommend.detailCommodityRecommendRec.setHasFixedSize(true);
+
+        if(mActivityDetails != null) mActivityDetails.setLikes(info.getLike());
+
         java.util.List<Like> pageDetailRecommendInfos = new ArrayList<>(info.getLike());
         //总记录数
         int rows = pageDetailRecommendInfos.size();
@@ -405,16 +411,24 @@ public class DetCommodityNewFragment extends BaseFragment<FragmentDetCommodityBi
         }
     }
 
+    public void setNeedIntercept(boolean isNeedIntercept) {
+        binding.detailSlide.setNeedIntercept(isNeedIntercept);
+    }
+
     @Override
     public void onStatucChanged(SlideDetailsLayout.Status status) {
         if(status == SlideDetailsLayout.Status.CLOSE) { //当前为商品详情页
+            mActivityDetails.setWebDetailSelfControl(false);
             binding.detailSlide.smoothClose(true);
+            setNeedIntercept(false);
             binding.detailPullTagIv.setImageResource(R.mipmap.ic_arrow_up_full);
             binding.detailPullTipTv.setText(R.string.detail_pull_up_tip);
             mActivityDetails.playHeadTitleAnimat(true);
             mActivityDetails.interceptScroll(true);
         } else if(status == SlideDetailsLayout.Status.OPEN) { //当前为图文详情页
+            mActivityDetails.setWebDetailSelfControl(true);
             binding.detailSlide.smoothOpen(true);
+            setNeedIntercept(true);
             binding.detailPullTagIv.setImageResource(R.mipmap.ic_arrow_down_full);
             binding.detailPullTipTv.setText(R.string.detail_pull_down_tip);
             mActivityDetails.playHeadTitleAnimat(false);

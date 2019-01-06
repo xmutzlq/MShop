@@ -1,5 +1,6 @@
 package com.king.android.details.view;
 
+import android.content.Context;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -13,6 +14,7 @@ import android.widget.TextView;
 
 import com.alibaba.android.arouter.facade.annotation.Route;
 import com.apkfuns.logutils.LogUtils;
+import com.king.android.details.ActivityDetails;
 import com.king.android.details.R;
 import com.king.android.details.databinding.FragmentDetDetailBinding;
 import com.king.android.res.config.ARouterPath;
@@ -20,6 +22,7 @@ import com.king.android.res.config.ARouterPath;
 import google.architecture.common.base.BaseFragment;
 import google.architecture.common.util.CommKeyUtil;
 import google.architecture.common.widget.CommWebView;
+import google.architecture.common.widget.MyWebView;
 
 /**
  * @author lq.zeng
@@ -33,6 +36,7 @@ public class DetDetailFragment extends BaseFragment<FragmentDetDetailBinding> {
     private TextView leftBtn, rightBtn, centerBtn;
     public static String url;
 
+    private ActivityDetails activityDetails;
     private CommWebView commWebView;
 
     public static final String urls[] = {
@@ -52,6 +56,22 @@ public class DetDetailFragment extends BaseFragment<FragmentDetDetailBinding> {
         bundle.putString(CommKeyUtil.EXTRA_KEY, url);
         fragment.setArguments(bundle);
         return fragment;
+    }
+
+    public CommWebView getWebView() {return commWebView;}
+
+    @Override
+    public void onAttach(Context context) {
+        super.onAttach(context);
+        if(context != null && context instanceof ActivityDetails) {
+            activityDetails = (ActivityDetails) context;
+        }
+    }
+
+    @Override
+    public void onDetach() {
+        super.onDetach();
+        activityDetails = null;
     }
 
     @Override
@@ -100,6 +120,12 @@ public class DetDetailFragment extends BaseFragment<FragmentDetDetailBinding> {
         FrameLayout.LayoutParams params = new FrameLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT);
         commWebView = new CommWebView(mContext);
         binding.detDetailWebContainer.addView(commWebView, params);
+
+        if(activityDetails != null) activityDetails.setDispatchView(commWebView);
+        commWebView.setFixWebView(isSelfControl -> {
+            if(activityDetails != null) activityDetails.setNeedIntercept(isSelfControl);
+            if(activityDetails != null) activityDetails.setWebDetailSelfControl(isSelfControl);
+        });
     }
 
     @Override

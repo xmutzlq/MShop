@@ -44,4 +44,6 @@
 
     <string name="detail_save_get_value">总库存%1$s 店铺库存%2$s</string>
     <string name="detail_choose_flag_value">已选择%s</string>
+
+    <string name="detail_empty_recommend">暂无推荐</string>
 </resources>

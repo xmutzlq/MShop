@@ -17,6 +17,8 @@ import android.view.ViewConfiguration;
 import android.view.ViewGroup;
 import android.widget.AbsListView;
 
+import com.apkfuns.logutils.LogUtils;
+
 import google.architecture.common.R;
 
 /**
@@ -66,6 +68,7 @@ public class SlideDetailsLayout extends ViewGroup {
     private float mInitMotionY;
     private float mInitMotionX;
 
+    private boolean isNeedIntercept;
 
     private View mTarget;
     private float mSlideOffset;
@@ -105,6 +108,10 @@ public class SlideDetailsLayout extends ViewGroup {
      */
     public void setOnSlideDetailsListener(OnSlideDetailsListener listener) {
         this.mOnSlideDetailsListener = listener;
+    }
+
+    public void setNeedIntercept(boolean isNeedIntercept) {
+        this.isNeedIntercept = isNeedIntercept;
     }
 
     /**
@@ -237,6 +244,7 @@ public class SlideDetailsLayout extends ViewGroup {
 
     @Override
     public boolean onInterceptTouchEvent(MotionEvent ev) {
+        LogUtils.tag("zlq").e("SDL_onInterceptTouchEvent");
         ensureTarget();
         if (null == mTarget) {
             return false;
@@ -295,7 +303,7 @@ public class SlideDetailsLayout extends ViewGroup {
             }
 
         }
-
+        if(isNeedIntercept) return false;
         return shouldIntercept;
     }
 
@@ -308,6 +316,7 @@ public class SlideDetailsLayout extends ViewGroup {
 
     @Override
     public boolean onTouchEvent(MotionEvent ev) {
+        LogUtils.tag("zlq").e("SDL_onTouchEvent");
         ensureTarget();
         if (null == mTarget) {
             return false;
@@ -331,8 +340,8 @@ public class SlideDetailsLayout extends ViewGroup {
             }
 
             case MotionEvent.ACTION_MOVE: {
-                mVelocityTracker.addMovement(ev);
-                mVelocityTracker.computeCurrentVelocity(1000);
+                if(mVelocityTracker != null) mVelocityTracker.addMovement(ev);
+                if(mVelocityTracker != null) mVelocityTracker.computeCurrentVelocity(1000);
                 final float y = ev.getY();
                 final float yDiff = y - mInitMotionY;
                 if (canChildScrollVertically(((int) yDiff))) {
