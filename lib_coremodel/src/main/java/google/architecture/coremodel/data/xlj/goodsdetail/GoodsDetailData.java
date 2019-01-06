@@ -87,8 +87,8 @@ public class GoodsDetailData {
     private int goodSource;
     @SerializedName("shop")
     private Shop shop;
-    @SerializedName("saleSpec")
-    private SaleSpec saleSpec;
+    //@SerializedName("saleSpec")
+    //private SaleSpec saleSpec;
     @SerializedName("spec")
     private Spec spec;
     @SerializedName("defaultSpecs")
@@ -391,12 +391,12 @@ public class GoodsDetailData {
         return shop;
     }
 
-    public void setSaleSpec(SaleSpec saleSpec) {
-        this.saleSpec = saleSpec;
-    }
-    public SaleSpec getSaleSpec() {
-        return saleSpec;
-    }
+    //public void setSaleSpec(SaleSpec saleSpec) {
+        //this.saleSpec = saleSpec;
+    //}
+    //public SaleSpec getSaleSpec() {
+        //return saleSpec;
+    //}
 
     public void setSpec(Spec spec) {
         this.spec = spec;
@@ -513,7 +513,6 @@ public class GoodsDetailData {
                 ", goodsSerachKeywords='" + goodsSerachKeywords + '\'' +
                 ", goodSource=" + goodSource +
                 ", shop=" + shop +
-                ", saleSpec=" + saleSpec +
                 ", spec=" + spec +
                 ", defaultSpecs=" + defaultSpecs +
                 ", attrs=" + attrs +

@@ -12,6 +12,7 @@ import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.annotation.StringRes;
+import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.ActionBar;
 import android.support.v7.widget.Toolbar;
 import android.view.KeyEvent;
@@ -57,6 +58,8 @@ public abstract class BaseActivity<VB extends ViewDataBinding> extends BaseIdleA
     private ImmersionBar mImmersionBar;
 
     protected ProgressDialog progressDialog;
+    private LoadingFragment loadingFragment;
+
     private View rootView;
 
     protected abstract int getLayout();
@@ -76,17 +79,28 @@ public abstract class BaseActivity<VB extends ViewDataBinding> extends BaseIdleA
     protected void onCreateBindView() {}
 
     public void showProgressDialog(int message) {
-        if (progressDialog == null) {
-            progressDialog = new ProgressDialog(this);
-            progressDialog.setCanceledOnTouchOutside(false);
+//        if (progressDialog == null) {
+//            progressDialog = new ProgressDialog(this);
+//            progressDialog.setCanceledOnTouchOutside(false);
+//        }
+//        progressDialog.setMessage(getString(message));
+//        progressDialog.show();
+        if(loadingFragment == null){
+            loadingFragment = LoadingFragment.newInstance(false);
+
         }
-        progressDialog.setMessage(getString(message));
-        progressDialog.show();
+        FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
+        transaction.add(loadingFragment, "loading");
+        loadingFragment.setAlert(getString(message));
+        transaction.commitAllowingStateLoss();
     }
 
     public void dismissProgressDialog() {
-        if (progressDialog != null && progressDialog.isShowing()) {
-            progressDialog.dismiss();
+//        if (progressDialog != null && progressDialog.isShowing()) {
+//            progressDialog.dismiss();
+//        }
+        if(loadingFragment != null) {
+            loadingFragment.dismissAllowingStateLoss();
         }
     }
 

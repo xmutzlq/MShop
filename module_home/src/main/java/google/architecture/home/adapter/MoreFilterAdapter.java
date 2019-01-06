@@ -44,17 +44,26 @@ public class MoreFilterAdapter extends BaseQuickAdapter<MoreFilterData, BaseView
         int a = 0;
         for (Map.Entry<String, List<String>> entry : params.entrySet()) {
             for (int i = 0; i < entry.getValue().size(); i ++) {
-                stringBuilder.append(entry.getValue().get(i));
-                if(i != entry.getValue().size() - 1) {
-                    stringBuilder.append("_");
+                if(!TextUtils.isEmpty(entry.getValue().get(i))) {
+                    stringBuilder.append(entry.getValue().get(i));
+                    if(i < entry.getValue().size() - 1) {
+                        stringBuilder.append("_");
+                    }
                 }
             }
-            if(a != params.size() - 1) {
+
+            if(a < params.size() - 1 && entry.getValue() != null && entry.getValue().size() > 0) {
                 stringBuilder.append("-");
             }
+
             a += 1;
         }
-        return stringBuilder.toString();
+        String filters = stringBuilder.toString();
+        if(filters.substring(filters.length() - 1).equals("-")) {
+            filters = filters.substring(0, filters.length() - 1);
+        }
+        LogUtils.tag("zlq").e("filters = " + filters);
+        return filters;
     }
     public ArrayMap<Integer, List<MoreFilterTagData>> getAllKindsTagData() {
         return allKinds;

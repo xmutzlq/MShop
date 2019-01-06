@@ -51,7 +51,7 @@ public class CommFilterTabView extends FrameLayout implements View.OnClickListen
     private boolean isDrawerOpen;
 
     private String currentTag = TAB_DEFAULT;
-    private String actionTag;
+    private String actionTag = TAB_DEFAULT;
 
     private TabClickListener mTabClickListener;
     private FilterOpenListener mFilterOpenListener;
