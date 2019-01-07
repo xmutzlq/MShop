@@ -22,6 +22,8 @@
     <color name="text_color_404040">#404040</color>
     <color name="color_map_grid_selected">#F9686D</color>
 
+    <color name="gray_pressed">#f6f6f6</color>
+
     <color name="white">#ffffffff</color>
     <color name="white_10">#1affffff</color>
     <color name="white_20">#33ffffff</color>
