@@ -1,4 +1,4 @@
-package com.king.android.res.util;
+package google.architecture.coremodel.util;
 
 /**
  * @author lq.zeng

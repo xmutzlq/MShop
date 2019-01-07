@@ -8,6 +8,7 @@ import android.support.annotation.Nullable;
 import android.widget.ImageView;
 
 import com.alibaba.android.arouter.facade.annotation.Route;
+import com.apkfuns.logutils.LogUtils;
 import com.king.android.res.config.ARouterPath;
 import com.tencent.mm.opensdk.diffdev.DiffDevOAuthFactory;
 import com.tencent.mm.opensdk.diffdev.IDiffDevOAuth;
@@ -21,7 +22,8 @@ import java.util.Map;
 import google.architecture.common.base.BaseActivity;
 import google.architecture.common.util.Sha1;
 import google.architecture.common.viewmodel.PersonalViewNewModel;
-import google.architecture.coremodel.data.xlj.TecentTicket;
+import google.architecture.coremodel.util.EncryptUtils;
+import google.architecture.coremodel.util.PreferencesUtils;
 import google.architecture.personal.databinding.ActivityWeixinLoginBinding;
 
 @Route(path = ARouterPath.WeixinLoginAty)
@@ -53,27 +55,33 @@ public class ActivityWeixinLogin extends BaseActivity<ActivityWeixinLoginBinding
     protected void onDataResult(Object o) {
         super.onDataResult(o);
 
-        String timestamp = System.currentTimeMillis()+"";
-        String noncestr = "noncestr"+timestamp;
+        String noncestr = "noncestr" + System.currentTimeMillis();
+        String sdk_ticket = PreferencesUtils.getString(this_, PersonalViewNewModel.TecentTicket);
+        String timestamp = System.currentTimeMillis() + "";
 
-        TecentTicket ticket = (TecentTicket)o;
+        Map<String,Object> map = new HashMap<>();
+        map.put("appid ",appId);
+        map.put("noncestr",noncestr);
+        map.put("sdk_ticket",sdk_ticket);
+        map.put("timestamp",timestamp);
+
+        String string1 = String.format("appid=%s&noncestr=%s&sdk_ticket=%s&timestamp=%s",
+                appId, noncestr, sdk_ticket, timestamp);
+        String signature = EncryptUtils.encryptSHA1ToString(string1);
+        String signature2 = null;
+        LogUtils.tag("zlq").e("signature = " + signature);
         try {
-            Map<String,Object> map = new HashMap<>();
-            map.put("appId ",appId);
-            map.put("noncestr",noncestr);
-            map.put("sdk_ticket",ticket.getTicket());
-            map.put("timestamp",timestamp+"");
-
-            String signature = Sha1.SHA1(map);
-            initOAuth(""/*noncestr*/, ""/*timestamp*/, ""/*signature*/);
+            signature2 = Sha1.SHA1(map);
+            LogUtils.tag("zlq").e("signature2 = " + signature2);
         } catch (DigestException e) {
             e.printStackTrace();
         }
+        initOAuth(noncestr, timestamp, signature);
     }
 
     private void initOAuth(String noncestr,String timestamp,String signature){
         IDiffDevOAuth auth = DiffDevOAuthFactory.getDiffDevOAuth();
-        auth.auth(appId, "snsapi_login", noncestr, timestamp, signature, new OAuthListener() {
+        auth.auth(appId, "snsapi_userinfo", noncestr, timestamp, signature, new OAuthListener() {
             @Override
             public void onAuthGotQrcode(String s, byte[] bytes) {
                 Bitmap bitmap = BitmapFactory.decodeByteArray(bytes, 0, bytes.length);

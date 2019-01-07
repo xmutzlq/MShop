@@ -18,11 +18,9 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.view.animation.AnimationUtils;
 import android.widget.ImageView;
-import android.widget.LinearLayout;
 
 import com.alibaba.android.arouter.facade.annotation.Route;
 import com.alibaba.android.arouter.launcher.ARouter;
-import com.apkfuns.logutils.LogUtils;
 import com.bumptech.glide.load.DataSource;
 import com.bumptech.glide.load.engine.GlideException;
 import com.bumptech.glide.request.RequestListener;
@@ -39,8 +37,6 @@ import com.king.android.details.util.DetailUtil;
 import com.king.android.details.util.SpecParams;
 import com.king.android.details.widget.DetailRecommendCircleNavigator;
 import com.king.android.res.config.ARouterPath;
-import com.king.android.res.util.ConvertUtils;
-import com.kongzue.dialog.v2.MessageDialog;
 
 import java.util.ArrayList;
 
@@ -48,7 +44,6 @@ import google.architecture.common.base.BaseFragment;
 import google.architecture.common.imgloader.ImageLoader;
 import google.architecture.common.util.AppCompat;
 import google.architecture.common.util.CommKeyUtil;
-import google.architecture.common.util.DimensionsUtil;
 import google.architecture.common.util.ScreenUtils;
 import google.architecture.common.util.ToastUtils;
 import google.architecture.common.viewmodel.xlj.GoodsDetailRequestEntity;
@@ -65,6 +60,7 @@ import google.architecture.coremodel.data.xlj.goodsdetail.GoodsDetailData;
 import google.architecture.coremodel.data.xlj.goodsdetail.Like;
 import google.architecture.coremodel.datamodel.http.ApiConstants;
 import google.architecture.coremodel.datamodel.http.event.CommEvent;
+import google.architecture.coremodel.util.ConvertUtils;
 import google.architecture.coremodel.util.TextUtil;
 
 /**

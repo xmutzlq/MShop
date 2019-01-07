@@ -1,4 +1,4 @@
-package com.king.android.res.util;
+package google.architecture.coremodel.util;
 
 import java.io.Closeable;
 import java.io.IOException;
