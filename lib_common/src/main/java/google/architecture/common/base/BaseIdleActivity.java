@@ -94,4 +94,12 @@ public abstract class BaseIdleActivity extends BaseActivityFrame {
         }
         return super.onTouchEvent(event);
     }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        if(mDialog != null) {
+            mDialog.closeWindow();
+        }
+    }
 }

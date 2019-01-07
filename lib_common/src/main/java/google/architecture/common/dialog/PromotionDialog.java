@@ -182,7 +182,7 @@ public class PromotionDialog extends Dialog {
 
                     mAssist.setDataSource(dataSource);
                     mAssist.attachContainer(mVideoContainer, true);
-                    mAssist.reset();
+//                    mAssist.reset();
                     mAssist.play();
 
                 }
@@ -191,16 +191,20 @@ public class PromotionDialog extends Dialog {
         });
     }
 
-    private void closeWindow(){
+    public void closeWindow(){
         if(mFloatWindow.isWindowShow()){
             mFloatWindow.close();
         }
+        mAssist.destroy();
     }
 
     @Override
     protected void onStop() {
         super.onStop();
-        closeWindow();
-        mAssist.destroy();
+        mAssist.stop();
+        mAssist.reset();
+        if(mVideoContainer.getChildCount() > 0){
+            mVideoContainer.removeAllViews();
+        }
     }
 }

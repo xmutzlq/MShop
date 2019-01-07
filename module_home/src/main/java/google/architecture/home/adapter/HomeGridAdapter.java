@@ -18,9 +18,11 @@ import google.architecture.home.R;
 public class HomeGridAdapter extends RecyclerView.Adapter<HomeGridAdapter.GridViewHolder> {
 
     List<Goods> mList;
+    private OnItemClickListener mListener;
 
-    public HomeGridAdapter(List<Goods> list){
+    public HomeGridAdapter(List<Goods> list, OnItemClickListener listener){
         mList = list;
+        mListener = listener;
     }
 
     @Override
@@ -35,6 +37,14 @@ public class HomeGridAdapter extends RecyclerView.Adapter<HomeGridAdapter.GridVi
         ImageLoader.get().load(holder.goodsImgIv, ApiConstants.GankHost+item.getImageUrl());
         holder.goodsNameTv.setText(item.getGoodsName());
         holder.goodsPrice.setText("RMB/"+item.getShopPrice());
+        holder.clickView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(mListener != null){
+                    mListener.onItemClick(v, position);
+                }
+            }
+        });
     }
 
     @Override
@@ -47,13 +57,19 @@ public class HomeGridAdapter extends RecyclerView.Adapter<HomeGridAdapter.GridVi
         public ImageView goodsImgIv;
         public TextView goodsNameTv;
         public TextView goodsPrice;
+        public View clickView;
 
         public GridViewHolder(View itemView) {
             super(itemView);
+            clickView = itemView;
             goodsImgIv = itemView.findViewById(R.id.goods_img_iv);
             goodsNameTv = itemView.findViewById(R.id.goods_name_tv);
             goodsPrice = itemView.findViewById(R.id.goods_price_original_tv);
         }
+    }
+
+    public static interface OnItemClickListener{
+        public void onItemClick(View v, int position);
     }
 
 }

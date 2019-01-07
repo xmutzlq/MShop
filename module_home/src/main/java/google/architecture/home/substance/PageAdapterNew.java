@@ -195,7 +195,12 @@ public class PageAdapterNew {
             public void onBindViewHolder(BaseViewHolder holder, int position) {
                 super.onBindViewHolder(holder, position);
                 RecyclerView recycleView = holder.getView(R.id.common_recycle_view);
-                HomeGridAdapter adapter = new HomeGridAdapter(list);
+                HomeGridAdapter adapter = new HomeGridAdapter(list, new HomeGridAdapter.OnItemClickListener() {
+                    @Override
+                    public void onItemClick(View v, int position) {
+                        openGoodsDetail(list.get(position).getGoodsId()+"");
+                    }
+                });
                 recycleView.setAdapter(adapter);
                 GridLayoutManager layoutManager = new GridLayoutManager(mContext,2);
                 recycleView.setLayoutManager(layoutManager);

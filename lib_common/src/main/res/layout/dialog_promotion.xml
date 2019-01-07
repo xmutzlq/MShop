@@ -12,13 +12,14 @@
             android:id="@+id/show_img_iv"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:background="@drawable/temp_bg"/>
+            android:background="#000000"/>
+        <!-- @drawable/temp_bg -->
 
         <FrameLayout
             android:id="@+id/videoContainer"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:background="#FFFFFF"/>
+            android:background="#000000"/>
 
         <View
             android:id="@+id/btn_close"
