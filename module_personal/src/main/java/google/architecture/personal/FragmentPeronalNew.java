@@ -117,6 +117,9 @@ public class FragmentPeronalNew extends BaseFragment<FragmentPersonalNewBinding>
 
     private void initHeaderViewUI(View headerView){
         mAvatorIv = headerView.findViewById(R.id.avator_iv);//头像
+        mAvatorIv.setOnClickListener(view -> {
+            checkLogin(null);
+        });
         mUserNameTv = headerView.findViewById(R.id.user_name_tv);//用户名
     }
 
@@ -125,11 +128,72 @@ public class FragmentPeronalNew extends BaseFragment<FragmentPersonalNewBinding>
         headerView.findViewById(R.id.btn_setting).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                ARouter.getInstance().build(ARouterPath.PersonalSettingAty).navigation(mContext);
-                //ARouter.getInstance().build(ARouterPath.WeixinLoginAty).navigation(mContext);
-                //ARouter.getInstance().build(ARouterPath.PromotionAty).navigation(mContext);
+                checkLogin(()->{
+                    ARouter.getInstance().build(ARouterPath.PersonalSettingAty).navigation(mContext);
+                    //ARouter.getInstance().build(ARouterPath.WeixinLoginAty).navigation(mContext);
+                    //ARouter.getInstance().build(ARouterPath.PromotionAty).navigation(mContext);
+                });
             }
         });
+
+        //上
+        headerView.findViewById(R.id.btn_way_for_pay).setOnClickListener(view -> {
+            checkLogin(null);
+        });
+
+        headerView.findViewById(R.id.btn_way_for_deliver).setOnClickListener(view -> {
+            checkLogin(null);
+        });
+
+        headerView.findViewById(R.id.btn_way_for_receiver).setOnClickListener(view -> {
+            checkLogin(null);
+        });
+
+        headerView.findViewById(R.id.btn_comment).setOnClickListener(view -> {
+            checkLogin(null);
+        });
+
+
+        headerView.findViewById(R.id.btn_return_saled).setOnClickListener(view -> {
+            checkLogin(null);
+        });
+
+        //下1
+
+        headerView.findViewById(R.id.btn_coupons).setOnClickListener(view -> {
+            checkLogin(null);
+        });
+
+        headerView.findViewById(R.id.btn_coins).setOnClickListener(view -> {
+            checkLogin(null);
+        });
+
+        headerView.findViewById(R.id.btn_drink_ticket).setOnClickListener(view -> {
+            checkLogin(null);
+        });
+
+        headerView.findViewById(R.id.btn_my_data).setOnClickListener(view -> {
+            checkLogin(null);
+        });
+
+        //下2
+
+        headerView.findViewById(R.id.btn_my_favorite).setOnClickListener(view -> {
+            checkLogin(null);
+        });
+
+        headerView.findViewById(R.id.btn_my_history).setOnClickListener(view -> {
+            checkLogin(null);
+        });
+
+        headerView.findViewById(R.id.btn_my_ques).setOnClickListener(view -> {
+            checkLogin(null);
+        });
+
+        headerView.findViewById(R.id.btn_my_addr).setOnClickListener(view -> {
+            checkLogin(null);
+        });
+
     }
 
     SimpleMultiPurposeListener listener = new SimpleMultiPurposeListener() {
@@ -140,8 +204,7 @@ public class FragmentPeronalNew extends BaseFragment<FragmentPersonalNewBinding>
         @Override
         public void onRefresh(@NonNull RefreshLayout refreshLayout) {
             refreshLayout.finishRefresh(0);
-            //loadData();
-            viewModel.loadData();
+            checkLogin();
         }
         @Override
         public void onHeaderMoving(RefreshHeader header, boolean isDragging, float percent, int offset, int headerHeight, int maxDragHeight) {
@@ -169,6 +232,17 @@ public class FragmentPeronalNew extends BaseFragment<FragmentPersonalNewBinding>
     @Override
     public void onFragmentFirstVisible() {
         super.onFragmentFirstVisible();
+        checkLogin();
+    }
+
+    @Override
+    public void onUserLoginStateChange(boolean isLogin) {
+        if(isLogin) {
+            loadUserData();
+        }
+    }
+
+    private void checkLogin() {
         if(TextUtils.isEmpty(BaseApplication.getIns().getmUserAccessToken())) {
             ARouter.getInstance().build(ARouterPath.WeixinLoginAty).navigation(mContext);
         } else {
@@ -176,10 +250,11 @@ public class FragmentPeronalNew extends BaseFragment<FragmentPersonalNewBinding>
         }
     }
 
-    @Override
-    public void onUserLoginStateChange(boolean isLogin) {
-        if(isLogin) {
-            loadUserData();
+    private void checkLogin(Runnable runnable) {
+        if(TextUtils.isEmpty(BaseApplication.getIns().getmUserAccessToken())) {
+            ARouter.getInstance().build(ARouterPath.WeixinLoginAty).navigation(mContext);
+        } else {
+            if(runnable != null) runnable.run();
         }
     }
 

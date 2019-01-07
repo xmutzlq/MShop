@@ -108,8 +108,8 @@ public class PersonalViewNewModel extends UIViewModel {
                 .doOnTerminate(() -> isRunning.set(false))
                 .doOnNext(result -> {
                     TecentResponseResult tecentResponseResult = result;
-                    if(!TextUtils.isEmpty(tecentResponseResult.getOpenid())) {
-                        BaseApplication.getIns().setmUserAccessToken(tecentResponseResult.getOpenid());
+                    if(!TextUtils.isEmpty(tecentResponseResult.getUnionid())) {
+                        BaseApplication.getIns().setmUserAccessToken(tecentResponseResult.getUnionid());
                         BaseApplication.getIns().sendBroadcast(new Intent(AppBrocastAction.ACTION_USER_LOGIN_STATE_CHANGE));
                         if(doOnNext != null) doOnNext.doOnNext(tecentResponseResult);
                     }

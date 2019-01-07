@@ -73,14 +73,14 @@ public class ActivityWeixinLogin extends BaseActivity<ActivityWeixinLoginBinding
         String string1 = String.format("appid=%s&noncestr=%s&sdk_ticket=%s&timestamp=%s",
                 appId, noncestr, sdk_ticket, timestamp);
         String signature = EncryptUtils.encryptSHA1ToString(string1);
-        String signature2 = null;
-        LogUtils.tag("zlq").e("signature = " + signature);
-        try {
-            signature2 = Sha1.SHA1(map);
-            LogUtils.tag("zlq").e("signature2 = " + signature2);
-        } catch (DigestException e) {
-            e.printStackTrace();
-        }
+//        String signature2 = null;
+//        LogUtils.tag("zlq").e("signature = " + signature);
+//        try {
+//            signature2 = Sha1.SHA1(map);
+//            LogUtils.tag("zlq").e("signature2 = " + signature2);
+//        } catch (DigestException e) {
+//            e.printStackTrace();
+//        }
         initOAuth(noncestr, timestamp, signature);
     }
 

@@ -44,12 +44,17 @@
                 android:layout_marginBottom="5dp"
                 app:layout_constraintLeft_toLeftOf="@id/user_name_tv"
                 app:layout_constraintBottom_toBottomOf="@id/avator_iv"/>
-            <ImageView
+            <FrameLayout
                 android:id="@+id/btn_setting"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:src="@drawable/icon_setting"
-                app:layout_constraintRight_toRightOf="parent"/>
+                android:padding="@dimen/size_10dp"
+                app:layout_constraintRight_toRightOf="parent">
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/icon_setting"/>
+            </FrameLayout>
             <TextView
                 android:id="@+id/my_order_tv"
                 android:layout_width="wrap_content"
@@ -212,6 +217,7 @@
                 android:orientation="horizontal">
 
                 <LinearLayout
+                    android:id="@+id/btn_coupons"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
@@ -246,6 +252,7 @@
                 </LinearLayout>
 
                 <LinearLayout
+                    android:id="@+id/btn_coins"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
@@ -280,6 +287,7 @@
                 </LinearLayout>
 
                 <LinearLayout
+                    android:id="@+id/btn_drink_ticket"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
@@ -314,6 +322,7 @@
                 </LinearLayout>
 
                 <LinearLayout
+                    android:id="@+id/btn_my_data"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
@@ -339,6 +348,7 @@
                 android:orientation="horizontal">
 
                 <LinearLayout
+                    android:id="@+id/btn_my_favorite"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
@@ -358,6 +368,7 @@
                 </LinearLayout>
 
                 <LinearLayout
+                    android:id="@+id/btn_my_history"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
@@ -377,6 +388,7 @@
                 </LinearLayout>
 
                 <LinearLayout
+                    android:id="@+id/btn_my_ques"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
@@ -396,6 +408,7 @@
                 </LinearLayout>
 
                 <LinearLayout
+                    android:id="@+id/btn_my_addr"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
