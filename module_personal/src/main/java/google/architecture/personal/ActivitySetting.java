@@ -67,6 +67,15 @@ public class ActivitySetting extends BaseActivity<ActivitySettingNewBinding> {
                 ARouter.getInstance().build(ARouterPath.DomainInfoAty).navigation(ActivitySetting.this);
             }
         });
+
+        //系统空闲时间设置
+        findViewById(R.id.btn_set_idletime).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                ARouter.getInstance().build(ARouterPath.IdleTimeAty).navigation(ActivitySetting.this);
+            }
+        });
+
     }
 
     private void regToWx(){

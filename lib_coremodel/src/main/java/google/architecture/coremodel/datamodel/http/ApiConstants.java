@@ -161,4 +161,7 @@ public class ApiConstants {
     public static final String XLJ_Get_Promotion_Media = URL_BASE + "app/Shops/getMedia";
     public static final String XLJ_Get_Tecent_AccessToken = URL_BASE + "cgi-bin/token";
     public static final String XLJ_Get_Tecent_Ticket = URL_BASE + "cgi-bin/ticket/getticket";
+
+    public static int IDLE_SECOND = 30;//系统空闲时间
+
 }

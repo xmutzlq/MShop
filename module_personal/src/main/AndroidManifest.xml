@@ -30,6 +30,7 @@
         <activity android:name=".ActivityDeviceInfo"></activity>
         <activity android:name=".ActivityDomainSetting"></activity>
         <activity android:name=".ActivityWeixinLogin"></activity>
+        <activity android:name=".ActivityIdleTimeSetting"></activity>
     </application>
 
 </manifest>

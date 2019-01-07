@@ -8,6 +8,7 @@ import android.support.annotation.Nullable;
 import android.view.MotionEvent;
 
 import google.architecture.common.dialog.PromotionDialog;
+import google.architecture.coremodel.datamodel.http.ApiConstants;
 
 /**
  * 一个用于检测空闲时间的activity类
@@ -15,7 +16,6 @@ import google.architecture.common.dialog.PromotionDialog;
 public abstract class BaseIdleActivity extends BaseActivityFrame {
 
     private final int WHAT_SHOW_DIALOG = 23;
-    private final long waitTimeMilli = 10*1000;//空闲固定秒数
     private PromotionDialog mDialog;
 
     @Override
@@ -64,7 +64,7 @@ public abstract class BaseIdleActivity extends BaseActivityFrame {
             mHandler.removeMessages(WHAT_SHOW_DIALOG);
         }
         Message msg = mHandler.obtainMessage(WHAT_SHOW_DIALOG);
-        mHandler.sendMessageDelayed(msg,waitTimeMilli);
+        mHandler.sendMessageDelayed(msg,ApiConstants.IDLE_SECOND*1000);//空闲固定秒数
     }
 
     @Override

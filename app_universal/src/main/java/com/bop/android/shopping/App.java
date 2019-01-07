@@ -44,6 +44,7 @@ public class App  extends BaseApplication{
 
     private void initProperties(){
         String domain = PreferencesUtils.getString(getApplicationContext(),"domain_address","");
+        int idleTime = PreferencesUtils.getInt(getApplicationContext(),"idle_time", 30);
         if(!TextUtils.isEmpty(domain)){
             ApiConstants.GankHost = domain;
         }
