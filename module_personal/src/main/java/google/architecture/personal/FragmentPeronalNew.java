@@ -12,6 +12,7 @@ import android.widget.TextView;
 
 import com.alibaba.android.arouter.facade.annotation.Route;
 import com.alibaba.android.arouter.launcher.ARouter;
+import com.king.android.res.application.BaseApp;
 import com.king.android.res.config.ARouterPath;
 import com.qmuiteam.qmui.layout.QMUIFrameLayout;
 import com.qmuiteam.qmui.util.QMUIDisplayHelper;
@@ -25,6 +26,7 @@ import java.util.List;
 import java.util.Map;
 
 import de.hdodenhof.circleimageview.CircleImageView;
+import google.architecture.common.base.BaseApplication;
 import google.architecture.common.base.BaseFragment;
 import google.architecture.common.imgloader.ImageLoader;
 import google.architecture.common.viewmodel.PersonalViewNewModel;
@@ -111,7 +113,6 @@ public class FragmentPeronalNew extends BaseFragment<FragmentPersonalNewBinding>
             }
         });
         addRunStatusChangeCallBack(viewModel);//为了现实loading界面
-        viewModel.loadData();
     }
 
     private void initHeaderViewUI(View headerView){
@@ -168,6 +169,21 @@ public class FragmentPeronalNew extends BaseFragment<FragmentPersonalNewBinding>
     @Override
     public void onFragmentFirstVisible() {
         super.onFragmentFirstVisible();
+        if(TextUtils.isEmpty(BaseApplication.getIns().getmUserAccessToken())) {
+            ARouter.getInstance().build(ARouterPath.WeixinLoginAty).navigation(mContext);
+        } else {
+            loadUserData();
+        }
+    }
 
+    @Override
+    public void onUserLoginStateChange(boolean isLogin) {
+        if(isLogin) {
+            loadUserData();
+        }
+    }
+
+    private void loadUserData() {
+        if(viewModel != null) viewModel.loadData();
     }
 }

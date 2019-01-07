@@ -9,6 +9,7 @@ import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.annotation.StringRes;
+import android.text.TextUtils;
 import android.view.KeyEvent;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -302,7 +303,7 @@ public class BaseActivityFrame extends SkinBaseActivity implements IAppContextOb
         mBroadcastReceivers.put(AppBrocastAction.ACTION_USER_LOGIN_STATE_CHANGE, new BroadcastReceiver() {
             @Override
             public void onReceive(Context context, Intent intent) {
-                dispatchUserLoginStateChange(Account.get().isLogin());
+                dispatchUserLoginStateChange(!TextUtils.isEmpty(BaseApplication.getIns().getmUserAccessToken()));
             }
         });
         // 初始化主题变更监听

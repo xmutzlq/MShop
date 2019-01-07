@@ -5,6 +5,7 @@ import android.graphics.BitmapFactory;
 import android.graphics.drawable.BitmapDrawable;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.text.TextUtils;
 import android.widget.ImageView;
 
 import com.alibaba.android.arouter.facade.annotation.Route;
@@ -20,8 +21,12 @@ import java.util.HashMap;
 import java.util.Map;
 
 import google.architecture.common.base.BaseActivity;
+import google.architecture.common.base.BaseApplication;
+import google.architecture.common.base.ViewManager;
 import google.architecture.common.util.Sha1;
 import google.architecture.common.viewmodel.PersonalViewNewModel;
+import google.architecture.common.viewmodel.UIViewModel;
+import google.architecture.coremodel.data.xlj.TecentResponseResult;
 import google.architecture.coremodel.util.EncryptUtils;
 import google.architecture.coremodel.util.PreferencesUtils;
 import google.architecture.personal.databinding.ActivityWeixinLoginBinding;
@@ -97,6 +102,13 @@ public class ActivityWeixinLogin extends BaseActivity<ActivityWeixinLoginBinding
             @Override
             public void onAuthFinish(OAuthErrCode oAuthErrCode, String s) {
                 System.out.println("======szq========:oAuthErrCode:"+oAuthErrCode+"s:"+s);
+                BaseApplication.getHandler().post(()->{
+                    if(!TextUtils.isEmpty(s)) {
+                        mViewModel.getTencentWxOpenId(appId, appsecret, s, t -> {
+                            ViewManager.getInstance().finishActivity();
+                        });
+                    }
+                });
             }
         });
     }

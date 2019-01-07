@@ -1,13 +1,18 @@
 package google.architecture.common.viewmodel;
 
+import android.content.Intent;
 import android.databinding.ObservableField;
 import android.text.TextUtils;
+
+import com.apkfuns.logutils.LogUtils;
 
 import java.util.HashMap;
 import java.util.Map;
 
 import google.architecture.common.base.BaseApplication;
+import google.architecture.common.base.listener.AppBrocastAction;
 import google.architecture.coremodel.data.xlj.TecentAccessToken;
+import google.architecture.coremodel.data.xlj.TecentResponseResult;
 import google.architecture.coremodel.data.xlj.TecentTicket;
 import google.architecture.coremodel.data.xlj.personal.UserInfos;
 import google.architecture.coremodel.datamodel.http.EmptyConsumer;
@@ -23,7 +28,7 @@ public class PersonalViewNewModel extends UIViewModel {
     public ObservableField<UserInfos> userInfosObservableField = new ObservableField<>();
 
     public void loadData(){
-        String wxUnionId = "95131c72-24cf-4981-abd9-0ee5b9e177";
+        String wxUnionId = BaseApplication.getIns().getmUserAccessToken();
         String method = "Login/appWxlogin";
         disposable.add(DeHongDataRepository.get().xlj_getUserToken(wxUnionId, method).doOnSubscribe(disposable -> isRunning.set(true))
                 .doOnTerminate(() -> isRunning.set(false))
@@ -93,4 +98,22 @@ public class PersonalViewNewModel extends UIViewModel {
                 .subscribe(new EmptyConsumer(), new ErrorConsumer()));
     }
 
+    public void getTencentWxOpenId(String appid, String secret, String code, IDoOnNext doOnNext) {
+        Map<String,String> params = new HashMap<>();
+        params.put("appid", appid);
+        params.put("secret", secret);
+        params.put("code", code);
+        params.put("grant_type","authorization_code");
+        disposable.add(DeHongDataRepository.get().xlj_getTecentWXOpenId(params).doOnSubscribe(disposable -> isRunning.set(true))
+                .doOnTerminate(() -> isRunning.set(false))
+                .doOnNext(result -> {
+                    TecentResponseResult tecentResponseResult = result;
+                    if(!TextUtils.isEmpty(tecentResponseResult.getOpenid())) {
+                        BaseApplication.getIns().setmUserAccessToken(tecentResponseResult.getOpenid());
+                        BaseApplication.getIns().sendBroadcast(new Intent(AppBrocastAction.ACTION_USER_LOGIN_STATE_CHANGE));
+                        if(doOnNext != null) doOnNext.doOnNext(tecentResponseResult);
+                    }
+                })
+                .subscribe(new EmptyConsumer(), new ErrorConsumer()));
+    }
 }

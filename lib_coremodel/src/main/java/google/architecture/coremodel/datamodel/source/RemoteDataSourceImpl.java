@@ -36,6 +36,7 @@ import google.architecture.coremodel.data.UploadResultData;
 import google.architecture.coremodel.data.VersionInfo;
 import google.architecture.coremodel.data.xlj.PromotionMedia;
 import google.architecture.coremodel.data.xlj.TecentAccessToken;
+import google.architecture.coremodel.data.xlj.TecentResponseResult;
 import google.architecture.coremodel.data.xlj.TecentTicket;
 import google.architecture.coremodel.data.xlj.goodsdetail.GoodsDetailData;
 import google.architecture.coremodel.data.xlj.personal.UserInfos;
@@ -46,6 +47,7 @@ import google.architecture.coremodel.datamodel.http.exception.ExceptionFunc;
 import google.architecture.coremodel.datamodel.http.exception.ResulteFunc;
 import google.architecture.coremodel.datamodel.http.exception.XLJ_ResultFunc;
 import google.architecture.coremodel.datamodel.http.exception.XLJ_TecentAccessTokenFunc;
+import google.architecture.coremodel.datamodel.http.exception.XLJ_TecentResultFunc;
 import google.architecture.coremodel.datamodel.http.exception.XLJ_TecentTicketFunc;
 import google.architecture.coremodel.datamodel.http.service.DeHongDataService;
 import io.reactivex.Flowable;
@@ -401,6 +403,10 @@ public class RemoteDataSourceImpl implements IRemoteDataSource {
         return xlj_tecentTicket(dataService.xlj_getTecentTicket(params));
     }
 
+    @Override
+    public Flowable<TecentResponseResult> xlj_getTecentWXOpenId(Map params) {
+        return xlj_tecentResult(dataService.xlj_getTecentWXOpenId(params));
+    }
 
     /**
      * 已定义subscribeOn、
@@ -450,6 +456,17 @@ public class RemoteDataSourceImpl implements IRemoteDataSource {
                 .onErrorResumeNext(new ExceptionFunc())
                 // 后台异常捕获通知
                 .map(new XLJ_TecentTicketFunc())
+                .observeOn(AndroidSchedulers.mainThread())
+                // App内部查看的日志
+                .doOnError(throwable -> LogUtils.tag("zlq").e("doOnError: " + throwable.toString()));
+    }
+
+    private Flowable xlj_tecentResult(Flowable flowable) {
+        return flowable.subscribeOn(Schedulers.io())
+                // Http、Json及其他异常捕获通知
+                .onErrorResumeNext(new ExceptionFunc())
+                // 后台异常捕获通知
+                .map(new XLJ_TecentResultFunc())
                 .observeOn(AndroidSchedulers.mainThread())
                 // App内部查看的日志
                 .doOnError(throwable -> LogUtils.tag("zlq").e("doOnError: " + throwable.toString()));

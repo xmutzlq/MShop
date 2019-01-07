@@ -34,6 +34,7 @@ import google.architecture.coremodel.data.UploadResultData;
 import google.architecture.coremodel.data.VersionInfo;
 import google.architecture.coremodel.data.xlj.PromotionMedia;
 import google.architecture.coremodel.data.xlj.TecentAccessToken;
+import google.architecture.coremodel.data.xlj.TecentResponseResult;
 import google.architecture.coremodel.data.xlj.TecentTicket;
 import google.architecture.coremodel.data.xlj.goodsdetail.GoodsDetailData;
 import google.architecture.coremodel.data.xlj.personal.UserInfos;
@@ -41,6 +42,7 @@ import google.architecture.coremodel.data.xlj.shopdata.ShopData;
 import google.architecture.coremodel.datamodel.http.HttpResult;
 import google.architecture.coremodel.datamodel.http.XLJ_HttpResult;
 import io.reactivex.Flowable;
+import retrofit2.http.QueryMap;
 
 /**
  * @author lq.zeng
@@ -161,4 +163,5 @@ public interface IRemoteDataSource {
     Flowable<XLJ_HttpResult<PromotionMedia>> xlj_getPromotionMedia(String requestJson);
     Flowable<TecentAccessToken> xlj_getTecentAccessToken(Map params);
     Flowable<TecentTicket> xlj_getTecentTicket(Map params);
+    Flowable<TecentResponseResult> xlj_getTecentWXOpenId(Map params);
 }

@@ -76,6 +76,10 @@ public class ActivitySetting extends BaseActivity<ActivitySettingNewBinding> {
             }
         });
 
+        findViewById(R.id.btn_contact_me).setOnClickListener(view -> {
+            ARouter.getInstance().build(ARouterPath.WeixinLoginAty).navigation(ActivitySetting.this);
+        });
+
     }
 
     private void regToWx(){

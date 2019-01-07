@@ -62,6 +62,7 @@ public abstract class BaseApplication extends BaseApp {
     public static final int PLAN_ID_IJK = 1;
 
     private String mDeviceToken;
+    private String mUserAccessToken;
 
     private static BaseApplication sInstance;
 
@@ -231,5 +232,13 @@ public abstract class BaseApplication extends BaseApp {
 
     public void setDeviceToken(String mDeviceToken) {
         this.mDeviceToken = mDeviceToken;
+    }
+
+    public String getmUserAccessToken() {
+        return mUserAccessToken;
+    }
+
+    public void setmUserAccessToken(String mUserAccessToken) {
+        this.mUserAccessToken = mUserAccessToken;
     }
 }
