@@ -35,7 +35,8 @@
         android:paddingLeft="@dimen/size_10dp"
         android:paddingRight="@dimen/size_10dp"
         android:gravity="center_horizontal"
-        android:orientation="vertical">
+        android:orientation="vertical"
+        android:visibility="invisible">
         <ImageView
             android:id="@+id/detail_btn_like_iv"
             android:layout_width="@dimen/size_20dp"
@@ -58,7 +59,8 @@
         android:paddingLeft="@dimen/size_10dp"
         android:paddingRight="@dimen/size_20dp"
         android:gravity="center_horizontal"
-        android:orientation="vertical">
+        android:orientation="vertical"
+        android:visibility="invisible">
         <ImageView
             android:id="@+id/detail_btn_go_cart_iv"
             android:layout_width="@dimen/size_20dp"
@@ -82,7 +84,8 @@
         android:textSize="@dimen/text_size_15sp"
         android:textColor="@color/white"
         android:text="@string/detail_add_cart"
-        android:background="@mipmap/left_gradient_btn"/>
+        android:background="@mipmap/left_gradient_btn"
+        android:visibility="invisible"/>
 
     <TextView
         android:id="@+id/detail_btn_buy"
@@ -93,6 +96,6 @@
         android:textSize="@dimen/text_size_15sp"
         android:textColor="@color/white"
         android:text="@string/detail_buy_now"
-        android:background="@mipmap/right_gradient_btn"/>
+        android:background="@mipmap/right_gradient_full_btn"/>
 
 </LinearLayout>
