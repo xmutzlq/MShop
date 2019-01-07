@@ -11,9 +11,11 @@ import com.apkfuns.logutils.LogUtils;
 import com.king.android.res.application.BaseApp;
 import com.king.android.res.config.ARouterPath;
 import com.king.android.sharesdk.utils.PublicStaticData;
-//import com.kk.taurus.ijkplayer.IjkPlayer;
-//import com.kk.taurus.playerbase.config.PlayerConfig;
-//import com.kk.taurus.playerbase.entity.DecoderPlan;
+import com.kk.taurus.ijkplayer.IjkPlayer;
+import com.kk.taurus.playerbase.config.PlayerConfig;
+import com.kk.taurus.playerbase.config.PlayerLibrary;
+import com.kk.taurus.playerbase.entity.DecoderPlan;
+import com.kk.taurus.playerbase.record.PlayRecordManager;
 import com.kongzue.dialog.v2.DialogSettings;
 import com.scwang.smartrefresh.layout.SmartRefreshLayout;
 import com.scwang.smartrefresh.layout.api.DefaultRefreshFooterCreator;
@@ -160,13 +162,19 @@ public abstract class BaseApplication extends BaseApp {
         QbSdk.initTbsSettings(map);
 
 
-        /*PlayerConfig.addDecoderPlan(new DecoderPlan(PLAN_ID_IJK, IjkPlayer.class.getName(), "IjkPlayer"));
+        PlayerConfig.addDecoderPlan(new DecoderPlan(PLAN_ID_IJK, IjkPlayer.class.getName(), "IjkPlayer"));
         PlayerConfig.setDefaultPlanId(PLAN_ID_IJK);
 
         //use default NetworkEventProducer.
         PlayerConfig.setUseDefaultNetworkEventProducer(true);
 
-        PlayerConfig.playRecord(true);*/
+        PlayerConfig.playRecord(true);
+
+        PlayRecordManager.setRecordConfig(
+                new PlayRecordManager.RecordConfig.Builder()
+                        .setMaxRecordCount(100).build());
+
+        PlayerLibrary.init(this);
     }
 
     /**

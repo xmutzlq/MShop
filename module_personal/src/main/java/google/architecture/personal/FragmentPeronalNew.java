@@ -125,7 +125,8 @@ public class FragmentPeronalNew extends BaseFragment<FragmentPersonalNewBinding>
             @Override
             public void onClick(View v) {
                 //ARouter.getInstance().build(ARouterPath.PersonalSettingAty).navigation(mContext);
-                ARouter.getInstance().build(ARouterPath.WeixinLoginAty).navigation(mContext);
+                //ARouter.getInstance().build(ARouterPath.WeixinLoginAty).navigation(mContext);
+                ARouter.getInstance().build(ARouterPath.PromotionAty).navigation(mContext);
             }
         });
     }

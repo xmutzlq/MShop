@@ -65,7 +65,7 @@ public class ActivityWeixinLogin extends BaseActivity<ActivityWeixinLoginBinding
             map.put("timestamp",timestamp+"");
 
             String signature = Sha1.SHA1(map);
-            initOAuth(noncestr, timestamp, signature);
+            initOAuth(""/*noncestr*/, ""/*timestamp*/, ""/*signature*/);
         } catch (DigestException e) {
             e.printStackTrace();
         }
@@ -73,7 +73,7 @@ public class ActivityWeixinLogin extends BaseActivity<ActivityWeixinLoginBinding
 
     private void initOAuth(String noncestr,String timestamp,String signature){
         IDiffDevOAuth auth = DiffDevOAuthFactory.getDiffDevOAuth();
-        auth.auth(appId, "snsapi_userinfo", noncestr, timestamp, signature, new OAuthListener() {
+        auth.auth(appId, "snsapi_login", noncestr, timestamp, signature, new OAuthListener() {
             @Override
             public void onAuthGotQrcode(String s, byte[] bytes) {
                 Bitmap bitmap = BitmapFactory.decodeByteArray(bytes, 0, bytes.length);

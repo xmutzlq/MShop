@@ -15,7 +15,7 @@ import google.architecture.common.dialog.PromotionDialog;
 public abstract class BaseIdleActivity extends BaseActivityFrame {
 
     private final int WHAT_SHOW_DIALOG = 23;
-    private final long waitTimeMilli = 3000*1000;//空闲固定秒数
+    private final long waitTimeMilli = 10*1000;//空闲固定秒数
     private PromotionDialog mDialog;
 
     @Override
