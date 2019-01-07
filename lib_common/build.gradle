@@ -46,7 +46,7 @@ android {
 }
 
 dependencies {
-    implementation fileTree(include: ['*.jar'], dir: 'libs')
+    api fileTree(include: ['*.jar'], dir: 'libs')
     api project(':lib_share')
     api project(':lib_common_res')
     annotationProcessor deps.arouter.compiler
@@ -121,4 +121,5 @@ dependencies {
     }
     //使用微信分享、登录、收藏、支付等功能需要的库以及文件
     api 'com.tencent.mm.opensdk:wechat-sdk-android-with-mta:5.1.6'
+    api project(':ijkplayer')
 }
