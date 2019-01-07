@@ -1,5 +1,6 @@
 package google.architecture.personal;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.view.View;
@@ -15,6 +16,7 @@ import com.tencent.mm.opensdk.openapi.WXAPIFactory;
 
 import google.architecture.common.base.BaseActivity;
 import google.architecture.common.base.BaseApplication;
+import google.architecture.common.base.listener.AppBrocastAction;
 import google.architecture.common.util.ToastUtils;
 import google.architecture.personal.databinding.ActivitySettingNewBinding;
 
@@ -78,6 +80,11 @@ public class ActivitySetting extends BaseActivity<ActivitySettingNewBinding> {
 
         findViewById(R.id.btn_contact_me).setOnClickListener(view -> {
             ARouter.getInstance().build(ARouterPath.WeixinLoginAty).navigation(ActivitySetting.this);
+        });
+
+        findViewById(R.id.btn_login_out).setOnClickListener(view -> {
+            BaseApplication.getIns().setmUserAccessToken("");
+            sendBroadcast(new Intent(AppBrocastAction.ACTION_USER_LOGIN_STATE_CHANGE));
         });
 
     }

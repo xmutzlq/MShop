@@ -47,13 +47,21 @@ public class ActivityWeixinLogin extends BaseActivity<ActivityWeixinLoginBinding
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        mViewModel = new PersonalViewNewModel();
-        addRunStatusChangeCallBack(mViewModel);
-        Map<String,String> params = new HashMap<>();
-        params.put("grant_type","client_credential");
-        params.put("appid",appId);
-        params.put("secret",appsecret);
-        mViewModel.getTecentAccessToken(params);
+
+        QrCodeManage qrCodeManage = QrCodeManage.getInstance();
+
+        if(qrCodeManage != null && qrCodeManage.getQrCodeBitmap() != null) {
+            BitmapDrawable drawable = new BitmapDrawable(qrCodeManage.getQrCodeBitmap());
+            ((ImageView)findViewById(R.id.qrcode_img_iv)).setBackground(drawable);
+        } else {
+            mViewModel = new PersonalViewNewModel();
+            addRunStatusChangeCallBack(mViewModel);
+            Map<String,String> params = new HashMap<>();
+            params.put("grant_type","client_credential");
+            params.put("appid",appId);
+            params.put("secret",appsecret);
+            mViewModel.getTecentAccessToken(params);
+        }
     }
 
     @Override
@@ -90,6 +98,7 @@ public class ActivityWeixinLogin extends BaseActivity<ActivityWeixinLoginBinding
             @Override
             public void onAuthGotQrcode(String s, byte[] bytes) {
                 Bitmap bitmap = BitmapFactory.decodeByteArray(bytes, 0, bytes.length);
+                QrCodeManage.getInstance().setQrCodeBitmap(bitmap);
                 BitmapDrawable drawable = new BitmapDrawable(bitmap);
                 ((ImageView)findViewById(R.id.qrcode_img_iv)).setBackground(drawable);
             }

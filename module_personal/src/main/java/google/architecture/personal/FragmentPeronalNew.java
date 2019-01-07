@@ -128,11 +128,11 @@ public class FragmentPeronalNew extends BaseFragment<FragmentPersonalNewBinding>
         headerView.findViewById(R.id.btn_setting).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                checkLogin(()->{
+//                checkLogin(()->{
                     ARouter.getInstance().build(ARouterPath.PersonalSettingAty).navigation(mContext);
                     //ARouter.getInstance().build(ARouterPath.WeixinLoginAty).navigation(mContext);
                     //ARouter.getInstance().build(ARouterPath.PromotionAty).navigation(mContext);
-                });
+//                });
             }
         });
 
@@ -236,10 +236,21 @@ public class FragmentPeronalNew extends BaseFragment<FragmentPersonalNewBinding>
     }
 
     @Override
+    public void onDetach() {
+        super.onDetach();
+        QrCodeManage.getInstance().release();
+    }
+
+    @Override
     public void onUserLoginStateChange(boolean isLogin) {
         if(isLogin) {
             loadUserData();
         }
+    }
+
+    @Override
+    public void onReLoad() {
+        loadUserData();
     }
 
     private void checkLogin() {

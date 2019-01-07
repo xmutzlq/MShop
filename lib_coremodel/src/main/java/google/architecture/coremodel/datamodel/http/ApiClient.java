@@ -101,7 +101,7 @@ public class ApiClient{
                     // 头部拦截器
                     builder.addInterceptor(new HeaderInterceptor());
                     // 公共参数拦截器
-                    builder.addInterceptor(new CommonParamsInterceptor());
+                    //builder.addInterceptor(new CommonParamsInterceptor());
                     // 加密参数拦截器
                     builder.addInterceptor(new EncryptInterceptor());
                     //过滤HTTPS

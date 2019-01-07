@@ -157,8 +157,8 @@ public class ActivityMain extends BaseActivity<ActivityMainBinding> implements B
                 .withFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP)
                 .navigation(this_);
         if(!isLogin) {
-            mFragments.get(3).onReLoad();
-            goTab(3);
+            mFragments.get(2).onReLoad();
+            goTab(2);
         }
     }
 
