@@ -30,7 +30,7 @@ public class ActivityIdleTimeSetting extends BaseActivity<ActivityIdleTimeSettin
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setTitleName("系统空闲时间设置");
-        binding.idleTimeEt.setText(ApiConstants.IDLE_SECOND);
+        binding.idleTimeEt.setText(ApiConstants.IDLE_SECOND + "");
 
         //保存
         binding.btnSave.setOnClickListener(new View.OnClickListener() {
