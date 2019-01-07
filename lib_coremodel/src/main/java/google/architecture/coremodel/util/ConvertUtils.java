@@ -1,4 +1,4 @@
-package com.king.android.res.util;
+package google.architecture.coremodel.util;
 
 import android.annotation.SuppressLint;
 import android.content.res.Resources;

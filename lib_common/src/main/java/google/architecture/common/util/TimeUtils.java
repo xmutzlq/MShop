@@ -7,14 +7,14 @@ package google.architecture.common.util;
 
 import android.annotation.SuppressLint;
 
-import com.king.android.res.util.ConstUtils;
-import com.king.android.res.util.ConvertUtils;
-
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.Locale;
+
+import google.architecture.coremodel.util.ConstUtils;
+import google.architecture.coremodel.util.ConvertUtils;
 
 /**
  * <pre>

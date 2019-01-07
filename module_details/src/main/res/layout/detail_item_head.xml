@@ -88,7 +88,8 @@
             android:layout_height="wrap_content"
             android:src="@mipmap/ic_detail_cart_white"
             android:layout_gravity="center"
-            android:background="@color/transparent"/>
+            android:background="@color/transparent"
+            android:visibility="invisible"/>
         </FrameLayout>
     </RelativeLayout>
 </RelativeLayout>

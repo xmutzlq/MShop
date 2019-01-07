@@ -57,7 +57,10 @@ public class ActivityMain extends BaseActivity<ActivityMainBinding> implements B
         super.onCreate(savedInstanceState);
 
         setCanBack(false);
-        getToolbarHelper().getAppBarLayout().setVisibility(View.GONE);
+
+        if(getToolbarHelper().getAppBarLayout() != null) {
+            getToolbarHelper().getAppBarLayout().setVisibility(View.GONE);
+        }
 
 //        addBadgeAt(1, 5);
 
