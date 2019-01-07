@@ -23,6 +23,7 @@ import com.kk.taurus.playerbase.assist.AssistPlay;
 import com.kk.taurus.playerbase.assist.OnAssistPlayEventHandler;
 import com.kk.taurus.playerbase.assist.RelationAssist;
 import com.kk.taurus.playerbase.entity.DataSource;
+import com.kk.taurus.playerbase.event.OnPlayerEventListener;
 import com.kk.taurus.playerbase.receiver.ReceiverGroup;
 import com.kk.taurus.playerbase.window.FloatWindow;
 import com.kk.taurus.playerbase.window.FloatWindowParams;
@@ -101,6 +102,27 @@ public class PromotionDialog extends Dialog {
         mAssist = new RelationAssist(getContext());
         mAssist.getSuperContainer().setBackgroundColor(Color.BLACK);
         mAssist.setEventAssistHandler(eventHandler);
+        mAssist.setOnPlayerEventListener(new OnPlayerEventListener() {
+            @Override
+            public void onPlayerEvent(int eventCode, Bundle bundle) {
+                if(eventCode == OnPlayerEventListener.PLAYER_EVENT_ON_DATA_SOURCE_SET){
+                    System.out.println("======szq======PLAYER_EVENT_ON_DATA_SOURCE_SET");
+                }else if(eventCode == OnPlayerEventListener.PLAYER_EVENT_ON_BUFFERING_START){
+                    System.out.println("======szq======PLAYER_EVENT_ON_BUFFERING_START");
+                }else if(eventCode == OnPlayerEventListener.PLAYER_EVENT_ON_BUFFERING_END){
+                    System.out.println("======szq======PLAYER_EVENT_ON_BUFFERING_END");
+                }else if(eventCode == OnPlayerEventListener.PLAYER_EVENT_ON_START){
+                    System.out.println("======szq======PLAYER_EVENT_ON_START");
+                }else if(eventCode == OnPlayerEventListener.PLAYER_EVENT_ON_STOP){
+                    System.out.println("======szq======PLAYER_EVENT_ON_STOP");
+                }else if(eventCode == OnPlayerEventListener.PLAYER_EVENT_ON_DESTROY){
+                    System.out.println("======szq======PLAYER_EVENT_ON_DESTROY");
+                }else if(eventCode == OnPlayerEventListener.PLAYER_EVENT_ON_PLAY_COMPLETE){//视频播放完毕
+                    System.out.println("======szq======PLAYER_EVENT_ON_PLAY_COMPLETE");
+                    mAssist.play();
+                }
+            }
+        });
 
     }
 
@@ -155,11 +177,12 @@ public class PromotionDialog extends Dialog {
                     mVideoContainer.setVisibility(View.VISIBLE);
 
                     DataSource dataSource = new DataSource();
-                    dataSource.setData(/*result.getUrl()*/"https://mov.bn.netease.com/open-movie/nos/mp4/2016/01/11/SBC46Q9DV_hd.mp4");
+                    dataSource.setData(result.getUrl());
                     dataSource.setTitle("标题");
 
                     mAssist.setDataSource(dataSource);
-                    mAssist.attachContainer(mVideoContainer);
+                    mAssist.attachContainer(mVideoContainer, true);
+                    mAssist.reset();
                     mAssist.play();
 
                 }

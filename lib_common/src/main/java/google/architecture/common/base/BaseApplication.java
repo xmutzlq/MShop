@@ -168,11 +168,11 @@ public abstract class BaseApplication extends BaseApp {
         //use default NetworkEventProducer.
         PlayerConfig.setUseDefaultNetworkEventProducer(true);
 
-        PlayerConfig.playRecord(true);
+        PlayerConfig.playRecord(false);
 
-        PlayRecordManager.setRecordConfig(
+        /*PlayRecordManager.setRecordConfig(
                 new PlayRecordManager.RecordConfig.Builder()
-                        .setMaxRecordCount(100).build());
+                        .setMaxRecordCount(100).build());*/
 
         PlayerLibrary.init(this);
     }
