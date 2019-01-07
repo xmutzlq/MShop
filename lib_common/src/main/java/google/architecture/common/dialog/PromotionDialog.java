@@ -58,6 +58,7 @@ public class PromotionDialog extends Dialog {
         WindowManager.LayoutParams params = getWindow().getAttributes();
         DisplayMetrics dm = new DisplayMetrics();
         getWindow().getWindowManager().getDefaultDisplay().getMetrics(dm);
+
         params.width = ScreenUtils.getScreenWidth();
         params.height = ScreenUtils.getScreenHeight()-(ScreenUtils.getTitleHight(context)+ScreenUtils.getBackButtonHight(context));
         getWindow().setAttributes(params);
@@ -100,7 +101,6 @@ public class PromotionDialog extends Dialog {
         mAssist = new RelationAssist(getContext());
         mAssist.getSuperContainer().setBackgroundColor(Color.BLACK);
         mAssist.setEventAssistHandler(eventHandler);
-
 
     }
 
@@ -161,6 +161,7 @@ public class PromotionDialog extends Dialog {
                     mAssist.setDataSource(dataSource);
                     mAssist.attachContainer(mVideoContainer);
                     mAssist.play();
+
                 }
 
             }
@@ -177,5 +178,6 @@ public class PromotionDialog extends Dialog {
     protected void onStop() {
         super.onStop();
         closeWindow();
+        mAssist.destroy();
     }
 }

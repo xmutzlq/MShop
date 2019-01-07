@@ -79,7 +79,7 @@ public class App  extends BaseApplication{
                     JSONObject json = uMessage.getRaw();
                     try {
                         String custom = json.getJSONObject("body").getString("custom");
-                        ToastUtils.showLongToast("getMessage custom:"+custom);
+                        //ToastUtils.showLongToast("getMessage custom:"+custom);
                         ARouter.getInstance().build(ARouterPath.DetailAty).withString(CommEvent.KEY_EXTRA_VALUE_2,custom).navigation(getApplicationContext());
                     } catch (JSONException e) {
                         e.printStackTrace();
