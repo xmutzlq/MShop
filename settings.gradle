@@ -10,4 +10,5 @@ include ':app_universal',
         ':lib_share',
         ':lib_common_res',
         ':module_details',
-        ':module_order'
+        ':module_order',
+        ':ijkplayer'
