@@ -31,7 +31,7 @@ public class DetailBannerAdapter extends CommRecyclingPagerAdapter<String>{
 
     @Override
     protected void loadImage(CommRecyclingPagerAdapter.ViewHolder holder, String imgId, int position) {
-        String newImgId = ApiConstants.GankHost + imgId;
+        String newImgId = ApiConstants.XLJimgHost + imgId;
         ImageLoader.get().load(holder.imageView, newImgId, new RequestListener<Drawable>() {
             @Override
             public boolean onLoadFailed(@Nullable GlideException e, Object model, Target<Drawable> target, boolean isFirstResource) {

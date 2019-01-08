@@ -41,8 +41,9 @@ public class ApiConstants {
     // 项目主地址
     public static final String URLHost = BuildConfig.APP_REQUEST_URL;
     // 项目分地址
-    public static String GankHost = "https://mwx.s.cn/";
+    public static String GankHost = "https://xljapi.s.cn/";//"https://mwx.s.cn/";
     public static String TecentHost = "https://api.weixin.qq.com/";
+    public static String XLJimgHost = "https://xljapi.s.cn/";//新乐纪图片服务器地址
     //项目分地址
     public static final String GoodsHost = "http://7xij5m.com1.z0.glb.clouddn.com/spRecommend.txt";
 

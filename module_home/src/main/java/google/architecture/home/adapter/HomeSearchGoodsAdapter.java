@@ -91,7 +91,7 @@ public class HomeSearchGoodsAdapter extends BaseMultiItemQuickAdapter<SearchResu
 
                 SimpleDraweeView imageView = helper.getView(R.id.search_goods_list_iv);
                 imageView.post(() -> {
-                    String lImg = ApiConstants.GankHost + item.getOriginal_img();
+                    String lImg = ApiConstants.XLJimgHost + item.getOriginal_img();
                     imageView.setImageURI(lImg);
                 });
 
@@ -119,7 +119,7 @@ public class HomeSearchGoodsAdapter extends BaseMultiItemQuickAdapter<SearchResu
             case SearchResult.GoodsItem.ITEM_TYPE_GRID:
                 SimpleDraweeView gImageView = helper.getView(R.id.search_goods_grid_iv);
                 gImageView.post(() -> {
-                    String gImg = ApiConstants.GankHost + item.getOriginal_img();
+                    String gImg = ApiConstants.XLJimgHost + item.getOriginal_img();
                     gImageView.setImageURI(gImg);
                 });
 

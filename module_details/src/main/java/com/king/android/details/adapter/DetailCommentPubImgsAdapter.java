@@ -26,7 +26,7 @@ public class DetailCommentPubImgsAdapter extends BaseQuickAdapter<String, BaseVi
     @Override
     protected void convert(BaseViewHolder helper, String item) {
         ImageView pubImg = helper.getView(R.id.common_ratio_iv);
-        String tmpImg = ApiConstants.GankHost + item;
+        String tmpImg = ApiConstants.XLJimgHost + item;
         ImageLoader.get().load(pubImg, tmpImg);
     }
 }

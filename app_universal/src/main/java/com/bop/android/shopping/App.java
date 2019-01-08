@@ -44,9 +44,16 @@ public class App  extends BaseApplication{
 
     private void initProperties(){
         String domain = PreferencesUtils.getString(getApplicationContext(),"domain_address","");
-        int idleTime = PreferencesUtils.getInt(getApplicationContext(),"idle_time", 30);
+        int idleTime = PreferencesUtils.getInt(getApplicationContext(),"idle_time", 0);
+        String xljImgPath = PreferencesUtils.getString(getApplicationContext(),"xlj_img_address","");
         if(!TextUtils.isEmpty(domain)){
             ApiConstants.GankHost = domain;
+        }
+        if(!TextUtils.isEmpty(xljImgPath)){
+            ApiConstants.XLJimgHost = xljImgPath;
+        }
+        if(idleTime > 0){
+            ApiConstants.IDLE_SECOND = idleTime;
         }
     }
 

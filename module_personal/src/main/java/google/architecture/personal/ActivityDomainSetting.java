@@ -31,6 +31,7 @@ public class ActivityDomainSetting extends BaseActivity<ActivityDomainSettingBin
         super.onCreate(savedInstanceState);
         setTitleName("域名设置");
         binding.domainEt.setText(ApiConstants.GankHost);
+        binding.imgPathEt.setText(ApiConstants.XLJimgHost);
         //保存
         binding.btnSave.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -39,8 +40,14 @@ public class ActivityDomainSetting extends BaseActivity<ActivityDomainSettingBin
                     ToastUtils.showLongToast("请输入新域名");
                     return;
                 }
+                if(TextUtils.isEmpty(binding.imgPathEt.getText().toString())){
+                    ToastUtils.showLongToast("请输入新图片地址");
+                    return;
+                }
                 ApiConstants.GankHost = binding.domainEt.getText().toString();
+                ApiConstants.XLJimgHost = binding.imgPathEt.getText().toString();
                 PreferencesUtils.putString(ActivityDomainSetting.this, "domain_address",ApiConstants.GankHost);
+                PreferencesUtils.putString(ActivityDomainSetting.this, "xlj_img_address",ApiConstants.XLJimgHost);
                 ToastUtils.showLongToast("保存成功");
             }
         });

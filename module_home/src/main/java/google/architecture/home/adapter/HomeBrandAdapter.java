@@ -31,7 +31,7 @@ public class HomeBrandAdapter extends RecyclerView.Adapter<HomeBrandAdapter.Bran
 
     @Override
     public void onBindViewHolder(BrandViewHolder holder, int position) {
-        String imgUrl = ApiConstants.GankHost+ mList.get(position).getImageUrl();
+        String imgUrl = ApiConstants.XLJimgHost+ mList.get(position).getImageUrl();
         ImageLoader.get().load(holder.brandIv, imgUrl);
         holder.clickView.setOnClickListener(new View.OnClickListener() {
             @Override
