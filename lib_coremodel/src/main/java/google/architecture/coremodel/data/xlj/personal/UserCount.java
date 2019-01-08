@@ -5,19 +5,19 @@ import com.google.gson.annotations.SerializedName;
 public class UserCount {
 
     @SerializedName("waitPay")
-    private int waitPay;
+    private int waitPay;//待付款
     @SerializedName("waitDeliver")
-    private int waitDeliver;
+    private int waitDeliver;//待发送
     @SerializedName("waitReceive")
-    private int waitReceive;
+    private int waitReceive;//待收货
     @SerializedName("waitAppraise")
-    private int waitAppraise;
+    private int waitAppraise;//待评价
     @SerializedName("refund")
-    private int refund;
+    private int refund;//退换货
     @SerializedName("couponCount")
-    private int couponCount;
+    private int couponCount;//优惠券
     @SerializedName("drinkCount")
-    private int drinkCount;
+    private int drinkCount;//饮品券
 
     public int getWaitPay() {
         return waitPay;

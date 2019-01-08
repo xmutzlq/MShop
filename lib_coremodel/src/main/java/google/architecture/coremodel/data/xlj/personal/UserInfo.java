@@ -11,7 +11,7 @@ public class UserInfo {
     @SerializedName("userPhoto")
     private String userPhoto;
     @SerializedName("userScore")
-    private String userScore;
+    private String userScore;//积分
     @SerializedName("userSex")
     private String userSex;//性别
 

@@ -43,6 +43,7 @@ public class FragmentPeronalNew extends BaseFragment<FragmentPersonalNewBinding>
 
     private CircleImageView mAvatorIv;
     private TextView mUserNameTv;
+    private TextView mUserScoreTv;//积分
 
     @Override
     public void onFragmentResume() {
@@ -118,6 +119,7 @@ public class FragmentPeronalNew extends BaseFragment<FragmentPersonalNewBinding>
             checkLogin(null);
         });
         mUserNameTv = headerView.findViewById(R.id.user_name_tv);//用户名
+        mUserScoreTv = headerView.findViewById(R.id.user_score_tv);
     }
 
     private void initHeaderViewBtn(View headerView){
@@ -215,11 +217,13 @@ public class FragmentPeronalNew extends BaseFragment<FragmentPersonalNewBinding>
 
     private void refreshData(UserInfos infos){
         if(!TextUtils.isEmpty(infos.getUserInfo().getUserPhoto())){
-            ImageLoader.get().load(mAvatorIv, ApiConstants.XLJimgHost+infos.getUserInfo().getUserPhoto());
+            ImageLoader.get().load(mAvatorIv, infos.getUserInfo().getUserPhoto());
         }
         if(!TextUtils.isEmpty(infos.getUserInfo().getUserName())){
             mUserNameTv.setText(infos.getUserInfo().getUserName());
         }
+
+        mUserScoreTv.setText(infos.getUserInfo().getUserScore());
 
         mList.clear();
         mList.addAll(infos.getLike());
