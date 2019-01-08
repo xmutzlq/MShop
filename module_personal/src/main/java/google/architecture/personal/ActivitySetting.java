@@ -3,7 +3,6 @@ package google.architecture.personal;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
-import android.text.TextUtils;
 import android.view.View;
 
 import com.alibaba.android.arouter.facade.annotation.Route;
@@ -94,13 +93,14 @@ public class ActivitySetting extends BaseActivity<ActivitySettingNewBinding> {
             });
         });
 
-        if(TextUtils.isEmpty(BaseApplication.getIns().getmUserAccessToken())) {
+        if(!BaseApplication.getIns().isUserLogin()) {
             binding.btnLoginOut.setVisibility(View.GONE);
         } else {
             binding.btnLoginOut.setVisibility(View.VISIBLE);
             binding.btnLoginOut.setOnClickListener(view -> {
                 SelectDialog.show(this_, getResources().getString(R.string.warming_tip),
                         getResources().getString(R.string.login_out_confirm), (dialog, which) -> {
+                            BaseApplication.getIns().setUserInfos(null);
                             BaseApplication.getIns().setmUserAccessToken("");
                             sendBroadcast(new Intent(AppBrocastAction.ACTION_USER_LOGIN_STATE_CHANGE));
                         });
@@ -109,7 +109,7 @@ public class ActivitySetting extends BaseActivity<ActivitySettingNewBinding> {
     }
 
     private void checkLogin(Runnable runnable) {
-        if(TextUtils.isEmpty(BaseApplication.getIns().getmUserAccessToken())) {
+        if(!BaseApplication.getIns().isUserLogin()) {
             ARouter.getInstance().build(ARouterPath.WeixinLoginAty).navigation(this_);
         } else {
             if(runnable != null) runnable.run();

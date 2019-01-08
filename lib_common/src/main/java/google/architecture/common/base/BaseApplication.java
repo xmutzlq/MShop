@@ -4,6 +4,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatDelegate;
+import android.text.TextUtils;
 import android.util.ArrayMap;
 
 import com.alibaba.android.arouter.launcher.ARouter;
@@ -15,7 +16,6 @@ import com.kk.taurus.ijkplayer.IjkPlayer;
 import com.kk.taurus.playerbase.config.PlayerConfig;
 import com.kk.taurus.playerbase.config.PlayerLibrary;
 import com.kk.taurus.playerbase.entity.DecoderPlan;
-import com.kk.taurus.playerbase.record.PlayRecordManager;
 import com.kongzue.dialog.v2.DialogSettings;
 import com.scwang.smartrefresh.layout.SmartRefreshLayout;
 import com.scwang.smartrefresh.layout.api.DefaultRefreshFooterCreator;
@@ -40,6 +40,7 @@ import google.architecture.common.util.DynamicTimeFormat;
 import google.architecture.common.util.KeyboardUtils;
 import google.architecture.common.util.Utils;
 import google.architecture.coremodel.BuildConfig;
+import google.architecture.coremodel.data.xlj.personal.UserInfos;
 import google.architecture.coremodel.datamodel.http.upload.OkHttpStack;
 import me.jessyan.autosize.AutoSizeConfig;
 
@@ -62,7 +63,9 @@ public abstract class BaseApplication extends BaseApp {
     public static final int PLAN_ID_IJK = 1;
 
     private String mDeviceToken;
-    private String mUserAccessToken;
+
+    private UserInfos userInfos; //用户登录依据
+    private String mUserAccessToken; //微信唯一用户Id(unitId)
 
     private static BaseApplication sInstance;
 
@@ -185,6 +188,10 @@ public abstract class BaseApplication extends BaseApp {
         ARouter.getInstance().build(ARouterPath.AppSplashAty).withFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK).navigation();
     }
 
+    public boolean isUserLogin() {
+        return userInfos != null && !TextUtils.isEmpty(mUserAccessToken);
+    }
+
     @Override
     public void onTerminate() {
         super.onTerminate();
@@ -240,5 +247,13 @@ public abstract class BaseApplication extends BaseApp {
 
     public void setmUserAccessToken(String mUserAccessToken) {
         this.mUserAccessToken = mUserAccessToken;
+    }
+
+    public UserInfos getUserInfos() {
+        return userInfos;
+    }
+
+    public void setUserInfos(UserInfos userInfos) {
+        this.userInfos = userInfos;
     }
 }

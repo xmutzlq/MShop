@@ -29,7 +29,6 @@ import google.architecture.common.imgloader.ImageLoader;
 import google.architecture.common.viewmodel.PersonalViewNewModel;
 import google.architecture.coremodel.data.xlj.personal.LikeGoods;
 import google.architecture.coremodel.data.xlj.personal.UserInfos;
-import google.architecture.coremodel.datamodel.http.ApiConstants;
 import google.architecture.coremodel.datamodel.http.event.CommEvent;
 import google.architecture.personal.adapter.HeaderFooterAdapterWrapper;
 import google.architecture.personal.adapter.PersonalNewAdapter;
@@ -219,6 +218,7 @@ public class FragmentPeronalNew extends BaseFragment<FragmentPersonalNewBinding>
         if(!TextUtils.isEmpty(infos.getUserInfo().getUserPhoto())){
             ImageLoader.get().load(mAvatorIv, infos.getUserInfo().getUserPhoto());
         }
+
         if(!TextUtils.isEmpty(infos.getUserInfo().getUserName())){
             mUserNameTv.setText(infos.getUserInfo().getUserName());
         }
@@ -245,6 +245,18 @@ public class FragmentPeronalNew extends BaseFragment<FragmentPersonalNewBinding>
     public void onUserLoginStateChange(boolean isLogin) {
         if(isLogin) {
             loadUserData();
+        } else {
+            ImageLoader.get().load(mAvatorIv, "");
+            mUserNameTv.setText("---");
+            mUserScoreTv.setText(0 + "");
+        }
+    }
+
+    @Override
+    public void onMessageEvent(CommEvent event) {
+        super.onMessageEvent(event);
+        if(CommEvent.MSG_TYPE_UPDATE_USER_INFO.equals(event.msgType)) {
+            loadUserData();
         }
     }
 
@@ -254,7 +266,7 @@ public class FragmentPeronalNew extends BaseFragment<FragmentPersonalNewBinding>
     }
 
     private void checkLogin() {
-        if(TextUtils.isEmpty(BaseApplication.getIns().getmUserAccessToken())) {
+        if(!BaseApplication.getIns().isUserLogin()) {
             ARouter.getInstance().build(ARouterPath.WeixinLoginAty).navigation(mContext);
         } else {
             loadUserData();
@@ -262,7 +274,7 @@ public class FragmentPeronalNew extends BaseFragment<FragmentPersonalNewBinding>
     }
 
     private void checkLogin(Runnable runnable) {
-        if(TextUtils.isEmpty(BaseApplication.getIns().getmUserAccessToken())) {
+        if(!BaseApplication.getIns().isUserLogin()) {
             ARouter.getInstance().build(ARouterPath.WeixinLoginAty).navigation(mContext);
         } else {
             if(runnable != null) runnable.run();

@@ -90,4 +90,5 @@
     <string name="personal_info_secret_email">邮箱</string>
 
     <string name="personal_wx_scan_login">微信扫码登录</string>
+    <string name="personal_wx_login_success">登录成功</string>
 </resources>
