@@ -12,7 +12,6 @@ import android.widget.TextView;
 
 import com.alibaba.android.arouter.facade.annotation.Route;
 import com.alibaba.android.arouter.launcher.ARouter;
-import com.king.android.res.application.BaseApp;
 import com.king.android.res.config.ARouterPath;
 import com.qmuiteam.qmui.layout.QMUIFrameLayout;
 import com.qmuiteam.qmui.util.QMUIDisplayHelper;
@@ -21,9 +20,7 @@ import com.scwang.smartrefresh.layout.api.RefreshLayout;
 import com.scwang.smartrefresh.layout.listener.SimpleMultiPurposeListener;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 import de.hdodenhof.circleimageview.CircleImageView;
 import google.architecture.common.base.BaseApplication;
@@ -238,7 +235,6 @@ public class FragmentPeronalNew extends BaseFragment<FragmentPersonalNewBinding>
     @Override
     public void onDetach() {
         super.onDetach();
-        QrCodeManage.getInstance().release();
     }
 
     @Override

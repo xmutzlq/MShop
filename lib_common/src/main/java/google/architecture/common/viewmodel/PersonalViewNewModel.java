@@ -26,6 +26,11 @@ public class PersonalViewNewModel extends UIViewModel {
     private static final String TecentTicket_Expires_In = "TecentTicket_Expires_In"; //保存获取时间
 
     public ObservableField<UserInfos> userInfosObservableField = new ObservableField<>();
+    private INotifyQrCodeState notifyQrCodeState;
+
+    public void setNotifyQrCodeState(INotifyQrCodeState notifyQrCodeState) {
+        this.notifyQrCodeState = notifyQrCodeState;
+    }
 
     public void loadData(){
         String wxUnionId = BaseApplication.getIns().getmUserAccessToken();
@@ -80,7 +85,10 @@ public class PersonalViewNewModel extends UIViewModel {
                         getTecentTicket(token.getAccessToken());
                     }
                 })
-                .subscribe(new EmptyConsumer(), new ErrorConsumer()));
+                .subscribe(new EmptyConsumer(), new ErrorConsumer((code, msg) -> {
+                    LogUtils.tag("zlq").e("getTecentAccessToken_ErrorConsumer");
+                    if(notifyQrCodeState != null) notifyQrCodeState.notifyQrCodeState(1);
+                })));
     }
 
     public void getTecentTicket(String accessToken){
@@ -95,7 +103,10 @@ public class PersonalViewNewModel extends UIViewModel {
                     PreferencesUtils.putString(BaseApplication.getIns(), TecentTicket, ticket.getTicket());
                     setDataObject(ticket, data);
                 })
-                .subscribe(new EmptyConsumer(), new ErrorConsumer()));
+                .subscribe(new EmptyConsumer(), new ErrorConsumer((code, msg) -> {
+                    LogUtils.tag("zlq").e("getTecentTicket_ErrorConsumer");
+                    if(notifyQrCodeState != null) notifyQrCodeState.notifyQrCodeState(1);
+                })));
     }
 
     public void getTencentWxOpenId(String appid, String secret, String code, IDoOnNext doOnNext) {
@@ -115,5 +126,9 @@ public class PersonalViewNewModel extends UIViewModel {
                     }
                 })
                 .subscribe(new EmptyConsumer(), new ErrorConsumer()));
+    }
+
+    public interface INotifyQrCodeState {
+        void notifyQrCodeState(int state);
     }
 }
