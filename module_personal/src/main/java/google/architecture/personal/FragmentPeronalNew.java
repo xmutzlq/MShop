@@ -246,7 +246,7 @@ public class FragmentPeronalNew extends BaseFragment<FragmentPersonalNewBinding>
         if(isLogin) {
             loadUserData();
         } else {
-            ImageLoader.get().load(mAvatorIv, "");
+            ImageLoader.get().load(mAvatorIv, R.drawable.default_avator, null);
             mUserNameTv.setText("---");
             mUserScoreTv.setText(0 + "");
         }

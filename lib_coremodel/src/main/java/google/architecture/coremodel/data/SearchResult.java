@@ -32,7 +32,7 @@ public class SearchResult {
     private List<GoodsItem> goods_list;
 
     @SerializedName("total_page")
-    private int goods_total = 100;
+    private int goods_total = 1;
 
     public List<SelectedTagsChild> getSelectedTags() {
         return selectedTags;
