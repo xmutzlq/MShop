@@ -346,7 +346,7 @@ public interface DeHongDataService {
     @GET(ApiConstants.XLJ_Get_Tecent_Ticket)
     Flowable<TecentTicket> xlj_getTecentTicket(@QueryMap Map<String,String> params);
 
-    @Headers({ApiConstants.HEADER_TECENT_URL, ApiConstants.HEADER_USE_JSON_REQUEST})
+    @Headers({ApiConstants.HEADER_TECENT_URL, ApiConstants.HEADER_USE_TEXT_REQUEST})
     @GET(ApiConstants.XLJ_Get_Tecent_WX_OpenId)
     Flowable<TecentResponseResult> xlj_getTecentWXOpenId(@QueryMap Map<String,String> params);
 }

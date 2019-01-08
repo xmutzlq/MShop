@@ -30,6 +30,9 @@ public class ApiConstants {
     public static final String HEADER_USE_FORM_REQUEST_VALUE = "form";
     public static final String HEADER_USE_FROM_REQUEST = HEADER_USE_JSON_REQUEST_prefix + ":" + HEADER_USE_FORM_REQUEST_VALUE;
 
+    public static final String HEADER_USE_TEXT_REQUEST_VALUE = "text";
+    public static final String HEADER_USE_TEXT_REQUEST = HEADER_USE_JSON_REQUEST_prefix + ":" + HEADER_USE_TEXT_REQUEST_VALUE;
+
     // 设置超时
     public static final long DEFAULT_CONNECT_TIMEOUT = 10L;
     public static final long DEFAULT_READ_TIMEOUT = DEFAULT_CONNECT_TIMEOUT + 5L;
