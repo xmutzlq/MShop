@@ -124,10 +124,8 @@ public class PersonalViewNewModel extends UIViewModel {
     public boolean isTicketExp() {
         String tencentTicket = PreferencesUtils.getString(BaseApplication.getIns(), TecentTicket);
         long tencentTicketExp = PreferencesUtils.getLong(BaseApplication.getIns(), TecentTicket_Expires_In);
-        if(!TextUtils.isEmpty(tencentTicket) && tencentTicketExp > 0) { //存在TecentTicket并且存有时间
-            if((System.currentTimeMillis() - tencentTicketExp) / 1000 > 7200) { //(超过存在时间，保存)单位是秒
-                return true;
-            }
+        if(TextUtils.isEmpty(tencentTicket) || (System.currentTimeMillis() - tencentTicketExp) / 1000 > 7200) {
+            return true;
         }
         return false;
     }
