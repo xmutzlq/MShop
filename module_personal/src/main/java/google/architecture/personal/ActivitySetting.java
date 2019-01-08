@@ -3,6 +3,7 @@ package google.architecture.personal;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.text.TextUtils;
 import android.view.View;
 
 import com.alibaba.android.arouter.facade.annotation.Route;
@@ -78,17 +79,50 @@ public class ActivitySetting extends BaseActivity<ActivitySettingNewBinding> {
         });
 
         findViewById(R.id.btn_contact_me).setOnClickListener(view -> {
-            ARouter.getInstance().build(ARouterPath.WeixinLoginAty).navigation(ActivitySetting.this);
+//            ARouter.getInstance().build(ARouterPath.WeixinLoginAty).navigation(ActivitySetting.this);
         });
 
-        findViewById(R.id.btn_login_out).setOnClickListener(view -> {
-            SelectDialog.show(this_, getResources().getString(R.string.warming_tip),
-                    getResources().getString(R.string.login_out_confirm), (dialog, which) -> {
-                        BaseApplication.getIns().setmUserAccessToken("");
-                        sendBroadcast(new Intent(AppBrocastAction.ACTION_USER_LOGIN_STATE_CHANGE));
-                    });
+        binding.btnHeadSetting.setOnClickListener(v -> {
+            checkLogin(() -> {
+                //设置头像
+            });
         });
 
+        binding.btnMyAddress.setOnClickListener(v -> {
+            checkLogin(() -> {
+                //地址管理
+            });
+        });
+
+        if(TextUtils.isEmpty(BaseApplication.getIns().getmUserAccessToken())) {
+            binding.btnLoginOut.setVisibility(View.GONE);
+        } else {
+            binding.btnLoginOut.setVisibility(View.VISIBLE);
+            binding.btnLoginOut.setOnClickListener(view -> {
+                SelectDialog.show(this_, getResources().getString(R.string.warming_tip),
+                        getResources().getString(R.string.login_out_confirm), (dialog, which) -> {
+                            BaseApplication.getIns().setmUserAccessToken("");
+                            sendBroadcast(new Intent(AppBrocastAction.ACTION_USER_LOGIN_STATE_CHANGE));
+                        });
+            });
+        }
+    }
+
+    private void checkLogin(Runnable runnable) {
+        if(TextUtils.isEmpty(BaseApplication.getIns().getmUserAccessToken())) {
+            ARouter.getInstance().build(ARouterPath.WeixinLoginAty).navigation(this_);
+        } else {
+            if(runnable != null) runnable.run();
+        }
+    }
+
+    @Override
+    public void onUserLoginStateChange(boolean isLogin) {
+        if(isLogin) {
+            binding.btnLoginOut.setVisibility(View.VISIBLE);
+        } else {
+            binding.btnLoginOut.setVisibility(View.GONE);
+        }
     }
 
     private void regToWx(){

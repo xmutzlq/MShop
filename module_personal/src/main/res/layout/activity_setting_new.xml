@@ -51,6 +51,7 @@
                     app:layout_constraintBottom_toBottomOf="@id/avator_iv"/>
 
                 <TextView
+                    android:id="@+id/btn_head_setting"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="点击设置头像"
@@ -62,6 +63,7 @@
             </android.support.constraint.ConstraintLayout>
             <View style="@style/DeepUnderLine"/>
             <LinearLayout
+                android:id="@+id/btn_my_address"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:gravity="center_vertical"
