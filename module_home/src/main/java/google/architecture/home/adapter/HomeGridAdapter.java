@@ -34,7 +34,7 @@ public class HomeGridAdapter extends RecyclerView.Adapter<HomeGridAdapter.GridVi
     @Override
     public void onBindViewHolder(GridViewHolder holder, int position) {
         Goods item = mList.get(position);
-        ImageLoader.get().load(holder.goodsImgIv, ApiConstants.GankHost+item.getImageUrl());
+        ImageLoader.get().load(holder.goodsImgIv, ApiConstants.XLJimgHost+item.getImageUrl());
         holder.goodsNameTv.setText(item.getGoodsName());
         holder.goodsPrice.setText("RMB/"+item.getShopPrice());
         holder.clickView.setOnClickListener(new View.OnClickListener() {

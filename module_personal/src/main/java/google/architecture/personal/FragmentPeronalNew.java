@@ -215,7 +215,7 @@ public class FragmentPeronalNew extends BaseFragment<FragmentPersonalNewBinding>
 
     private void refreshData(UserInfos infos){
         if(!TextUtils.isEmpty(infos.getUserInfo().getUserPhoto())){
-            ImageLoader.get().load(mAvatorIv, ApiConstants.GankHost+infos.getUserInfo().getUserPhoto());
+            ImageLoader.get().load(mAvatorIv, ApiConstants.XLJimgHost+infos.getUserInfo().getUserPhoto());
         }
         if(!TextUtils.isEmpty(infos.getUserInfo().getUserName())){
             mUserNameTv.setText(infos.getUserInfo().getUserName());

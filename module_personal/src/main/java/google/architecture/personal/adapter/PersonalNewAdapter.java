@@ -35,7 +35,7 @@ public class PersonalNewAdapter extends RecyclerView.Adapter<PersonalNewAdapter.
     public void onBindViewHolder(PersonViewHolder holder, int position) {
 
         LikeGoods item = mList.get(position);
-        ImageLoader.get().load(holder.mIvGoodsImg, ApiConstants.GankHost+item.getGoodsImg());
+        ImageLoader.get().load(holder.mIvGoodsImg, ApiConstants.XLJimgHost+item.getGoodsImg());
         holder.mTvGoodsName.setText(item.getGoodsName());
         holder.mTvGoodsPrice.setText(item.getShopPrice());
         holder.mTvGoodsPriceOrig.setText(item.getMarketPrice());

@@ -68,7 +68,7 @@ public class CategoryRightAdapter extends BaseSectionQuickAdapter<CategoryRightS
     @Override
     protected void convert(CategoryRightTitleViewHolder helper, CategoryRightSection item) {
         helper.setType(item.getType());
-        String pic = ApiConstants.GankHost + item.t.getPic();
+        String pic = ApiConstants.XLJimgHost + item.t.getPic();
         ImageLoader.get().load(helper.getView(R.id.category_section_fivCover), pic);
         helper.setText(R.id.category_section_tvName, item.t.getTitle());
     }

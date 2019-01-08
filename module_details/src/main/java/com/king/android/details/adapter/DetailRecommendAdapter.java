@@ -61,7 +61,7 @@ public class DetailRecommendAdapter extends BaseQuickAdapter<Like, BaseViewHolde
     @Override
     protected void convert(BaseViewHolder helper, Like item) {
         ImageView iconView = helper.getView(R.id.common_ratio_iv);
-        String recUrl = ApiConstants.GankHost + item.getGoodsImg();
+        String recUrl = ApiConstants.XLJimgHost + item.getGoodsImg();
         ImageLoader.get().load(helper.getView(R.id.common_ratio_iv), recUrl, new RequestListener<Drawable>() {
             @Override
             public boolean onLoadFailed(@Nullable GlideException e, Object model, Target< Drawable > target, boolean isFirstResource) {

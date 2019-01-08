@@ -93,7 +93,7 @@ public class PageAdapterNew {
                 LinearLayout.LayoutParams lp = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT,LinearLayout.LayoutParams.WRAP_CONTENT);
                 lp.setMargins(DimensionsUtil.dip2px(mContext,marginLeft),DimensionsUtil.dip2px(mContext,marginTop),DimensionsUtil.dip2px(mContext,marginRight),DimensionsUtil.dip2px(mContext,marginBottom));
                 iv.setLayoutParams(lp);
-                ImageLoader.get().load(iv, ApiConstants.GankHost+url);
+                ImageLoader.get().load(iv, ApiConstants.XLJimgHost+url);
             }
         };
     }
@@ -106,7 +106,7 @@ public class PageAdapterNew {
                 super.onBindViewHolder(holder, position);
                 LinearLayout.LayoutParams lp = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT,DimensionsUtil.dip2px(mContext,height));
                 holder.getView(R.id.common_img_iv).setLayoutParams(lp);
-                ImageLoader.get().load(holder.getView(R.id.common_img_iv), ApiConstants.GankHost+url);
+                ImageLoader.get().load(holder.getView(R.id.common_img_iv), ApiConstants.XLJimgHost+url);
                 /*ImageLoader.get().load(holder.getView(R.id.common_img_iv), ApiConstants.GankHost + url, new RequestListener<Drawable>() {
                     @Override
                     public boolean onLoadFailed(@Nullable GlideException e, Object model, Target<Drawable> target, boolean isFirstResource) {
@@ -249,10 +249,10 @@ public class PageAdapterNew {
                 if(list.size()>= 2){
                     Goods itemA = list.get(0);
                     Goods itemB = list.get(1);
-                    ImageLoader.get().load(imgA, ApiConstants.GankHost+itemA.getImageUrl());
+                    ImageLoader.get().load(imgA, ApiConstants.XLJimgHost+itemA.getImageUrl());
                     goodsNameA.setText(itemA.getGoodsName());
                     priceA.setText("RMB/"+itemA.getShopPrice());
-                    ImageLoader.get().load(imgB, ApiConstants.GankHost+itemB.getImageUrl());
+                    ImageLoader.get().load(imgB, ApiConstants.XLJimgHost+itemB.getImageUrl());
                     goodsNameB.setText(itemB.getGoodsName());
                     priceB.setText("RMB/"+itemB.getShopPrice());
                 }else if(list.size() == 1){
@@ -315,8 +315,8 @@ public class PageAdapterNew {
                 super.onBindViewHolder(holder, position);
                 ImageView colA = holder.getView(R.id.col_a_iv);
                 ImageView colB = holder.getView(R.id.col_b_iv);
-                ImageLoader.get().load(colA,ApiConstants.GankHost+urlA);
-                ImageLoader.get().load(colB,ApiConstants.GankHost+urlB);
+                ImageLoader.get().load(colA,ApiConstants.XLJimgHost+urlA);
+                ImageLoader.get().load(colB,ApiConstants.XLJimgHost+urlB);
             }
         };
     }

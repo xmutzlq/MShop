@@ -15,6 +15,6 @@ public class CommonImagePagerAdapter extends CommRecyclingPagerAdapter<String> {
 
     @Override
     protected void loadImage(ViewHolder holder, String imgId, int position) {
-        ImageLoader.get().load(holder.imageView, ApiConstants.GankHost+imgId);
+        ImageLoader.get().load(holder.imageView, ApiConstants.XLJimgHost+imgId);
     }
 }

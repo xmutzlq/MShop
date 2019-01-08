@@ -109,7 +109,7 @@ public class DetCommodityNewFragment extends BaseFragment<FragmentDetCommodityBi
         if(info == null) return;
         final View rootView = LayoutInflater.from(mContext).inflate(R.layout.layout_det_qrcode, null);
         ImageView imageView = rootView.findViewById(R.id.det_qr_code_iv);
-        ImageLoader.get().load(imageView, ApiConstants.GankHost + info.getQrcodeImg(), new RequestListener<Drawable>() {
+        ImageLoader.get().load(imageView, ApiConstants.XLJimgHost + info.getQrcodeImg(), new RequestListener<Drawable>() {
             @Override
             public boolean onLoadFailed(@Nullable GlideException e, Object model, Target<Drawable> target, boolean isFirstResource) {
                 ToastUtils.showShortToast("请检查网络是否链接");
@@ -280,7 +280,7 @@ public class DetCommodityNewFragment extends BaseFragment<FragmentDetCommodityBi
 
             specParams.defaultColorId = info.getDefaultSpecs().get1();
             specParams.defaultSizeId = info.getDefaultSpecs().get5();
-            specParams.img = ApiConstants.GankHost + info.getGoodsImg();
+            specParams.img = ApiConstants.XLJimgHost + info.getGoodsImg();
             specParams.price = info.getShopPrice();
             chooseBottomSheetFragment.setData(specParams);
             chooseBottomSheetFragment.setNotifySpecChange(newSpec ->  updateSpec(newSpec));
