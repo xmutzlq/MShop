@@ -4,8 +4,6 @@ import android.content.Intent;
 import android.databinding.ObservableField;
 import android.text.TextUtils;
 
-import com.apkfuns.logutils.LogUtils;
-
 import java.util.HashMap;
 import java.util.Map;
 
@@ -69,7 +67,7 @@ public class PersonalViewNewModel extends UIViewModel {
     }
 
     public void getTecentAccessToken(Map params){
-        disposable.add(DeHongDataRepository.get().xlj_getTecentAccessToken(params).doOnSubscribe(disposable -> isRunning.set(true))
+        DeHongDataRepository.get().xlj_getTecentAccessToken(params).doOnSubscribe(disposable -> isRunning.set(true))
                 .doOnTerminate(() -> isRunning.set(false))
                 .doOnNext(result -> {
                     TecentAccessToken token = result;
@@ -85,17 +83,14 @@ public class PersonalViewNewModel extends UIViewModel {
                         getTecentTicket(token.getAccessToken());
                     }
                 })
-                .subscribe(new EmptyConsumer(), new ErrorConsumer((code, msg) -> {
-                    LogUtils.tag("zlq").e("getTecentAccessToken_ErrorConsumer");
-                    if(notifyQrCodeState != null) notifyQrCodeState.notifyQrCodeState(1);
-                })));
+                .subscribe(new EmptyConsumer(), new ErrorConsumer());
     }
 
     public void getTecentTicket(String accessToken){
         Map<String,String> params = new HashMap<>();
         params.put("access_token",accessToken);
         params.put("type","2");
-        disposable.add(DeHongDataRepository.get().xlj_getTecentTicket(params).doOnSubscribe(disposable -> isRunning.set(true))
+        DeHongDataRepository.get().xlj_getTecentTicket(params).doOnSubscribe(disposable -> isRunning.set(true))
                 .doOnTerminate(() -> isRunning.set(false))
                 .doOnNext(result -> {
                     TecentTicket ticket = result;
@@ -103,10 +98,7 @@ public class PersonalViewNewModel extends UIViewModel {
                     PreferencesUtils.putString(BaseApplication.getIns(), TecentTicket, ticket.getTicket());
                     setDataObject(ticket, data);
                 })
-                .subscribe(new EmptyConsumer(), new ErrorConsumer((code, msg) -> {
-                    LogUtils.tag("zlq").e("getTecentTicket_ErrorConsumer");
-                    if(notifyQrCodeState != null) notifyQrCodeState.notifyQrCodeState(1);
-                })));
+                .subscribe(new EmptyConsumer(), new ErrorConsumer());
     }
 
     public void getTencentWxOpenId(String appid, String secret, String code, IDoOnNext doOnNext) {
@@ -115,7 +107,7 @@ public class PersonalViewNewModel extends UIViewModel {
         params.put("secret", secret);
         params.put("code", code);
         params.put("grant_type","authorization_code");
-        disposable.add(DeHongDataRepository.get().xlj_getTecentWXOpenId(params).doOnSubscribe(disposable -> isRunning.set(true))
+        DeHongDataRepository.get().xlj_getTecentWXOpenId(params).doOnSubscribe(disposable -> isRunning.set(true))
                 .doOnTerminate(() -> isRunning.set(false))
                 .doOnNext(result -> {
                     TecentResponseResult tecentResponseResult = result;
@@ -125,7 +117,19 @@ public class PersonalViewNewModel extends UIViewModel {
                         if(doOnNext != null) doOnNext.doOnNext(tecentResponseResult);
                     }
                 })
-                .subscribe(new EmptyConsumer(), new ErrorConsumer()));
+                .subscribe(new EmptyConsumer(), new ErrorConsumer());
+    }
+
+    /**检测Ticket是否过期**/
+    public boolean isTicketExp() {
+        String tencentTicket = PreferencesUtils.getString(BaseApplication.getIns(), TecentTicket);
+        long tencentTicketExp = PreferencesUtils.getLong(BaseApplication.getIns(), TecentTicket_Expires_In);
+        if(!TextUtils.isEmpty(tencentTicket) && tencentTicketExp > 0) { //存在TecentTicket并且存有时间
+            if((System.currentTimeMillis() - tencentTicketExp) / 1000 > 7200) { //(超过存在时间，保存)单位是秒
+                return true;
+            }
+        }
+        return false;
     }
 
     public interface INotifyQrCodeState {

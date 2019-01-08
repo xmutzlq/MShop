@@ -7,9 +7,9 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.text.TextUtils;
 import android.view.View;
-import android.widget.ImageView;
 
 import com.alibaba.android.arouter.facade.annotation.Route;
+import com.apkfuns.logutils.LogUtils;
 import com.king.android.res.config.ARouterPath;
 import com.tencent.mm.opensdk.diffdev.DiffDevOAuthFactory;
 import com.tencent.mm.opensdk.diffdev.IDiffDevOAuth;
@@ -35,6 +35,7 @@ public class ActivityWeixinLogin extends BaseActivity<ActivityWeixinLoginBinding
     private final String appsecret = "2d310e98be46834077599ed3c53914e8";
 
     private PersonalViewNewModel mViewModel;
+    private IDiffDevOAuth auth;
 
     @Override
     protected int getLayout() {
@@ -48,21 +49,33 @@ public class ActivityWeixinLogin extends BaseActivity<ActivityWeixinLoginBinding
         mViewModel = new PersonalViewNewModel();
         mViewModel.setNotifyQrCodeState(this);
         addRunStatusChangeCallBack(mViewModel);
-        Map<String,String> params = new HashMap<>();
-        params.put("grant_type","client_credential");
-        params.put("appid",appId);
-        params.put("secret",appsecret);
-        mViewModel.getTecentAccessToken(params);
+
+        load();
 
         findViewById(R.id.qrcode_retry_iv).setOnClickListener(v -> {
-            mViewModel.getTecentAccessToken(params);
+            load();
         });
     }
 
     @Override
     protected void onDataResult(Object o) {
         super.onDataResult(o);
+        getOAuth();
+    }
 
+    private void load() {
+        if(mViewModel.isTicketExp()) {
+            Map<String,String> params = new HashMap<>();
+            params.put("grant_type","client_credential");
+            params.put("appid",appId);
+            params.put("secret",appsecret);
+            mViewModel.getTecentAccessToken(params);
+        } else {
+            getOAuth();
+        }
+    }
+
+    private void getOAuth() {
         String noncestr = "noncestr" + System.currentTimeMillis();
         String sdk_ticket = PreferencesUtils.getString(this_, PersonalViewNewModel.TecentTicket);
         String timestamp = System.currentTimeMillis() + "";
@@ -76,31 +89,26 @@ public class ActivityWeixinLogin extends BaseActivity<ActivityWeixinLoginBinding
         String string1 = String.format("appid=%s&noncestr=%s&sdk_ticket=%s&timestamp=%s",
                 appId, noncestr, sdk_ticket, timestamp);
         String signature = EncryptUtils.encryptSHA1ToString(string1);
-//        String signature2 = null;
-//        LogUtils.tag("zlq").e("signature = " + signature);
-//        try {
-//            signature2 = Sha1.SHA1(map);
-//            LogUtils.tag("zlq").e("signature2 = " + signature2);
-//        } catch (DigestException e) {
-//            e.printStackTrace();
-//        }
         initOAuth(noncestr, timestamp, signature);
     }
 
     private void initOAuth(String noncestr,String timestamp,String signature){
-        IDiffDevOAuth auth = DiffDevOAuthFactory.getDiffDevOAuth();
+        LogUtils.tag("zlq").e("message = auth.auth, signature = " + signature);
+        auth = DiffDevOAuthFactory.getDiffDevOAuth();
         auth.auth(appId, "snsapi_userinfo", noncestr, timestamp, signature, new OAuthListener() {
             @Override
             public void onAuthGotQrcode(String s, byte[] bytes) {
-                Bitmap bitmap = BitmapFactory.decodeByteArray(bytes, 0, bytes.length);
-                BitmapDrawable drawable = new BitmapDrawable(bitmap);
-                ((ImageView)findViewById(R.id.qrcode_img_iv)).setBackground(drawable);
-                reSetQrCode(true);
+                BaseApplication.getHandler().post(()->{
+                    Bitmap bitmap = BitmapFactory.decodeByteArray(bytes, 0, bytes.length);
+                    BitmapDrawable drawable = new BitmapDrawable(bitmap);
+                    findViewById(R.id.qrcode_img_iv).setBackground(drawable);
+                    reSetQrCode(true);
+                });
             }
 
             @Override
             public void onQrcodeScanned() {
-                System.out.println("======szq========:onQrcodeScanned");
+                LogUtils.tag("zlq").e("message = onQrcodeScanned");
             }
 
             /**
@@ -108,11 +116,12 @@ public class ActivityWeixinLogin extends BaseActivity<ActivityWeixinLoginBinding
              */
             @Override
             public void onAuthFinish(OAuthErrCode oAuthErrCode, String s) {
-                System.out.println("======szq========:oAuthErrCode:"+oAuthErrCode+"s:"+s);
+                LogUtils.tag("zlq").e("message = onAuthFinish, errCode = " + oAuthErrCode.getCode() + "s = " + s);
                 BaseApplication.getHandler().post(()->{
-                    if(oAuthErrCode.getCode() == 5) {
+                    if(oAuthErrCode.getCode() == -5) {
                         ToastUtils.showShortToast("二维码已过期，请重试");
                         reSetQrCode(false);
+                        clearAuthRequest();
                     } else {
                         if(!TextUtils.isEmpty(s)) {
                             mViewModel.getTencentWxOpenId(appId, appsecret, s, t -> {
@@ -133,5 +142,19 @@ public class ActivityWeixinLogin extends BaseActivity<ActivityWeixinLoginBinding
     @Override
     public void notifyQrCodeState(int state) {
         reSetQrCode(state == 0);
+    }
+
+    @Override
+    protected void onDestroy() {
+        clearAuthRequest();
+        super.onDestroy();
+    }
+
+    private void clearAuthRequest() {
+        if(auth != null) {
+            if(auth.stopAuth()) {
+                auth.detach();
+            }
+        }
     }
 }
