@@ -35,7 +35,9 @@ public class PersonalViewNewModel extends UIViewModel {
         disposable.add(DeHongDataRepository.get().xlj_getUserToken(wxUnionId, method).doOnSubscribe(disposable -> isRunning.set(true))
                 .doOnTerminate(() -> isRunning.set(false))
                 .doOnNext(result -> loginToAccount(result.getData()))
-                .subscribe(new EmptyConsumer(), new ErrorConsumer()));
+                .subscribe(new EmptyConsumer(), new ErrorConsumer((code, msg) -> {
+                    ToastUtils.showShortToast(msg);
+                })));
     }
 
     private void loginToAccount(String userToken) {
@@ -43,9 +45,7 @@ public class PersonalViewNewModel extends UIViewModel {
                 .doOnSubscribe(disposable -> isRunning.set(true))
                 .doOnTerminate(() -> isRunning.set(false))
                 .doOnNext(result -> refreshUserInfo(result.getData()))
-                .subscribe(new EmptyConsumer(), new ErrorConsumer((code, msg) -> {
-                    ToastUtils.showShortToast(msg);
-                })));
+                .subscribe(new EmptyConsumer(), new ErrorConsumer()));
     }
 
     private void refreshUserInfo(UserInfos userInfos) {
