@@ -41,6 +41,7 @@
 
     <string name="str_scan_login_title">扫码登录</string>
     <string name="str_scan_login_tip">是否登录</string>
+    <string name="str_login_success">登录成功</string>
 
     <string name="str_pay">去支付</string>
     <string name="str_manage">管理</string>

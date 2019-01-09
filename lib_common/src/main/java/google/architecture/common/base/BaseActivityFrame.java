@@ -9,7 +9,6 @@ import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.annotation.StringRes;
-import android.text.TextUtils;
 import android.view.KeyEvent;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -29,7 +28,6 @@ import google.architecture.common.base.listener.IAppContextObserver;
 import google.architecture.common.base.listener.ITitleBar;
 import google.architecture.common.base.listener.LifeCycleListener;
 import google.architecture.common.util.NetworkUtils;
-import google.architecture.coremodel.Account;
 import google.architecture.coremodel.util.NetUtils;
 import solid.ren.skinlibrary.base.SkinBaseActivity;
 
@@ -303,7 +301,7 @@ public class BaseActivityFrame extends SkinBaseActivity implements IAppContextOb
         mBroadcastReceivers.put(AppBrocastAction.ACTION_USER_LOGIN_STATE_CHANGE, new BroadcastReceiver() {
             @Override
             public void onReceive(Context context, Intent intent) {
-                dispatchUserLoginStateChange(!TextUtils.isEmpty(BaseApplication.getIns().getmUserAccessToken()));
+                dispatchUserLoginStateChange(BaseApplication.getIns().isUserLogin());
             }
         });
         // 初始化主题变更监听

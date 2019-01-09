@@ -1,6 +1,5 @@
 package google.architecture.common.viewmodel;
 
-import android.content.Intent;
 import android.databinding.ObservableField;
 import android.text.TextUtils;
 
@@ -8,7 +7,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 import google.architecture.common.base.BaseApplication;
-import google.architecture.common.base.listener.AppBrocastAction;
+import google.architecture.common.util.ToastUtils;
 import google.architecture.coremodel.data.xlj.TecentAccessToken;
 import google.architecture.coremodel.data.xlj.TecentResponseResult;
 import google.architecture.coremodel.data.xlj.TecentTicket;
@@ -36,7 +35,9 @@ public class PersonalViewNewModel extends UIViewModel {
         disposable.add(DeHongDataRepository.get().xlj_getUserToken(wxUnionId, method).doOnSubscribe(disposable -> isRunning.set(true))
                 .doOnTerminate(() -> isRunning.set(false))
                 .doOnNext(result -> loginToAccount(result.getData()))
-                .subscribe(new EmptyConsumer(), new ErrorConsumer()));
+                .subscribe(new EmptyConsumer(), new ErrorConsumer((code, msg) -> {
+                    ToastUtils.showShortToast(msg);
+                })));
     }
 
     private void loginToAccount(String userToken) {
@@ -48,6 +49,7 @@ public class PersonalViewNewModel extends UIViewModel {
     }
 
     private void refreshUserInfo(UserInfos userInfos) {
+        BaseApplication.getIns().setUserInfos(userInfos);
         userInfosObservableField.set(userInfos);
     }
 
@@ -113,7 +115,6 @@ public class PersonalViewNewModel extends UIViewModel {
                     TecentResponseResult tecentResponseResult = result;
                     if(!TextUtils.isEmpty(tecentResponseResult.getUnionid())) {
                         BaseApplication.getIns().setmUserAccessToken(tecentResponseResult.getUnionid());
-                        BaseApplication.getIns().sendBroadcast(new Intent(AppBrocastAction.ACTION_USER_LOGIN_STATE_CHANGE));
                         if(doOnNext != null) doOnNext.doOnNext(tecentResponseResult);
                     }
                 })

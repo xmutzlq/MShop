@@ -10,6 +10,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.alibaba.android.arouter.launcher.ARouter;
+import com.apkfuns.logutils.LogUtils;
 import com.king.android.res.config.ARouterPath;
 
 import java.util.ArrayList;
@@ -77,9 +78,10 @@ public class FragmentCategoryRight extends BaseFragment {
         sectionAdapter.setOnItemClickListener((adapter, view1, position) -> {
             if(CategoryRightSection.SECTION_TYPE_ITEM == sectionAdapter.getData().get(position).getType()) {
                 CategoryRightSection categoryRightSection = sectionAdapter.getData().get(position);
+                LogUtils.tag("zlq").e("urlids = " + categoryRightSection.t.getUrlids());
                 ARouter.getInstance().build(ARouterPath.Search2Aty)
-//                        .withString(CommKeyUtil.EXTRA_VALUE, String.valueOf(categoryRightSection.t.getTitle()))
-                        .withString(CommKeyUtil.EXTRA_KEY, String.valueOf(categoryRightSection.t.getElement_id())).navigation();
+                        .withString(CommKeyUtil.EXTRA_VALUE, String.valueOf(categoryRightSection.t.getTitle()))
+                        .withString(CommKeyUtil.EXTRA_KEY, String.valueOf(categoryRightSection.t.getUrlids())).navigation();
             }
         });
         sectionAdapter.bindToRecyclerView(recyclerView);

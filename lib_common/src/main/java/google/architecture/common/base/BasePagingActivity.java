@@ -1,5 +1,6 @@
 package google.architecture.common.base;
 
+import android.databinding.Observable;
 import android.databinding.ViewDataBinding;
 import android.os.Bundle;
 import android.os.Looper;
@@ -47,6 +48,14 @@ public abstract class BasePagingActivity<VB extends ViewDataBinding> extends Bas
     public void setListViewModel(BaseListViewModel viewModel) {
         pagingHelper.setListViewModel(viewModel);
         addRunStatusChangeCallBack(viewModel);
+        pagingHelper.listViewModel.ending.addOnPropertyChangedCallback(new Observable.OnPropertyChangedCallback() {
+            @Override
+            public void onPropertyChanged(Observable sender, int propertyId) {
+                if(pagingHelper.listViewModel.ending.get()) {
+                    if(adapter != null) adapter.loadMoreEnd();
+                }
+            }
+        });
     }
 
     @Override
@@ -105,6 +114,8 @@ public abstract class BasePagingActivity<VB extends ViewDataBinding> extends Bas
                             if(adapter != null) adapter.loadMoreEnd();
                         }
                     } else if (refreshListModel.isUpdateType()) {
+                        LogUtils.tag("zlq").e("currentPage = " + pagingHelper.getCurrentPage() +
+                                "totalPage = " + pagingHelper.getTotalPage());
                         if(refreshListModel.list == null || refreshListModel.list.size() == 0
                                 || refreshListModel.list.size() < pagingHelper.listViewModel.pageTotal) {
                             if(adapter != null) adapter.loadMoreEnd();

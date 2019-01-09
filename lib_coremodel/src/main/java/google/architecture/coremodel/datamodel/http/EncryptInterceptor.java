@@ -1,7 +1,5 @@
 package google.architecture.coremodel.datamodel.http;
 
-import android.text.TextUtils;
-
 import com.apkfuns.logutils.LogUtils;
 
 import java.io.IOException;
@@ -9,13 +7,9 @@ import java.util.List;
 
 import google.architecture.coremodel.datamodel.http.request.IRequestType;
 import google.architecture.coremodel.datamodel.http.request.RequestFactory;
-import google.architecture.coremodel.util.DESSecretUtils;
 import okhttp3.FormBody;
-import okhttp3.HttpUrl;
 import okhttp3.Interceptor;
-import okhttp3.MediaType;
 import okhttp3.Request;
-import okhttp3.RequestBody;
 import okhttp3.Response;
 
 /**

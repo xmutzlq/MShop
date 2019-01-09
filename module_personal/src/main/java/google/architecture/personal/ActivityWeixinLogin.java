@@ -16,6 +16,8 @@ import com.tencent.mm.opensdk.diffdev.IDiffDevOAuth;
 import com.tencent.mm.opensdk.diffdev.OAuthErrCode;
 import com.tencent.mm.opensdk.diffdev.OAuthListener;
 
+import org.greenrobot.eventbus.EventBus;
+
 import java.util.HashMap;
 import java.util.Map;
 
@@ -24,6 +26,7 @@ import google.architecture.common.base.BaseApplication;
 import google.architecture.common.base.ViewManager;
 import google.architecture.common.util.ToastUtils;
 import google.architecture.common.viewmodel.PersonalViewNewModel;
+import google.architecture.coremodel.datamodel.http.event.CommEvent;
 import google.architecture.coremodel.util.EncryptUtils;
 import google.architecture.coremodel.util.PreferencesUtils;
 import google.architecture.personal.databinding.ActivityWeixinLoginBinding;
@@ -125,6 +128,7 @@ public class ActivityWeixinLogin extends BaseActivity<ActivityWeixinLoginBinding
                     } else {
                         if(!TextUtils.isEmpty(s)) {
                             mViewModel.getTencentWxOpenId(appId, appsecret, s, t -> {
+                                EventBus.getDefault().post(new CommEvent(CommEvent.MSG_TYPE_UPDATE_USER_INFO));
                                 ViewManager.getInstance().finishActivity();
                             });
                         }

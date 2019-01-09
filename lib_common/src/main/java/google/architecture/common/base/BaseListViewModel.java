@@ -17,6 +17,7 @@ public abstract class BaseListViewModel extends UIViewModel implements ErrorCons
     protected boolean isRefresh;
 
     public ObservableBoolean refreshing = new ObservableBoolean(false); // 提供给下拉刷新
+    public ObservableBoolean ending = new ObservableBoolean(false); // 提供给下拉刷新
 
     public abstract void refreshData(boolean refresh);
 
@@ -42,6 +43,7 @@ public abstract class BaseListViewModel extends UIViewModel implements ErrorCons
             page = NORMAL_PAGE;
         } else {
             if (isRunning.get() || isEmpty.get() || page > pageTotal) {
+                ending.set(true);
                 return;
             }
             page++;
