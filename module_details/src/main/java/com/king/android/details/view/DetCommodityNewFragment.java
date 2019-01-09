@@ -213,6 +213,7 @@ public class DetCommodityNewFragment extends BaseFragment<FragmentDetCommodityBi
     @Override
     public void onReLoad() {
         super.onReLoad();
+        goodsNo = getActivity().getIntent().getStringExtra(CommEvent.KEY_EXTRA_VALUE_2);
         loadCommodityData(goodsId, goodsNo);
     }
 

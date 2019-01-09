@@ -91,7 +91,7 @@ public class App  extends BaseApplication{
                         //ToastUtils.showLongToast("getMessage custom:"+custom);
                         ARouter.getInstance().build(ARouterPath.DetailAty)
                                 .withString(CommEvent.KEY_EXTRA_VALUE_2,custom)
-                                .withFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
+                                .withFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TOP)
                                 .navigation(getApplicationContext());
                     } catch (JSONException e) {
                         e.printStackTrace();
