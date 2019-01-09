@@ -32,6 +32,7 @@ import google.architecture.coremodel.data.SearchResult;
 import google.architecture.coremodel.data.StartInfo;
 import google.architecture.coremodel.data.UploadResultData;
 import google.architecture.coremodel.data.VersionInfo;
+import google.architecture.coremodel.data.xlj.FootScanData;
 import google.architecture.coremodel.data.xlj.PromotionMedia;
 import google.architecture.coremodel.data.xlj.TecentAccessToken;
 import google.architecture.coremodel.data.xlj.TecentResponseResult;
@@ -164,4 +165,5 @@ public interface IRemoteDataSource {
     Flowable<TecentAccessToken> xlj_getTecentAccessToken(Map params);
     Flowable<TecentTicket> xlj_getTecentTicket(Map params);
     Flowable<TecentResponseResult> xlj_getTecentWXOpenId(Map params);
+    Flowable<XLJ_HttpResult<FootScanData>> xlj_getFootScanToken(Map params);
 }

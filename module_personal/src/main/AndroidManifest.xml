@@ -31,6 +31,7 @@
         <activity android:name=".ActivityDomainSetting"></activity>
         <activity android:name=".ActivityWeixinLogin"></activity>
         <activity android:name=".ActivityIdleTimeSetting"></activity>
+        <activity android:name=".ActivityFootScan"></activity>
     </application>
 
 </manifest>

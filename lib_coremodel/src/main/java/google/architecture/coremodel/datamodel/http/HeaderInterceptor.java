@@ -35,6 +35,8 @@ public class HeaderInterceptor implements Interceptor {
                 newBaseUrl = HttpUrl.parse(ApiConstants.GankHost);
             }else if(ApiConstants.HEADER_TECENT.equals(headerValue)){
                 newBaseUrl = HttpUrl.parse(ApiConstants.TecentHost);
+            }else if(ApiConstants.HEADER_UAV.equals(headerValue)){
+                newBaseUrl = HttpUrl.parse(ApiConstants.XLJuavHost);
             } else{
                 newBaseUrl = oldHttpUrl;
             }

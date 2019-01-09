@@ -34,6 +34,7 @@ import google.architecture.coremodel.data.SearchResult;
 import google.architecture.coremodel.data.StartInfo;
 import google.architecture.coremodel.data.UploadResultData;
 import google.architecture.coremodel.data.VersionInfo;
+import google.architecture.coremodel.data.xlj.FootScanData;
 import google.architecture.coremodel.data.xlj.PromotionMedia;
 import google.architecture.coremodel.data.xlj.TecentAccessToken;
 import google.architecture.coremodel.data.xlj.TecentResponseResult;
@@ -45,6 +46,7 @@ import google.architecture.coremodel.datamodel.http.HttpResult;
 import google.architecture.coremodel.datamodel.http.XLJ_HttpResult;
 import google.architecture.coremodel.datamodel.http.exception.ExceptionFunc;
 import google.architecture.coremodel.datamodel.http.exception.ResulteFunc;
+import google.architecture.coremodel.datamodel.http.exception.XLJ_FootScanFunc;
 import google.architecture.coremodel.datamodel.http.exception.XLJ_ResultFunc;
 import google.architecture.coremodel.datamodel.http.exception.XLJ_TecentAccessTokenFunc;
 import google.architecture.coremodel.datamodel.http.exception.XLJ_TecentResultFunc;
@@ -408,6 +410,11 @@ public class RemoteDataSourceImpl implements IRemoteDataSource {
         return xlj_tecentResult(dataService.xlj_getTecentWXOpenId(params));
     }
 
+    @Override
+    public Flowable<XLJ_HttpResult<FootScanData>> xlj_getFootScanToken(Map params) {
+        return xlj_footScanResult(dataService.xlj_getFootScanToken(params));
+    }
+
     /**
      * 已定义subscribeOn、
      * onErrorResumeNext、
@@ -471,4 +478,16 @@ public class RemoteDataSourceImpl implements IRemoteDataSource {
                 // App内部查看的日志
                 .doOnError(throwable -> LogUtils.tag("zlq").e("doOnError: " + throwable.toString()));
     }
+
+    private Flowable xlj_footScanResult(Flowable flowable) {
+        return flowable.subscribeOn(Schedulers.io())
+                // Http、Json及其他异常捕获通知
+                .onErrorResumeNext(new ExceptionFunc())
+                // 后台异常捕获通知
+                .map(new XLJ_FootScanFunc())
+                .observeOn(AndroidSchedulers.mainThread())
+                // App内部查看的日志
+                .doOnError(throwable -> LogUtils.tag("zlq").e("doOnError: " + throwable.toString()));
+    }
+
 }

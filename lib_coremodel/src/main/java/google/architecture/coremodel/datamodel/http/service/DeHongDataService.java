@@ -32,6 +32,7 @@ import google.architecture.coremodel.data.SearchResult;
 import google.architecture.coremodel.data.StartInfo;
 import google.architecture.coremodel.data.UploadResultData;
 import google.architecture.coremodel.data.VersionInfo;
+import google.architecture.coremodel.data.xlj.FootScanData;
 import google.architecture.coremodel.data.xlj.PromotionMedia;
 import google.architecture.coremodel.data.xlj.TecentAccessToken;
 import google.architecture.coremodel.data.xlj.TecentResponseResult;
@@ -349,4 +350,9 @@ public interface DeHongDataService {
     @Headers({ApiConstants.HEADER_TECENT_URL, ApiConstants.HEADER_USE_TEXT_REQUEST})
     @GET(ApiConstants.XLJ_Get_Tecent_WX_OpenId)
     Flowable<TecentResponseResult> xlj_getTecentWXOpenId(@QueryMap Map<String,String> params);
+
+    @Headers({ApiConstants.HEADER_UAV_URL, ApiConstants.HEADER_USE_FROM_REQUEST})
+    @POST(ApiConstants.XLJ_Get_FootScan_Token)
+    Flowable<XLJ_HttpResult<FootScanData>> xlj_getFootScanToken(@QueryMap Map<String,String> param);
+
 }

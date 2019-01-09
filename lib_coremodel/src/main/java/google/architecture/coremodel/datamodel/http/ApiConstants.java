@@ -13,8 +13,10 @@ public class ApiConstants {
     public static final String HEADER_prefix = "url_prefix";
     public static final String HEADER_OTHER = "other";
     public static final String HEADER_TECENT = "tecent";
+    public static final String HEADER_UAV = "uav";
     public static final String HEADER_MULTI_URL = HEADER_prefix + ":" + HEADER_OTHER;
     public static final String HEADER_TECENT_URL = HEADER_prefix +":"+ HEADER_TECENT;
+    public static final String HEADER_UAV_URL = HEADER_prefix +":"+ HEADER_UAV;
 
     //配置Headers(),post请求时不加密
     public static final String HEADER_UN_EN_PARAMS_prefix = "un_en_params_prefix";
@@ -44,6 +46,7 @@ public class ApiConstants {
     public static String GankHost = "https://xljapi.s.cn/";//"https://mwx.s.cn/";
     public static String TecentHost = "https://api.weixin.qq.com/";
     public static String XLJimgHost = "https://xljapi.s.cn/";//新乐纪图片服务器地址
+    public static String XLJuavHost = "https://api2.3dculab.com/";//扫脚登录
     //项目分地址
     public static final String GoodsHost = "http://7xij5m.com1.z0.glb.clouddn.com/spRecommend.txt";
 
@@ -166,6 +169,7 @@ public class ApiConstants {
     public static final String XLJ_Get_Tecent_AccessToken = URL_BASE + "cgi-bin/token";
     public static final String XLJ_Get_Tecent_Ticket = URL_BASE + "cgi-bin/ticket/getticket";
     public static final String XLJ_Get_Tecent_WX_OpenId = URL_BASE + "sns/oauth2/access_token";
+    public static final String XLJ_Get_FootScan_Token = URL_BASE + "UAV2.0.0/api/PhoneVm/CheckPhoneNumForUA";
 
     public static int IDLE_SECOND = 30;//系统空闲时间
 
