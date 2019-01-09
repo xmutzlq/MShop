@@ -28,7 +28,7 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/ShopAppTheme"
-        tools:replace="android:label">
+        tools:replace="android:label,android:icon,android:roundIcon,android:theme,android:allowBackup,android:supportsRtl">
 
         <activity android:name="com.bop.android.shopping.ActivitySplash"
             android:screenOrientation="portrait"

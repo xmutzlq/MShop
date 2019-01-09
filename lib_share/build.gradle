@@ -39,6 +39,7 @@ android {
 
 dependencies {
     api fileTree(include: ['*.jar'], dir: 'libs')
+    compile (name:'footviewmodule-release',ext:'aar')
     compile files('libs/alipaySdk-20180601.jar')
     compile files('libs/tbs_sdk_thirdapp_v3.6.0.1310_43612_sharewithdownload_withoutGame_obfs_20180706_163319.jar')
 }
