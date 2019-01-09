@@ -84,6 +84,8 @@ public class DetCommodityNewFragment extends BaseFragment<FragmentDetCommodityBi
     private DetailBannerAdapter adapter;
 
     private GoodsDetailData info;
+    private String goodsId;
+    private String goodsNo;
 
     public DetailInfoManager getDetailInfoManager() {
         return detailInfoManager;
@@ -202,10 +204,16 @@ public class DetCommodityNewFragment extends BaseFragment<FragmentDetCommodityBi
     @Override
     public void onFragmentFirstVisible() {
         if(null != getActivity() && getActivity().getIntent() != null) {
-            String goodsId = getActivity().getIntent().getStringExtra(CommEvent.KEY_EXTRA_VALUE);
-            String goodsNo = getActivity().getIntent().getStringExtra(CommEvent.KEY_EXTRA_VALUE_2);
+            goodsId = getActivity().getIntent().getStringExtra(CommEvent.KEY_EXTRA_VALUE);
+            goodsNo = getActivity().getIntent().getStringExtra(CommEvent.KEY_EXTRA_VALUE_2);
             loadCommodityData(goodsId, goodsNo);
         }
+    }
+
+    @Override
+    public void onReLoad() {
+        super.onReLoad();
+        loadCommodityData(goodsId, goodsNo);
     }
 
     @Override

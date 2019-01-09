@@ -1,6 +1,7 @@
 package com.bop.android.shopping;
 
 import android.content.Context;
+import android.content.Intent;
 import android.os.Handler;
 import android.text.TextUtils;
 
@@ -88,7 +89,10 @@ public class App  extends BaseApplication{
                     try {
                         String custom = json.getJSONObject("body").getString("custom");
                         //ToastUtils.showLongToast("getMessage custom:"+custom);
-                        ARouter.getInstance().build(ARouterPath.DetailAty).withString(CommEvent.KEY_EXTRA_VALUE_2,custom).navigation(getApplicationContext());
+                        ARouter.getInstance().build(ARouterPath.DetailAty)
+                                .withString(CommEvent.KEY_EXTRA_VALUE_2,custom)
+                                .withFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
+                                .navigation(getApplicationContext());
                     } catch (JSONException e) {
                         e.printStackTrace();
                     }

@@ -77,6 +77,14 @@ public class ActivityDetails extends BaseActivity {
     }
 
     @Override
+    protected void onNewIntent(Intent intent) {
+        super.onNewIntent(intent);
+        if(mFragments != null && mFragments.size() > 0) {
+            mFragments.get(0).onReLoad();
+        }
+    }
+
+    @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
