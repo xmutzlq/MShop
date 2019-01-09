@@ -63,6 +63,7 @@ public class ActivityDetails extends BaseActivity {
     private TextView favoriteTv;
 
     private int operType = 1;
+    public boolean isFromUmengMessage;
 
     private java.util.List<Like> likes;
 
@@ -79,6 +80,7 @@ public class ActivityDetails extends BaseActivity {
     @Override
     protected void onNewIntent(Intent intent) {
         super.onNewIntent(intent);
+        isFromUmengMessage = true;
         if(mFragments != null && mFragments.size() > 0) {
             mFragments.get(0).onReLoad();
         }
@@ -203,6 +205,16 @@ public class ActivityDetails extends BaseActivity {
     public void setNeedIntercept(boolean isNeedIntercept) {
         if(mFragments.get(0) instanceof DetCommodityNewFragment) {
             ((DetCommodityNewFragment)mFragments.get(0)).setNeedIntercept(isNeedIntercept);
+        }
+    }
+
+    /**刷新所有Fragment, 除了Fragment(0)**/
+    public void refreshFragments() {
+        for (int i = 0; i < mFragments.size(); i++) {
+            if(i > 0) {
+                BaseFragment fragment = mFragments.get(i);
+                fragment.onReLoad();
+            }
         }
     }
 

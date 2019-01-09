@@ -35,6 +35,7 @@ public class DetDetailFragment extends BaseFragment<FragmentDetDetailBinding> {
     private int currentPosition;
     private TextView leftBtn, rightBtn, centerBtn;
     public static String url;
+    private boolean isNormal;
 
     private ActivityDetails activityDetails;
     private CommWebView commWebView;
@@ -72,6 +73,7 @@ public class DetDetailFragment extends BaseFragment<FragmentDetDetailBinding> {
     public void onDetach() {
         super.onDetach();
         activityDetails = null;
+        url = null;
     }
 
     @Override
@@ -133,10 +135,16 @@ public class DetDetailFragment extends BaseFragment<FragmentDetDetailBinding> {
         if(TextUtils.isEmpty(url)) {
             url = getArguments().getString(CommKeyUtil.EXTRA_KEY);
         }
-        boolean isNormal = getArguments().getBoolean(DetDetailTag, true);
+        isNormal = getArguments().getBoolean(DetDetailTag, true);
         commWebView.setIsNormal(isNormal);
         commWebView.loadUrl(url);
         changeTextColor(0);
+    }
+
+    @Override
+    public void onReLoad() {
+        super.onReLoad();
+        commWebView.loadUrl(url);
     }
 
     private void changeTextColor(int position) {

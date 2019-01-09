@@ -96,4 +96,10 @@ public class DetRecommendFragment extends BaseFragment{
             }
         }
     }
+
+    @Override
+    public void onReLoad() {
+        super.onReLoad();
+        onFragmentFirstVisible();
+    }
 }

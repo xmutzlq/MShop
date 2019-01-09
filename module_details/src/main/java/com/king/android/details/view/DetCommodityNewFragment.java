@@ -352,6 +352,11 @@ public class DetCommodityNewFragment extends BaseFragment<FragmentDetCommodityBi
             circleNavigator.onPageSelected(position);
         }).attachToRecyclerView(binding.layoutDetRecommend.detailCommodityRecommendRec);
         binding.layoutDetRecommend.detailCommodityRecommendIndicator.setNavigator(circleNavigator);
+
+        if(mActivityDetails.isFromUmengMessage) {
+            mActivityDetails.isFromUmengMessage = false;
+            mActivityDetails.refreshFragments();
+        }
     }
 
     private void loadCommodityData(String goodsId, String goodsNo) {
