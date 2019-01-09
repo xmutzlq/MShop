@@ -1,6 +1,7 @@
 package google.architecture.personal;
 
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.view.View;
@@ -46,6 +47,11 @@ public class ActivitySetting extends BaseActivity<ActivitySettingNewBinding> {
         super.onCreate(savedInstanceState);
         setCanBack(true);
         setTitleName("设置");
+        try {
+            binding.versionTv.setText(getPackageManager().getPackageInfo(this.getPackageName(),0).versionName);
+        } catch (PackageManager.NameNotFoundException e) {
+            e.printStackTrace();
+        }
         initBtn();
     }
 

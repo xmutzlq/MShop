@@ -11,11 +11,14 @@ import java.net.DatagramSocket;
 
 public class UdpMonitorService extends Service {
 
+    private boolean isRunning = false;
     private final static int PORT = 13;
 
     @Override
     public void onCreate() {
         super.onCreate();
+        isRunning = true;
+        startTimeThread();
     }
 
     @Override
@@ -27,11 +30,12 @@ public class UdpMonitorService extends Service {
         new Thread(new Runnable() {
             @Override
             public void run() {
+                while (isRunning) {
+                    try (DatagramSocket socket = new DatagramSocket(PORT)) {
+                        DatagramPacket request = new DatagramPacket(new byte[1024], 1024);
+                    } catch (IOException e) {
 
-                try(DatagramSocket socket = new DatagramSocket(PORT)){
-                    DatagramPacket request = new DatagramPacket(new byte[1024], 1024);
-                }catch (IOException e){
-
+                    }
                 }
 
             }
@@ -41,6 +45,7 @@ public class UdpMonitorService extends Service {
     @Override
     public void onDestroy() {
         super.onDestroy();
+        isRunning = false;
     }
 
     @Nullable
