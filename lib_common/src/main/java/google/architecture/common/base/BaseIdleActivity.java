@@ -21,6 +21,7 @@ public abstract class BaseIdleActivity extends BaseActivityFrame {
     private PromotionDialog mDialog;
 
     private boolean isPause = false;
+    private boolean isDestory;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -65,7 +66,7 @@ public abstract class BaseIdleActivity extends BaseActivityFrame {
             super.handleMessage(msg);
             switch (msg.what){
                 case WHAT_SHOW_DIALOG:{
-                    if(!mDialog.isShowing()){
+                    if(!mDialog.isShowing() && !isDestory){
                         mDialog.show();
                     }
                     break;
@@ -137,6 +138,7 @@ public abstract class BaseIdleActivity extends BaseActivityFrame {
 
     @Override
     protected void onDestroy() {
+        isDestory = true;
         super.onDestroy();
         if(mDialog != null) {
             mDialog.closeWindow();

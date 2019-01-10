@@ -41,6 +41,7 @@ import com.king.android.res.config.ARouterPath;
 import java.util.ArrayList;
 
 import google.architecture.common.base.BaseFragment;
+import google.architecture.common.base.ViewManager;
 import google.architecture.common.imgloader.ImageLoader;
 import google.architecture.common.util.AppCompat;
 import google.architecture.common.util.CommKeyUtil;
@@ -263,8 +264,24 @@ public class DetCommodityNewFragment extends BaseFragment<FragmentDetCommodityBi
 
         //已选
         binding.xljLayoutChoice.xljLayoutChoiceChoose.choiceItemLeftStr.setText(R.string.detail_choice);
-        String color = DetailUtil.getDefaultColor(info.getSpec().get1().getList(), info.getDefaultSpecs().get1());
-        String size = DetailUtil.getDefaultSizeAndSaveCount(info.getSpec().get5().getList(), info.getDefaultSpecs().get5()).pSize;
+        String color = "";
+        String size = "";
+        if(info.getSpec() != null
+                && info.getSpec().get1() != null
+                && info.getSpec().get1().getList() != null
+                && info.getSpec().get1().getList().size() > 0
+                && info.getDefaultSpecs() != null
+                && info.getDefaultSpecs().get1() != null) {
+            color = DetailUtil.getDefaultColor(info.getSpec().get1().getList(), info.getDefaultSpecs().get1());
+        }
+        if(info.getSpec() != null
+                && info.getSpec().get5() != null
+                && info.getSpec().get5().getList() != null
+                && info.getSpec().get5().getList().size() > 0
+                && info.getDefaultSpecs() != null
+                && info.getDefaultSpecs().get5() != null) {
+            size = DetailUtil.getDefaultSizeAndSaveCount(info.getSpec().get5().getList(), info.getDefaultSpecs().get5()).pSize;
+        }
         updateSpec(color + "；" + size);
 
         binding.xljLayoutChoice.xljLayoutChoiceServer.choiceItemLeftStr.setText(R.string.detail_server);
@@ -362,7 +379,13 @@ public class DetCommodityNewFragment extends BaseFragment<FragmentDetCommodityBi
     private void loadCommodityData(String goodsId, String goodsNo) {
         xlj_goodsDetailViewModel = new XLJ_GoodsDetailViewModel();
         addRunStatusChangeCallBack(xlj_goodsDetailViewModel);
-        xlj_goodsDetailViewModel.getGoodsDetail(GoodsDetailRequestEntity.getRequestJson(goodsId, goodsNo));
+        xlj_goodsDetailViewModel.getGoodsDetail(GoodsDetailRequestEntity.getRequestJson(goodsId, goodsNo),
+                (code, msg) -> {
+                    if(code == 12000 && !TextUtil.isEmpty(msg)) {
+                        ToastUtils.showShortToast(msg);
+                        ViewManager.getInstance().finishActivity();
+                    }
+                });
     }
 
     private void updateBannerIndicator(int position, int count) {

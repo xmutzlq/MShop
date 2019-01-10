@@ -62,6 +62,7 @@ public abstract class BaseApplication extends BaseApp {
 
     public static final int PLAN_ID_IJK = 1;
 
+    private String goodsId;
     private String mDeviceToken;
 
     private UserInfos userInfos; //用户登录依据
@@ -247,6 +248,14 @@ public abstract class BaseApplication extends BaseApp {
 
     public void setmUserAccessToken(String mUserAccessToken) {
         this.mUserAccessToken = mUserAccessToken;
+    }
+
+    public String getGoodsId() {
+        return goodsId;
+    }
+
+    public void setGoodsId(String goodsId) {
+        this.goodsId = goodsId;
     }
 
     public UserInfos getUserInfos() {

@@ -6,7 +6,7 @@ import google.architecture.coremodel.datamodel.http.ErrorConsumer;
 import google.architecture.coremodel.datamodel.http.repository.DeHongDataRepository;
 
 public class XLJ_GoodsDetailViewModel extends UIViewModel {
-    public void getGoodsDetail(String requestJson) {
+    public void getGoodsDetail(String requestJson, ErrorConsumer.IPresenter presenter) {
         if (isRunning.get()) return;
         disposable.add(DeHongDataRepository.get().xlj_getGoodsDetail(requestJson)
                 .doOnSubscribe(disposable -> isRunning.set(true))
@@ -16,6 +16,6 @@ public class XLJ_GoodsDetailViewModel extends UIViewModel {
                         return;
                     }
                     setDataObject(result.getData(), data);
-                }).subscribe(new EmptyConsumer(this), new ErrorConsumer(this)));
+                }).subscribe(new EmptyConsumer(this), new ErrorConsumer(presenter)));
     }
 }

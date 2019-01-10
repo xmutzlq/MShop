@@ -29,6 +29,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import google.architecture.common.base.BaseActivity;
+import google.architecture.common.base.BaseApplication;
 import google.architecture.common.base.BaseFragment;
 import google.architecture.common.base.ViewManager;
 import google.architecture.common.dialog.CustomDialog;
@@ -85,6 +86,13 @@ public class ActivityDetails extends BaseActivity {
 //            mFragments.get(0).onReLoad();
 //        }
 //    }
+
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        BaseApplication.getIns().setGoodsId("");
+    }
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -281,9 +289,16 @@ public class ActivityDetails extends BaseActivity {
         } else if(CommEvent.MSG_OPEN_GOODS_DETAIL_PAGE.equals(event.msgType)) {
             release();
             Bundle bundle = event.bundle;
-            String goodsId = bundle.getString(CommKeyUtil.EXTRA_KEY);
-            ARouter.getInstance().build(ARouterPath.DetailAty)
-                    .withString(CommEvent.KEY_EXTRA_VALUE, goodsId).navigation(this_);
+            boolean isFromUmeng = bundle.getBoolean(CommKeyUtil.EXTRA_KEY_2);
+            if(isFromUmeng) {
+                String productNo = bundle.getString(CommKeyUtil.EXTRA_KEY);
+                ARouter.getInstance().build(ARouterPath.DetailAty)
+                        .withString(CommEvent.KEY_EXTRA_VALUE_2, productNo).navigation(this_);
+            } else {
+                String goodsId = bundle.getString(CommKeyUtil.EXTRA_KEY);
+                ARouter.getInstance().build(ARouterPath.DetailAty)
+                        .withString(CommEvent.KEY_EXTRA_VALUE, goodsId).navigation(this_);
+            }
             ViewManager.getInstance().finishActivity();
         }
     }

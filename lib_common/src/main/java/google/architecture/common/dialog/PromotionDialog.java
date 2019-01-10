@@ -152,9 +152,6 @@ public class PromotionDialog extends Dialog {
 
     @Override
     public void show() {
-        if(getOwnerActivity() == null || getOwnerActivity().isDestroyed() || getOwnerActivity().isFinishing())
-            return;
-
         super.show();
         mViewModel.getPromotionMedia(new UIViewModel.IDoOnNext() {
             @Override

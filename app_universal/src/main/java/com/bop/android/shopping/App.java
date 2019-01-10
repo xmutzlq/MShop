@@ -95,11 +95,14 @@ public class App  extends BaseApplication{
                     try {
                         String custom = json.getJSONObject("body").getString("custom");
                         LogUtils.tag("zlq").e("custom = " + custom);
+                        if(!TextUtils.isEmpty(getGoodsId()) && getGoodsId().equals(custom)) return;
+                        setGoodsId(custom);
                         //ToastUtils.showLongToast("getMessage custom:"+custom);
                         if(!TextUtils.isEmpty(custom)) {
                             if("com.king.android.details.ActivityDetails".equals(getRunningActivityName())) {
                                 Bundle bundle = new Bundle();
                                 bundle.putString(CommKeyUtil.EXTRA_KEY, custom);
+                                bundle.putBoolean(CommKeyUtil.EXTRA_KEY_2, true);
                                 EventBus.getDefault().post(new CommEvent(CommEvent.MSG_OPEN_GOODS_DETAIL_PAGE, bundle));
                             } else {
                                 ARouter.getInstance().build(ARouterPath.DetailAty)
