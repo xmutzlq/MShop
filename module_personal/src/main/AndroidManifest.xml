@@ -2,6 +2,8 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="google.architecture.personal">
 
+    <uses-permission android:name="android.permission.CHANGE_WIFI_MULTICAST_STATE" />
+
     <application>
         <activity android:name=".ActivityShoppingPersonal"></activity>
         <activity android:name=".login.ActivityLogin"
@@ -32,6 +34,8 @@
         <activity android:name=".ActivityWeixinLogin"></activity>
         <activity android:name=".ActivityIdleTimeSetting"></activity>
         <activity android:name=".ActivityFootScan"></activity>
+
+        <service android:name=".service.UdpMonitorService" android:process=".remotea" />
     </application>
 
 </manifest>

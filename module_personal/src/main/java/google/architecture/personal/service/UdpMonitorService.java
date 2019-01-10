@@ -1,9 +1,11 @@
-package com.bop.android.shopping.service;
+package google.architecture.personal.service;
 
 import android.app.Service;
 import android.content.Intent;
 import android.os.IBinder;
 import android.support.annotation.Nullable;
+
+import com.google.gson.Gson;
 
 import java.io.IOException;
 import java.net.DatagramPacket;
@@ -12,7 +14,7 @@ import java.net.DatagramSocket;
 public class UdpMonitorService extends Service {
 
     private boolean isRunning = false;
-    private final static int PORT = 13;
+    private final static int PORT = 9099;
 
     @Override
     public void onCreate() {
@@ -27,16 +29,31 @@ public class UdpMonitorService extends Service {
     }
 
     private void startTimeThread(){
+        System.out.println("========szq=========:startTimeThread");
         new Thread(new Runnable() {
             @Override
             public void run() {
-                while (isRunning) {
+
                     try (DatagramSocket socket = new DatagramSocket(PORT)) {
                         DatagramPacket request = new DatagramPacket(new byte[1024], 1024);
-                    } catch (IOException e) {
+                        socket.receive(request);
+                        String address = request.getAddress().getHostAddress();
+                        System.out.println("========szq=========:address:" + address);
+//                        String jsonStr =  new String(request.getData(),request.getLength());
+                        String jsonStr = new String(request.getData(),"utf-8");
+                        jsonStr = jsonStr.substring(0,jsonStr.lastIndexOf("}")+1);
+                        Gson gson = new Gson();
+                        UAVresult result = gson.fromJson(jsonStr, UAVresult.class);
 
+                        System.out.println("========szq=========:jsonStr:" + jsonStr);
+                        while (isRunning) {
+
+                            //Thread.sleep(3000);
+                        }
+                    } catch (IOException e) {
+                        e.printStackTrace();
                     }
-                }
+
 
             }
         }).start();
