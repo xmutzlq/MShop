@@ -8,6 +8,7 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
 import android.support.annotation.Nullable;
+import android.view.View;
 import android.widget.TextView;
 
 import com.alibaba.android.arouter.facade.annotation.Route;
@@ -45,6 +46,10 @@ public class ActivityFootScan extends BaseActivity<ActivityFootScanBinding> {
 
     private int prevCode = 0;
 
+    @Override
+    protected boolean isStatusBarTransparent() {
+        return true;
+    }
 
     @Override
     protected int getLayout() {
@@ -69,6 +74,15 @@ public class ActivityFootScan extends BaseActivity<ActivityFootScanBinding> {
             isRunning = true;
             startTimeThread();
         }
+
+        binding.statusIv.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if(prevCode == 0 || prevCode == 71){
+                    finish();
+                }
+            }
+        });
 
     }
 
