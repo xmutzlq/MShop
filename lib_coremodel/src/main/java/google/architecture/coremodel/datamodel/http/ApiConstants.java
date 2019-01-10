@@ -173,4 +173,6 @@ public class ApiConstants {
 
     public static int IDLE_SECOND = 30;//系统空闲时间
 
+    public static boolean isConnectFootScan = false;//是否连接扫脚仪(默认为否)
+
 }

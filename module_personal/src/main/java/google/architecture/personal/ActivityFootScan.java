@@ -23,6 +23,7 @@ import java.util.List;
 import google.architecture.common.base.BaseActivity;
 import google.architecture.common.viewmodel.xlj.FootScanViewModel;
 import google.architecture.coremodel.datamodel.http.ApiClient;
+import google.architecture.coremodel.datamodel.http.ApiConstants;
 import google.architecture.personal.databinding.ActivityFootScanBinding;
 import google.architecture.personal.service.UAVresult;
 import google.architecture.personal.service.UdpMonitorService;
@@ -42,6 +43,8 @@ public class ActivityFootScan extends BaseActivity<ActivityFootScanBinding> {
 
     private String mAddress;//扫脚仪ip
 
+    private int prevCode = 0;
+
 
     @Override
     protected int getLayout() {
@@ -53,7 +56,7 @@ public class ActivityFootScan extends BaseActivity<ActivityFootScanBinding> {
         super.onCreate(savedInstanceState);
         FootScanViewModel viewModel = new FootScanViewModel();
         addRunStatusChangeCallBack(viewModel);
-        viewModel.getUserToken("11111111111");
+        //viewModel.getUserToken("11111111111");
 
         mTvMsg = findViewById(R.id.msg_tv);
 
@@ -61,6 +64,11 @@ public class ActivityFootScan extends BaseActivity<ActivityFootScanBinding> {
             serviceIntent = new Intent(getApplicationContext(), UdpMonitorService.class);
             startService(serviceIntent);
         }*/
+
+        if(ApiConstants.isConnectFootScan) {
+            isRunning = true;
+            startTimeThread();
+        }
 
     }
 
@@ -71,34 +79,47 @@ public class ActivityFootScan extends BaseActivity<ActivityFootScanBinding> {
             UAVresult result = (UAVresult) msg.obj;
             switch(result.getCode()){
                 case 0://默认心跳，收到后发送下一次心跳请求
+                    if(prevCode == 0){
+                        prevCode = 0;
+                    }
                     mTvMsg.setText("默认心跳，收到后发送下一次心跳请求");
                     break;
                 case 1://TV端服务异常终止
+                    prevCode = 1;
                     mTvMsg.setText("TV端服务异常终止");
                     break;
                 case 11://Pad端用户登录扫脚仪
+                    prevCode = 11;
                     mTvMsg.setText("Pad端用户登录扫脚仪");
                     break;
                 case 21://预览左脚
+                    prevCode = 21;
                     mTvMsg.setText("预览左脚");
                     break;
                 case 31://正在扫描左脚
+                    prevCode = 31;
                     mTvMsg.setText("正在扫描左脚");
                     break;
                 case 41://左脚扫描完成(可以将扫脚仪中的左脚数据下载到TV端展示)
+                    prevCode = 41;
                     mTvMsg.setText("左脚扫描完成");
-                    downloadModel(result.getMsg());
+                    //downloadModel(result.getMsg());
                     break;
                 case 51://预览右脚
+                    prevCode = 51;
                     mTvMsg.setText("预览右脚");
                     break;
                 case 61://正在扫描右脚
+                    prevCode = 61;
                     mTvMsg.setText("正在扫描右脚");
                     break;
                 case 71://右脚扫描完成（可以将扫脚仪中的右脚数据下载到TV端展示，到此全部扫脚流程完成）
+                    prevCode = 71;
                     mTvMsg.setText("右脚扫描完成");
+                    //downloadModel(result.getMsg());
                     break;
             }
+            adjustSence(prevCode);
         }
     };
 
@@ -106,8 +127,6 @@ public class ActivityFootScan extends BaseActivity<ActivityFootScanBinding> {
     @Override
     protected void onDataResult(Object o) {
         super.onDataResult(o);
-        isRunning = true;
-        startTimeThread();
     }
 
     /**
@@ -178,22 +197,30 @@ public class ActivityFootScan extends BaseActivity<ActivityFootScanBinding> {
     private void adjustSence(int code){
         switch (code){
             case 0://进入扫码界面
+                binding.statusIv.setImageResource(R.drawable.sc_first_step);
                 break;
             case 1://TV端服务异常终止
                 break;
             case 11://Pad端用户登录扫脚仪
+                binding.statusIv.setImageResource(R.drawable.sc_first_step);
                 break;
             case 21://预览左脚
+                binding.statusIv.setImageResource(R.drawable.sc_second_step);
                 break;
             case 31://正在扫描左脚
+                binding.statusIv.setImageResource(R.drawable.sc_third_step);
                 break;
             case 41://左脚扫描完成(下载到TV端展示)
+                binding.statusIv.setImageResource(R.drawable.sc_fourth_step);
                 break;
             case 51://预览右脚
+                binding.statusIv.setImageResource(R.drawable.sc_fifth_step);
                 break;
             case 61://正在扫描右脚
+                binding.statusIv.setImageResource(R.drawable.sc_sixth_step);
                 break;
             case 71://右脚扫描完成(下载到TV端展示)
+                binding.statusIv.setImageResource(R.drawable.sc_seventh_step);
                 break;
         }
     }
@@ -225,6 +252,7 @@ public class ActivityFootScan extends BaseActivity<ActivityFootScanBinding> {
         OkHttpClient okHttpClient = ApiClient.getOkHttpClient();
         final Request request = new Request.Builder()
                 .url(url)
+                .addHeader("Authorization","")
                 .get()
                 .build();
         Call call = okHttpClient.newCall(request);

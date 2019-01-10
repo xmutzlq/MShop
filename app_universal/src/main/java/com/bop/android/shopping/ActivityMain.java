@@ -100,8 +100,9 @@ public class ActivityMain extends BaseActivity<ActivityMainBinding> implements B
     @Override
     protected void responseEvent(CommEvent event) {
         if(CommEvent.MSG_TYPE_OPEN_SCAN.equals(event.msgType)) {
-            Intent intent = new Intent(this, CaptureActivity.class);
-            startActivityForResult(intent, REQUEST_CODE_SCAN);
+//            Intent intent = new Intent(this, CaptureActivity.class);
+////            startActivityForResult(intent, REQUEST_CODE_SCAN);
+            ARouter.getInstance().build(ARouterPath.FootScanLoginAty).navigation(ActivityMain.this);
         } else if(CommEvent.MSG_TYPE_HOME_GO.equals(event.msgType)) {
             int position = event.bundle.getInt(CommKeyUtil.EXTRA_KEY);
             if(position >= 0) goTab(position);

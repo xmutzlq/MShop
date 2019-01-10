@@ -5,8 +5,10 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
 import android.support.annotation.Nullable;
+import android.view.KeyEvent;
 import android.view.MotionEvent;
 
+import google.architecture.common.base.listener.KeyboardChangeListener;
 import google.architecture.common.dialog.PromotionDialog;
 import google.architecture.coremodel.datamodel.http.ApiConstants;
 
@@ -18,6 +20,8 @@ public abstract class BaseIdleActivity extends BaseActivityFrame {
     private final int WHAT_SHOW_DIALOG = 23;
     private PromotionDialog mDialog;
 
+    private boolean isPause = false;
+
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -25,15 +29,34 @@ public abstract class BaseIdleActivity extends BaseActivityFrame {
         mDialog.setOnDismissListener(new DialogInterface.OnDismissListener() {
             @Override
             public void onDismiss(DialogInterface dialog) {
-                restTime();
+                if(!isPause) {
+                    restTime();
+                }
             }
         });
+
+
+        KeyboardChangeListener softKeyboardStateHelper = new KeyboardChangeListener(this);
+        softKeyboardStateHelper.setKeyBoardListener(new KeyboardChangeListener.KeyBoardListener() {
+            @Override
+            public void onKeyboardChange(boolean isShow, int keyboardHeight) {
+                if (isShow) {
+                    //键盘的弹出
+                    mHandler.removeMessages(WHAT_SHOW_DIALOG);
+                } else {
+                    //键盘的收起
+                    restTime();
+                }
+            }
+        });
+
     }
 
     @Override
     protected void onResume() {
         super.onResume();
         restTime();
+        isPause = false;
     }
 
     private Handler mHandler = new Handler(){
@@ -57,6 +80,10 @@ public abstract class BaseIdleActivity extends BaseActivityFrame {
         if(mHandler != null && mHandler.hasMessages(WHAT_SHOW_DIALOG)){
             mHandler.removeMessages(WHAT_SHOW_DIALOG);
         }
+        isPause = true;
+        if(mDialog != null && mDialog.isShowing()){
+            mDialog.dismiss();
+        }
     }
 
     private void restTime(){
@@ -65,6 +92,19 @@ public abstract class BaseIdleActivity extends BaseActivityFrame {
         }
         Message msg = mHandler.obtainMessage(WHAT_SHOW_DIALOG);
         mHandler.sendMessageDelayed(msg,ApiConstants.IDLE_SECOND*1000);//空闲固定秒数
+    }
+
+    @Override
+    public boolean dispatchKeyEvent(KeyEvent event) {
+        switch (event.getAction()){
+            case KeyEvent.ACTION_DOWN:
+                mHandler.removeMessages(WHAT_SHOW_DIALOG);
+                break;
+            case KeyEvent.ACTION_UP:
+                restTime();
+                break;
+        }
+        return super.dispatchKeyEvent(event);
     }
 
     @Override

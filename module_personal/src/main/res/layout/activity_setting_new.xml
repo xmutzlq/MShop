@@ -230,6 +230,28 @@
                     android:gravity="right"
                     android:drawableRight="@drawable/ic_back_right"/>
             </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_vertical"
+                android:background="@android:color/white"
+                android:padding="10dp"
+                android:orientation="horizontal">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    style="@style/TextBlack14"
+                    android:text="是否连接扫脚仪"/>
+                <View
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:background="@color/transparent"
+                    android:layout_weight="1"/>
+                <CheckBox
+                    android:id="@+id/connect_sc_cb"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
+            </LinearLayout>
 
             <TextView
                 android:id="@+id/btn_login_out"

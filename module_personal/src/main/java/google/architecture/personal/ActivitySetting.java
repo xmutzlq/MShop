@@ -5,6 +5,8 @@ import android.content.pm.PackageManager;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.view.View;
+import android.widget.CheckBox;
+import android.widget.CompoundButton;
 
 import com.alibaba.android.arouter.facade.annotation.Route;
 import com.alibaba.android.arouter.launcher.ARouter;
@@ -18,6 +20,8 @@ import com.tencent.mm.opensdk.openapi.WXAPIFactory;
 import google.architecture.common.base.BaseActivity;
 import google.architecture.common.base.BaseApplication;
 import google.architecture.common.base.listener.AppBrocastAction;
+import google.architecture.coremodel.datamodel.http.ApiConstants;
+import google.architecture.coremodel.util.PreferencesUtils;
 import google.architecture.personal.databinding.ActivitySettingNewBinding;
 
 @Route(path = ARouterPath.PersonalSettingAty)
@@ -31,6 +35,8 @@ public class ActivitySetting extends BaseActivity<ActivitySettingNewBinding> {
     //IWXAPI 是第三方app和微信通信的openApi接口
     private IWXAPI api;
     private View mBtnGetDeviceToken;
+
+    private CheckBox mCbConnectSc;//是否连接扫脚仪
 
     @Override
     protected int getLayout() {
@@ -52,6 +58,27 @@ public class ActivitySetting extends BaseActivity<ActivitySettingNewBinding> {
         } catch (PackageManager.NameNotFoundException e) {
             e.printStackTrace();
         }
+        mCbConnectSc = findViewById(R.id.connect_sc_cb);
+
+        if(ApiConstants.isConnectFootScan){
+            mCbConnectSc.setChecked(true);
+        }else{
+            mCbConnectSc.setChecked(false);
+        }
+
+        mCbConnectSc.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
+                if(b){
+                    PreferencesUtils.putBoolean(ActivitySetting.this, "is_connect_footscan",true);
+                    ApiConstants.isConnectFootScan = true;
+                }else{
+                    PreferencesUtils.putBoolean(ActivitySetting.this, "is_connect_footscan",false);
+                    ApiConstants.isConnectFootScan = false;
+                }
+            }
+        });
+
         initBtn();
     }
 
@@ -84,7 +111,7 @@ public class ActivitySetting extends BaseActivity<ActivitySettingNewBinding> {
         });
 
         findViewById(R.id.btn_contact_me).setOnClickListener(view -> {
-            ARouter.getInstance().build(ARouterPath.FootScanLoginAty).navigation(ActivitySetting.this);
+            //ARouter.getInstance().build(ARouterPath.FootScanLoginAty).navigation(ActivitySetting.this);
 //            ARouter.getInstance().build(ARouterPath.WeixinLoginAty).navigation(ActivitySetting.this);
         });
 

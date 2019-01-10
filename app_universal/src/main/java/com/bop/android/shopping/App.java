@@ -51,6 +51,7 @@ public class App  extends BaseApplication{
         String domain = PreferencesUtils.getString(getApplicationContext(),"domain_address","");
         int idleTime = PreferencesUtils.getInt(getApplicationContext(),"idle_time", 0);
         String xljImgPath = PreferencesUtils.getString(getApplicationContext(),"xlj_img_address","");
+        boolean isConnectFootScan = PreferencesUtils.getBoolean(getApplicationContext(),"is_connect_footscan",false);
         if(!TextUtils.isEmpty(domain)){
             ApiConstants.GankHost = domain;
         }
@@ -60,6 +61,7 @@ public class App  extends BaseApplication{
         if(idleTime > 0){
             ApiConstants.IDLE_SECOND = idleTime;
         }
+        ApiConstants.isConnectFootScan = isConnectFootScan;
     }
 
     private void initUmeng(){
