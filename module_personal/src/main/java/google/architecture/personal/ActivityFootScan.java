@@ -175,6 +175,30 @@ public class ActivityFootScan extends BaseActivity<ActivityFootScanBinding> {
         }).start();
     }
 
+    private void adjustSence(int code){
+        switch (code){
+            case 0://进入扫码界面
+                break;
+            case 1://TV端服务异常终止
+                break;
+            case 11://Pad端用户登录扫脚仪
+                break;
+            case 21://预览左脚
+                break;
+            case 31://正在扫描左脚
+                break;
+            case 41://左脚扫描完成(下载到TV端展示)
+                break;
+            case 51://预览右脚
+                break;
+            case 61://正在扫描右脚
+                break;
+            case 71://右脚扫描完成(下载到TV端展示)
+                break;
+        }
+    }
+
+
     private void sendHearBeat(long ts){
         String url = "http://"+mAddress+"//api/Tv/PostTvInfo?id="+ Build.SERIAL+"&ts="+ts;
         OkHttpClient okHttpClient = ApiClient.getOkHttpClient();
