@@ -19,6 +19,8 @@
     <!-- 硬件加速对X5视频播放非常重要，建议开启 -->
     <uses-permission android:name="android.permission.GET_TASKS" />
 
+    <uses-sdk tools:overrideLibrary="com.shiyuan.footmodel"/>
+
     <application
         android:allowBackup="true"
         android:hardwareAccelerated="true"
