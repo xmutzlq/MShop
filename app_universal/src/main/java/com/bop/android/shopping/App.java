@@ -1,11 +1,14 @@
 package com.bop.android.shopping;
 
+import android.app.ActivityManager;
 import android.content.Context;
 import android.content.Intent;
+import android.os.Bundle;
 import android.os.Handler;
 import android.text.TextUtils;
 
 import com.alibaba.android.arouter.launcher.ARouter;
+import com.apkfuns.logutils.LogUtils;
 import com.bop.android.shopping.service.InitializeService;
 import com.king.android.res.config.ARouterPath;
 import com.umeng.commonsdk.UMConfigure;
@@ -15,11 +18,12 @@ import com.umeng.message.UmengMessageHandler;
 import com.umeng.message.entity.UMessage;
 import com.uuzuche.lib_zxing.activity.ZXingLibrary;
 
+import org.greenrobot.eventbus.EventBus;
 import org.json.JSONException;
 import org.json.JSONObject;
 
 import google.architecture.common.base.BaseApplication;
-import google.architecture.common.util.ToastUtils;
+import google.architecture.common.util.CommKeyUtil;
 import google.architecture.common.util.Utils;
 import google.architecture.coremodel.datamodel.http.ApiConstants;
 import google.architecture.coremodel.datamodel.http.event.CommEvent;
@@ -88,11 +92,20 @@ public class App  extends BaseApplication{
                     JSONObject json = uMessage.getRaw();
                     try {
                         String custom = json.getJSONObject("body").getString("custom");
+                        LogUtils.tag("zlq").e("custom = " + custom);
                         //ToastUtils.showLongToast("getMessage custom:"+custom);
-                        ARouter.getInstance().build(ARouterPath.DetailAty)
-                                .withString(CommEvent.KEY_EXTRA_VALUE_2,custom)
-                                .withFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TOP)
-                                .navigation(getApplicationContext());
+                        if(!TextUtils.isEmpty(custom)) {
+                            if("com.king.android.details.ActivityDetails".equals(getRunningActivityName())) {
+                                Bundle bundle = new Bundle();
+                                bundle.putString(CommKeyUtil.EXTRA_KEY, custom);
+                                EventBus.getDefault().post(new CommEvent(CommEvent.MSG_OPEN_GOODS_DETAIL_PAGE, bundle));
+                            } else {
+                                ARouter.getInstance().build(ARouterPath.DetailAty)
+                                        .withString(CommEvent.KEY_EXTRA_VALUE_2,custom)
+                                        .withFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TOP)
+                                        .navigation(getApplicationContext());
+                            }
+                        }
                     } catch (JSONException e) {
                         e.printStackTrace();
                     }
@@ -102,4 +115,11 @@ public class App  extends BaseApplication{
 
         }
     };
+
+    private String getRunningActivityName(){
+        ActivityManager activityManager = (ActivityManager) getSystemService(Context.ACTIVITY_SERVICE);
+        String runningActivity = activityManager.getRunningTasks(1).get(0).topActivity.getClassName();
+        LogUtils.tag("zlq").e("runningActivity = " + runningActivity);
+        return runningActivity;
+    }
 }

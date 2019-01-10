@@ -77,14 +77,14 @@ public class ActivityDetails extends BaseActivity {
         return R.layout.activity_details;
     }
 
-    @Override
-    protected void onNewIntent(Intent intent) {
-        super.onNewIntent(intent);
-        isFromUmengMessage = true;
-        if(mFragments != null && mFragments.size() > 0) {
-            mFragments.get(0).onReLoad();
-        }
-    }
+//    @Override
+//    protected void onNewIntent(Intent intent) {
+//        super.onNewIntent(intent);
+//        isFromUmengMessage = true;
+//        if(mFragments != null && mFragments.size() > 0) {
+//            mFragments.get(0).onReLoad();
+//        }
+//    }
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
