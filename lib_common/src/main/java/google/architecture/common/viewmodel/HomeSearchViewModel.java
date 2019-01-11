@@ -16,6 +16,7 @@ import google.architecture.coremodel.datamodel.db.entity.SearchInfoEntity;
 import google.architecture.coremodel.datamodel.http.EmptyConsumer;
 import google.architecture.coremodel.datamodel.http.ErrorConsumer;
 import google.architecture.coremodel.datamodel.http.repository.DeHongDataRepository;
+import google.architecture.coremodel.util.TextUtil;
 import io.reactivex.BackpressureStrategy;
 import io.reactivex.Flowable;
 import io.reactivex.android.schedulers.AndroidSchedulers;
@@ -131,7 +132,30 @@ public class HomeSearchViewModel extends BaseListViewModel {
         searchResultParamsNew.page = page;
         searchResultParamsNew.limit = PAGE_SIZE;
         String requestJson = new Gson().toJson(searchResultParamsNew);
-        disposable.add(DeHongDataRepository.get().xlj_getGoodsList(requestJson)
+        StringBuilder stringBuilder = new StringBuilder();
+        stringBuilder.append("{\"appType\":\"android\",\"appToken\":\"y7w7jkt12E6I3BM9\",\"method\":\"Lists/goodsList\",");
+        stringBuilder.append("\"page\":\""+searchResultParamsNew.page+"\",");
+        stringBuilder.append("\"limit\":\""+searchResultParamsNew.limit+"\",");
+        stringBuilder.append("\"msort\":\""+searchResultParamsNew.msort+"\",");
+        if(searchResultParamsNew.mdesc >= 0) {
+            stringBuilder.append("\"mdesc\":\""+searchResultParamsNew.mdesc+"\",");
+        }
+        if(!TextUtil.isEmpty(searchResultParamsNew.urlids)) {
+            stringBuilder.append("\"urlids\":\""+searchResultParamsNew.urlids+"\",");
+        }
+        if(!TextUtil.isEmpty(searchResultParamsNew.keyword)) {
+            stringBuilder.append("\"keyword\":\""+searchResultParamsNew.keyword+"\",");
+        }
+        if(searchResultParamsNew.sprice > 0) {
+            stringBuilder.append("\"sprice\":\""+searchResultParamsNew.sprice+"\",");
+        }
+        if(searchResultParamsNew.eprice > 0) {
+            stringBuilder.append("\"eprice\":\""+searchResultParamsNew.eprice+"\",");
+        }
+        stringBuilder.append("\"only\":\""+searchResultParamsNew.only+"\"");
+        stringBuilder.append("}");
+
+        disposable.add(DeHongDataRepository.get().xlj_getGoodsList(stringBuilder.toString())
             .doOnSubscribe(disposable -> isRunning.set(true))
             .doOnTerminate(() -> isRunning.set(false))
             .doOnNext(result -> {

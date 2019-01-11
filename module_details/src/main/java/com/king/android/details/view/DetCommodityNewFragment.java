@@ -290,28 +290,31 @@ public class DetCommodityNewFragment extends BaseFragment<FragmentDetCommodityBi
         binding.xljLayoutChoice.xljLayoutChoiceParams.choiceItemLeftStr.setText(R.string.detail_param);
         binding.xljLayoutChoice.xljLayoutChoiceParams.choiceItemCenterStr.setText(R.string.detail_param_str);
 
-        binding.xljLayoutChoice.xljLayoutChoiceChoose.getRoot().setOnClickListener(v -> {
-            ChooseBottomSheetFragment chooseBottomSheetFragment = new ChooseBottomSheetFragment();
+        if(!TextUtils.isEmpty(color) && !TextUtils.isEmpty(size)) {
+            binding.xljLayoutChoice.xljLayoutChoiceChoose.getRoot().setOnClickListener(v -> {
+                ChooseBottomSheetFragment chooseBottomSheetFragment = new ChooseBottomSheetFragment();
 
-            SpecParams specParams = new SpecParams();
-            SpecParams.SpecChild specChild1 = new SpecParams.SpecChild();
-            specChild1.name = info.getSpec().get1().getName();
-            specChild1.detailSpecInfos = info.getSpec().get1().getList();
-            specParams.specsColor = specChild1;
+                SpecParams specParams = new SpecParams();
+                SpecParams.SpecChild specChild1 = new SpecParams.SpecChild();
+                specChild1.name = info.getSpec().get1().getName();
+                specChild1.detailSpecInfos = info.getSpec().get1().getList();
+                specParams.specsColor = specChild1;
 
-            SpecParams.SpecChild specChild5 = new SpecParams.SpecChild();
-            specChild5.name = info.getSpec().get5().getName();
-            specChild5.detailSpecInfos = info.getSpec().get5().getList();
-            specParams.specsSize = specChild5;
+                SpecParams.SpecChild specChild5 = new SpecParams.SpecChild();
+                specChild5.name = info.getSpec().get5().getName();
+                specChild5.detailSpecInfos = info.getSpec().get5().getList();
+                specParams.specsSize = specChild5;
 
-            specParams.defaultColorId = info.getDefaultSpecs().get1();
-            specParams.defaultSizeId = info.getDefaultSpecs().get5();
-            specParams.img = ApiConstants.XLJimgHost + info.getGoodsImg();
-            specParams.price = info.getShopPrice();
-            chooseBottomSheetFragment.setData(specParams);
-            chooseBottomSheetFragment.setNotifySpecChange(newSpec ->  updateSpec(newSpec));
-            chooseBottomSheetFragment.show(getChildFragmentManager(), "Dialog");
-        });
+                specParams.defaultColorId = info.getDefaultSpecs().get1();
+                specParams.defaultSizeId = info.getDefaultSpecs().get5();
+                specParams.img = ApiConstants.XLJimgHost + info.getGoodsImg();
+                specParams.price = info.getShopPrice();
+                chooseBottomSheetFragment.setData(specParams);
+                chooseBottomSheetFragment.setNotifySpecChange(newSpec ->  updateSpec(newSpec));
+                chooseBottomSheetFragment.show(getChildFragmentManager(), "Dialog");
+            });
+        }
+
         binding.xljLayoutChoice.xljLayoutChoiceServer.getRoot().setOnClickListener(v -> {
             ServerBottomSheetFragment serverBottomSheetFragment = new ServerBottomSheetFragment();
             serverBottomSheetFragment.show(getChildFragmentManager(), "Dialog");

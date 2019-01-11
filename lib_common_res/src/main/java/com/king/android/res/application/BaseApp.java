@@ -10,6 +10,7 @@ import android.support.multidex.MultiDex;
 import android.telephony.TelephonyManager;
 import android.text.TextUtils;
 
+import com.king.android.res.crash.CrashHandler;
 import com.king.android.res.util.CrashCatchHandler;
 
 import google.architecture.coremodel.util.Utils;
@@ -49,7 +50,8 @@ public abstract class BaseApp extends SkinBaseApplication {
             builder.detectFileUriExposure();
         }
         // 处理程序崩溃日志记录
-        catchError();
+//        catchError();
+        CrashHandler.getInstance().init(this);
         mTelephonyManager = (TelephonyManager) getSystemService(Context.TELEPHONY_SERVICE);
     }
 
