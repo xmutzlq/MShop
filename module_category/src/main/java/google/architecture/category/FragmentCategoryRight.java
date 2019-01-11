@@ -78,9 +78,9 @@ public class FragmentCategoryRight extends BaseFragment {
         sectionAdapter.setOnItemClickListener((adapter, view1, position) -> {
             if(CategoryRightSection.SECTION_TYPE_ITEM == sectionAdapter.getData().get(position).getType()) {
                 CategoryRightSection categoryRightSection = sectionAdapter.getData().get(position);
-                LogUtils.tag("zlq").e("keyword = " + categoryRightSection.t.getTitle() + ", urlids = " + categoryRightSection.t.getUrlids());
+                LogUtils.tag("zlq").e("catId = " + categoryRightSection.t.getElement_id() + ", urlids = " + categoryRightSection.t.getUrlids());
                 ARouter.getInstance().build(ARouterPath.Search2Aty)
-                        .withString(CommKeyUtil.EXTRA_VALUE, String.valueOf(categoryRightSection.t.getTitle()))
+                        .withString(CommKeyUtil.EXTRA_VALUE, String.valueOf(categoryRightSection.t.getElement_id()))
                         .withString(CommKeyUtil.EXTRA_KEY, String.valueOf(categoryRightSection.t.getUrlids())).navigation();
             }
         });

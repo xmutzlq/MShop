@@ -124,8 +124,8 @@ public class ActivitySearchSecond extends BasePagingActivity<ActivitySearchSecon
         setCanBack(false);
         setTitleName(getString(R.string.xlj_goods_list));
 
-//        searchInputValue = getIntent().getExtras().getString(CommKeyUtil.EXTRA_VALUE); //分类项中的：catName
-        searchInputId = getIntent().getExtras().getString(CommKeyUtil.EXTRA_KEY); //分类项中的：urlids
+        searchInputValue = getIntent().getExtras().getString(CommKeyUtil.EXTRA_VALUE, "0"); //分类项中的：catId
+        searchInputId = getIntent().getExtras().getString(CommKeyUtil.EXTRA_KEY, "0"); //分类项中的：urlids
 
         //搜索结果
         binding.tvSearch2Result.setText(searchInputValue);
@@ -304,11 +304,11 @@ public class ActivitySearchSecond extends BasePagingActivity<ActivitySearchSecon
                 break;
                 //2 = 新品
             case CommFilterTabView.TAB_NEWEST:
-                mHomeSearchViewModel.loadSearchResultDataNew(searchInputId, searchInputValue, 2, -1);
+                mHomeSearchViewModel.loadSearchResultDataNew(searchInputId, searchInputValue, 2, 0);
                 break;
                 //3 = 人气
             case CommFilterTabView.TAB_HOT:
-                mHomeSearchViewModel.loadSearchResultDataNew(searchInputId, searchInputValue, 3, -1);
+                mHomeSearchViewModel.loadSearchResultDataNew(searchInputId, searchInputValue, 3, 0);
                 break;
                 //1 = 默认
             case CommFilterTabView.TAB_DEFAULT:

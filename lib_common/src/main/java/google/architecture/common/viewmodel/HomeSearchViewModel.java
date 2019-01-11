@@ -134,24 +134,16 @@ public class HomeSearchViewModel extends BaseListViewModel {
         String requestJson = new Gson().toJson(searchResultParamsNew);
         StringBuilder stringBuilder = new StringBuilder();
         stringBuilder.append("{\"appType\":\"android\",\"appToken\":\"y7w7jkt12E6I3BM9\",\"method\":\"Lists/goodsList\",");
+        stringBuilder.append("\"shopId\":\""+searchResultParamsNew.shopId+"\",");
+        stringBuilder.append("\"cat\":\""+searchResultParamsNew.cat+"\",");
         stringBuilder.append("\"page\":\""+searchResultParamsNew.page+"\",");
         stringBuilder.append("\"limit\":\""+searchResultParamsNew.limit+"\",");
         stringBuilder.append("\"msort\":\""+searchResultParamsNew.msort+"\",");
-        if(searchResultParamsNew.mdesc >= 0) {
-            stringBuilder.append("\"mdesc\":\""+searchResultParamsNew.mdesc+"\",");
-        }
-        if(!TextUtil.isEmpty(searchResultParamsNew.urlids)) {
-            stringBuilder.append("\"urlids\":\""+searchResultParamsNew.urlids+"\",");
-        }
-        if(!TextUtil.isEmpty(searchResultParamsNew.keyword)) {
-            stringBuilder.append("\"keyword\":\""+searchResultParamsNew.keyword+"\",");
-        }
-        if(searchResultParamsNew.sprice > 0) {
-            stringBuilder.append("\"sprice\":\""+searchResultParamsNew.sprice+"\",");
-        }
-        if(searchResultParamsNew.eprice > 0) {
-            stringBuilder.append("\"eprice\":\""+searchResultParamsNew.eprice+"\",");
-        }
+        stringBuilder.append("\"mdesc\":\""+searchResultParamsNew.mdesc+"\",");
+        stringBuilder.append("\"urlids\":\""+searchResultParamsNew.urlids+"\",");
+        stringBuilder.append("\"keyword\":\""+searchResultParamsNew.keyword+"\",");
+        stringBuilder.append("\"sprice\":\""+searchResultParamsNew.sprice+"\",");
+        stringBuilder.append("\"eprice\":\""+searchResultParamsNew.eprice+"\",");
         stringBuilder.append("\"only\":\""+searchResultParamsNew.only+"\"");
         stringBuilder.append("}");
 
@@ -244,7 +236,7 @@ public class HomeSearchViewModel extends BaseListViewModel {
         @SerializedName("urlids")
         private String urlids;
         @SerializedName("keyword")
-        private String keyword;
+        private String keyword = "";
         @SerializedName("page")
         private int page = 1;
         @SerializedName("limit")
@@ -254,15 +246,18 @@ public class HomeSearchViewModel extends BaseListViewModel {
         @SerializedName("mdesc")
         private int mdesc;
         @SerializedName("sprice")
-        private double sprice = 0;
+        private String sprice = "0";
         @SerializedName("eprice")
-        private double eprice = 0;
+        private String eprice = "0";
         @SerializedName("only")
         private int only = 1;
 
+        public String cat;
+        public String shopId = "2";
+
         public SearchResultParamsNew(String urlids, String keyword, int msort, int mdesc) {
             this.urlids = urlids;
-            this.keyword = keyword;
+            this.cat = keyword;
             this.msort = msort;
             this.mdesc = mdesc;
         }
@@ -339,19 +334,19 @@ public class HomeSearchViewModel extends BaseListViewModel {
             this.mdesc = mdesc;
         }
 
-        public double getSprice() {
+        public String getSprice() {
             return sprice;
         }
 
-        public void setSprice(double sprice) {
+        public void setSprice(String sprice) {
             this.sprice = sprice;
         }
 
-        public double getEprice() {
+        public String getEprice() {
             return eprice;
         }
 
-        public void setEprice(double eprice) {
+        public void setEprice(String eprice) {
             this.eprice = eprice;
         }
 
