@@ -255,6 +255,21 @@ public class PageAdapterNew {
                     ImageLoader.get().load(imgB, ApiConstants.XLJimgHost+itemB.getImageUrl());
                     goodsNameB.setText(itemB.getGoodsName());
                     priceB.setText("RMB/"+itemB.getShopPrice());
+
+                    brandAview.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View view) {
+                            openGoodsDetail(itemA.getGoodsId()+"");
+                        }
+                    });
+
+                    brandBview.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View view) {
+                            openGoodsDetail(itemB.getGoodsId()+"");
+                        }
+                    });
+
                 }else if(list.size() == 1){
                     brandBview.setVisibility(View.INVISIBLE);
                 }else{
