@@ -68,7 +68,7 @@
                 android:layout_height="wrap_content"
                 android:gravity="center_vertical"
                 android:padding="10dp"
-                android:background="@android:color/white"
+                android:background="@drawable/white_touch"
                 android:orientation="horizontal">
                 <TextView
                     android:layout_width="wrap_content"
@@ -89,7 +89,7 @@
                 android:layout_marginTop="10dp"
                 android:layout_marginBottom="10dp"
                 android:gravity="center_vertical"
-                android:background="@android:color/white"
+                android:background="@drawable/white_touch"
                 android:padding="10dp"
                 android:orientation="horizontal">
                 <TextView
@@ -108,7 +108,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:gravity="center_vertical"
-                android:background="@android:color/white"
+                android:background="@drawable/white_touch"
                 android:padding="10dp"
                 android:orientation="horizontal">
                 <TextView
@@ -129,7 +129,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:gravity="center_vertical"
-                android:background="@android:color/white"
+                android:background="@drawable/white_touch"
                 android:padding="10dp"
                 android:orientation="horizontal">
                 <TextView
@@ -150,7 +150,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:gravity="center_vertical"
-                android:background="@android:color/white"
+                android:background="@drawable/white_touch"
                 android:padding="10dp"
                 android:orientation="horizontal">
                 <TextView
@@ -172,7 +172,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:gravity="center_vertical"
-                android:background="@android:color/white"
+                android:background="@drawable/white_touch"
                 android:padding="10dp"
                 android:orientation="horizontal">
                 <TextView
@@ -193,7 +193,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:gravity="center_vertical"
-                android:background="@android:color/white"
+                android:background="@drawable/white_touch"
                 android:padding="10dp"
                 android:orientation="horizontal">
                 <TextView
@@ -215,7 +215,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:gravity="center_vertical"
-                android:background="@android:color/white"
+                android:background="@drawable/white_touch"
                 android:padding="10dp"
                 android:orientation="horizontal">
                 <TextView
@@ -230,11 +230,12 @@
                     android:gravity="right"
                     android:drawableRight="@drawable/ic_back_right"/>
             </LinearLayout>
+            <View style="@style/DeepUnderLine"/>
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:gravity="center_vertical"
-                android:background="@android:color/white"
+                android:background="@drawable/white_touch"
                 android:padding="10dp"
                 android:orientation="horizontal">
                 <TextView
