@@ -253,7 +253,7 @@ public class HomeSearchViewModel extends BaseListViewModel {
         private int only = 1;
 
         public String cat;
-        public String shopId = "2";
+        public String shopId = "1";
 
         public SearchResultParamsNew(String urlids, String keyword, int msort, int mdesc) {
             this.urlids = urlids;
