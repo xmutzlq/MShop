@@ -86,16 +86,18 @@
                     <include
                         android:id="@+id/xlj_layout_ticket"
                         layout="@layout/xlj_layout_ticket"/>
-                    <View style="@style/SpaceLine" />
+                    <View style="@style/SpaceLine" android:visibility="gone" />
                     <!--已选-->
                     <include
                         android:id="@+id/xlj_layout_choice"
-                        layout="@layout/xlj_layout_choice"/>
-                    <View style="@style/SpaceLine"/>
+                        layout="@layout/xlj_layout_choice"
+                        android:visibility="gone"/>
+                    <View style="@style/SpaceLine" android:visibility="gone"/>
                     <!--评论-->
                     <include android:id="@+id/layout_det_comment"
-                        layout="@layout/layout_det_comment"/>
-                    <View style="@style/SpaceLine" />
+                        layout="@layout/layout_det_comment"
+                        android:visibility="gone"/>
+                    <View style="@style/SpaceLine" android:visibility="gone" />
                     <!--推荐-->
                     <include android:id="@+id/layout_det_recommend"
                         layout="@layout/layout_det_recommend"></include>
