@@ -82,8 +82,12 @@ public abstract class BasePagingActivity<VB extends ViewDataBinding> extends Bas
             public void onScrollStateChanged(RecyclerView recyclerView, int newState) {
                 super.onScrollStateChanged(recyclerView, newState);
                 if (LoadMoreHelper.isLoadMore(recyclerView, newState)
-                        && pagingHelper != null && !pagingHelper.isFull()) {
-                    pagingHelper.onLoadMore();
+                        && pagingHelper != null) {
+                    if(pagingHelper.getCurrentPage() == pagingHelper.getTotalPage()) {
+                        if(adapter != null) adapter.loadMoreEnd();
+                    } else {
+                        pagingHelper.onLoadMore();
+                    }
                 }
             }
         });
@@ -114,10 +118,7 @@ public abstract class BasePagingActivity<VB extends ViewDataBinding> extends Bas
                             if(adapter != null) adapter.loadMoreEnd();
                         }
                     } else if (refreshListModel.isUpdateType()) {
-                        LogUtils.tag("zlq").e("currentPage = " + pagingHelper.getCurrentPage() +
-                                "totalPage = " + pagingHelper.getTotalPage());
-                        if(refreshListModel.list == null || refreshListModel.list.size() == 0
-                                || pagingHelper.listViewModel.isEnd) {
+                        if(refreshListModel.list == null || refreshListModel.list.size() == 0) {
                             if(adapter != null) adapter.loadMoreEnd();
                         } else {
                             if(adapter != null) adapter.addData(refreshListModel.list);

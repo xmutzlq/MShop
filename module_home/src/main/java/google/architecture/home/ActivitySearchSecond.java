@@ -57,6 +57,8 @@ public class ActivitySearchSecond extends BasePagingActivity<ActivitySearchSecon
 
     private String searchInputValue;
     private String searchInputId;
+    private String searchInputCatId;
+
     private boolean isPriceLower;
     private boolean hasLoadFilter;
 
@@ -124,8 +126,9 @@ public class ActivitySearchSecond extends BasePagingActivity<ActivitySearchSecon
         setCanBack(false);
         setTitleName(getString(R.string.xlj_goods_list));
 
-        searchInputValue = getIntent().getExtras().getString(CommKeyUtil.EXTRA_VALUE, "0"); //分类项中的：catId
+        searchInputValue = getIntent().getExtras().getString(CommKeyUtil.EXTRA_VALUE, ""); //分类项中的：catId
         searchInputId = getIntent().getExtras().getString(CommKeyUtil.EXTRA_KEY, "0"); //分类项中的：urlids
+        searchInputCatId = getIntent().getExtras().getString(CommKeyUtil.EXTRA_KEY_2, "0");
 
         //搜索结果
         binding.tvSearch2Result.setText(searchInputValue);
@@ -183,9 +186,9 @@ public class ActivitySearchSecond extends BasePagingActivity<ActivitySearchSecon
         Looper.myQueue().addIdleHandler(() -> {
             mHomeSearchViewModel = new HomeSearchViewModel();
             setListViewModel(mHomeSearchViewModel);
-            LogUtils.tag("zlq").e("searchInputId = " + searchInputId + ", searchInputValue = " + searchInputValue);
+            LogUtils.tag("zlq").e("searchInputId = " + searchInputId + ", searchInputCatId = " + searchInputCatId);
 //            mHomeSearchViewModel.loadSearchResultData(searchInputId, searchInputValue);
-            mHomeSearchViewModel.loadSearchResultDataNew(searchInputId, searchInputValue, 1, 0);
+            mHomeSearchViewModel.loadSearchResultDataNew(searchInputId, searchInputCatId, searchInputValue, 1, 0);
             pagingHelper.onRefresh();
             return false;
         });
@@ -304,22 +307,22 @@ public class ActivitySearchSecond extends BasePagingActivity<ActivitySearchSecon
                 break;
                 //2 = 新品
             case CommFilterTabView.TAB_NEWEST:
-                mHomeSearchViewModel.loadSearchResultDataNew(searchInputId, searchInputValue, 2, 0);
+                mHomeSearchViewModel.loadSearchResultDataNew(searchInputId, searchInputCatId, searchInputValue, 2, 0);
                 break;
                 //3 = 人气
             case CommFilterTabView.TAB_HOT:
-                mHomeSearchViewModel.loadSearchResultDataNew(searchInputId, searchInputValue, 3, 0);
+                mHomeSearchViewModel.loadSearchResultDataNew(searchInputId, searchInputCatId, searchInputValue, 3, 0);
                 break;
                 //1 = 默认
             case CommFilterTabView.TAB_DEFAULT:
-                mHomeSearchViewModel.loadSearchResultDataNew(searchInputId, searchInputValue, 1, 0);
+                mHomeSearchViewModel.loadSearchResultDataNew(searchInputId, searchInputCatId, searchInputValue, 1, 0);
                 break;
                 //0：升序 1：降序
             case CommFilterTabView.TAB_DEFAULT_AES: //默认—升
-                mHomeSearchViewModel.loadSearchResultDataNew(searchInputId, searchInputValue, 1, 0);
+                mHomeSearchViewModel.loadSearchResultDataNew(searchInputId, searchInputCatId, searchInputValue, 1, 0);
                 break;
             case CommFilterTabView.TAB_DEFAULT_DES: //默认—降
-                mHomeSearchViewModel.loadSearchResultDataNew(searchInputId, searchInputValue, 1, 1);
+                mHomeSearchViewModel.loadSearchResultDataNew(searchInputId, searchInputCatId, searchInputValue, 1, 1);
                 break;
         }
         pagingHelper.onRefresh();

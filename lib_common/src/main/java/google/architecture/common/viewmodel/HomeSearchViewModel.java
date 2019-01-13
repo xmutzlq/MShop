@@ -55,8 +55,8 @@ public class HomeSearchViewModel extends BaseListViewModel {
         searchResultParams = new SearchResultParams(search_id, search_name, orderField, orderDirection, min_price, max_price, otherParams);
     }
 
-    public void loadSearchResultDataNew(String urlids, String keyword, int msort, int mdesc) {
-        searchResultParamsNew = new SearchResultParamsNew(urlids, keyword, msort, mdesc);
+    public void loadSearchResultDataNew(String urlids, String catId, String keyword, int msort, int mdesc) {
+        searchResultParamsNew = new SearchResultParamsNew(urlids, catId, keyword, msort, mdesc);
     }
 
     public void loadHotData() {
@@ -255,9 +255,10 @@ public class HomeSearchViewModel extends BaseListViewModel {
         public String cat;
         public String shopId = "1";
 
-        public SearchResultParamsNew(String urlids, String keyword, int msort, int mdesc) {
+        public SearchResultParamsNew(String urlids, String catId, String keyword, int msort, int mdesc) {
             this.urlids = urlids;
-            this.cat = keyword;
+            this.cat = catId;
+            this.keyword = keyword;
             this.msort = msort;
             this.mdesc = mdesc;
         }
