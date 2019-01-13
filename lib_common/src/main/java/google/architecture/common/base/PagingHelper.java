@@ -60,6 +60,10 @@ public class PagingHelper implements SwipeRefreshLayout.OnRefreshListener {
         return listViewModel.isFull();
     }
 
+    public boolean isFullList() {
+        return listViewModel.isFullList();
+    }
+
     public int getCurrentPage() {
         return listViewModel.page;
     }

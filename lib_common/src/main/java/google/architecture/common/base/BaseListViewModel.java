@@ -3,6 +3,8 @@ package google.architecture.common.base;
 import android.databinding.ObservableBoolean;
 import android.databinding.ObservableList;
 
+import com.apkfuns.logutils.LogUtils;
+
 import java.util.List;
 
 import google.architecture.common.viewmodel.UIViewModel;
@@ -30,6 +32,10 @@ public abstract class BaseListViewModel extends UIViewModel implements ErrorCons
         return isRefresh && page == pageTotal;
     }
 
+    public boolean isFullList() {
+        return (page - 1) == pageTotal;
+    }
+
     @Override
     public void onPresenter(int code, String msg) {
         if(page > NORMAL_PAGE) page--;
@@ -45,6 +51,7 @@ public abstract class BaseListViewModel extends UIViewModel implements ErrorCons
             page = NORMAL_PAGE;
         } else {
             if (isRunning.get() || isEmpty.get() || page > pageTotal) {
+                isEnd = true;
                 ending.set(true);
                 return;
             }
