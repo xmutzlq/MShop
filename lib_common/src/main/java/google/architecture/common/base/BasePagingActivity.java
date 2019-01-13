@@ -117,7 +117,7 @@ public abstract class BasePagingActivity<VB extends ViewDataBinding> extends Bas
                         LogUtils.tag("zlq").e("currentPage = " + pagingHelper.getCurrentPage() +
                                 "totalPage = " + pagingHelper.getTotalPage());
                         if(refreshListModel.list == null || refreshListModel.list.size() == 0
-                                || refreshListModel.list.size() < pagingHelper.listViewModel.pageTotal) {
+                                || pagingHelper.listViewModel.isEnd) {
                             if(adapter != null) adapter.loadMoreEnd();
                         } else {
                             if(adapter != null) adapter.addData(refreshListModel.list);
