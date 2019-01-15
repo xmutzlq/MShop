@@ -13,6 +13,7 @@ public class SpecData {
     public static final int TYPE_COLOR = 1; //颜色
     public static final int TYPE_COUNT = 2; //数量
     public static final int TEXT_SERVICE = 3; //服务
+    public static final int TEXT_CONFIRM = 4; //确定
 
     public int type; //类型
     public String name; //名称

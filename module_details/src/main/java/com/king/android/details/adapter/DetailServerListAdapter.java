@@ -25,13 +25,13 @@ public class DetailServerListAdapter extends BaseAdapter {
 
     private List<ServerParams> serverList = new ArrayList<>();
 
-    private static final int imgIds[] = {R.mipmap.zheng, R.mipmap.serviceqitiantuihuan, R.mipmap.you, R.mipmap.ti, R.mipmap.qian};
-    private static final String titles[] = {"正品保障", "七天无理由退换", "全场满399免邮", "支持线下店铺自提", "支持货到付款"};
+    private static final int imgIds[] = {R.mipmap.zheng, R.mipmap.serviceqitiantuihuan, R.mipmap.you, R.mipmap.ti/*, R.mipmap.qian*/};
+    private static final String titles[] = {"正品保障", "七天无理由退换", "全场满300免邮", "支持线下店铺自提"/*, "支持货到付款"*/};
     private static final String des[] = {"专业精选，正品护航",
             "消费者在满足7天无理由退换货申请条件的前提下，可以提出“7天无理由退换货”的申请",
-            "全场订单满399元即可免邮费",
-            "同城有线下店铺的，可支持到店提货",
-            "货到付款，安心便捷"
+            "全场订单满300元即可免邮费",
+            "同城有线下店铺的，可支持到店提货"//,
+            /*"货到付款，安心便捷"*/
     };
 
     public DetailServerListAdapter(Context context) {

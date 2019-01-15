@@ -22,6 +22,7 @@ public class SpecAdapter extends MultipleItemRvAdapter<SpecData, BaseViewHolder>
     public static final int TYPE_COLOR = 100; //颜色
     public static final int TYPE_COUNT = 200; //数量
     public static final int TYPE_SERVICE = 300; //服务
+    public static final int TYPE_CONFIRM = 400; //确定
 
     private ColorSpecProvider.IItemCheckedListener itemCheckedListener;
 
@@ -38,6 +39,8 @@ public class SpecAdapter extends MultipleItemRvAdapter<SpecData, BaseViewHolder>
         } else if (specData.type == SpecData.TYPE_COUNT) {
             return TYPE_COUNT;
         } else if (specData.type == SpecData.TEXT_SERVICE) {
+            return TYPE_SERVICE;
+        } else if (specData.type == SpecData.TEXT_CONFIRM) {
             return TYPE_SERVICE;
         }
         return 0;

@@ -91,8 +91,8 @@
                     <include
                         android:id="@+id/xlj_layout_choice"
                         layout="@layout/xlj_layout_choice"
-                        android:visibility="gone"/>
-                    <View style="@style/SpaceLine" android:visibility="gone"/>
+                        android:visibility="visible"/>
+                    <View style="@style/SpaceLine" android:visibility="visible"/>
                     <!--评论-->
                     <include android:id="@+id/layout_det_comment"
                         layout="@layout/layout_det_comment"

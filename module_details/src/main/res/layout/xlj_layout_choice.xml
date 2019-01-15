@@ -6,6 +6,7 @@
         android:paddingTop="@dimen/size_15dp"
         android:paddingBottom="@dimen/size_15dp"
         android:orientation="vertical">
+        <!-- 已选 -->
         <FrameLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
@@ -14,9 +15,11 @@
                 layout="@layout/xlj_layout_choice_item" />
         </FrameLayout>
 
+        <!-- 服务 -->
         <FrameLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:visibility="visible"
             android:paddingTop="@dimen/size_15dp"
             android:paddingBottom="@dimen/size_15dp">
             <include
@@ -24,9 +27,11 @@
                 layout="@layout/xlj_layout_choice_item" />
         </FrameLayout>
 
+        <!-- 参数 -->
         <FrameLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            android:visibility="gone" >
             <include
                 android:id="@+id/xlj_layout_choice_params"
                 layout="@layout/xlj_layout_choice_item" />

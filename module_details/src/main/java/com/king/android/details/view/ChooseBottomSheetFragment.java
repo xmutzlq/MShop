@@ -151,10 +151,10 @@ public class ChooseBottomSheetFragment extends BaseBottomSheetFrag {
         sizeSpec.item1 = specsSize.detailSpecInfos;
         specDatas.add(sizeSpec);
         //件数
-        SpecData countSpec = new SpecData();
+        /*SpecData countSpec = new SpecData();
         countSpec.type = SpecData.TYPE_COUNT;
         countSpec.count = 1;
-        specDatas.add(countSpec);
+        specDatas.add(countSpec);*/
 
         google.architecture.coremodel.data.xlj.goodsdetail.List list1 =
                 new google.architecture.coremodel.data.xlj.goodsdetail.List();

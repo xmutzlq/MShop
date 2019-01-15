@@ -291,6 +291,7 @@ public class DetCommodityNewFragment extends BaseFragment<FragmentDetCommodityBi
         binding.xljLayoutChoice.xljLayoutChoiceParams.choiceItemCenterStr.setText(R.string.detail_param_str);
 
         if(!TextUtils.isEmpty(color) && !TextUtils.isEmpty(size)) {
+            //已选
             binding.xljLayoutChoice.xljLayoutChoiceChoose.getRoot().setOnClickListener(v -> {
                 ChooseBottomSheetFragment chooseBottomSheetFragment = new ChooseBottomSheetFragment();
 

@@ -54,14 +54,6 @@
                     android:textSize="@dimen/text_size_20sp"
                     android:text="¥0.00"/>
                 <TextView
-                    android:id="@+id/goods_save_tv"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="@dimen/size_4dp"
-                    android:textColor="@color/color_9b9b9b"
-                    android:textSize="@dimen/text_size_14sp"
-                    android:text="总库存0 店铺库存0"/>
-                <TextView
                     android:id="@+id/goods_choose_shown_tv"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -69,6 +61,15 @@
                     android:textColor="@color/colorAccent"
                     android:textSize="@dimen/text_size_14sp"
                     android:text="已选择"/>
+                <TextView
+                    android:id="@+id/goods_save_tv"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/size_4dp"
+                    android:textColor="@color/color_9b9b9b"
+                    android:visibility="invisible"
+                    android:textSize="@dimen/text_size_14sp"
+                    android:text="总库存0 店铺库存0"/>
             </LinearLayout>
 
             <ImageView
