@@ -41,6 +41,10 @@ public abstract class BaseIdleActivity extends BaseActivityFrame {
         softKeyboardStateHelper.setKeyBoardListener(new KeyboardChangeListener.KeyBoardListener() {
             @Override
             public void onKeyboardChange(boolean isShow, int keyboardHeight) {
+                if(!canIdle()){
+                    return;
+                }
+
                 if (isShow) {
                     //键盘的弹出
                     mHandler.removeMessages(WHAT_SHOW_DIALOG);
@@ -53,9 +57,20 @@ public abstract class BaseIdleActivity extends BaseActivityFrame {
 
     }
 
+    /**
+     * 默认为可以检测空闲时间
+     * @return
+     */
+    protected boolean canIdle(){
+        return true;
+    }
+
     @Override
     protected void onResume() {
         super.onResume();
+        if(!canIdle()){
+            return;
+        }
         restTime();
         isPause = false;
     }
@@ -78,6 +93,10 @@ public abstract class BaseIdleActivity extends BaseActivityFrame {
     @Override
     protected void onPause() {
         super.onPause();
+        if(!canIdle()){
+            return;
+        }
+
         if(mHandler != null && mHandler.hasMessages(WHAT_SHOW_DIALOG)){
             mHandler.removeMessages(WHAT_SHOW_DIALOG);
         }
@@ -97,6 +116,10 @@ public abstract class BaseIdleActivity extends BaseActivityFrame {
 
     @Override
     public boolean dispatchKeyEvent(KeyEvent event) {
+        if(!canIdle()){
+            return super.dispatchKeyEvent(event);
+        }
+
         switch (event.getAction()){
             case KeyEvent.ACTION_DOWN:
                 mHandler.removeMessages(WHAT_SHOW_DIALOG);
@@ -110,6 +133,10 @@ public abstract class BaseIdleActivity extends BaseActivityFrame {
 
     @Override
     public boolean dispatchTouchEvent(MotionEvent ev) {
+        if(!canIdle()){
+            return super.dispatchTouchEvent(ev);
+        }
+
         switch (ev.getAction()){
             case MotionEvent.ACTION_DOWN:{
                 mHandler.removeMessages(WHAT_SHOW_DIALOG);
@@ -124,6 +151,10 @@ public abstract class BaseIdleActivity extends BaseActivityFrame {
 
     @Override
     public boolean onTouchEvent(MotionEvent event) {
+        if(!canIdle()){
+            return super.onTouchEvent(event);
+        }
+
         switch (event.getAction()){
             case MotionEvent.ACTION_DOWN:{
                 mHandler.removeMessages(WHAT_SHOW_DIALOG);
