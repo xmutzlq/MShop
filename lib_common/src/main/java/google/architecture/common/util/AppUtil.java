@@ -11,7 +11,9 @@ import android.content.pm.PackageManager;
 import android.net.Uri;
 import android.os.Build;
 import android.provider.Settings;
+import android.support.v4.content.FileProvider;
 
+import java.io.File;
 import java.lang.reflect.Field;
 import java.lang.reflect.InvocationTargetException;
 import java.util.List;
@@ -174,4 +176,30 @@ public class AppUtil {
 		}
 		return false;
 	}
+
+	/**
+	 * 安装程序
+	 *
+	 * @param apkFile
+	 * @param context
+	 */
+	public static void Install(final Context context, final File apkFile) {
+		if (!apkFile.exists()) {
+			return;
+		}
+		Uri uri;
+		if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
+			uri = FileProvider.getUriForFile(context,
+					context.getPackageName() + ".fileprovider",
+					apkFile);
+		} else {
+			uri = Uri.fromFile(apkFile);
+		}
+		Intent intent = new Intent(Intent.ACTION_VIEW);
+		intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+		intent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
+		intent.setDataAndType(uri, "application/vnd.android.package-archive");
+		context.startActivity(intent);
+	}
+
 }

@@ -2,27 +2,39 @@ package google.architecture.common.upgrade;
 
 import android.app.Activity;
 import android.app.DownloadManager;
+import android.content.BroadcastReceiver;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
+import android.database.ContentObserver;
+import android.database.Cursor;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Environment;
 import android.os.Handler;
 import android.os.Looper;
 import android.os.Message;
+import android.util.Log;
+import android.view.View;
 import android.view.View.OnClickListener;
+import android.widget.ProgressBar;
+import android.widget.TextView;
 
 import com.apkfuns.logutils.LogUtils;
 
 import java.io.File;
 
+import google.architecture.common.R;
 import google.architecture.common.base.AppContext;
 import google.architecture.common.base.ViewManager;
+import google.architecture.common.dialog.CTAlertDialog;
 import google.architecture.common.dialog.DialogsUtil;
+import google.architecture.common.util.AppUtil;
 import google.architecture.common.util.ToastUtils;
 import google.architecture.coremodel.data.VersionInfo;
+import google.architecture.coremodel.data.xlj.AppVersion;
 
 /**
  * 自动更新 <br/>
@@ -39,7 +51,7 @@ public class UpdateManager {
 	private Activity mActivity;
 
 	/* 请求服务端是否有更新时得到的版本信息 */
-	private VersionInfo mUpdateAPKItem;
+	private AppVersion mUpdateAPKItem;
 	private boolean mShowNewest = false;
 
 	/**
@@ -60,12 +72,19 @@ public class UpdateManager {
 			}
 		}
 	};
+	private ProgressBar mProgressBar;
+	private TextView mProgress;
+	private CTAlertDialog dialog;
+	private long mRequestId;
+	private DownloadManager mDownloadManager;
+	private DownloadObserver mDownloadObserver;
+	private File mApkFile;
 
 	/**
 	 * @param activity
 	 *            构造函数
 	 */
-	public UpdateManager(Activity activity, VersionInfo info) {
+	public UpdateManager(Activity activity, AppVersion info) {
 		mUpdateAPKItem = info;
 		this.mActivity = activity;
 	}
@@ -75,7 +94,7 @@ public class UpdateManager {
 	 */
 	public UpdateManager update() {
 		Message message = handler.obtainMessage();
-		message.obj = mUpdateAPKItem.getUpdate_log();
+		message.obj = mUpdateAPKItem.getUpdateLog();
 		message.what = CREATE_DIALOG;
 		handler.sendMessage(message);
 		return this;
@@ -91,7 +110,7 @@ public class UpdateManager {
 	}
 
 	private void showDownLoadDialog(final Activity activity, String message) {
-		final boolean isForceUpdate = Integer.valueOf(mUpdateAPKItem.getIs_force()) == 1;
+		final boolean isForceUpdate = Integer.valueOf(mUpdateAPKItem.getIsForce()) == 1;
 		OnClickListener commotListener = v -> {
 			if(!canDownloadState(activity)) { // 用户禁止了下载服务
 				DialogsUtil.commTipDialog(activity, "您已禁用了下载服务\n请进入下载管理程序界面启用下载服务", v1 -> {
@@ -106,7 +125,8 @@ public class UpdateManager {
 					activity.startActivity(intent);
 				});
 			} else {
-				intoDownloadManager(activity);
+				//intoDownloadManager(activity);
+				initDownloadDialog(activity, isForceUpdate);
 			}
 		};
 
@@ -127,7 +147,7 @@ public class UpdateManager {
 		}
 		
 		//确定下载的路径
-		String apkName = mUpdateAPKItem.getVersion_name() + ".apk";
+		String apkName = mUpdateAPKItem.getVersionName() + ".apk";
 		String dirPath = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS).getAbsolutePath();
         dirPath = dirPath.endsWith(File.separator) ? dirPath : dirPath + File.separator;
         String downloadApkPath = dirPath + apkName;
@@ -140,8 +160,8 @@ public class UpdateManager {
         }
         
 		DownloadManager dManager = (DownloadManager) activity.getSystemService(Context.DOWNLOAD_SERVICE);
-		LogUtils.tag("zlq").e("download_url = " + mUpdateAPKItem.getDownload_url());
-		Uri uri = Uri.parse(mUpdateAPKItem.getDownload_url().trim());
+		LogUtils.tag("zlq").e("download_url = " + mUpdateAPKItem.getDownloadUrl());
+		Uri uri = Uri.parse(mUpdateAPKItem.getDownloadUrl().trim());
 		DownloadManager.Request request = new DownloadManager.Request(uri);
 		//支持移动网络和WIFI下载
 		request.setAllowedNetworkTypes(DownloadManager.Request.NETWORK_MOBILE | DownloadManager.Request.NETWORK_WIFI); 
@@ -186,4 +206,138 @@ public class UpdateManager {
         }
         return true;
     }
+
+
+	private void initDownloadDialog(Activity activity,boolean isForceUpdate) {
+
+		if(!isDownloadManagerAvailable()) {
+			return;
+		}
+
+		//确定下载的路径
+		String apkName = mUpdateAPKItem.getVersionName() + ".apk";
+		String dirPath = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS).getAbsolutePath();
+		dirPath = dirPath.endsWith(File.separator) ? dirPath : dirPath + File.separator;
+		String downloadApkPath = dirPath + apkName;
+		LogUtils.tag("zlq").e("downloadApkPath = " + downloadApkPath);
+		//要检查本地是否有安装包，有则删除重新下
+		File apkFile = new File(downloadApkPath);
+		if (apkFile.exists()) {
+			boolean isDelSuc = apkFile.delete();
+			LogUtils.tag("zlq").e("apk[" + apkName + "], isDelelte = " + isDelSuc);
+		}
+
+		mDownloadObserver = new DownloadObserver(new Handler());
+		mDownloadManager = (DownloadManager) activity.getSystemService(Context.DOWNLOAD_SERVICE);
+		activity.getContentResolver().registerContentObserver(Uri.parse("content://downloads/"), true, mDownloadObserver);
+		LogUtils.tag("zlq").e("download_url = " + mUpdateAPKItem.getDownloadUrl());
+		Uri uri = Uri.parse(mUpdateAPKItem.getDownloadUrl().trim());
+		DownloadManager.Request request = new DownloadManager.Request(uri);
+		//支持移动网络和WIFI下载
+		request.setAllowedNetworkTypes(DownloadManager.Request.NETWORK_MOBILE | DownloadManager.Request.NETWORK_WIFI);
+		request.setVisibleInDownloadsUi(true); // 设置为可见和可管理
+		request.setAllowedOverRoaming(false); //移动网络不漫游
+		request.setMimeType("application/vnd.android.package-archive");
+
+		if (Build.VERSION.SDK_INT > Build.VERSION_CODES.HONEYCOMB) {
+			request.allowScanningByMediaScanner(); // 设置为可被媒体扫描器找到
+			request.setNotificationVisibility(DownloadManager.Request.VISIBILITY_VISIBLE_NOTIFY_COMPLETED); //通知栏可见
+		}
+
+		// 设置下载路径和文件名
+		// 可能无法创建Download文件夹，如无SDcard情况，系统会默认将路径设置为/data/data/com.android.providers.downloads/cache/xxx.apk
+		if (Environment.getExternalStorageState().equals(Environment.MEDIA_MOUNTED)) {
+			request.setDestinationInExternalPublicDir(Environment.DIRECTORY_DOWNLOADS, apkName);
+		}
+
+		long refernece = mDownloadManager.enqueue(request); // XXX 启动下载(此处发生过系统异常:用户禁用了下载服务)
+		mRequestId = refernece;
+		LogUtils.tag("zlq").e("refernece = " + refernece);
+		// 把当前下载的ID保存起来
+		SharedPreferences sPreferences = activity.getSharedPreferences(mActivity.getPackageName(), 0);
+		sPreferences.edit().putLong(AppContext.VERSION, refernece).commit();
+
+		View downloadView = View.inflate(activity,R.layout.download_dialog,null);
+		mProgressBar = (ProgressBar) downloadView.findViewById(R.id.progress);
+		mProgress = (TextView) downloadView.findViewById(R.id.progressTV);
+		dialog = new CTAlertDialog(activity);
+		dialog.setCancelable(false);
+		dialog.setView(downloadView);
+		dialog.setBtnCancelTitle("取消", new CTAlertDialog.OnClickListener() {
+			@Override
+			public void onClick(View view, DialogInterface dialog) {
+
+				mDownloadManager.remove(mRequestId);
+				dialog.dismiss();
+				if(isForceUpdate){
+					ViewManager.getInstance().finishAllActivity();
+					android.os.Process.killProcess(android.os.Process.myPid());
+				}
+			}
+		});
+		dialog.setBtnConfirmVisibility(false);
+		/*dialog.setBtnConfirmTitle("后台下载", new CTAlertDialog.OnClickListener() {
+			@Override
+			public void onClick(View view, DialogInterface dialog) {
+				dialog.dismiss();
+			}
+		});*/
+		dialog.show();
+
+		dialog.setOnDismissListener(new DialogInterface.OnDismissListener() {
+			@Override
+			public void onDismiss(DialogInterface dialogInterface) {
+				if (mDownloadObserver != null) {
+					mActivity.getContentResolver().unregisterContentObserver(mDownloadObserver);
+				}
+			}
+		});
+	}
+
+	private class DownloadObserver extends ContentObserver {
+
+		private DownloadObserver(Handler handler) {
+			super(handler);
+		}
+
+		@Override
+		public void onChange(boolean selfChange, Uri uri) {
+			Log.i("downloadUpdate: ", "onChange(boolean selfChange, Uri uri)");
+			queryDownloadStatus();
+		}
+	}
+
+	private void queryDownloadStatus() {
+
+		DownloadManager.Query query = new DownloadManager.Query().setFilterById(mRequestId);
+		Cursor cursor = null;
+		try {
+			cursor = mDownloadManager.query(query);
+			if (cursor != null && cursor.moveToFirst()) {
+				//已经下载的字节数
+				long currentBytes = cursor.getInt(cursor.getColumnIndexOrThrow(DownloadManager.COLUMN_BYTES_DOWNLOADED_SO_FAR));
+				//总需下载的字节数
+				long totalBytes = cursor.getInt(cursor.getColumnIndexOrThrow(DownloadManager.COLUMN_TOTAL_SIZE_BYTES));
+				//状态所在的列索引
+				int status = cursor.getInt(cursor.getColumnIndex(DownloadManager.COLUMN_STATUS));
+				Log.i("downloadUpdate: ", currentBytes + " " + totalBytes + " " + status);
+
+				mProgressBar.setProgress((int) (currentBytes * 100 / totalBytes));
+				mProgress.setText((int) (currentBytes * 100 / totalBytes)+"%");
+
+				if (DownloadManager.STATUS_SUCCESSFUL == status) {
+
+					if (dialog != null && dialog.isShowing()){
+						dialog.dismiss();
+					}
+//					AppUtil.Install(mActivity,mApkFile);
+				}
+			}
+		} finally {
+			if (cursor != null) {
+				cursor.close();
+			}
+		}
+	}
+
 }

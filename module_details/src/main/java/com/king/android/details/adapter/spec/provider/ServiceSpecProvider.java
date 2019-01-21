@@ -35,7 +35,7 @@ public class ServiceSpecProvider extends BaseItemProvider<SpecData, BaseViewHold
     @Override
     public void convert(BaseViewHolder helper, SpecData data, int position) {
         helper.setText(R.id.spec_item_color_title, data.name);
-        SpecFilterTagNewAdapter adapter = new SpecFilterTagNewAdapter(mContext, data.item1);
+        SpecFilterTagNewAdapter adapter = new SpecFilterTagNewAdapter(mContext, data.item1,true);
         TagFlowLayout tagFlowLayout = helper.getView(R.id.filter_spec_layout);
         tagFlowLayout.setMaxSelectCount(1);
         tagFlowLayout.setOnTagClickListener((view, position1, parent) -> {

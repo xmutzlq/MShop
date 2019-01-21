@@ -170,6 +170,8 @@ public class ApiConstants {
     public static final String XLJ_Get_Tecent_Ticket = URL_BASE + "cgi-bin/ticket/getticket";
     public static final String XLJ_Get_Tecent_WX_OpenId = URL_BASE + "sns/oauth2/access_token";
     public static final String XLJ_Get_FootScan_Token = URL_BASE + "UAV2.0.0/api/PhoneVm/CheckPhoneNumForUA";
+    public static final String XLJ_Get_App_Version_Info = URL_BASE + "app/shops/getUpdate";
+    public static final String XLJ_Get_Try_Data = URL_BASE + "app/TryApi/getTryData";
 
     public static int IDLE_SECOND = 30;//系统空闲时间
 

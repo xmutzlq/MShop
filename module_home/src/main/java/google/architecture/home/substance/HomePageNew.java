@@ -55,7 +55,7 @@ public class HomePageNew implements ContantDelegate, PageAdapter.IActionTitleRig
         itemDelegates.add(mPageAdapter.initNewCollection(mData.getGoodsList().get(0)));//new Collection
         itemDelegates.add(mPageAdapter.initCommonImageView(R.drawable.tem_img_a));//装饰图片
         itemDelegates.add(mPageAdapter.initHorizontalScrollBrandList(mData.getGoodsList().get(1)));
-        itemDelegates.add(mPageAdapter.initThreeSome(mData.getGoodsList().get(2)));
+        //itemDelegates.add(mPageAdapter.initThreeSome(mData.getGoodsList().get(2)));
         itemDelegates.add(mPageAdapter.initCenterImageView(mData.getFloor().get(6).getImageUrl(),25));
         itemDelegates.add(mPageAdapter.initCommonImageView(mData.getFloor().get(7).getImageUrl()));
         itemDelegates.add(mPageAdapter.initCenterImageView(mData.getFloor().get(8).getImageUrl(),25));

@@ -311,6 +311,8 @@ public class SearchResult {
         private String is_new;
         @SerializedName("is_hot")
         private String is_hot;
+        @SerializedName("rec")
+        private String rec;
 
         public String getGoods_id() {
             return goods_id;
@@ -446,6 +448,14 @@ public class SearchResult {
 
         public void setIs_hot(String is_hot) {
             this.is_hot = is_hot;
+        }
+
+        public String getRec() {
+            return rec;
+        }
+
+        public void setRec(String rec) {
+            this.rec = rec;
         }
 
         @Override

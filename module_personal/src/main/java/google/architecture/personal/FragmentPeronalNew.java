@@ -170,8 +170,14 @@ public class FragmentPeronalNew extends BaseFragment<FragmentPersonalNewBinding>
             checkLogin(null);
         });
 
+        //我的数据
         headerView.findViewById(R.id.btn_my_data).setOnClickListener(view -> {
-            checkLogin(null);
+            checkLogin(new Runnable() {
+                @Override
+                public void run() {
+                    ARouter.getInstance().build(ARouterPath.FootBodyScanAty).navigation(mContext);
+                }
+            });
         });
 
         //下2

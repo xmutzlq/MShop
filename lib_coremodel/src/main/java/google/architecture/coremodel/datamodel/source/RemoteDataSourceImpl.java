@@ -34,7 +34,9 @@ import google.architecture.coremodel.data.SearchResult;
 import google.architecture.coremodel.data.StartInfo;
 import google.architecture.coremodel.data.UploadResultData;
 import google.architecture.coremodel.data.VersionInfo;
+import google.architecture.coremodel.data.xlj.AppVersion;
 import google.architecture.coremodel.data.xlj.FootScanData;
+import google.architecture.coremodel.data.xlj.FullBodyDate;
 import google.architecture.coremodel.data.xlj.PromotionMedia;
 import google.architecture.coremodel.data.xlj.TecentAccessToken;
 import google.architecture.coremodel.data.xlj.TecentResponseResult;
@@ -413,6 +415,16 @@ public class RemoteDataSourceImpl implements IRemoteDataSource {
     @Override
     public Flowable<XLJ_HttpResult<FootScanData>> xlj_getFootScanToken(Map params) {
         return xlj_footScanResult(dataService.xlj_getFootScanToken(params));
+    }
+
+    @Override
+    public Flowable<XLJ_HttpResult<AppVersion>> xlj_getAppVersionInfo(String requestJson) {
+        return xlj_prepareSubscribe(dataService.xlj_getAppVersionInfo(requestJson));
+    }
+
+    @Override
+    public Flowable<XLJ_HttpResult<FullBodyDate>> xlj_getTryData(String requestJson) {
+        return xlj_prepareSubscribe(dataService.xlj_getTryData(requestJson));
     }
 
     /**

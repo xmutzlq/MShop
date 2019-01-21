@@ -45,6 +45,7 @@
         <activity android:name=".ActivityDomainSetting"></activity>
         <activity android:name=".ActivityIdleTimeSetting"></activity>
         <activity android:name=".ActivityFootScan"></activity>
+        <activity android:name=".ActivityFullBodyScan"></activity>
 
         <service android:name=".service.UdpMonitorService" android:process=".remotea" />
 

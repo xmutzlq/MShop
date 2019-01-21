@@ -9,6 +9,7 @@ import com.google.gson.annotations.SerializedName;
 import java.util.Collections;
 import java.util.List;
 
+import google.architecture.common.base.BaseApplication;
 import google.architecture.common.base.BaseListViewModel;
 import google.architecture.coremodel.data.SearchResult;
 import google.architecture.coremodel.datamodel.RefreshListModel;
@@ -144,6 +145,8 @@ public class HomeSearchViewModel extends BaseListViewModel {
         stringBuilder.append("\"keyword\":\""+searchResultParamsNew.keyword+"\",");
         stringBuilder.append("\"sprice\":\""+searchResultParamsNew.sprice+"\",");
         stringBuilder.append("\"eprice\":\""+searchResultParamsNew.eprice+"\",");
+        stringBuilder.append("\"wxunId\":\""+ BaseApplication.getIns().getmUserAccessToken()+"\",");
+        stringBuilder.append("\"mobile\":\""+ BaseApplication.getIns().getmScPhoneNum()+"\",");
         stringBuilder.append("\"only\":\""+searchResultParamsNew.only+"\"");
         stringBuilder.append("}");
 

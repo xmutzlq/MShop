@@ -253,6 +253,27 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"/>
             </LinearLayout>
+            <View style="@style/DeepUnderLine"/>
+            <LinearLayout
+                android:id="@+id/btn_check_app_version"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_vertical"
+                android:background="@drawable/white_touch"
+                android:padding="10dp"
+                android:orientation="horizontal">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    style="@style/TextBlack14"
+                    android:text="检查版本更新"/>
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:gravity="right"
+                    android:drawableRight="@drawable/ic_back_right"/>
+            </LinearLayout>
 
             <TextView
                 android:id="@+id/btn_login_out"

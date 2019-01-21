@@ -32,7 +32,9 @@ import google.architecture.coremodel.data.SearchResult;
 import google.architecture.coremodel.data.StartInfo;
 import google.architecture.coremodel.data.UploadResultData;
 import google.architecture.coremodel.data.VersionInfo;
+import google.architecture.coremodel.data.xlj.AppVersion;
 import google.architecture.coremodel.data.xlj.FootScanData;
+import google.architecture.coremodel.data.xlj.FullBodyDate;
 import google.architecture.coremodel.data.xlj.PromotionMedia;
 import google.architecture.coremodel.data.xlj.TecentAccessToken;
 import google.architecture.coremodel.data.xlj.TecentResponseResult;
@@ -354,5 +356,15 @@ public interface DeHongDataService {
     @Headers({ApiConstants.HEADER_UAV_URL, ApiConstants.HEADER_USE_FROM_REQUEST})
     @POST(ApiConstants.XLJ_Get_FootScan_Token)
     Flowable<XLJ_HttpResult<FootScanData>> xlj_getFootScanToken(@QueryMap Map<String,String> param);
+
+    @Headers({ApiConstants.HEADER_MULTI_URL, ApiConstants.HEADER_USE_JSON_REQUEST})
+    @FormUrlEncoded
+    @POST(ApiConstants.XLJ_Get_App_Version_Info)
+    Flowable<XLJ_HttpResult<AppVersion>> xlj_getAppVersionInfo(@Field("request_json") String requestJson);
+
+    @Headers({ApiConstants.HEADER_MULTI_URL, ApiConstants.HEADER_USE_JSON_REQUEST})
+    @FormUrlEncoded
+    @POST(ApiConstants.XLJ_Get_Try_Data)
+    Flowable<XLJ_HttpResult<FullBodyDate>> xlj_getTryData(@Field("request_json") String requestJson);
 
 }

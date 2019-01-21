@@ -16,11 +16,18 @@
 
         <TextView
             android:id="@+id/choice_item_center_str"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/size_12dp"
+            android:textColor="@color/text_color"
+            android:textSize="@dimen/text_size_14sp"/>
+        <TextView
+            android:id="@+id/choice_item_right_str"
             android:layout_width="0dp"
             android:layout_weight="1"
             android:layout_height="wrap_content"
             android:layout_marginLeft="@dimen/size_12dp"
-            android:textColor="@color/text_color"
+            android:textColor="@color/gray_C1"
             android:textSize="@dimen/text_size_14sp"/>
 
         <TextView

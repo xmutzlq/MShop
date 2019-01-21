@@ -11,6 +11,8 @@ import android.support.design.widget.BottomSheetDialogFragment;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.facebook.drawee.backends.pipeline.Fresco;
+
 import google.architecture.common.R;
 import google.architecture.common.util.ScreenUtils;
 
@@ -76,6 +78,7 @@ public abstract class BaseBottomSheetFrag extends BottomSheetDialogFragment {
         //每次打开都调用该方法 类似于onCreateView 用于返回一个Dialog实例
         dialog = (BottomSheetDialog) super.onCreateDialog(savedInstanceState);
         if (rootView == null) {
+            Fresco.initialize(getContext());
             //缓存下来的View 当为空时才需要初始化 并缓存
             rootView = View.inflate(mContext, getLayoutResId(), null);
             initView();

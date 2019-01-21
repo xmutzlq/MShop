@@ -15,6 +15,7 @@ import google.architecture.common.dialog.DialogsUtil;
 import google.architecture.common.widget.NumberProgressBar;
 import google.architecture.common.widget.OnProgressBarListener;
 import google.architecture.coremodel.data.VersionInfo;
+import google.architecture.coremodel.data.xlj.AppVersion;
 
 public class DownLoadProcess implements DownLoadAPI, OnProgressBarListener {
 
@@ -48,7 +49,7 @@ public class DownLoadProcess implements DownLoadAPI, OnProgressBarListener {
 		};
 	};
 
-	public DownLoadProcess(Activity activity, VersionInfo versionInfo) {
+	public DownLoadProcess(Activity activity, AppVersion versionInfo) {
 		if (activity == null || activity.isFinishing()) return;
 		mActivity = new WeakReference(activity);
 		mUpdateManager = new UpdateManager(mActivity.get(), versionInfo);

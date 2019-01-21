@@ -19,6 +19,14 @@
         <activity android:name=".imgpicker.activity.ImagePickActivity" />
         <activity android:name=".ui.WebActivity"/>
         <activity android:name=".promotion.ActivityPromotion"/>
+
+        <receiver android:name=".receiver.UpdataBroadcastReceiver">
+            <intent-filter>
+                <action android:name="android.intent.action.DOWNLOAD_COMPLETE" />
+                <!--<action android:name="android.intent.action.PACKAGE_INSTALL" />-->
+            </intent-filter>
+        </receiver>
+
     </application>
 
 

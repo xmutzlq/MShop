@@ -32,7 +32,9 @@ import google.architecture.coremodel.data.SearchResult;
 import google.architecture.coremodel.data.StartInfo;
 import google.architecture.coremodel.data.UploadResultData;
 import google.architecture.coremodel.data.VersionInfo;
+import google.architecture.coremodel.data.xlj.AppVersion;
 import google.architecture.coremodel.data.xlj.FootScanData;
+import google.architecture.coremodel.data.xlj.FullBodyDate;
 import google.architecture.coremodel.data.xlj.PromotionMedia;
 import google.architecture.coremodel.data.xlj.TecentAccessToken;
 import google.architecture.coremodel.data.xlj.TecentResponseResult;
@@ -446,5 +448,15 @@ public class DeHongDataRepository implements IRemoteDataSource {
     @Override
     public Flowable<XLJ_HttpResult<FootScanData>> xlj_getFootScanToken(Map map) {
         return remoteDataSource.xlj_getFootScanToken(map);
+    }
+
+    @Override
+    public Flowable<XLJ_HttpResult<AppVersion>> xlj_getAppVersionInfo(String requestJson) {
+        return remoteDataSource.xlj_getAppVersionInfo(requestJson);
+    }
+
+    @Override
+    public Flowable<XLJ_HttpResult<FullBodyDate>> xlj_getTryData(String requestJson) {
+        return remoteDataSource.xlj_getTryData(requestJson);
     }
 }

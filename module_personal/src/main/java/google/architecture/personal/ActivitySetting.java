@@ -20,6 +20,7 @@ import com.tencent.mm.opensdk.openapi.WXAPIFactory;
 import google.architecture.common.base.BaseActivity;
 import google.architecture.common.base.BaseApplication;
 import google.architecture.common.base.listener.AppBrocastAction;
+import google.architecture.common.util.CheckAppVersionUtil;
 import google.architecture.coremodel.datamodel.http.ApiConstants;
 import google.architecture.coremodel.util.PreferencesUtils;
 import google.architecture.personal.databinding.ActivitySettingNewBinding;
@@ -114,6 +115,12 @@ public class ActivitySetting extends BaseActivity<ActivitySettingNewBinding> {
             //ARouter.getInstance().build(ARouterPath.FootScanLoginAty).navigation(ActivitySetting.this);
 //            ARouter.getInstance().build(ARouterPath.WeixinLoginAty).navigation(ActivitySetting.this);
         });
+
+        //检查版本更新
+        findViewById(R.id.btn_check_app_version).setOnClickListener(view ->{
+            CheckAppVersionUtil.checkNewVersion(ActivitySetting.this);
+        });
+
 
         binding.btnHeadSetting.setOnClickListener(v -> {
             checkLogin(() -> {

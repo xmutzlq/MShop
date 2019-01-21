@@ -147,7 +147,7 @@ public class PageAdapterNew {
                 }));
                 CirclePageIndicator indicator = holder.getView(R.id.adv_circlePageIndicator);
                 indicator.setViewPager(mBanner);
-                //mBanner.setInterval(banner.getStyle().getAutoScroll());
+                mBanner.setInterval(5000);
                 mBanner.startAutoScroll();
                 mBanner.setCurrentItem(imgList.size() * 500);
                 mBanner.setNoScroll(imgList.size() == 1);

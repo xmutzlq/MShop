@@ -108,6 +108,13 @@ public class HomeSearchGoodsAdapter extends BaseMultiItemQuickAdapter<SearchResu
                     helper.setText(R.id.search_goods_title_2_list_tv, item.getGoods_sn());
                 }
 
+                if(TextUtil.isEmpty(item.getRec())) {
+                    helper.setGone(R.id.search_goods_recommend_tv, false);
+                } else {
+                    helper.setGone(R.id.search_goods_recommend_tv, true);
+                    helper.setText(R.id.search_goods_recommend_tv, "推荐:"+item.getRec()+"码");
+                }
+
                 if(TextUtil.isEmpty(item.getShop_price())) item.setShop_price("0.00");
                 helper.setText(R.id.search_goods_price_list_tv, "¥" + item.getShop_price());
 
@@ -135,6 +142,13 @@ public class HomeSearchGoodsAdapter extends BaseMultiItemQuickAdapter<SearchResu
                 } else {
                     helper.setGone(R.id.search_goods_title_2_grid_tv, true);
                     helper.setText(R.id.search_goods_title_2_grid_tv, item.getGoods_sn());
+                }
+
+                if(TextUtil.isEmpty(item.getRec())) {
+                    helper.setGone(R.id.search_goods_recommend_tv, false);
+                } else {
+                    helper.setGone(R.id.search_goods_recommend_tv, true);
+                    helper.setText(R.id.search_goods_recommend_tv, "推荐:"+item.getRec()+"码");
                 }
 
                 if(TextUtil.isEmpty(item.getShop_price())) item.setShop_price("0.00");

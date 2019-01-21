@@ -264,6 +264,8 @@ public class DetCommodityNewFragment extends BaseFragment<FragmentDetCommodityBi
 
         //已选
         binding.xljLayoutChoice.xljLayoutChoiceChoose.choiceItemLeftStr.setText(R.string.detail_choice);
+        String recommendStr = !TextUtils.isEmpty(info.getRec())?"推荐:"+info.getRec()+"码":"";
+        binding.xljLayoutChoice.xljLayoutChoiceChoose.choiceItemRightStr.setText(recommendStr);
         String color = "";
         String size = "";
         if(info.getSpec() != null

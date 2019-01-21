@@ -26,11 +26,19 @@ public class SpecFilterTagNewAdapter extends TagAdapter<List> {
 
     private Context mContext;
     private LayoutInflater mLayoutInflater;
+    private boolean mIsService;
 
-    public SpecFilterTagNewAdapter(Context context, java.util.List<List> datas) {
+    public SpecFilterTagNewAdapter(Context context, java.util.List<List> datas){
         super(datas);
         mContext = context;
         mLayoutInflater = LayoutInflater.from(mContext);
+    }
+
+    public SpecFilterTagNewAdapter(Context context, java.util.List<List> datas,boolean isService) {
+        super(datas);
+        mContext = context;
+        mLayoutInflater = LayoutInflater.from(mContext);
+        mIsService = isService;
     }
 
     @Override
@@ -69,7 +77,12 @@ public class SpecFilterTagNewAdapter extends TagAdapter<List> {
 
     @Override
     public boolean isEnabled(int position) {
-        return (getData().get(position).getShopStock() != null && getData().get(position).getShopStock().getAllStock() > 0) ||
-                getData().get(position).getSpecStock() > 0;
+        if(mIsService){
+            return (getData().get(position).getShopStock() != null && getData().get(position).getShopStock().getAllStock() > 0)
+                    || (getData().get(position).getShopStock() != null && getData().get(position).getShopStock().getUnStock() > 0);
+        }else {
+            return (getData().get(position).getShopStock() != null && getData().get(position).getShopStock().getAllStock() > 0) ||
+                    getData().get(position).getSpecStock() > 0;
+        }
     }
 }

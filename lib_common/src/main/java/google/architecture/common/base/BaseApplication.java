@@ -67,6 +67,7 @@ public abstract class BaseApplication extends BaseApp {
 
     private UserInfos userInfos; //用户登录依据
     private String mUserAccessToken; //微信唯一用户Id(unitId)
+    private String mScPhoneNum;//扫脚登录的手机号
 
     private static BaseApplication sInstance;
 
@@ -243,11 +244,25 @@ public abstract class BaseApplication extends BaseApp {
     }
 
     public String getmUserAccessToken() {
+        if(mUserAccessToken == null){
+            mUserAccessToken = "";
+        }
         return mUserAccessToken;
     }
 
     public void setmUserAccessToken(String mUserAccessToken) {
         this.mUserAccessToken = mUserAccessToken;
+    }
+
+    public String getmScPhoneNum() {
+        if(mScPhoneNum == null){
+            mScPhoneNum = "";
+        }
+        return mScPhoneNum;
+    }
+
+    public void setmScPhoneNum(String mScPhoneNum) {
+        this.mScPhoneNum = mScPhoneNum;
     }
 
     public String getGoodsId() {

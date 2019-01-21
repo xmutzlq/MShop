@@ -64,6 +64,15 @@
                 android:layout_marginLeft="@dimen/size_15dp"
                 android:textColor="@color/gray_C8"
                 android:textSize="@dimen/text_size_12sp"/>
+            <TextView
+                android:id="@+id/search_goods_recommend_tv"
+                style="@style/TextView_Goods_Title_1"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:gravity="right"
+                android:layout_weight="1"
+                android:textColor="@color/gray_C1"
+                android:textSize="@dimen/text_size_13sp"/>
         </LinearLayout>
 
     </LinearLayout>

@@ -111,6 +111,9 @@ public class GoodsDetailData {
     @SerializedName("qrcodeImg")
     private String qrcodeImg;
 
+    @SerializedName("rec")
+    private String rec;
+
     public void setGoodsId(int goodsId) {
         this.goodsId = goodsId;
     }
@@ -468,6 +471,14 @@ public class GoodsDetailData {
 
     public void setQrcodeImg(String qrcodeImg) {
         this.qrcodeImg = qrcodeImg;
+    }
+
+    public String getRec() {
+        return rec;
+    }
+
+    public void setRec(String rec) {
+        this.rec = rec;
     }
 
     @Override

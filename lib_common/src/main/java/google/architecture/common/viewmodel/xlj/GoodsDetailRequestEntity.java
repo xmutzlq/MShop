@@ -20,6 +20,10 @@ public class GoodsDetailRequestEntity {
     private String goodsId;
     @SerializedName("productNo")
     private String productNo;
+    @SerializedName("wxunId")
+    private String wxunId;
+    @SerializedName("mobile")
+    private String mobile;
 
     public static String getRequestJson(String goodsId, String productNo) {
         Gson gson = new Gson();
@@ -28,6 +32,8 @@ public class GoodsDetailRequestEntity {
         goodsDetailRequestEntity.setAppType("android");
         goodsDetailRequestEntity.setAppToken("y7w7jkt12E6I3BM9");
         goodsDetailRequestEntity.setMethod("Goods/goodsDetail");
+        goodsDetailRequestEntity.setWxunId(BaseApplication.getIns().getmUserAccessToken() != null ? BaseApplication.getIns().getmUserAccessToken():"");
+        goodsDetailRequestEntity.setMobile(BaseApplication.getIns().getmScPhoneNum() != null ? BaseApplication.getIns().getmScPhoneNum():"");
         if(!TextUtils.isEmpty(productNo)) {
             goodsDetailRequestEntity.setProductNo(productNo);
         }
@@ -83,5 +89,21 @@ public class GoodsDetailRequestEntity {
 
     public void setProductNo(String productNo) {
         this.productNo = productNo;
+    }
+
+    public String getWxunId() {
+        return wxunId;
+    }
+
+    public void setWxunId(String wxunId) {
+        this.wxunId = wxunId;
+    }
+
+    public String getMobile() {
+        return mobile;
+    }
+
+    public void setMobile(String mobile) {
+        this.mobile = mobile;
     }
 }

@@ -84,6 +84,8 @@ public class ARouterPath {
     public static final String WeixinLoginAty = PRE_FIX + APP_TAG + "personal/aty/weixin_login";
     /**扫脚登录页面*/
     public static final String FootScanLoginAty = PRE_FIX + APP_TAG + "personal/aty/footscan_login";
+    /**全身扫描页面*/
+    public static final String FootBodyScanAty = PRE_FIX + APP_TAG + "personal/aty/full_body_scan_login";
     /**广告宣传页面*/
     public static final String PromotionAty = PRE_FIX + APP_TAG + "common/aty/promotion";
 
