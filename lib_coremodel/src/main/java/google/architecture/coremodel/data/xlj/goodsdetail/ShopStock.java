@@ -1,7 +1,11 @@
 package google.architecture.coremodel.data.xlj.goodsdetail;
 
+import com.google.gson.annotations.SerializedName;
+
 public class ShopStock {
+    @SerializedName("allStock")
     private int allStock;
+    @SerializedName("unStock")
     private int unStock;
 
     public int getAllStock() {
