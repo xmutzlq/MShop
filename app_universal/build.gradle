@@ -23,8 +23,8 @@ android {
         applicationId "cn.s.android.shopping"
         minSdkVersion build_versions.min_sdk
         targetSdkVersion build_versions.target_sdk
-        versionCode 5
-        versionName "1.0.5"
+        versionCode 8
+        versionName "1.0.8"
 
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
 

@@ -24,6 +24,10 @@ import android.widget.TextView;
 
 import com.apkfuns.logutils.LogUtils;
 
+import net.tsz.afinal.FinalHttp;
+import net.tsz.afinal.http.AjaxCallBack;
+import net.tsz.afinal.http.HttpHandler;
+
 import java.io.File;
 
 import google.architecture.common.R;
@@ -33,6 +37,7 @@ import google.architecture.common.dialog.CTAlertDialog;
 import google.architecture.common.dialog.DialogsUtil;
 import google.architecture.common.util.AppUtil;
 import google.architecture.common.util.ToastUtils;
+import google.architecture.common.util.Utils;
 import google.architecture.coremodel.data.VersionInfo;
 import google.architecture.coremodel.data.xlj.AppVersion;
 
@@ -79,8 +84,10 @@ public class UpdateManager {
 	private DownloadManager mDownloadManager;
 	private DownloadObserver mDownloadObserver;
 	private File mApkFile;
+	private HttpHandler<File> fHandler;
+    private boolean stop;
 
-	/**
+    /**
 	 * @param activity
 	 *            构造函数
 	 */
@@ -126,7 +133,8 @@ public class UpdateManager {
 				});
 			} else {
 				//intoDownloadManager(activity);
-				initDownloadDialog(activity, isForceUpdate);
+				//initDownloadDialog(activity, isForceUpdate);
+                showDownloadDialog(activity, isForceUpdate);
 			}
 		};
 
@@ -339,5 +347,107 @@ public class UpdateManager {
 			}
 		}
 	}
+
+	private void showDownloadDialog(Activity activity,boolean isForceUpdate){
+		String fileName = mUpdateAPKItem.getDownloadUrl().substring(mUpdateAPKItem.getDownloadUrl().lastIndexOf("/")+1);
+		FinalHttp fh = new FinalHttp();
+		File downFile = null;
+		if(Environment.getExternalStorageState().equals(Environment.MEDIA_MOUNTED)){
+			downFile = new File(Environment.getExternalStorageDirectory().getAbsolutePath()+File.separator+"downloads");
+			if(!downFile.exists()){
+				downFile.mkdirs();
+			}else{
+				File apkFile = new File(downFile.getAbsolutePath()+File.separator + fileName);
+				if(apkFile.exists()){
+					apkFile.delete();
+				}
+			}
+		}
+		if(downFile == null){
+			ToastUtils.showLongToast("无法下载");
+			return;
+		}
+
+		fHandler = fh.download(mUpdateAPKItem.getDownloadUrl(), downFile.getAbsolutePath()+File.separator + fileName, false, downloadListener);
+
+		View downloadView = View.inflate(activity,R.layout.download_dialog,null);
+		mProgressBar = (ProgressBar) downloadView.findViewById(R.id.progress);
+		mProgress = (TextView) downloadView.findViewById(R.id.progressTV);
+		dialog = new CTAlertDialog(activity);
+		dialog.setCancelable(false);
+		dialog.setView(downloadView);
+		dialog.setBtnCancelTitle("取消", new CTAlertDialog.OnClickListener() {
+			@Override
+			public void onClick(View view, DialogInterface dialog) {
+                stop = true;
+				dialog.dismiss();
+
+				if(isForceUpdate){
+					ViewManager.getInstance().finishAllActivity();
+					android.os.Process.killProcess(android.os.Process.myPid());
+				}
+			}
+		});
+		dialog.setBtnConfirmVisibility(false);
+		/*dialog.setBtnConfirmTitle("后台下载", new CTAlertDialog.OnClickListener() {
+			@Override
+			public void onClick(View view, DialogInterface dialog) {
+				dialog.dismiss();
+			}
+		});*/
+		dialog.show();
+
+		dialog.setOnDismissListener(new DialogInterface.OnDismissListener() {
+			@Override
+			public void onDismiss(DialogInterface dialogInterface) {
+                if (stop) {
+                    if (fHandler!= null){
+                        fHandler.stop();
+                    }
+                    fHandler = null;
+                }
+			}
+		});
+
+	}
+
+	private final AjaxCallBack<File> downloadListener = new AjaxCallBack<File>() {
+		@Override
+		public void onLoading(long count, long current) {
+			System.out.println("count:"+count+"; current:"+current);
+			mProgressBar.setProgress((int) (current * 100 / count));
+			mProgress.setText((int) (current * 100 / count)+"%");
+		}
+
+		@Override
+		public void onSuccess(File file) {
+			File descFile = file;
+			if (dialog != null && dialog.isShowing()){
+				dialog.dismiss();
+			}
+			if ((descFile.getName().endsWith("apk"))) {
+				Utils.Install(mActivity,descFile );
+			}
+			handler = null;
+		}
+
+		@Override
+		public void onFailure(Throwable t, int errorNo, String strMsg) {
+			if (dialog != null && dialog.isShowing()){
+				dialog.dismiss();
+			}
+			if (stop) {
+				if (fHandler!= null){
+                    fHandler.stop();
+				}
+                fHandler = null;
+			}else {
+				if (fHandler!= null){
+                    fHandler.stop();
+				}
+                fHandler = null;
+			}
+		}
+	};
 
 }

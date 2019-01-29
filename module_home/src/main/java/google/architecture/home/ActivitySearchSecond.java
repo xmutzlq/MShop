@@ -63,6 +63,7 @@ public class ActivitySearchSecond extends BasePagingActivity<ActivitySearchSecon
     private boolean hasLoadFilter;
 
     private boolean isNeedBackStact;
+    private String originSearchInputId;
 
     @Override
     protected int getLayout() {
@@ -128,6 +129,7 @@ public class ActivitySearchSecond extends BasePagingActivity<ActivitySearchSecon
 
         searchInputValue = getIntent().getExtras().getString(CommKeyUtil.EXTRA_VALUE, ""); //分类项中的：catId
         searchInputId = getIntent().getExtras().getString(CommKeyUtil.EXTRA_KEY, "0"); //分类项中的：urlids
+        originSearchInputId = searchInputId;
         searchInputCatId = getIntent().getExtras().getString(CommKeyUtil.EXTRA_KEY_2, "0");
 
         //搜索结果
@@ -188,7 +190,7 @@ public class ActivitySearchSecond extends BasePagingActivity<ActivitySearchSecon
             setListViewModel(mHomeSearchViewModel);
             LogUtils.tag("zlq").e("searchInputId = " + searchInputId + ", searchInputCatId = " + searchInputCatId);
 //            mHomeSearchViewModel.loadSearchResultData(searchInputId, searchInputValue);
-            mHomeSearchViewModel.loadSearchResultDataNew(searchInputId, searchInputCatId, searchInputValue, 1, 0);
+            mHomeSearchViewModel.loadSearchResultDataNew(searchInputId, searchInputCatId, searchInputValue, 1, 1);
             pagingHelper.onRefresh();
             return false;
         });
@@ -213,6 +215,7 @@ public class ActivitySearchSecond extends BasePagingActivity<ActivitySearchSecon
 
     @Override
     protected void onEmptyDisplaying() {
+        viewModel.isEmpty.set(false);
         adapter.setEmptyView(R.layout.layout_empty_search_result, (ViewGroup) recyclerView.getParent());
     }
 
@@ -248,6 +251,9 @@ public class ActivitySearchSecond extends BasePagingActivity<ActivitySearchSecon
 //                mHomeSearchViewModel.setFilterResultData(filterResultData);
                 if(TextUtils.isEmpty(type) || !FragmentFilterMain.TYPE_FILTER_RESET.equals(type)) {
                     searchInputId = filterResultData.getParams();
+                    if(!searchInputId.contains("originSearchInputId")){
+                        searchInputId = originSearchInputId+"-"+searchInputId;
+                    }
                     onTabClick(false, tabView.getActionTag());
                 }
             }
@@ -307,22 +313,22 @@ public class ActivitySearchSecond extends BasePagingActivity<ActivitySearchSecon
                 break;
                 //2 = 新品
             case CommFilterTabView.TAB_NEWEST:
-                mHomeSearchViewModel.loadSearchResultDataNew(searchInputId, searchInputCatId, searchInputValue, 2, 0);
+                mHomeSearchViewModel.loadSearchResultDataNew(searchInputId, searchInputCatId, searchInputValue, 5, 1);
                 break;
                 //3 = 人气
             case CommFilterTabView.TAB_HOT:
-                mHomeSearchViewModel.loadSearchResultDataNew(searchInputId, searchInputCatId, searchInputValue, 3, 0);
+                mHomeSearchViewModel.loadSearchResultDataNew(searchInputId, searchInputCatId, searchInputValue, 2, 1);
                 break;
                 //1 = 默认
             case CommFilterTabView.TAB_DEFAULT:
-                mHomeSearchViewModel.loadSearchResultDataNew(searchInputId, searchInputCatId, searchInputValue, 1, 0);
+                mHomeSearchViewModel.loadSearchResultDataNew(searchInputId, searchInputCatId, searchInputValue, 1, 1);
                 break;
                 //0：升序 1：降序
             case CommFilterTabView.TAB_DEFAULT_AES: //默认—升
-                mHomeSearchViewModel.loadSearchResultDataNew(searchInputId, searchInputCatId, searchInputValue, 1, 0);
+                mHomeSearchViewModel.loadSearchResultDataNew(searchInputId, searchInputCatId, searchInputValue, 3, 0);
                 break;
             case CommFilterTabView.TAB_DEFAULT_DES: //默认—降
-                mHomeSearchViewModel.loadSearchResultDataNew(searchInputId, searchInputCatId, searchInputValue, 1, 1);
+                mHomeSearchViewModel.loadSearchResultDataNew(searchInputId, searchInputCatId, searchInputValue, 3, 1);
                 break;
         }
         pagingHelper.onRefresh();
@@ -350,4 +356,5 @@ public class ActivitySearchSecond extends BasePagingActivity<ActivitySearchSecon
         }
         return super.onKeyDown(keyCode, event);
     }
+
 }

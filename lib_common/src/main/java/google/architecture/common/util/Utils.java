@@ -4,15 +4,21 @@ package google.architecture.common.util;
 import android.app.Activity;
 import android.content.Context;
 import android.content.ContextWrapper;
+import android.content.Intent;
 import android.content.pm.ApplicationInfo;
 import android.content.pm.PackageManager;
+import android.net.Uri;
+import android.os.Build;
 import android.os.Looper;
 import android.support.annotation.NonNull;
 import android.support.annotation.StringRes;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
+import android.support.v4.content.FileProvider;
 import android.view.View;
+
+import java.io.File;
 
 /**
  * <p>Utils初始化相关 </p>
@@ -116,6 +122,31 @@ public class Utils {
 
     public static boolean isMainThread() {
         return Looper.getMainLooper() == Looper.myLooper();
+    }
+
+    /**
+     * 安装程序
+     *
+     * @param apkFile
+     * @param context
+     */
+    public static void Install(final Context context, final File apkFile) {
+        if (!apkFile.exists()) {
+            return;
+        }
+        Uri uri;
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
+            uri = FileProvider.getUriForFile(context,
+                    context.getPackageName() + ".fileprovider",
+                    apkFile);
+        } else {
+            uri = Uri.fromFile(apkFile);
+        }
+        Intent intent = new Intent(Intent.ACTION_VIEW);
+        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+        intent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
+        intent.setDataAndType(uri, "application/vnd.android.package-archive");
+        context.startActivity(intent);
     }
 
 }

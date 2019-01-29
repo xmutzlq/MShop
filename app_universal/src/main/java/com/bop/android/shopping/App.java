@@ -74,6 +74,7 @@ public class App  extends BaseApplication{
             @Override
             public void onSuccess(String deviceToken) {
                 setDeviceToken(deviceToken);
+                TestMessageDeliver.updateDeviceToken(App.this, deviceToken);
                 System.out.println("=====szq======device_token:"+deviceToken);
             }
 
@@ -94,6 +95,8 @@ public class App  extends BaseApplication{
                     JSONObject json = uMessage.getRaw();
                     try {
                         String custom = json.getJSONObject("body").getString("custom");
+                        String msgId = json.getJSONObject("body").getString("title");
+                        TestMessageDeliver.receiveMessageCallback(msgId);
                         LogUtils.tag("zlq").e("custom = " + custom);
                         if(!TextUtils.isEmpty(getGoodsId()) && getGoodsId().equals(custom)) return;
                         setGoodsId(custom);

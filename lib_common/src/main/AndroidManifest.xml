@@ -20,12 +20,12 @@
         <activity android:name=".ui.WebActivity"/>
         <activity android:name=".promotion.ActivityPromotion"/>
 
-        <receiver android:name=".receiver.UpdataBroadcastReceiver">
+        <!--<receiver android:name=".receiver.UpdataBroadcastReceiver">
             <intent-filter>
                 <action android:name="android.intent.action.DOWNLOAD_COMPLETE" />
-                <!--<action android:name="android.intent.action.PACKAGE_INSTALL" />-->
+                &lt;!&ndash;<action android:name="android.intent.action.PACKAGE_INSTALL" />&ndash;&gt;
             </intent-filter>
-        </receiver>
+        </receiver>-->
 
     </application>
 

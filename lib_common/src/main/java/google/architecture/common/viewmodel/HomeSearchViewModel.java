@@ -171,6 +171,15 @@ public class HomeSearchViewModel extends BaseListViewModel {
             }).subscribe(new EmptyConsumer(), new ErrorConsumer(this)));
     }
 
+    @Override
+    public void onPresenter(int code, String msg) {
+        super.onPresenter(code, msg);
+        if(code == 2){//网络错误，设置为空
+            isEmpty.set(true);
+            //setDataObject(null, data);
+        }
+    }
+
     //    @Override
 //    public void refreshData(boolean refresh) {
 //        if(searchResultParams != null) {

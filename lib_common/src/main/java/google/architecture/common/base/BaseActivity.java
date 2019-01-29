@@ -420,7 +420,9 @@ public abstract class BaseActivity<VB extends ViewDataBinding> extends BaseIdleA
         @Override
         public void onPropertyChanged(android.databinding.Observable sender, int propertyId) {
             dismissProgressDialog();
-            onEmptyDisplaying();
+            if(viewModel.isEmpty.get()) {
+                onEmptyDisplaying();
+            }
         }
     }
 
